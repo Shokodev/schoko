@@ -6,7 +6,6 @@
         <Menu></Menu>
       </aside>
       <router-view class="column"></router-view>
-
     </section>
   </div>
 </template>

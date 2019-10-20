@@ -126,7 +126,7 @@ public class HierarchyService {
         HashMap<String, String> allStructureElements = new HashMap<>();
         for (ObjectIdentifier oid : oidStringToOid.values()){
            if (oid.getObjectType().equals(ObjectType.structuredView)) {
-              String obejctName = "dummy'" + getKey(objectNamesToOids,oid.toString());
+              String obejctName = getKey(objectNamesToOids,oid.toString());
               String[] splitted = obejctName.split(getStructureSeparator());
               String name = splitted[splitted.length -1];
               allStructureElements.put(name,objectNamesToDescription.get(obejctName));

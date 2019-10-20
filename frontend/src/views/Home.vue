@@ -9,8 +9,8 @@
             </span>
         </div>
         <div class="container is-fluid">
-            <span>
-                <div class="button is-fullwidth level-left" v-on:click="goIn(child)" v-if="posts.length!==0" v-for="child in posts.children">
+            <span v-if="posts.length!==0">
+                <div class="button is-fullwidth level-left" v-on:click="goIn(child)" :key="child.elementName" v-for="child in posts.children">
                     {{child.elementName}}
                 </div>
             </span>
@@ -23,7 +23,7 @@
 
 <script>
     import axios from 'axios';
-    import modal from "./modal"
+    import modal from "../components/modal"
     //TODO make this work
     export default {
         name: 'structure',
@@ -47,7 +47,7 @@
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             loadJSON: function() {
-                axios.get("http://localhost:8080/" + this.element)
+                axios.get("http://localhost:8098/structure/" + this.element)
                     .then(response => {
                         this.posts = response.data;
                         this.parent = this.posts["elementName"];
@@ -66,9 +66,12 @@
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             goIn: function (child) {
+                console.log(child)
                 if (this.isBACnetObject(child) === false ) {
+                    console.log(child);
                     if(this.firstElement === false) {
                     this.element = this.element.concat("'"+ child["elementName"]);
+                    console.log(this.element)
                     this.loadJSON();
                 }
             }
@@ -78,13 +81,14 @@
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             isBACnetObject: function (child){
-                if(child["elementType"] !== "Structur Element") {
+                console.log(child["elementType"]);
+                if(child["elementType"] !== "Structure Element") {
                     console.log("reading BACnet Object");
-                    this.isModalVisible = true;
-                    axios.get("http://localhost:8080/Datapoint/" + "B01'GA01'L01'TEx")
-                        .then(response => {
-                            this.root = response.data;
-                        });
+                    //this.isModalVisible = true;
+                    //axios.get("http://localhost:8098/Datapoint/" + "B01'GA01'L01'TEx")
+                     //   .then(response => {
+                     //      this.root = response.data;
+                     //   });
 
 
                     return true;

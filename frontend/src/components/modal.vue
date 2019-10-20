@@ -5,10 +5,10 @@
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
-                                <strong>Datapoint</strong>
+                            <strong>Datapoint</strong>
                             <ul>
-                                <li v-for="test in bacnetObject">
-                                   {{ test.propertyIdentifier }} {{test.value}}
+                                <li v-for="object in bacnetObject" :key="object.elementName">
+                                   {{ object.propertyIdentifier }} {{object.value}}
                                 </li>
                             </ul>
                         </div>
@@ -35,21 +35,6 @@
                 <button class="button" @click="$emit('close')">
                     OK
                 </button>
-                <button class="button" @click=load>
-                    Manuell laden
-                </button>
-                <button class="button" @click=connect v-if="status === 'disconnected'">
-                    Connect
-                </button>
-                <button class="button" @click=disconnect v-if="status === 'connected'">
-                    {{status}}
-                    Disconnect
-                </button>
-                <button class="button" @click=sendMessage>
-                    SendMessage
-                </button>
-
-
             </div>
         </div>
     </div>
@@ -69,33 +54,8 @@
             this.bacnetObject = this.node;
         },
         methods:{
-        load() {
+            },
 
-            console.log(this.node)
-        },
-        connect() {
-            this.socket = new WebSocket("ws://localhost:8080/ws/Object");
-            this.socket.onopen = () => {
-                this.status = "connected";
-                this.logs.push({ event: "Connected to", data: 'ws://localhost:8080/topics/hello'});
-
-
-                this.socket.onmessage = ({data}) => {
-                    this.logs.push({ event: "Recieved message", data });
-                };
-            };
-        },
-        disconnect() {
-            this.socket.close();
-            this.status = "disconnected";
-            this.logs = [];
-        },
-        sendMessage(e) {
-            this.socket.send(this.message);
-            this.logs.push({ event: "Sent message", data: this.message });
-            this.message = "";
-        }
-        }
     }
 </script>
 

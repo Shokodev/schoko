@@ -20,13 +20,15 @@
         <span
                 :style="getStyle(node)">{{node.elementName}}</span>
         </div>
-        <TreeBrowser
-                v-if="expanded"
-                v-for="child in node.children"
-                :node="child"
-                :depth="depth + 1"
-                @onClick="(node) => $emit('onClick', node)"
-        />
+        <div v-if="expanded">
+            <TreeBrowser
+                    v-for="child in node.children"
+                    :node="child"
+                    :key="child.elementName"
+                    :depth="depth + 1"
+                    @onClick="(node) => $emit('onClick', node)"
+            />
+        </div>
     </div>
 </template>
 
@@ -56,7 +58,7 @@
                 if(typeof this.node.children != "undefined") {
                     let color = 'black';
                     if (!node.children) {
-                        color = colorHash.hex(node.elementName.split('.')[1]);
+                        color = 'red';
                     }
                     return {
                         color,
@@ -66,15 +68,9 @@
         },
         computed: {
             hasChildren() {
-                if(typeof this.node.children != "undefined") {
-                    if (this.node.children.length > null) {
-                        console.log(this.node.children);
-                        return true;
-                    }
-                    else return false;
+                return this.node.children;
             }}
-        }
-    }
+            }
 </script>
 
 <style scoped>

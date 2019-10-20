@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import TreeBrowser from './TreeBrowser.vue'
+    import TreeBrowser from '../components/TreeBrowser.vue'
     import axios from 'axios'
     //TODO make this work
     export default {
@@ -24,7 +24,7 @@
         // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
         // @version 1.0
         mounted() {
-            axios.get("http://localhost:8080/hierarchy")
+            axios.get("http://localhost:8098/hierarchy")
                 .then(response => {this.root=response.data});
             console.log(this.root)
 
