@@ -199,8 +199,9 @@ public class HierarchyService {
     }
 
     //TODO get description for Events
-    public String getDescription (){
-        return "nee";
+    public String getDescriptionByOid (String oid){
+      return objectNamesToDescription.get(getKey(objectNamesToOids,oid));
+
     }
 
 }

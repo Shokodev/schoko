@@ -1,6 +1,6 @@
 package com.bacnetbrowser.schoko.model.datahandler;
 
-import com.bacnetbrowser.schoko.model.models.BACnetNodes;
+import com.bacnetbrowser.schoko.model.models.BACnetNode;
 import com.bacnetbrowser.schoko.model.models.BACnetStructure;
 import com.bacnetbrowser.schoko.model.services.HierarchyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class HierarchyHandler {
      * @param structure as said
      * @return Object to Rest
      */
-    public BACnetNodes getChildrenByNodeElementName(String structure) {
+    public BACnetNode getChildrenByNodeElementName(String structure) {
         BACnetStructure tempNode = hierarchyService.getBacnetStructure();
         String[] splitted = structure.split(hierarchyService.getStructureSeparator());
         if ((splitted.length == 1) && (settingsHandler.getSiteName().equals(structure))) {
@@ -47,11 +47,11 @@ public class HierarchyHandler {
      * @param parent as said
      * @return the Object to send to REST
      */
-    private BACnetNodes createAndAddChildren(BACnetStructure parent) {
-        BACnetNodes nodeTopElement = new BACnetNodes(parent.getElementName(),parent.getElementType(),parent.getElementDescription(),parent.getDevice());
+    private BACnetNode createAndAddChildren(BACnetStructure parent) {
+        BACnetNode nodeTopElement = new BACnetNode(parent.getElementName(),parent.getElementType(),parent.getElementDescription(),parent.getDevice());
         List<BACnetStructure> children = parent.getChildren();
         for (BACnetStructure child : children ) {
-            BACnetNodes childForJSON = new BACnetNodes(child.getElementName(),child.getElementType(),child.getElementDescription(),child.getDevice());
+            BACnetNode childForJSON = new BACnetNode(child.getElementName(),child.getElementType(),child.getElementDescription(),child.getDevice());
             nodeTopElement.addChild(childForJSON);
         }
         return nodeTopElement;
@@ -59,9 +59,9 @@ public class HierarchyHandler {
 
     /**
      * delete structure if exists, read BacNet network and create new structure
-     * @param siteName defined in settings
-     * @param siteDescription defined in settings
-     * @param structureSeparator defined in settings
+     * @param siteName defined in defaultSettings
+     * @param siteDescription defined in defaultSettings
+     * @param structureSeparator defined in defaultSettings
      */
     public void createStructure(String siteName, String siteDescription, String structureSeparator){
         hierarchyService.deleteStructure();

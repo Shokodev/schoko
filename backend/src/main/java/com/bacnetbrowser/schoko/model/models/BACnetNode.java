@@ -9,16 +9,16 @@ import java.util.List;
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */
-public class BACnetNodes {
+public class BACnetNode {
 
     private String elementName;
     private String elementType;
     private String elementDescription;
     private Integer device;
-    private List<BACnetNodes> children = new ArrayList<>();
+    private List<BACnetNode> children = new ArrayList<>();
 
 
-    public BACnetNodes(String elementName, String elementType, String elementDescription, Integer device) {
+    public BACnetNode(String elementName, String elementType, String elementDescription, Integer device) {
         this.elementName = elementName;
         this.elementType = elementType;
         this.elementDescription = elementDescription;
@@ -37,7 +37,7 @@ public class BACnetNodes {
         return elementDescription;
     }
 
-    public List<BACnetNodes> getChildren() {
+    public List<BACnetNode> getChildren() {
         return children;
     }
 
@@ -45,7 +45,7 @@ public class BACnetNodes {
         return device;
     }
 
-    public BACnetNodes addChild(BACnetNodes child){
+    public BACnetNode addChild(BACnetNode child){
         this.children.add(child);
         return child;
     }

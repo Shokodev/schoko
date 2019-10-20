@@ -10,6 +10,7 @@ import com.serotonin.bacnet4j.service.acknowledgement.ReadPropertyAck;
 import com.serotonin.bacnet4j.service.confirmed.ConfirmedRequestService;
 import com.serotonin.bacnet4j.service.confirmed.ReadPropertyRequest;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
+import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -82,5 +83,15 @@ public class ObjectService {
         return properties;
     }
 
+    public String getPresentValue(ObjectIdentifier oid, RemoteDevice remoteDevice){
+        ConfirmedRequestService request = new ReadPropertyRequest(oid, PropertyIdentifier.presentValue);
+        try{
+        ReadPropertyAck result = (ReadPropertyAck) deviceHandler.getLocalDevice().send(remoteDevice, request);
+            return result.getValue().toString();
+    } catch (BACnetException bac){
+        System.out.println("Cant read present value of: " + oid + " @ " + remoteDevice);
+        }
+      return null;
+    }
 
 }

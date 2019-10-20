@@ -1,4 +1,4 @@
-package com.bacnetbrowser.schoko.model.webSockets;
+package com.bacnetbrowser.schoko.webSockets;
 
 
 import org.springframework.context.annotation.Configuration;

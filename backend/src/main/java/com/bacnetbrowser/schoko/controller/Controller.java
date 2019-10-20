@@ -1,10 +1,8 @@
 package com.bacnetbrowser.schoko.controller;
 
-import com.bacnetbrowser.schoko.model.datahandler.DeviceHandler;
-import com.bacnetbrowser.schoko.model.datahandler.HierarchyHandler;
-import com.bacnetbrowser.schoko.model.datahandler.ObjectHandler;
-import com.bacnetbrowser.schoko.model.datahandler.SettingsHandler;
-import com.bacnetbrowser.schoko.model.models.BACnetNodes;
+import com.bacnetbrowser.schoko.model.datahandler.*;
+import com.bacnetbrowser.schoko.model.models.BACnetEvent;
+import com.bacnetbrowser.schoko.model.models.BACnetNode;
 import com.bacnetbrowser.schoko.model.models.BACnetProperties;
 import com.bacnetbrowser.schoko.model.models.BACnetStructure;
 import com.serotonin.bacnet4j.exception.BACnetException;
@@ -17,8 +15,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Controller for REST server
@@ -34,22 +30,23 @@ public class Controller {
     private ObjectHandler objectHandler;
     private SettingsHandler settingsHandler;
     private DeviceHandler deviceHandler;
+    private EventHandler eventHandler;
 
 
     @Autowired
-    public Controller(HierarchyHandler hierarchyHandler, ObjectHandler objectHandler, DeviceHandler deviceHandler, SettingsHandler settingsHandler) throws Exception {
+    public Controller(HierarchyHandler hierarchyHandler, ObjectHandler objectHandler, DeviceHandler deviceHandler, SettingsHandler settingsHandler, EventHandler eventHandler) throws Exception {
         this.hierarchyHandler = hierarchyHandler;
         this.objectHandler = objectHandler;
         this.deviceHandler = deviceHandler;
         this.settingsHandler = settingsHandler;
+        this.eventHandler = eventHandler;
 
         //TODO This has to be executed after settings button "create" is press
+        settingsHandler.readXMLSettings();
         deviceHandler.createLocalDevice(settingsHandler.getPort());
         //TODO this has to be deleted as soon as settings ready an no more tests needed
         System.out.println("Build structure.......");
         hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
-
-
 
 
     }
@@ -76,6 +73,21 @@ public class Controller {
         return new ResponseEntity<SettingsHandler>(settings, HttpStatus.OK);
     }
 
+
+    /**
+     *
+     *
+     * @return eventlist
+     */
+    @GetMapping("/eventlist")
+    public LinkedList<BACnetEvent> getEvents (){
+       return eventHandler.getEvents();
+    }
+
+
+
+
+
     @GetMapping(value = "/settings")
     public SettingsHandler allSettings ()
     {
@@ -89,9 +101,9 @@ public class Controller {
      * @return hierarchy structure with the children
      */
     @GetMapping("/structure/{elementName}")
-    public BACnetNodes getBacnetStructure(@PathVariable String elementName){
+    public BACnetNode getBacnetStructure(@PathVariable String elementName){
         System.out.println("Get node: " + elementName);
-        BACnetNodes BACnetNodes = hierarchyHandler.getChildrenByNodeElementName(elementName);
+        BACnetNode BACnetNodes = hierarchyHandler.getChildrenByNodeElementName(elementName);
         if (BACnetNodes == null) throw  new NodeNotFoundException();
         return BACnetNodes;
     }
@@ -102,10 +114,10 @@ public class Controller {
      * @return Top element of the new structure
      */
     @GetMapping("/home/{home}")
-    public BACnetNodes getHome(@PathVariable String home)  {
+    public BACnetNode getHome(@PathVariable String home)  {
         System.out.println("Rebuild structure");
         hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
-        BACnetNodes BACnetNodes = hierarchyHandler.getChildrenByNodeElementName(home);
+        BACnetNode BACnetNodes = hierarchyHandler.getChildrenByNodeElementName(home);
         if (BACnetNodes == null) throw  new NodeNotFoundException();
         return BACnetNodes;
     }

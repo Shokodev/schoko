@@ -19,8 +19,6 @@ public class ObjectHandler {
     @Autowired
     ObjectService objectService;
 
-
-
     //TODO Update JSON, websocket needed
     public LinkedList<BACnetProperties> update (String elementName) throws BACnetException {
         objectService.readDataPointProperties(elementName);
