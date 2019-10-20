@@ -3,6 +3,9 @@ package com.bacnetbrowser.schoko.model.datahandler;
 
 import org.springframework.stereotype.Component;
 
+import java.util.LinkedList;
+import java.util.Set;
+
 /**
  * This class handel settings done in the browser
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
@@ -15,6 +18,7 @@ public class SettingsHandler {
     private String siteName = "Anlage";
     private String siteDescription = "Anlage Kunde xy";
     private String bacnetSeparator = "'";
+
 
     public Integer getPort() {
         return port;

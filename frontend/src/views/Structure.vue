@@ -4,35 +4,27 @@
             BACnet Struktur
         </h1>
         <TreeBrowser
-                :node="root"
+                :node="getHierarchy"
         />
     </div>
 </template>
-
 <script>
     import TreeBrowser from '../components/TreeBrowser.vue'
-    import axios from 'axios'
-    //TODO make this work
+    import { mapGetters, mapActions} from "vuex"
+
+    //TODO work with vuex instead
     export default {
         name: 'structure',
-        data() {
-            return {
-                root :{}
-            }
+        methods: mapActions(["completeHierarchy"])
+        ,
+        computed: mapGetters(["getHierarchy"])
+        ,
+        mounted()  {
+            this.completeHierarchy();
         },
-        // This Function get the Hierarchy from Backend
-        // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
-        // @version 1.0
-        mounted() {
-            axios.get("http://localhost:8098/hierarchy")
-                .then(response => {this.root=response.data});
-            console.log(this.root)
-
-        },
-        components: {
+            components: {
             TreeBrowser
-
-        }
+        },
     }
 
 </script>

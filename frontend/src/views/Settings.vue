@@ -62,8 +62,10 @@
 </template>
 
 <script>
-    //TODO add some functions
+    //TODO change static settings to vuex settings!!!
     import axios from 'axios'
+    import { mapGetters, mapActions} from "vuex"
+
     export default {
         name: "Settings",
         data() {
@@ -73,13 +75,10 @@
                 portSelected: "",
                 siteDescription: "",
                 bacnetSeperator: "'"
-
             }
+
             },
         methods: {
-            // This Function send settings done in the Backend
-            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
-            // @version 1.0
             save: function () {
                 axios.post("http://localhost:8080/settings/", {
                     siteName: this.siteName, port: parseInt(this.port), siteDescription: this.siteDescription,bacnetSeperator: this.bacnetSeperator
@@ -87,7 +86,14 @@
 
                return this.portSelected=this.port;
 
-            }
+            },
+            ...mapActions(["settings", "readSettings"]),
+
+        },
+        computed: mapGetters(["getSettings"])
+        ,
+        created() {
+            console.log(this.readSettings)
         }
     }
 </script>

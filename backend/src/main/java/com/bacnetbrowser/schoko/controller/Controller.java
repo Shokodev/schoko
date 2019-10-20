@@ -17,6 +17,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Controller for REST server
@@ -73,6 +75,13 @@ public class Controller {
         settingsHandler.setSiteDescription(settings.getSiteDescription());
         return new ResponseEntity<SettingsHandler>(settings, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/settings")
+    public SettingsHandler allSettings ()
+    {
+        return settingsHandler;
+    }
+
 
     /**
      * Site01'B'A'Ahu01'

@@ -10,7 +10,6 @@
               class="type"
       >
                 {{expanded ? '&#9660;' : '&#9658;'}}
-
         </span>
         <span
                 class="type" v-else
@@ -18,7 +17,7 @@
             {{expanded = '&#9671;' }}
         </span>
         <span
-                :style="getStyle(node)">{{node.elementName}}</span>
+                :style="getStyle(node)">{{node.elementName}} <span v-if="hasDescription"> ({{node.elementDescription}})</span> </span>
         </div>
         <div v-if="expanded">
             <TreeBrowser
@@ -68,8 +67,13 @@
         },
         computed: {
             hasChildren() {
-                return this.node.children;
-            }}
+                return this.node.children.length > 0;
+            },
+            hasDescription() {
+                return this.node["elementDescription"] !== "";
+            }
+        }
+
             }
 </script>
 
