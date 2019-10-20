@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <section class="columns is-fullheight">
-      <aside class="column is-narrow is-fullheight">
-        <p class="menu-label">Menu</p>
+      <aside id="menu" class="column is-narrow is-fullheight">
+        <p  class="menu-label">Menu</p>
         <Menu></Menu>
       </aside>
-      <router-view class="column"></router-view>
+      <router-view id="content" class="column"></router-view>
     </section>
   </div>
 </template>
@@ -33,6 +33,14 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    margin-top: 60px;
+    margin-top: 0.75em;
+  }
+  #menu{
+    padding-left: 1.5em;
+
+  }
+
+  #content{
+    padding-left: 1.5em;
   }
 </style>

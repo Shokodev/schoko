@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p class="title">Einstellungen</p>
+        <p class="subtitle is 3">Einstellungen</p>
         <div class="control">
             <div class="field">
                 <label class="label">Site Name</label>
@@ -46,7 +46,7 @@
                         <option>0xBACF</option>
                     </select>
                 </div>
-                <p class="help">BACnet port auswählen {{portSelected}}</p>
+                <p class="help">BACnet port auswählen</p>
             </div>
             <div class="field is-grouped">
                 <div class="control">

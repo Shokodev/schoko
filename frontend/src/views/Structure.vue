@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="title">
+        <h1 class="subtitle is 3">
             BACnet Struktur
         </h1>
         <TreeBrowser
