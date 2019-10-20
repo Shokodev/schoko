@@ -1,17 +1,17 @@
 <template>
     <div>
         <div>
-            <h1 class="title">
+            <h1 class="subtitle is 3">
                 Home
             </h1>
             <span>
-              <strong class="button is-fullwidth level-left" v-on:click="goBack">{{posts.elementName}}</strong>
+              <strong id="postsButton" class="button is-fullwidth level-left " v-on:click="goBack">{{posts.elementName}} ({{(posts.elementDescription)}})</strong>
             </span>
         </div>
         <div class="container is-fluid">
             <span v-if="posts.length!==0">
-                <div class="button is-fullwidth level-left" v-on:click="goIn(child)" :key="child.elementName" v-for="child in posts.children">
-                    {{child.elementName}}
+                <div id="childButton" class="button is-fullwidth level-left" v-on:click="goIn(child)" :key="child.elementName" v-for="child in posts.children">
+                    {{child.elementName}} ({{child.elementDescription}})
                 </div>
             </span>
             <modal v-if="isModalVisible" @close="isModalVisible = false" :node="root">
@@ -104,6 +104,7 @@
 </script>
 
 <style scoped>
-
+#childButton{margin: 0.2em; background: #FCF9F9;}
+#postsButton{background: #EFEAEA;}
 
 </style>

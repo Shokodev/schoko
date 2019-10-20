@@ -1,5 +1,5 @@
 <template>
-    <ul class="menu-list">
+    <ul  class="menu-list">
         <li><router-link to="/home" v-on:click="getToHome">Home</router-link></li>
         <li><router-link to="/alarmList" v-on:click="AlarmList">Alarmliste</router-link></li>
         <li><router-link to="/structure" v-on:click="getHierarchy">Struktur</router-link></li>

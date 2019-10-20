@@ -5,8 +5,7 @@
 </template>
 
 <script>
-    //TODO add some functions and stuff
-    export default {
+        export default {
         name: "AlarmList"
     }
 </script>
