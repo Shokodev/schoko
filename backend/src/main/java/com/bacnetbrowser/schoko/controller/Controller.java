@@ -48,7 +48,6 @@ public class Controller {
         System.out.println("Build structure.......");
         hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
 
-
     }
 
 
@@ -92,6 +91,7 @@ public class Controller {
     @GetMapping(value = "/settings")
     public SettingsHandler allSettings ()
     {
+
         return settingsHandler;
     }
 
@@ -131,7 +131,7 @@ public class Controller {
      */
 
     @GetMapping("/Datapoint/{elementName}")
-    public LinkedList<BACnetProperties> getProperties(@PathVariable String elementName) throws BACnetException {
+    public LinkedList<BACnetProperties> getProperties(@PathVariable String elementName) throws BACnetException, InterruptedException {
         System.out.println("Read: " + elementName);
         return  objectHandler.update(elementName);
     }
