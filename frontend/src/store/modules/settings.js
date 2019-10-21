@@ -12,7 +12,7 @@ const state = {
 };
 
 export const actions = {
-    async settings({commit}, settings) {
+    async newSettings({commit}, settings) {
         const response = axios.post(
             "http://localhost:8098/settings", settings
         );
@@ -23,6 +23,7 @@ export const actions = {
             "http://localhost:8098/settings"
         );
         commit('backendSettings', response.data)
+        console.log(response.data)
     }
 };
 export const mutations = {
@@ -34,7 +35,6 @@ export const mutations = {
 const getters = {
   getSettings: state => state.settings
 };
-
 
 export default {
     actions,

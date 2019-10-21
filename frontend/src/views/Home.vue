@@ -84,7 +84,7 @@
                 console.log(child["elementType"]);
                 if(child["elementType"] !== "Structure Element") {
                     console.log("reading BACnet Object");
-                    //this.isModalVisible = true;
+                    this.isModalVisible = true;
                     //axios.get("http://localhost:8098/Datapoint/" + "B01'GA01'L01'TEx")
                      //   .then(response => {
                      //      this.root = response.data;

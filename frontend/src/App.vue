@@ -12,14 +12,22 @@
 
 <script>
   import Menu from './components/Menu'
+  import { mapActions } from "vuex"
 
   export default {
     name: 'app',
     components: {
       Menu
+    },
+      methods: {
+      ...mapActions(["readSettings"])
+  },
 
-    }
+    created() {
+      this.readSettings();
+    },
   }
+
 </script>
 
 <style>

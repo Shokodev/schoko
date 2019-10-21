@@ -5,29 +5,28 @@
             <div class="field">
                 <label class="label">Site Name</label>
                 <div class="control">
-                    <input v-model="siteName"  class="input" type="text"  placeholder="Site Name" >
+                    <input v-model="settings.siteName"  class="input" type="text">
                 </div>
                 <p class="help">Site Namen eingeben</p>
             </div>
             <div class="field">
                 <label class="label">Site Beschreibung</label>
                 <div class="control">
-                    <input v-model="siteDescription"  class="input" type="text"  placeholder="Site Description" >
+                    <input v-model="settings.siteDescription"  class="input" type="text">
                 </div>
                 <p class="help">Site Description eingeben</p>
             </div>
             <div class="field">
                 <label class="label">BACnet Seperator</label>
                 <div class="control">
-                    <input v-model="bacnetSeperator"  class="input" type="text"  placeholder="'" >
+                    <input v-model="settings.bacnetSeperator"  class="input" type="text"  placeholder="'" >
                 </div>
                 <p class="help">BACnet Seperator eingeben</p>
             </div>
-
             <div class="control">
             <label class="label">BACnet Port</label>
                 <div class="select">
-                    <select v-model="port"  >
+                    <select v-model="settings.port">
                         <option>0xBAC0</option>
                         <option>0xBAC1</option>
                         <option>0xBAC2</option>
@@ -50,10 +49,10 @@
             </div>
             <div class="field is-grouped">
                 <div class="control">
-                    <button v-on:click="save"  class="button is-link" :disabled="siteName.length<=0">Speichern</button>
+                    <button @click="SetSettings()" class="button is-link">Speichern</button>
                 </div>
                 <div class="control">
-                    <button class="button is-text">Abbrechen</button>
+                    <button  class="button is-text">Abbrechen</button>
                 </div>
             </div>
         </div>
@@ -63,38 +62,37 @@
 
 <script>
     //TODO change static settings to vuex settings!!!
-    import axios from 'axios'
     import { mapGetters, mapActions} from "vuex"
 
     export default {
         name: "Settings",
         data() {
             return {
-                siteName: "",
-                port: 0xBAC0,
-                portSelected: "",
-                siteDescription: "",
-                bacnetSeperator: "'"
+                settings: {
+                    siteName: "DefaultSite",
+                    port: Number,
+                    siteDescription: "Desciption",
+                    bacnetSeperator: "'",
+                }
             }
-
-            },
-        methods: {
-            save: function () {
-                axios.post("http://localhost:8080/settings/", {
-                    siteName: this.siteName, port: parseInt(this.port), siteDescription: this.siteDescription,bacnetSeperator: this.bacnetSeperator
-                })
-
-               return this.portSelected=this.port;
-
-            },
-            ...mapActions(["settings", "readSettings"]),
-
         },
-        computed: mapGetters(["getSettings"])
-        ,
-        created() {
-            console.log(this.readSettings)
+        computed: {
+            ...mapGetters(["getSettings"]),
+        },methods: {
+            ...mapActions(["newSettings"]),
+
+            SetSettings() {
+                this.newSettings(this.settings)
+                console.log("send")
+            }
+        },
+        mounted() {
+            this.settings.siteDescription = this.getSettings.siteDescription;
+            this.settings.siteName = this.getSettings.siteName;
+            this.settings.port = this.getSettings.port;
+            this.settings.bacnetSeperator = this.getSettings.bacnetSeperator;
         }
+
     }
 </script>
 

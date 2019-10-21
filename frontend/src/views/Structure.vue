@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="getHierarchy">
         <h1 class="subtitle is 3">
             BACnet Struktur
         </h1>
@@ -19,7 +19,7 @@
         ,
         computed: mapGetters(["getHierarchy"])
         ,
-        mounted()  {
+        created()  {
             this.completeHierarchy();
         },
             components: {

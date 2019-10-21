@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="node.children">
         <div
                 @click="nodeClicked"
                 :style="{'margin-left': `${depth * 20}px`}"
