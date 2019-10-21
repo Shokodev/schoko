@@ -59,7 +59,7 @@ public class SettingsHandler {
 
     public void readXMLSettings() {
         try {
-        File fXmlFile = new File("C:\\Users\\admin\\IdeaProjects\\schoko\\backend\\src\\main\\resources\\defaultSettings");
+        File fXmlFile = new File("src\\main\\resources\\defaultSettings");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(fXmlFile);
@@ -75,15 +75,15 @@ public class SettingsHandler {
 
     public void writeXMLSettings() {
         try {
-            File fXmlFile = new File("../../defaultSettings");
+            File fXmlFile = new File("src\\main\\resources\\defaultSettings");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
 
-            doc.getElementsByTagName("port").item(0).setNodeValue(getPort().toString());
-            doc.getElementsByTagName("siteName").item(0).setNodeValue(getSiteName());
-            doc.getElementsByTagName("siteDescription").item(0).setNodeValue(getSiteDescription());
-            doc.getElementsByTagName("bacnetSeparator").item(0).setNodeValue(getBacnetSeparator());
+            doc.getElementsByTagName("port").item(0).setTextContent(getPort().toString());
+            doc.getElementsByTagName("siteName").item(0).setTextContent(getSiteName());
+            doc.getElementsByTagName("siteDescription").item(0).setTextContent(getSiteDescription());
+            doc.getElementsByTagName("bacnetSeparator").item(0).setTextContent(getBacnetSeparator());
 
         } catch (Exception e){
             e.printStackTrace();}

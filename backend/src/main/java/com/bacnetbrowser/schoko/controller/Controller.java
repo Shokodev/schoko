@@ -70,6 +70,7 @@ public class Controller {
         settingsHandler.setPort(settings.getPort());
         settingsHandler.setBacnetSeparator(settings.getBacnetSeparator());
         settingsHandler.setSiteDescription(settings.getSiteDescription());
+        settingsHandler.writeXMLSettings();
         return new ResponseEntity<SettingsHandler>(settings, HttpStatus.OK);
     }
 
