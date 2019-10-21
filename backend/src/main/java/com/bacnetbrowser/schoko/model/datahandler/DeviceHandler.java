@@ -2,7 +2,7 @@ package com.bacnetbrowser.schoko.model.datahandler;
 
 
 import com.bacnetbrowser.schoko.model.services.EventService;
-import com.bacnetbrowser.schoko.model.services.SubscriptionService;
+import com.bacnetbrowser.schoko.model.services.ObjectService;
 import com.serotonin.bacnet4j.LocalDevice;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.exception.BACnetException;
@@ -36,10 +36,11 @@ import java.util.List;
 public class DeviceHandler {
 
     private LocalDevice localDevice;
+
     @Autowired
     private EventHandler eventHandler;
     @Autowired
-    private SubscriptionService subscriptionService;
+    private ObjectService objectService;
     @Autowired
     private EventService eventService;
 
@@ -55,7 +56,7 @@ public class DeviceHandler {
         Transport transport = new Transport(ipNetwork);
         int localDevice_ID = 10001;
         localDevice = new LocalDevice(localDevice_ID, transport);
-        localDevice.getEventHandler().addListener(subscriptionService);
+        localDevice.getEventHandler().addListener(objectService);
         localDevice.getEventHandler().addListener(eventService);
         localDevice.initialize();
         System.out.println("Successfully created LocalDevice " + localDevice.getConfiguration().getInstanceId());

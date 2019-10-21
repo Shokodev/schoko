@@ -3,13 +3,10 @@ package com.bacnetbrowser.schoko.model.datahandler;
 
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
-import java.util.LinkedList;
-import java.util.Set;
 
 /**
  * This class handel defaultSettings done in the browser

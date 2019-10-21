@@ -169,9 +169,9 @@ public class HierarchyService {
                                 deviceHandler.getLocalDevice(), remoteDevice, remoteDevice.getObjectIdentifier(),
                                 PropertyIdentifier.objectList)).getValues();
                 for (ObjectIdentifier oid : oids) {
+                    if (checkIfNecessaryForStructure(oid)) {
                     String tempObjectName = ((ReadPropertyAck) deviceHandler.getLocalDevice().send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.objectName))).getValue().toString();
                     String tempDescription = ((ReadPropertyAck) deviceHandler.getLocalDevice().send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.description))).getValue().toString();
-                    if (!oid.toString().startsWith("Vendor")){
                         objectNamesToOids.put(tempObjectName,oid.toString());
                         objectNamesToDescription.put(tempObjectName,tempDescription);
                         obejctNamesToRemoteDevice.put(tempObjectName,remoteDevice);
@@ -188,6 +188,11 @@ public class HierarchyService {
 
     public HashMap<String, String> getObjectNamesToOids() {
         return objectNamesToOids;
+    }
+    
+    public Boolean checkIfNecessaryForStructure(ObjectIdentifier oid){
+        ObjectType type = oid.getObjectType();
+        return !type.equals(ObjectType.file) && !type.equals(ObjectType.device) && !type.equals(ObjectType.program) && !oid.toString().startsWith("Vendor");
     }
 
     public HashMap<String, String> getObjectNamesToDescription() {
