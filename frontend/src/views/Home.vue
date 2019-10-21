@@ -5,15 +5,17 @@
                 Home
             </h1>
             <span>
-              <strong id="postsButton" class="button is-fullwidth level-left " v-on:click="goBack">{{posts.elementName}} ({{(posts.elementDescription)}})</strong>
+              <span id="postsButton" class="button is-fullwidth level-left " v-on:click="goBack">{{posts.elementName}} ({{(posts.elementDescription)}})</span>
             </span>
         </div>
         <div class="container is-fluid">
+            <div>
             <span v-if="posts.length!==0">
-                <div id="childButton" class="button is-fullwidth level-left" v-on:click="goIn(child)" :key="child.elementName" v-for="child in posts.children">
-                    {{child.elementName}} ({{child.elementDescription}})
-                </div>
+                <span id="childButton" class="button is-fullwidth level-left" v-on:click="goIn(child)" :key="child.elementName" v-for="child in posts.children">
+                    {{child.elementName}}<span id="description" v-if="child.elementDescription!==''">({{child.elementDescription}})</span>
+                </span>
             </span>
+            </div>
             <modal v-if="isModalVisible" @close="isModalVisible = false" :node="root">
 
             </modal>
@@ -37,6 +39,9 @@
                 properties: [],
                 isModalVisible: false,
                 root: [],
+                child: {
+                    elementDescription: ""
+                },
             };
           },
         mounted() {
@@ -84,27 +89,18 @@
                 console.log(child["elementType"]);
                 if(child["elementType"] !== "Structure Element") {
                     console.log("reading BACnet Object");
-                    this.isModalVisible = true;
-                    //axios.get("http://localhost:8098/Datapoint/" + "B01'GA01'L01'TEx")
-                     //   .then(response => {
-                     //      this.root = response.data;
-                     //   });
-
+                    this.isModalVisible= true;
 
                     return true;
                 }else
                     return false;
             }
-
-
-
-        }
-
+        },
     };
 </script>
 
 <style scoped>
 #childButton{margin: 0.2em; background: #FCF9F9;}
 #postsButton{background: #EFEAEA;}
-
+#description{padding-left: 0.5em}
 </style>
