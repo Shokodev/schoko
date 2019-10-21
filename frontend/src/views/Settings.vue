@@ -80,7 +80,7 @@
             },
         methods: {
             save: function () {
-                axios.post("http://localhost:8080/settings/", {
+                axios.post("http://localhost:8098/settings/", {
                     siteName: this.siteName, port: parseInt(this.port), siteDescription: this.siteDescription,bacnetSeperator: this.bacnetSeperator
                 })
 

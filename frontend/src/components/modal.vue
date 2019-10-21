@@ -35,12 +35,18 @@
                 <button class="button" @click="$emit('close')">
                     OK
                 </button>
+                <button class="button" v-on:click="connect">
+                    Connect
+                </button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    let stompClient=null;
+    import Stomp from 'stompjs';
+    import SockJS from 'sockjs-client'
     export default {
         name: "modal",
         props: ['node'],
@@ -48,14 +54,25 @@
             return{
                 bacnetObject: '',
                 status: "disconnected"
-            }
+
+
+        }
         },
         mounted() {
             this.bacnetObject = this.node;
         },
-        methods:{
-            },
+        methods: {
+                connect: function(){
+                    const socket = new SockJS('/ws/Object');
+                    stompClient = Stomp.over(socket);
+                    stompClient.connect({}, function (frame) {
+                        console.log('Connected: ' + frame);
+                        //stompClient.subscribe('/topic/greetings', function (greeting) {
+                            //showGreeting(JSON.parse(greeting.body).content);
+                        });
 
+    },
+    }
     }
 </script>
 
