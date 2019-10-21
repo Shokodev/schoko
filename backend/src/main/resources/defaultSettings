@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
     <settings id="1">
-        <port>47808</port>
+        <port>BAC0</port>
         <siteName>Anlage</siteName>
         <siteDescription>Anlage Kunde xy</siteDescription>
         <bacnetSeparator>'</bacnetSeparator>

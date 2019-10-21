@@ -9,6 +9,7 @@ import com.serotonin.bacnet4j.exception.BACnetException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
@@ -43,7 +44,12 @@ public class Controller {
 
         //TODO This has to be executed after settings button "create" is press
         settingsHandler.readXMLSettings();
-        deviceHandler.createLocalDevice(settingsHandler.getPort());
+        try {
+            deviceHandler.createLocalDevice(Integer.parseInt(settingsHandler.getPort(), 16));
+        }
+        catch (NumberFormatException err){
+            System.err.println("Warning wrong port "+settingsHandler.getPort());
+        }
         //TODO this has to be deleted as soon as settings ready an no more tests needed
         System.out.println("Build structure.......");
         hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
@@ -130,8 +136,9 @@ public class Controller {
      * @throws BACnetException from Network
      */
 
-    @GetMapping("/Datapoint/{elementName}")
-    public LinkedList<BACnetProperties> getProperties(@PathVariable String elementName) throws BACnetException, InterruptedException {
+    @MessageMapping("/datapoint")
+    @SendTo("/datapoint/Text")
+    public LinkedList<BACnetProperties> getProperties(String elementName) throws BACnetException, InterruptedException {
         System.out.println("Read: " + elementName);
         return  objectHandler.update(elementName);
     }

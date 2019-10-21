@@ -27,22 +27,22 @@
             <label class="label">BACnet Port</label>
                 <div class="select">
                     <select v-model="settings.port">
-                        <option>0xBAC0</option>
-                        <option>0xBAC1</option>
-                        <option>0xBAC2</option>
-                        <option>0xBAC3</option>
-                        <option>0xBAC4</option>
-                        <option>0xBAC5</option>
-                        <option>0xBAC6</option>
-                        <option>0xBAC7</option>
-                        <option>0xBAC8</option>
-                        <option>0xBAC9</option>
-                        <option>0xBACA</option>
-                        <option>0xBACB</option>
-                        <option>0xBACC</option>
-                        <option>0xBACD</option>
-                        <option>0xBACE</option>
-                        <option>0xBACF</option>
+                        <option>BAC0</option>
+                        <option>BAC1</option>
+                        <option>BAC2</option>
+                        <option>BAC3</option>
+                        <option>BAC4</option>
+                        <option>BAC5</option>
+                        <option>BAC6</option>
+                        <option>BAC7</option>
+                        <option>BAC8</option>
+                        <option>BAC9</option>
+                        <option>BACA</option>
+                        <option>BACB</option>
+                        <option>BACC</option>
+                        <option>BACD</option>
+                        <option>BACE</option>
+                        <option>BACF</option>
                     </select>
                 </div>
                 <p class="help">BACnet port auswählen</p>

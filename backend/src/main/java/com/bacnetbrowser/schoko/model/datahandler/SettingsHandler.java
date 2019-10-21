@@ -16,17 +16,17 @@ import java.io.File;
 @Component
 public class SettingsHandler {
 
-    private Integer port;
+    private String port;
     private String siteName;
     private String siteDescription;
     private String bacnetSeparator;
 
 
-    public Integer getPort() {
+    public String getPort() {
         return port;
     }
 
-    public void setPort(Integer port) {
+    public void setPort(String port) {
         this.port = port;
     }
 
@@ -56,12 +56,12 @@ public class SettingsHandler {
 
     public void readXMLSettings() {
         try {
-        File fXmlFile = new File("src\\main\\resources\\defaultSettings");
+        File fXmlFile = new File("backend\\src\\main\\resources\\defaultSettings");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(fXmlFile);
 
-        setPort(Integer. parseInt((doc.getElementsByTagName("port").item(0).getTextContent())));
+        setPort((doc.getElementsByTagName("port").item(0).getTextContent()));
         setSiteName(doc.getElementsByTagName("siteName").item(0).getTextContent());
         setSiteDescription(doc.getElementsByTagName("siteDescription").item(0).getTextContent());
         setBacnetSeparator(doc.getElementsByTagName("bacnetSeparator").item(0).getTextContent());
@@ -77,7 +77,7 @@ public class SettingsHandler {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
 
-            doc.getElementsByTagName("port").item(0).setTextContent(getPort().toString());
+            doc.getElementsByTagName("port").item(0).setTextContent(getPort());
             doc.getElementsByTagName("siteName").item(0).setTextContent(getSiteName());
             doc.getElementsByTagName("siteDescription").item(0).setTextContent(getSiteDescription());
             doc.getElementsByTagName("bacnetSeparator").item(0).setTextContent(getBacnetSeparator());

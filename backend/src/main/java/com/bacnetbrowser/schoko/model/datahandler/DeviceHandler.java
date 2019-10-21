@@ -51,7 +51,7 @@ public class DeviceHandler {
      * @param port port to read Network
      * @throws Exception local Device
      */
-    public void createLocalDevice(int port) throws Exception {
+    public void createLocalDevice(Integer port) throws Exception {
         IpNetwork ipNetwork = new IpNetwork(IpNetwork.DEFAULT_BROADCAST_IP,port);
         Transport transport = new Transport(ipNetwork);
         int localDevice_ID = 10001;
