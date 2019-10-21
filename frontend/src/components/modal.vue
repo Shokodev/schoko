@@ -67,7 +67,7 @@
                     stompClient = Stomp.over(socket);
                     stompClient.connect({}, function (frame) {
                         console.log('Connected: ' + frame);
-                        stompClient.subscribe('/topic/greetings', console.log(String.body))
+                        stompClient.subscribe('/topic/user', console.log(String.body))
 
                     })
     }

@@ -7,11 +7,20 @@ import com.bacnetbrowser.schoko.model.models.BACnetProperties;
 import com.bacnetbrowser.schoko.model.models.BACnetStructure;
 import com.serotonin.bacnet4j.exception.BACnetException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
+import org.springframework.messaging.support.MessageHeaderAccessor;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +34,8 @@ import java.util.LinkedList;
 @CrossOrigin
 @RestController
 @Component
+@Configuration
+@EnableScheduling
 public class Controller {
 
     private HierarchyHandler hierarchyHandler;
@@ -33,6 +44,8 @@ public class Controller {
     private DeviceHandler deviceHandler;
     private EventHandler eventHandler;
 
+    @Autowired
+    SimpMessagingTemplate template;
 
     @Autowired
     public Controller(HierarchyHandler hierarchyHandler, ObjectHandler objectHandler, DeviceHandler deviceHandler, SettingsHandler settingsHandler, EventHandler eventHandler) throws Exception {
@@ -135,19 +148,22 @@ public class Controller {
      * @return List with properties values and identifiers
      * @throws BACnetException from Network
      */
-
-    @MessageMapping("/datapoint")
-    @SendTo("/datapoint/Text")
-    public LinkedList<BACnetProperties> getProperties(String elementName) throws BACnetException, InterruptedException {
-        System.out.println("Read: " + elementName);
-        return  objectHandler.update(elementName);
+    @MessageMapping("/user")
+    @SendTo("/topic/user")
+    public LinkedList<BACnetProperties> getProperties (String name)  throws BACnetException{
+        System.out.println("Read: " + name);
+        return objectHandler.update(name);
     }
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public String greeting(String message) throws Exception {
-        return "Hello";
+
+    @Scheduled(fixedDelay = 3000) //Calls this method every 3 seconds
+    public void sendAdhocMessages() throws BACnetException {
+        //Sends the payload (new UserResponse) to the topic (/topic/user)
+        template.convertAndSend("/topic/user", objectHandler.update("B'A'Ahu'FanSu'Cmd"));
     }
+
+
+
 
     /**
      * Exception if wrong URL tipped

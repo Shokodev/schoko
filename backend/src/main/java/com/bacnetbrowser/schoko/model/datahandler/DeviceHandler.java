@@ -103,7 +103,7 @@ public class DeviceHandler {
                                 localDevice, remoteDevice, remoteDevice.getObjectIdentifier(),
                                 PropertyIdentifier.objectList)).getValues();
             } catch (BACnetException bac1){
-                System.out.println("No objects in " + remoteDevice + "found");
+                System.err.println("No objects in " + remoteDevice + "found");
             }
 
             for (ObjectIdentifier oid : oids) {
@@ -113,7 +113,7 @@ public class DeviceHandler {
                try {
                    localDevice.send(remoteDevice, request);
                }catch(BACnetException bac2){
-                   System.out.println("No notification classes found");
+                   System.err.println("No notification classes found");
                }
                 System.out.println("LocalDevice " + localDevice.getConfiguration().getInstanceId() + " as receiver registered to: " + oid.toString() + " @ " + remoteDevice.getObjectIdentifier());
 

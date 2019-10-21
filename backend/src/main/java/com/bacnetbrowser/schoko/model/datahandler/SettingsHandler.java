@@ -56,7 +56,7 @@ public class SettingsHandler {
 
     public void readXMLSettings() {
         try {
-        File fXmlFile = new File("backend\\src\\main\\resources\\defaultSettings");
+        File fXmlFile = new File("src\\main\\resources\\defaultSettings");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(fXmlFile);

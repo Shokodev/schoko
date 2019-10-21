@@ -20,6 +20,7 @@ import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -119,6 +120,7 @@ public class ObjectService extends DeviceEventAdapter {
                if(pv.getPropertyIdentifier().toString().equals(pid.getPropertyIdentifier())){
                    pid.setValue(pv.getValue().toString());
                    System.out.println("Device: " + initiatingDevice.getObjectIdentifier() + " has sent new " +pid.getPropertyIdentifier() + ": " + pid.getValue());
+
                }
             }
         }
