@@ -1,6 +1,7 @@
 package com.bacnetbrowser.schoko.model.services;
 
 import com.bacnetbrowser.schoko.model.datahandler.DeviceHandler;
+import com.bacnetbrowser.schoko.model.datahandler.ObjectHandler;
 import com.bacnetbrowser.schoko.model.models.BACnetProperties;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
@@ -32,25 +33,26 @@ public class ObjectService extends DeviceEventAdapter {
     private DeviceHandler deviceHandler;
     @Autowired
     private HierarchyService hierarchyService;
+    @Autowired
+    private ObjectHandler objectHandler;
 
     private LinkedList<BACnetProperties> properties;
 
+    private RemoteDevice remoteDevice;
+    private ObjectIdentifier objectIdentifier;
+
+
 
     /**
-     * gets All properties from a DataPoint by elementType
-     *
-     * @throws BACnetException from Network
+     * gets All properties from a DataPoint by elementTyp
      */
-    public void readDataPointProperties(String elementName) throws BACnetException{
+    public void readDataPointProperties(String elementName) {
         LinkedList<BACnetProperties> properties = new LinkedList<>();
         RemoteDevice remoteDevice = hierarchyService.getObejctNamesToRemoteDevice().get(elementName);
         String elementType = hierarchyService.getObjectNamesToOids().get(elementName);
         ObjectIdentifier oid = hierarchyService.getOidStringToOid().get(elementType);
-        try {
-            subscribeToCovRequest(remoteDevice, oid);
-        } catch (Exception e){
-            System.out.println("Cant subscribed data point: " + elementType);
-        }
+        this.objectIdentifier = oid;
+        this.remoteDevice = remoteDevice;
         ObjectType[] objectType = ObjectType.ALL;
         for (ObjectType type : objectType) {
             if (oid.getObjectType().equals(type)) {
@@ -74,14 +76,21 @@ public class ObjectService extends DeviceEventAdapter {
      * @param remoteDevice remote device
      * @param oid object identifier
      * @param poids property identifier
-     * @throws BACnetException from Network
+     *
      */
-    private void creatProperties(LinkedList<BACnetProperties> properties, RemoteDevice remoteDevice, ObjectIdentifier oid, List<PropertyTypeDefinition> poids) throws BACnetException {
+    private void creatProperties(LinkedList<BACnetProperties> properties, RemoteDevice remoteDevice, ObjectIdentifier oid, List<PropertyTypeDefinition> poids)  {
+
+
         for (PropertyTypeDefinition op : poids) {
+            try {
             ConfirmedRequestService request = new ReadPropertyRequest(oid, op.getPropertyIdentifier());
             ReadPropertyAck result = (ReadPropertyAck) deviceHandler.getLocalDevice().send(remoteDevice, request);
             BACnetProperties property = new BACnetProperties(result.getValue().toString(),result.getPropertyIdentifier().toString());
             properties.add(property);
+            } catch (BACnetException bac){
+                System.err.println("Cant read properties of: " + op.getObjectType());
+            }
+
         }
     }
 
@@ -100,17 +109,27 @@ public class ObjectService extends DeviceEventAdapter {
       return null;
     }
 
+    public void subscribeToCovRequest() {
 
-    public void subscribeToCovRequest(RemoteDevice remoteDevice, ObjectIdentifier oid) throws BACnetException {
 
-        deviceHandler.getLocalDevice().send(remoteDevice, new SubscribeCOVRequest(new UnsignedInteger(0), oid, new Boolean(true), new UnsignedInteger(0)));
-        System.out.println("Subscription @: '" + oid + "' on: " + remoteDevice.getObjectIdentifier());
+        try {
+            deviceHandler.getLocalDevice().send(remoteDevice, new SubscribeCOVRequest(new UnsignedInteger(0), objectIdentifier, new Boolean(true), new UnsignedInteger(0)));
+            System.out.println("Subscription @: '" + objectIdentifier + "' on: " + remoteDevice.getObjectIdentifier());
+    } catch (BACnetException bac){
+        System.err.println("Cant subscribed data point: " + objectIdentifier.getObjectType());
+    }}
 
-    }
+    public void unsubscribeToCovRequest(){
 
-    public void unsubscribeToCovRequest(RemoteDevice remoteDevice, ObjectIdentifier oid)throws BACnetException{
-        deviceHandler.getLocalDevice().send(remoteDevice, new SubscribeCOVRequest(new UnsignedInteger(0), oid, null, null));
-        System.out.println("Unsubscription @: '" + oid + "' on: " + remoteDevice.getObjectIdentifier());
+        try {
+        deviceHandler.getLocalDevice().send(remoteDevice, new SubscribeCOVRequest(new UnsignedInteger(0), objectIdentifier, null, null));
+        System.out.println("Unsubscription @: '" + objectIdentifier + "' on: " + remoteDevice.getObjectIdentifier());
+    } catch (BACnetException bac){
+        System.err.println("Cant unsubscribed data point: " + objectIdentifier.getObjectType());
+    }}
+
+    public void clearPropertyList(){
+        properties.clear();
     }
 
     @Override
@@ -122,13 +141,12 @@ public class ObjectService extends DeviceEventAdapter {
                    System.out.println("Device: " + initiatingDevice.getObjectIdentifier() + " has sent new " +pid.getPropertyIdentifier() + ": " + pid.getValue());
 
                }
+
             }
         }
+        System.out.println("Try to update stream... ");
+        objectHandler.updateStream();
     }
-
-
-
-
 
 
 }

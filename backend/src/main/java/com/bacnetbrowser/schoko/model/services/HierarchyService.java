@@ -203,7 +203,6 @@ public class HierarchyService {
         return obejctNamesToRemoteDevice;
     }
 
-    //TODO get description for Events
     public String getDescriptionByOid (String oid){
       return objectNamesToDescription.get(getKey(objectNamesToOids,oid));
 
