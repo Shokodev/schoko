@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.LinkedList;
 
 /**
- * This class used to get properties from bacnet Datapoints
+ * This class used to handle the object functions for the object properties between stack and REST
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */
@@ -23,7 +23,12 @@ public class ObjectHandler {
     @Autowired
     SimpMessagingTemplate template;
 
-
+    /**
+     * Is used to start a websocket stream for data point properties by their object names
+     * it also triggers the subscription for this object on the remote device
+     * @param elementName
+     * @return
+     */
     public LinkedList<BACnetProperties> getNewPropertyStream(String elementName)  {
         objectService.readDataPointProperties(elementName);
         objectService.subscribeToCovRequest();
@@ -35,6 +40,9 @@ public class ObjectHandler {
         objectService.clearPropertyList();
     }
 
+    /**
+     * This method does update the properties by changes sent from the remote device
+     */
     public void updateStream(){
         template.convertAndSend("/topic/user", objectService.getProperties());
     }

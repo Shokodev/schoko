@@ -23,6 +23,7 @@ import com.serotonin.bacnet4j.util.RequestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.Max;
 import java.util.List;
 
 ;
@@ -38,8 +39,6 @@ public class DeviceHandler {
     private LocalDevice localDevice;
 
     @Autowired
-    private EventHandler eventHandler;
-    @Autowired
     private ObjectService objectService;
     @Autowired
     private EventService eventService;
@@ -49,34 +48,58 @@ public class DeviceHandler {
      * Create Local Device and add listener
      *
      * @param port port to read Network
-     * @throws Exception local Device
      */
-    public void createLocalDevice(Integer port) throws Exception {
-        IpNetwork ipNetwork = new IpNetwork(IpNetwork.DEFAULT_BROADCAST_IP,port);
+    public void createLocalDevice(Integer port)  {
+
+        IpNetwork ipNetwork = new IpNetwork(IpNetwork.DEFAULT_BROADCAST_IP, port);
         Transport transport = new Transport(ipNetwork);
         int localDevice_ID = 10001;
         localDevice = new LocalDevice(localDevice_ID, transport);
         localDevice.getEventHandler().addListener(objectService);
         localDevice.getEventHandler().addListener(eventService);
-        localDevice.initialize();
+        try {
+            localDevice.initialize();
+        } catch(Exception e){
+            System.err.println("LocalDevice initialize failed, restart the application may solve this problem");
+        }
         System.out.println("Successfully created LocalDevice " + localDevice.getConfiguration().getInstanceId());
         scanForRemoteDevices();
-        Thread.sleep(2000);
         setLocalDeviceAsAlarmReceiver();
 
     }
 
-    private void scanForRemoteDevices() throws BACnetException {
+    /**
+     *Send WhoIs request to the network
+     */
+    private void scanForRemoteDevices()  {
         System.out.println("Scan for remote devices.........");
-        localDevice.sendGlobalBroadcast(new WhoIsRequest());
+        try {
+            WhoIsRequest request = new WhoIsRequest();
+            localDevice.sendGlobalBroadcast(request);
+            Thread.sleep(1000 * 10);
+            //End scan after 10s if no device is found
+            if(!alertNoDeviceFound()){
+                localDevice.terminate();
+            }
+        }catch(BACnetException | InterruptedException bac){
+            System.err.println("Network scan failure, restart the application may solve this problem");
+        }
+    }
+
+    /**
+     * checks list for remote devices at LocalDevice after network scan
+     * @return massage and boolean
+     */
+    private boolean alertNoDeviceFound(){
+        if (localDevice.getRemoteDevices().isEmpty()){
+            System.err.println("No remote devices found");
+            return false;
+        }
+        return true;
     }
 
     public LocalDevice getLocalDevice() {
         return localDevice;
-    }
-
-    public EventHandler getEventHandler() {
-        return eventHandler;
     }
 
     /**
@@ -91,7 +114,7 @@ public class DeviceHandler {
 
     /**
      * Looks in all remote devices for notificationsClass objects ad set the LocalDevice as receiver destination
-     * @throws BACnetException from network
+     *
      */
     private void setLocalDeviceAsAlarmReceiver() {
         if (localDevice.getRemoteDevices().size() > 0){
@@ -113,14 +136,14 @@ public class DeviceHandler {
                try {
                    localDevice.send(remoteDevice, request);
                }catch(BACnetException bac2){
-                   System.err.println("No notification classes found");
+                   System.err.println("No notification classes found at remote " + remoteDevice);
                }
                 System.out.println("LocalDevice " + localDevice.getConfiguration().getInstanceId() + " as receiver registered to: " + oid.toString() + " @ " + remoteDevice.getObjectIdentifier());
 
             }}
         }
     } else {
-            System.out.println("No remote devices found");
+            System.out.println("No destinations added");
         }
 
     }

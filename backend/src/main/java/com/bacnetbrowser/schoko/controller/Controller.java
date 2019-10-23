@@ -74,9 +74,13 @@ public class Controller {
         return hierarchyHandler.getStructure();
     }
 
+    /**
+     * update Settings in settingsHandler and the xml file
+     * @param settings from Client
+     * @return new settings
+     */
     @PostMapping(value = "/settings")
-    public ResponseEntity<SettingsHandler> update(@RequestBody SettingsHandler settings)
-    {
+    public ResponseEntity<SettingsHandler> updateSettings(@RequestBody SettingsHandler settings) {
         settingsHandler.setSiteName(settings.getSiteName());
         settingsHandler.setPort(settings.getPort());
         settingsHandler.setBacnetSeparator(settings.getBacnetSeparator());
@@ -84,7 +88,6 @@ public class Controller {
         settingsHandler.writeXMLSettings();
         return new ResponseEntity<SettingsHandler>(settings, HttpStatus.OK);
     }
-
 
     /**
      *
@@ -96,15 +99,15 @@ public class Controller {
        return eventHandler.getEvents();
     }
 
-
-
+    /**
+     * get the current settings of settings handler
+     * @return settings
+     */
     @GetMapping(value = "/settings")
     public SettingsHandler allSettings ()
     {
-
         return settingsHandler;
     }
-
 
     /**
      * Site01'B'A'Ahu01'
@@ -135,15 +138,13 @@ public class Controller {
 
     /**
      * Gets a List of all properties of a datapoint
-
-     * @return List with properties values and identifiers
-     * @throws BACnetException from Network
+     * @param objectName get object properties by objectName
      */
     @MessageMapping("/user")
     @SendTo("/topic/user")
-    public void getProperties (String name) {
-        System.out.println("Read: " + name);
-        objectHandler.getNewPropertyStream(name);
+    public void getProperties (String objectName) {
+        System.out.println("Read: " + objectName);
+        objectHandler.getNewPropertyStream(objectName);
     }
 
 
@@ -151,7 +152,6 @@ public class Controller {
      * Exception if wrong URL tipped
      */
     @ResponseStatus(value= HttpStatus.NOT_FOUND, reason = "Node not found") //404
-    private
-    class NodeNotFoundException extends RuntimeException {
+    private class NodeNotFoundException extends RuntimeException {
             }
 }
