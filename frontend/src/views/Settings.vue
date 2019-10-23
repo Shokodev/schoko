@@ -17,11 +17,11 @@
                 <p class="help">Site Description eingeben</p>
             </div>
             <div class="field">
-                <label class="label">BACnet Seperator</label>
+                <label class="label">BACnet Separator</label>
                 <div class="control">
-                    <input v-model="settings.bacnetSeperator"  class="input" type="text"  placeholder="'" >
+                    <input v-model="settings.bacnetSeparator"  class="input" type="text" >
                 </div>
-                <p class="help">BACnet Seperator eingeben</p>
+                <p class="help">BACnet Separator eingeben</p>
             </div>
             <div class="control">
             <label class="label">BACnet Port</label>
@@ -71,8 +71,8 @@
                 settings: {
                     siteName: "DefaultSite",
                     port: Number,
-                    siteDescription: "Desciption",
-                    bacnetSeperator: "'",
+                    siteDescription: "Description",
+                    bacnetSeparator: "'",
                 }
             }
         },
@@ -90,7 +90,7 @@
             this.settings.siteDescription = this.getSettings.siteDescription;
             this.settings.siteName = this.getSettings.siteName;
             this.settings.port = this.getSettings.port;
-            this.settings.bacnetSeperator = this.getSettings.bacnetSeperator;
+            this.settings.bacnetSeparator = this.getSettings.bacnetSeparator;
         }
 
     }

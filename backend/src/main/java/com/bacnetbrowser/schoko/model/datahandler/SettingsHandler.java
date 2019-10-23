@@ -5,6 +5,12 @@ import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 
 
@@ -20,7 +26,6 @@ public class SettingsHandler {
     private String siteName;
     private String siteDescription;
     private String bacnetSeparator;
-
 
     public String getPort() {
         return port;
@@ -56,10 +61,10 @@ public class SettingsHandler {
 
     public void readXMLSettings() {
         try {
-        File fXmlFile = new File("src\\main\\resources\\defaultSettings");
+        File xml = getXmlSettingsFile();
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse(fXmlFile);
+        Document doc = dBuilder.parse(xml);
 
         setPort((doc.getElementsByTagName("port").item(0).getTextContent()));
         setSiteName(doc.getElementsByTagName("siteName").item(0).getTextContent());
@@ -72,18 +77,33 @@ public class SettingsHandler {
 
     public void writeXMLSettings() {
         try {
-            File fXmlFile = new File("src\\main\\resources\\defaultSettings");
+            File xml = getXmlSettingsFile();
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fXmlFile);
+            Document doc = dBuilder.parse(xml);
 
             doc.getElementsByTagName("port").item(0).setTextContent(getPort());
             doc.getElementsByTagName("siteName").item(0).setTextContent(getSiteName());
             doc.getElementsByTagName("siteDescription").item(0).setTextContent(getSiteDescription());
             doc.getElementsByTagName("bacnetSeparator").item(0).setTextContent(getBacnetSeparator());
 
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            Result output = new StreamResult(xml);
+
+            Source input = new DOMSource(doc);
+            transformer.transform(input, output);
+
+
         } catch (Exception e){
             System.err.println("Can't write XML settings");
             ;}
+    }
+
+    private File getXmlSettingsFile(){
+        File xml = new File("src\\main\\resources\\defaultSettings");
+        if(!xml.exists()){
+            return new File("backend\\src\\main\\resources\\defaultSettings");
+        }
+        return xml;
     }
 }

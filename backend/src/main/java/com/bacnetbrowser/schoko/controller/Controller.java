@@ -101,7 +101,6 @@ public class Controller {
     @GetMapping(value = "/settings")
     public SettingsHandler allSettings ()
     {
-
         return settingsHandler;
     }
 

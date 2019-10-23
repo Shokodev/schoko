@@ -25,7 +25,6 @@
 <script>
     let stompClient=null;
     import Stomp from 'stompjs';
-    import SockJS from 'sockjs-client'
     import BinaryOutput from "./bacnetobject/BinaryOutput";
     export default {
         name: "modal",
