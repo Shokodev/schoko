@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/frontend" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../spring-session/spring-session-samples/spring-session-sample-boot-websocket/src/main/java/sample/config/WebSocketConfig.java" charset="ISO-8859-1" />
   </component>
 </project>

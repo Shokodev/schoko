@@ -67,7 +67,7 @@ public class SettingsHandler {
         setBacnetSeparator(doc.getElementsByTagName("bacnetSeparator").item(0).getTextContent());
 
     } catch (Exception e){
-        e.printStackTrace();}
+            System.err.println("Can't read XML settings");;}
     }
 
     public void writeXMLSettings() {
@@ -83,6 +83,7 @@ public class SettingsHandler {
             doc.getElementsByTagName("bacnetSeparator").item(0).setTextContent(getBacnetSeparator());
 
         } catch (Exception e){
-            e.printStackTrace();}
+            System.err.println("Can't write XML settings");
+            ;}
     }
 }

@@ -42,7 +42,7 @@
         },
         methods: {
                 connect: function(){
-                    const socket = new SockJS('/ws/Object');
+                    const socket = new WebSocket('ws://localhost:8098/ws/Object/websocket');
                     stompClient = Stomp.over(socket);
                     stompClient.connect({}, function (frame) {
                         console.log('Connected: ' + frame);
