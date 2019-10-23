@@ -43,7 +43,7 @@ public class HierarchyHandler {
         }}
 
     /**
-     * Needed for the method getChildrenByNodeElementName for create the nodes
+     * Needed for the method getChildrenByNodeElementName for create the nodes of the given parent
      * @param parent as said
      * @return the Object to send to REST
      */
