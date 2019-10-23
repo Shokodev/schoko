@@ -33,11 +33,11 @@
         data() {
             return{
                 status: "disconnected",
-                datapoint: {},
+                dataPoint: []
 
         }
         },
-        mounted() {
+        created() {
             this.connect();
 
         },
@@ -45,16 +45,23 @@
                 connect: function(){
                     const socket = new WebSocket('ws://localhost:8098/ws/Object/websocket');
                     stompClient = Stomp.over(socket);
-                    stompClient.connect({}, function (frame) {
-                        console.log('Connected: ' + frame);
+                    stompClient.connect({}, function () {});
                         stompClient.send("/app/user",{},"B'A'Ahu'Ccl'Vlv");
-                        stompClient.subscribe('/topic/user', this.datapoint=(String.body))
-                        console.log(this.datapoint)
-                    })
+                        stompClient.subscribe('/topic/user',onmessage);
+
+
+
+
     },
+            subscribe(){
+
+            },
             connectClose: function(){
                     stompClient.send("/app/end",{},"WebSocket Closed");
-                    stompClient.close()
+                    stompClient.unsubscribe('/topic/user');
+                    stompClient.disconnect()
+
+
 
                 }
     }

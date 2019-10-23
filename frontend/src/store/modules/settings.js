@@ -6,7 +6,7 @@ const state = {
         siteName: "Default Site Name",
         port: Number,
         siteDescription: String,
-        bacnetSeparator: String,
+        bacnetSeparator: String
         }
 ]
 };
