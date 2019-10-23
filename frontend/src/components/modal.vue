@@ -5,13 +5,13 @@
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
-                              <binary-output>
+                            <binary-output>
 
-                              </binary-output>
+                            </binary-output>
                         </div>
                     </div>
                 </article>
-                <button class="button" @click="$emit('close')">
+                <button class="button" v-on:click="connectClose" @click="$emit('close')">
                     OK
                 </button>
                 <button class="button" v-on:click="connect">
@@ -33,10 +33,12 @@
         data() {
             return{
                 status: "disconnected",
+                datapoint: {},
 
         }
         },
         mounted() {
+            this.connect();
 
         },
         methods: {
@@ -45,10 +47,16 @@
                     stompClient = Stomp.over(socket);
                     stompClient.connect({}, function (frame) {
                         console.log('Connected: ' + frame);
-                        stompClient.subscribe('/topic/user', console.log(String.body))
-
+                        stompClient.send("/app/user",{},"B'A'Ahu'Ccl'Vlv");
+                        stompClient.subscribe('/topic/user', this.datapoint=(String.body))
+                        console.log(this.datapoint)
                     })
-    }
+    },
+            connectClose: function(){
+                    stompClient.send("/app/end",{},"WebSocket Closed");
+                    stompClient.close()
+
+                }
     }
     }
 </script>

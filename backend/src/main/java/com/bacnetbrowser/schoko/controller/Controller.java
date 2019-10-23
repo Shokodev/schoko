@@ -147,6 +147,17 @@ public class Controller {
         objectHandler.getNewPropertyStream(objectName);
     }
 
+    /**
+     * Gets a List of all properties of a datapoint
+     * @param closed  get object properties by objectName
+     */
+    @MessageMapping("/end")
+    public void closed (String closed) {
+        System.out.println("Message from Client: " + closed);
+        objectHandler.disconnectPropertyStream();
+    }
+
+
 
     /**
      * Exception if wrong URL tipped
