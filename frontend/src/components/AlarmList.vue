@@ -6,7 +6,8 @@
 
 <script>
         export default {
-        name: "AlarmList"
+        name: "AlarmList",
+
     }
 </script>
 

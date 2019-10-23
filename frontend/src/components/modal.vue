@@ -5,30 +5,9 @@
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
-                            <strong>Datapoint</strong>
-                            <ul>
-                                <li v-for="object in bacnetObject" :key="object.elementName">
-                                   {{ object.propertyIdentifier }} {{object.value}}
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="field has-addons has-addons-centered box">
-                            <div class="level-left" >
-                                <strong>Aktueller Wert</strong>
-                            </div>
-                            <p class="control level-right">
-                                <span class="select">
-                                  <select>
-                                    <option>Ein</option>
-                                    <option>Aus</option>
-                                  </select>
-                                </span>
-                            </p>
-                            <p class="control">
-                                <a class="button is-primary">
-                                    Senden
-                                </a>
-                            </p>
+                              <binary-output>
+
+                              </binary-output>
                         </div>
                     </div>
                 </article>
@@ -47,19 +26,19 @@
     let stompClient=null;
     import Stomp from 'stompjs';
     import SockJS from 'sockjs-client'
+    import BinaryOutput from "./bacnetobject/BinaryOutput";
     export default {
         name: "modal",
         props: ['node'],
+        components:{BinaryOutput},
         data() {
             return{
-                bacnetObject: '',
-                status: "disconnected"
-
+                status: "disconnected",
 
         }
         },
         mounted() {
-            this.bacnetObject = this.node;
+
         },
         methods: {
                 connect: function(){
