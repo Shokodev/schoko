@@ -88,9 +88,8 @@ public class ObjectService extends DeviceEventAdapter {
             BACnetProperties property = new BACnetProperties(result.getValue().toString(),result.getPropertyIdentifier().toString());
             properties.add(property);
             } catch (BACnetException bac){
-                System.err.println("Cant read properties of: " + op.getObjectType());
+                System.err.println("Cant read property " + op.getPropertyIdentifier().toString() + " of Object: " + oid.toString());
             }
-
         }
     }
 
@@ -144,7 +143,6 @@ public class ObjectService extends DeviceEventAdapter {
 
             }
         }
-        System.out.println("Try to update stream... ");
         objectHandler.updateStream();
     }
 

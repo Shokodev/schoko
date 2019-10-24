@@ -5,77 +5,74 @@
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
-                            <strong>Datapoint</strong>
-                            <ul>
-                                <li v-for="object in bacnetObject" :key="object.elementName">
-                                   {{ object.propertyIdentifier }} {{object.value}}
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="field has-addons has-addons-centered box">
-                            <div class="level-left" >
-                                <strong>Aktueller Wert</strong>
-                            </div>
-                            <p class="control level-right">
-                                <span class="select">
-                                  <select>
-                                    <option>Ein</option>
-                                    <option>Aus</option>
-                                  </select>
-                                </span>
-                            </p>
-                            <p class="control">
-                                <a class="button is-primary">
-                                    Senden
-                                </a>
-                            </p>
+                            <binary-output>
+
+                            </binary-output>
                         </div>
                     </div>
                 </article>
-                <button class="button" v-on:click="disconnect" @click="$emit('close')">
+                <button class="button" v-on:click="connectClose" @click="$emit('close')">
                     OK
                 </button>
-                <button class="button" v-on:click="connect">
-                    Connect
-                </button>
+
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    let stompClient=null;
+    var stompClient=null;
+    var dataPoint=null;
+    var objectName=null;
     import Stomp from 'stompjs';
-    import SockJS from 'sockjs-client'
+    import BinaryOutput from "./bacnetobject/BinaryOutput";
+
+
+    var callbackStomp= function(frame) {
+        console.log(frame.command);
+        if(frame.command ==="CONNECTED"){
+            stompClient.subscribe('/topic/user',function callback(message){
+                var quote = JSON.parse(message.body);
+                dataPoint=quote;
+                console.log(dataPoint)
+            },{});
+            stompClient.send("/app/user",{},objectName);
+        }else{ console.log("fail")}
+    };
+
     export default {
         name: "modal",
         props: ['node'],
+        components:{BinaryOutput},
         data() {
             return{
-                bacnetObject: '',
-                status: "disconnected"
-
+                status: "disconnected",
 
         }
         },
-        mounted() {
-            this.bacnetObject = this.node;
+        created() {
+        this.connect();
+    },
+        mounted(){
         },
         methods: {
-            connect: function(){
-                const socket = new SockJS('http://localhost:8098/ws/Object');
-                stompClient = Stomp.over(socket);
-                stompClient.connect({
-                }, function (frame) {
-                    console.log('Connected: ' + frame);
-                    stompClient.subscribe('/topic/user', console.log(String.body))
-
-                })
-    },
-            disconnect: function () {
+                connect: function(){
+                    const socket = new WebSocket('ws://localhost:8098/ws/Object');
+                    stompClient = Stomp.over(socket);
+                    stompClient.connect({},callbackStomp);
+                },
+            connectClose: function(){
+                stompClient.send("/app/end",{},"WebSocket Closed");
+                stompClient.unsubscribe('/topic/user');
                 stompClient.disconnect();
-            }
-        }
+            },
+            setObjectName: function(object){
+            objectName=object;
+            },
+            getProperties: function(){
+            return dataPoint;
+            },
+    }
     }
 </script>
 
