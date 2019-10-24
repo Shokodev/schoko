@@ -55,7 +55,7 @@
 </template>
 
 <script>
-    import modal from "../../components/modal"
+import modal from "../modal";
 
     export default {
         name: "BinaryOutput",
@@ -64,6 +64,7 @@
                 bacnetObject: null,
                 inactiveValue:"",
                 activeValue:"",
+                inactiveValue:"",
                 objectNameValue:"",
                 presentValueValue:"",
                 objectTypeValue:"",
