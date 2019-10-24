@@ -66,6 +66,10 @@
                 stompClient.unsubscribe('/topic/user');
                 stompClient.disconnect();
             },
+            sendValue: function(value){
+                stompClient.send("/app/setValue",{},value);
+
+            },
             setObjectName: function(object){
             objectName=object;
             },
