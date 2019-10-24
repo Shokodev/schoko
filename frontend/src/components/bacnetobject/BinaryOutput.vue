@@ -1,23 +1,23 @@
 <template>
 <span>
 
-            <span class="level box">
+            <div class="level column">
                     <span class="level-left">
                     <span>Aktueller Wert: {{this.presentValueValue}}</span>
                     </span>
                     <span class="level-right">
                   <span class="select">
-                    <select>
+                    <select v-model="writeValue">
                         <option>{{this.inactiveValue}}</option>
                         <option>{{this.activeValue}}</option>
                     </select>
                   </span>
-                    <a class="button is-primary">
+                    <a class="button is-primary" v-on:click="setWriteValue()">
                          Senden
                      </a>
                     </span>
-            </span>
-            <div class="box">
+            </div>
+            <div class="column">
                     <span>
                         Polarität:
                     </span>
@@ -25,7 +25,7 @@
                         {{this.polarityValue}}
                     </span>
             </div>
-            <div class="box">
+            <div class="column">
                     <span>
                         Beschreibung:
                     </span>
@@ -33,7 +33,7 @@
                         {{this.descriptionValue}}
                     </span>
             </div>
-            <div class="box">
+            <div class="column">
                     <span>
                         Ausser Betrieb:
                     </span>
@@ -41,7 +41,7 @@
                         {{this.outOfServiceValue}}
                     </span>
             </div>
-            <div class="box">
+            <div class="column">
                     <span>
                         Objekt Name:
                     </span>
@@ -71,6 +71,8 @@ import modal from "../modal";
                 descriptionValue:"",
                 outOfServiceValue:"",
                 polarityValue:"",
+                writeValue:""
+
             };
         },
         mounted(){
@@ -82,10 +84,25 @@ import modal from "../modal";
         },
         methods:{
 
+            setWriteValue: function () {
+                if(this.writeValue=== this.activeValue){
+                console.log(1)
+                    this.writeValue=1
+
+                }else{
+                    console.log(0)
+                    this.writeValue=0
+                }
+                var obj = (
+                    "value: "+ this.writeValue + ", " +
+                        "propertyIdentifier: Present value"
+                )
+
+                modal.methods.sendValue(obj)
+            },
             setBacnetObject: function () {
                this.bacnetObject= modal.methods.getProperties()
             },
-
             objectName: function () {
                 this.objectNameValue = this.searchPropertyIdentifierValue("Object name")
             },
@@ -114,6 +131,23 @@ import modal from "../modal";
                         console.log("Not Found")
                     }
                 }
+            },
+            getObject: function(search){
+                for (let i = 0; i < this.bacnetObject.length; i++) {
+                    if (this.bacnetObject[i].propertyIdentifier === (search)) {
+                            var obj = {
+                            value: this.bacnetObject[i].value,
+                            propertyIdentifier: this.bacnetObject[i].propertyIdentifier
+                        };
+                            console.log(obj)
+
+                        return this.object = obj
+
+                    } else {
+                        console.log("Not Found")
+                    }
+                }
+
             }
 
         }
