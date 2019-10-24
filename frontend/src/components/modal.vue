@@ -60,7 +60,7 @@
         },
         methods: {
                 connect: function(){
-                    const socket = new WebSocket('ws://localhost:8098/ws/Object/websocket');
+                    const socket = new WebSocket('ws://localhost:8098/ws/Object');
                     stompClient = Stomp.over(socket);
                     stompClient.connect({},callbackStomp);
                 },
