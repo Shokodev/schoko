@@ -63,7 +63,6 @@ public class Controller {
     }
 
 
-
     /**
      *
      *
@@ -156,7 +155,6 @@ public class Controller {
         System.out.println("Message from Client: " + closed);
         objectHandler.disconnectPropertyStream();
     }
-
 
 
     /**

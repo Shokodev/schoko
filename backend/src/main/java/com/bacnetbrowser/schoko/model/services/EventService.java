@@ -81,7 +81,7 @@ public class EventService extends DeviceEventAdapter {
     /**
      * This private method is used to get the description of a object by object-identifier for the event list
      * @param oid object-identifier
-     * @return
+     * @return description
      */
     private String getDescriptionOfObject (String oid){
        return hierarchyService.getDescriptionByOid(oid);

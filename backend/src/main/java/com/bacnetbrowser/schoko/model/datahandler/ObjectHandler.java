@@ -26,8 +26,8 @@ public class ObjectHandler {
     /**
      * Is used to start a websocket stream for data point properties by their object names
      * it also triggers the subscription for this object on the remote device
-     * @param elementName
-     * @return
+     * @param elementName object name
+     * @return List with object properties
      */
     public LinkedList<BACnetProperties> getNewPropertyStream(String elementName)  {
         objectService.readDataPointProperties(elementName);
