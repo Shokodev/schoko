@@ -14,18 +14,35 @@
                 <button class="button" v-on:click="connectClose" @click="$emit('close')">
                     OK
                 </button>
-                <button class="button" v-on:click="connect">
-                    Connect
-                </button>
+
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    let stompClient=null;
+    var stompClient=null;
+    var dataPoint=null;
+    var objectName=null;
     import Stomp from 'stompjs';
     import BinaryOutput from "./bacnetobject/BinaryOutput";
+
+
+    var callbackStomp= function(frame) {
+        console.log(frame.command);
+        if(frame.command ==="CONNECTED"){
+            console.log("hurra");
+            stompClient.subscribe('/topic/user',function callback(message){
+                var quote = JSON.parse(message.body);
+                dataPoint=quote;
+                console.log(dataPoint)
+            },{});
+            stompClient.send("/app/user",{},objectName);
+        }else{ console.log("fail")}
+    };
+
+
+
     export default {
         name: "modal",
         props: ['node'],
@@ -33,37 +50,31 @@
         data() {
             return{
                 status: "disconnected",
-                dataPoint: []
 
         }
         },
         created() {
-            this.connect();
-
+        this.connect();
+    },
+        mounted(){
         },
         methods: {
                 connect: function(){
                     const socket = new WebSocket('ws://localhost:8098/ws/Object/websocket');
                     stompClient = Stomp.over(socket);
-                    stompClient.connect({}, function () {});
-                        stompClient.send("/app/user",{},"B'A'Ahu'Ccl'Vlv");
-                        stompClient.subscribe('/topic/user',onmessage);
-
-
-
-
-    },
-            subscribe(){
-
-            },
+                    stompClient.connect({},callbackStomp);
+                },
             connectClose: function(){
-                    stompClient.send("/app/end",{},"WebSocket Closed");
-                    stompClient.unsubscribe('/topic/user');
-                    stompClient.disconnect()
-
-
-
-                }
+                stompClient.send("/app/end",{},"WebSocket Closed");
+                stompClient.unsubscribe('/topic/user');
+                stompClient.disconnect();
+            },
+            setObjectName: function(object){
+            objectName=object;
+            },
+            getProperties: function(){
+            return dataPoint;
+            },
     }
     }
 </script>

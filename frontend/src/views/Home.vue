@@ -90,8 +90,9 @@
                 if(child["elementType"] !== "Structure Element") {
                     console.log("reading BACnet Object");
                     this.isModalVisible= true;
-
-                    return true;
+                    var name= this.element + "'" + child["elementName"];
+                    var result = name.replace(/Anlage'/i,"");
+                    modal.methods.setObjectName(result);
                 }else
                     return false;
             }
