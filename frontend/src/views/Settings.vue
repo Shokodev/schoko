@@ -92,7 +92,6 @@
             this.settings.port = this.getSettings.port;
             this.settings.bacnetSeparator = this.getSettings.bacnetSeparator;
         }
-
     }
 </script>
 
