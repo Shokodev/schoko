@@ -31,7 +31,6 @@
     var callbackStomp= function(frame) {
         console.log(frame.command);
         if(frame.command ==="CONNECTED"){
-            console.log("hurra");
             stompClient.subscribe('/topic/user',function callback(message){
                 var quote = JSON.parse(message.body);
                 dataPoint=quote;
@@ -40,8 +39,6 @@
             stompClient.send("/app/user",{},objectName);
         }else{ console.log("fail")}
     };
-
-
 
     export default {
         name: "modal",
@@ -60,7 +57,7 @@
         },
         methods: {
                 connect: function(){
-                    const socket = new WebSocket('ws://localhost:8098/ws/Object/websocket');
+                    const socket = new WebSocket('ws://localhost:8098/ws/Object');
                     stompClient = Stomp.over(socket);
                     stompClient.connect({},callbackStomp);
                 },
