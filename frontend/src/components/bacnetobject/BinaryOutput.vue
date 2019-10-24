@@ -61,7 +61,8 @@ import modal from "../modal";
         name: "BinaryOutput",
         data(){
             return{
-                bacnetObject: modal.methods.getProperties(),
+                bacnetObject: null,
+                inactiveValue:"",
                 activeValue:"",
                 inactiveValue:"",
                 objectNameValue:"",
@@ -73,13 +74,17 @@ import modal from "../modal";
             };
         },
         mounted(){
-
+                this.setBacnetObject(),
                 this.presentValue(),
                 this.outOfService(),
                     this.description(),
-            this.objectName()
+                this.objectName()
         },
         methods:{
+
+            setBacnetObject: function () {
+               this.bacnetObject= modal.methods.getProperties()
+            },
 
             objectName: function () {
                 this.objectNameValue = this.searchPropertyIdentifierValue("Object name")
