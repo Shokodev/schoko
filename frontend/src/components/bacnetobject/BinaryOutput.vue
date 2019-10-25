@@ -1,11 +1,11 @@
 <template>
 <span>
 
-            <div class="level column">
-                    <span class="level-left">
+            <div class="columns">
+                    <span class="column is-three-fifths">
                     <span>Aktueller Wert: {{this.presentValueValue}}</span>
                     </span>
-                    <span class="level-right">
+                    <span class="column is-right">
                   <span class="select">
                     <select v-model="writeValue">
                         <option>{{this.inactiveValue}}</option>
@@ -17,7 +17,7 @@
                      </a>
                     </span>
             </div>
-            <div class="column">
+            <div class="column" >
                     <span>
                         Polarität:
                     </span>
@@ -85,17 +85,17 @@ import modal from "../modal";
 
             setWriteValue: function () {
                 if(this.writeValue=== this.activeValue){
-                console.log(1)
+                console.log(1);
                     this.writeValue=1
 
                 }else{
-                    console.log(0)
+                    console.log(0);
                     this.writeValue=0
                 }
-                var bacnetProperty = {
-                    propertyIdentifier: "Present value",
-                    value: this.writeValue
-                };
+                var bacnetProperty = (
+                    "value: "+ this.writeValue + ", " +
+                        "propertyIdentifier: Present value"
+                );
 
                 modal.methods.sendValue(JSON.stringify(bacnetProperty));
             },
@@ -106,10 +106,10 @@ import modal from "../modal";
                 this.objectNameValue = this.searchPropertyIdentifierValue("Object name")
             },
             presentValue: function () {
-                this.presentValueValue = this.searchPropertyIdentifierValue("Present value")
-                this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text")
-                this.activeValue = this.searchPropertyIdentifierValue("Active text")
-                this.polarityValue = this.searchPropertyIdentifierValue("Polarity")
+                this.presentValueValue = this.searchPropertyIdentifierValue("Present value");
+                this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
+                this.activeValue = this.searchPropertyIdentifierValue("Active text");
+                this.polarityValue = this.searchPropertyIdentifierValue("Polarity");
                 if(this.presentValueValue==="0"){
                     return this.presentValueValue = this.inactiveValue
                 }else
@@ -130,24 +130,8 @@ import modal from "../modal";
                         console.log("Not Found")
                     }
                 }
-            },
-            getObject: function(search){
-                for (let i = 0; i < this.bacnetObject.length; i++) {
-                    if (this.bacnetObject[i].propertyIdentifier === (search)) {
-                            var obj = {
-                            value: this.bacnetObject[i].value,
-                            propertyIdentifier: this.bacnetObject[i].propertyIdentifier
-                        };
-                            console.log(obj)
-
-                        return this.object = obj
-
-                    } else {
-                        console.log("Not Found")
-                    }
-                }
-
             }
+
 
         }
 
