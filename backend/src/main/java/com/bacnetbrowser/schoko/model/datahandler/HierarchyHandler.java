@@ -1,5 +1,6 @@
 package com.bacnetbrowser.schoko.model.datahandler;
 
+import com.bacnetbrowser.schoko.controller.HTTPController;
 import com.bacnetbrowser.schoko.model.models.BACnetNode;
 import com.bacnetbrowser.schoko.model.models.BACnetStructure;
 import com.bacnetbrowser.schoko.model.services.HierarchyService;
@@ -17,10 +18,14 @@ import java.util.List;
 @Component
 public class HierarchyHandler {
 
-    @Autowired
     private HierarchyService hierarchyService;
+    private SettingsHandler settingsHandler;
+
     @Autowired
-    SettingsHandler settingsHandler;
+    public HierarchyHandler(HierarchyService hierarchyService, SettingsHandler settingsHandler) {
+        this.hierarchyService = hierarchyService;
+        this.settingsHandler = settingsHandler;
+    }
 
     /**
      * Returns Node with his children without children of the children

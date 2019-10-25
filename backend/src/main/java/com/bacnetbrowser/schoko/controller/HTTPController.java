@@ -27,32 +27,30 @@ import java.util.LinkedList;
 @Component
 @Configuration
 @EnableScheduling
-public class Controller {
+public class HTTPController {
 
     private HierarchyHandler hierarchyHandler;
-    private ObjectHandler objectHandler;
     private SettingsHandler settingsHandler;
-    private DeviceHandler deviceHandler;
-    private EventHandler eventHandler;
 
 
     @Autowired
-    public Controller(HierarchyHandler hierarchyHandler, ObjectHandler objectHandler, DeviceHandler deviceHandler, SettingsHandler settingsHandler, EventHandler eventHandler) throws Exception {
+    public HTTPController(HierarchyHandler hierarchyHandler, SettingsHandler settingsHandler, DeviceHandler deviceHandler) {
         this.hierarchyHandler = hierarchyHandler;
-        this.objectHandler = objectHandler;
-        this.deviceHandler = deviceHandler;
         this.settingsHandler = settingsHandler;
-        this.eventHandler = eventHandler;
+
+
+
 
         //TODO This has to be executed after settings button "create" is press
         settingsHandler.readXMLSettings();
         try {
+            //parse HEX BACx port to Integer
             deviceHandler.createLocalDevice(Integer.parseInt(settingsHandler.getPort(), 16));
         }
         catch (NumberFormatException err){
             System.err.println("Warning wrong port "+settingsHandler.getPort());
         }
-        //TODO this has to be deleted as soon as settings ready an no more tests needed
+        //TODO this has to be moved in (updateSettings) method as soon as settings ready and no more tests needed
         System.out.println("Build structure.......");
         hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
 
@@ -82,16 +80,6 @@ public class Controller {
         settingsHandler.setSiteDescription(settings.getSiteDescription());
         settingsHandler.writeXMLSettings();
         return new ResponseEntity<SettingsHandler>(settings, HttpStatus.OK);
-    }
-
-    /**
-     *
-     *
-     * @return eventlist
-     */
-    @GetMapping("/eventlist")
-    public LinkedList<BACnetEvent> getEvents (){
-       return eventHandler.getEvents();
     }
 
     /**
@@ -129,32 +117,6 @@ public class Controller {
         BACnetNode BACnetNodes = hierarchyHandler.getChildrenByNodeElementName(home);
         if (BACnetNodes == null) throw  new NodeNotFoundException();
         return BACnetNodes;
-    }
-
-    /**
-     * Gets a List of all properties of a datapoint
-     * @param objectName get object properties by objectName
-     */
-    @MessageMapping("/user")
-    @SendTo("/topic/user")
-    public void getProperties (String objectName) {
-        System.out.println("Read: " + objectName);
-        objectHandler.getNewPropertyStream(objectName);
-    }
-
-    /**
-     * Gets a List of all properties of a datapoint
-     * @param closed  get object properties by objectName
-     */
-    @MessageMapping("/end")
-    public void closed (String closed) {
-        System.out.println("Message from Client: " + closed);
-        objectHandler.disconnectPropertyStream();
-    }
-
-    @MessageMapping("/setValue")
-    public void setValue (BACnetProperty baCnetProperty) {
-        objectHandler.setNewValue(baCnetProperty.getPropertyIdentifier(),baCnetProperty.getValue());
     }
 
 

@@ -27,31 +27,25 @@ import org.springframework.stereotype.Component;
 import java.util.LinkedList;
 import java.util.List;
 
+
 @Component
 public class ObjectService extends DeviceEventAdapter {
 
     @Autowired
-    private DeviceHandler deviceHandler;
-    @Autowired
-    private HierarchyService hierarchyService;
-    @Autowired
     private ObjectHandler objectHandler;
 
-    private LinkedList<BACnetProperty> properties;
-
-    private RemoteDevice remoteDevice;
-    private ObjectIdentifier objectIdentifier;
-
+    private final LinkedList<BACnetProperty> properties = new LinkedList<>();
+    private  RemoteDevice remoteDevice;
+    private  ObjectIdentifier objectIdentifier;
 
 
     /**
      * gets All properties from a DataPoint by elementTyp
      */
     public void readDataPointProperties(String elementName) {
-        LinkedList<BACnetProperty> properties = new LinkedList<>();
-        RemoteDevice remoteDevice = hierarchyService.getObejctNamesToRemoteDevice().get(elementName);
-        String elementType = hierarchyService.getObjectNamesToOids().get(elementName);
-        ObjectIdentifier oid = hierarchyService.getOidStringToOid().get(elementType);
+        RemoteDevice remoteDevice = HierarchyService.obejctNamesToRemoteDevice.get(elementName);
+        String elementType = HierarchyService.objectNamesToOids.get(elementName);
+        ObjectIdentifier oid = HierarchyService.oidStringToOid.get(elementType);
         this.objectIdentifier = oid;
         this.remoteDevice = remoteDevice;
         ObjectType[] objectType = ObjectType.ALL;
@@ -64,8 +58,6 @@ public class ObjectService extends DeviceEventAdapter {
                     List<PropertyTypeDefinition> poids = ObjectProperties.getRequiredPropertyTypeDefinitions(type);
                     creatProperties(properties, remoteDevice, oid, poids);
                 }
-                this.properties = properties;
-
             }
         }
 
@@ -81,11 +73,10 @@ public class ObjectService extends DeviceEventAdapter {
      */
     private void creatProperties(LinkedList<BACnetProperty> properties, RemoteDevice remoteDevice, ObjectIdentifier oid, List<PropertyTypeDefinition> poids)  {
 
-
         for (PropertyTypeDefinition op : poids) {
             try {
             ConfirmedRequestService request = new ReadPropertyRequest(oid, op.getPropertyIdentifier());
-            ReadPropertyAck result = (ReadPropertyAck) deviceHandler.getLocalDevice().send(remoteDevice, request);
+            ReadPropertyAck result = (ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, request);
             BACnetProperty property = new BACnetProperty(result.getValue().toString(),result.getPropertyIdentifier().toString());
             properties.add(property);
             } catch (BACnetException bac){
@@ -98,48 +89,46 @@ public class ObjectService extends DeviceEventAdapter {
         return properties;
     }
 
-    //TODO This method should not be here because it will be called in the Event thread...
-    public String getPresentValue(ObjectIdentifier oid, RemoteDevice remoteDevice){
-        ConfirmedRequestService request = new ReadPropertyRequest(oid, PropertyIdentifier.presentValue);
-        try{
-        ReadPropertyAck result = (ReadPropertyAck) deviceHandler.getLocalDevice().send(remoteDevice, request);
-            return result.getValue().toString();
-    } catch (BACnetException bac){
-        System.out.println("Cant read present value of: " + oid + " @ " + remoteDevice);
-        }
-      return null;
-    }
-
+    /**
+     * Start a subscription at remote device with the current object
+     */
     public void subscribeToCovRequest() {
-
-
         try {
-            deviceHandler.getLocalDevice().send(remoteDevice, new SubscribeCOVRequest(new UnsignedInteger(0), objectIdentifier, new Boolean(true), new UnsignedInteger(0)));
+            DeviceHandler.localDevice.send(remoteDevice, new SubscribeCOVRequest(new UnsignedInteger(0), objectIdentifier, new Boolean(true), new UnsignedInteger(0)));
             System.out.println("Subscription @: '" + objectIdentifier + "' on: " + remoteDevice.getObjectIdentifier());
     } catch (BACnetException bac){
         System.err.println("Cant subscribed data point: " + objectIdentifier.getObjectType());
     }}
 
+    /**
+     * Unsubscribe the current subscription at remote device of current object
+     */
     public void unsubscribeToCovRequest(){
 
         try {
-        deviceHandler.getLocalDevice().send(remoteDevice, new SubscribeCOVRequest(new UnsignedInteger(0), objectIdentifier, null, null));
+            DeviceHandler.localDevice.send(remoteDevice, new SubscribeCOVRequest(new UnsignedInteger(0), objectIdentifier, null, null));
         System.out.println("Unsubscription @: '" + objectIdentifier + "' on: " + remoteDevice.getObjectIdentifier());
     } catch (BACnetException bac){
         System.err.println("Cant unsubscribed data point: " + objectIdentifier.getObjectType());
     }}
 
     public void clearPropertyList(){
-        properties.clear();
+       properties.clear();
     }
 
+    /**
+     * Write new value for given object
+     * @param poid witch property to write
+     * @param value new value for property
+     */
     public void writeValue(PropertyIdentifier poid, Encodable value){
         // 8 is default priority for process level commands
         WritePropertyRequest request = new WritePropertyRequest(objectIdentifier, poid, null, value, new UnsignedInteger(8));
+        System.out.println("Write on :" + poid.toString() + " with: " + value.toString());
         try {
-            deviceHandler.getLocalDevice().send(remoteDevice, request);
+            DeviceHandler.localDevice.send(remoteDevice, request);
         }catch(BACnetException bac){
-            System.err.println("Cant write " + poid.toString() + " " + value.toString()  + " at " + remoteDevice + " you fool!");
+            System.err.println("Cant write " + poid.toString() + " at " + objectIdentifier.toString() + " you fool!");
         }
     }
 
@@ -147,10 +136,15 @@ public class ObjectService extends DeviceEventAdapter {
         return objectIdentifier;
     }
 
+    /**
+     * Listen at change of value at the given remote device
+     */
     @Override
     public void covNotificationReceived(UnsignedInteger subscriberProcessIdentifier, RemoteDevice initiatingDevice, ObjectIdentifier monitoredObjectIdentifier, UnsignedInteger timeRemaining, SequenceOf<PropertyValue> listOfValues) {
+
+
         for (PropertyValue pv : listOfValues){
-            for(BACnetProperty pid : properties){
+            for(BACnetProperty pid : getProperties()){
                if(pv.getPropertyIdentifier().toString().equals(pid.getPropertyIdentifier())){
                    pid.setValue(pv.getValue().toString());
                    System.out.println("Device: " + initiatingDevice.getObjectIdentifier() + " has sent new " +pid.getPropertyIdentifier() + ": " + pid.getValue());
@@ -159,7 +153,7 @@ public class ObjectService extends DeviceEventAdapter {
 
             }
         }
-        objectHandler.updateStream();
+    objectHandler.updateStream();
     }
 
 }

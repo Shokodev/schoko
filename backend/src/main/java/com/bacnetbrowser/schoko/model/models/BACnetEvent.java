@@ -6,7 +6,7 @@ public class BACnetEvent {
     // Event Properties
     private Integer eventID = 0;
     private String oid;
-    private Integer oidRemoteDevice;
+    private String RemoteDeviceName;
     private String timeStamp;
     private String fromState;
     private String toState;
@@ -17,10 +17,10 @@ public class BACnetEvent {
     private String presentValue;
 
 
-    public BACnetEvent(Integer eventID, String oid, Integer oidRemoteDevice, String timeStamp, String fromState, String toState, String description, String presentValue) {
+    public BACnetEvent(Integer eventID, String oid, String RemoteDeviceName, String timeStamp, String fromState, String toState, String description, String presentValue) {
         this.eventID = eventID;
         this.oid = oid;
-        this.oidRemoteDevice = oidRemoteDevice;
+        this.RemoteDeviceName = RemoteDeviceName;
         this.timeStamp = timeStamp;
         this.fromState = fromState;
         this.toState = toState;
@@ -36,8 +36,8 @@ public class BACnetEvent {
         return oid;
     }
 
-    public Integer getOidRemoteDevice() {
-        return oidRemoteDevice;
+    public String getRemoteDeviceName() {
+        return RemoteDeviceName;
     }
 
     public String getTimeStamp() {

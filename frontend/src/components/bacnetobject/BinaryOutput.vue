@@ -64,7 +64,6 @@ import modal from "../modal";
                 bacnetObject: null,
                 inactiveValue:"",
                 activeValue:"",
-                inactiveValue:"",
                 objectNameValue:"",
                 presentValueValue:"",
                 objectTypeValue:"",
@@ -93,12 +92,12 @@ import modal from "../modal";
                     console.log(0)
                     this.writeValue=0
                 }
-                var obj = (
-                    "value: "+ this.writeValue + ", " +
-                        "propertyIdentifier: Present value"
-                )
+                var bacnetProperty = {
+                    propertyIdentifier: "Present value",
+                    value: this.writeValue
+                };
 
-                modal.methods.sendValue(obj)
+                modal.methods.sendValue(JSON.stringify(bacnetProperty));
             },
             setBacnetObject: function () {
                this.bacnetObject= modal.methods.getProperties()

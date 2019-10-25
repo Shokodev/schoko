@@ -5,6 +5,7 @@ import com.serotonin.bacnet4j.type.enumerated.BinaryPV;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.primitive.Enumerated;
 import com.serotonin.bacnet4j.type.primitive.Real;
+import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
 
 //TODO this class should be able to get the right PropertyValue type
 public class BACnetTypes {
@@ -17,7 +18,7 @@ public class BACnetTypes {
         } else if ((objectType.equals(ObjectType.multiStateOutput)) ||(objectType.equals(ObjectType.multiStateValue))) {
             return new Enumerated(Integer.parseInt(value));
         }
-        return null;
+        return new UnsignedInteger(Integer.parseInt(value));
     }
 
 }
