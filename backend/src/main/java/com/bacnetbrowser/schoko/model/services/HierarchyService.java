@@ -11,7 +11,6 @@ import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.util.RequestUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -19,26 +18,23 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * This class used to generate a BACnet structure by the BACnet standard property "Object Name"
+ * This class used to generate a BACnet structure by the BACnet structure view objects
  * Communication to BacStack in here
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */
 @Component
 public class HierarchyService {
-    private HashMap<String, ObjectIdentifier> oidStringToOid = new HashMap<>();
-    private HashMap<String, String> objectNamesToOids = new HashMap<>();
-    private HashMap<String, String> objectNamesToDescription = new HashMap<>();
-    private HashMap<String, RemoteDevice> obejctNamesToRemoteDevice = new HashMap<>();
+    // This lists have main information about structure an objects
+    public static HashMap<String, ObjectIdentifier> oidStringToOid = new HashMap<>();
+    public static   HashMap<String, String> objectNamesToOids = new HashMap<>();
+    public static HashMap<String, String> objectNamesToDescription = new HashMap<>();
+    public static HashMap<String, RemoteDevice> obejctNamesToRemoteDevice = new HashMap<>();
     private HashMap<String, String> structureElements;
     private BACnetStructure bacnetStructure;
     private String siteName;
     private String siteDescription;
     private String structureSeparator;
-
-    @Autowired
-    DeviceHandler deviceHandler;
-
 
 
     /**
@@ -134,7 +130,14 @@ public class HierarchyService {
         return allStructureElements;
     }
 
-   private <K, V> K getKey(Map<K, V> map, V value) {
+    /**
+     * General method to read a key of a hash map
+     * this method is copied from the internet
+     * @param map witch map you want to read the key
+     * @param value value witch you need the key
+     * @return key of hash map
+     */
+    public static <K, V> K getKey(Map<K, V> map, V value) {
         for (Map.Entry<K, V> entry : map.entrySet()) {
             if (entry.getValue().equals(value)) {
                 return entry.getKey();
@@ -143,35 +146,34 @@ public class HierarchyService {
         return null;
     }
 
-   public String getStructureSeparator() {
+    public String getStructureSeparator() {
         return structureSeparator;
     }
 
-   public BACnetStructure getBacnetStructure() {
+    public BACnetStructure getBacnetStructure() {
         return bacnetStructure;
     }
 
-   public void deleteStructure(){
+    public void deleteStructure(){
         bacnetStructure = null;
 
     }
 
     /**
      * Reads all BACnet Objects of all Remote Devises
-     * @return HashMap<ObjectNames, ObjectsIdentifier>
      */
     private void readallBACnetObjects(){
         try {
 
-            for (RemoteDevice remoteDevice : deviceHandler.getLocalDevice().getRemoteDevices()) {
+            for (RemoteDevice remoteDevice : DeviceHandler.localDevice.getRemoteDevices()) {
                 List<ObjectIdentifier> oids = ((SequenceOf<ObjectIdentifier>)
                         RequestUtils.sendReadPropertyAllowNull(
-                                deviceHandler.getLocalDevice(), remoteDevice, remoteDevice.getObjectIdentifier(),
+                                DeviceHandler.localDevice, remoteDevice, remoteDevice.getObjectIdentifier(),
                                 PropertyIdentifier.objectList)).getValues();
                 for (ObjectIdentifier oid : oids) {
                     if (checkIfNecessaryForStructure(oid)) {
-                    String tempObjectName = ((ReadPropertyAck) deviceHandler.getLocalDevice().send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.objectName))).getValue().toString();
-                    String tempDescription = ((ReadPropertyAck) deviceHandler.getLocalDevice().send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.description))).getValue().toString();
+                    String tempObjectName = ((ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.objectName))).getValue().toString();
+                    String tempDescription = ((ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.description))).getValue().toString();
                         objectNamesToOids.put(tempObjectName,oid.toString());
                         objectNamesToDescription.put(tempObjectName,tempDescription);
                         obejctNamesToRemoteDevice.put(tempObjectName,remoteDevice);
@@ -182,31 +184,16 @@ public class HierarchyService {
         }
     }
 
-    public HashMap<String, ObjectIdentifier> getOidStringToOid() {
-        return oidStringToOid;
-    }
-
-    public HashMap<String, String> getObjectNamesToOids() {
-        return objectNamesToOids;
-    }
-    
-    public Boolean checkIfNecessaryForStructure(ObjectIdentifier oid){
+    /**
+     * checks if the given object identifier is necessary for building the structure
+     * @param oid object identifier
+     * @return true or false
+     */
+    private Boolean checkIfNecessaryForStructure(ObjectIdentifier oid){
         ObjectType type = oid.getObjectType();
         return !type.equals(ObjectType.file) && !type.equals(ObjectType.device) && !type.equals(ObjectType.program) && !oid.toString().startsWith("Vendor");
     }
 
-    public HashMap<String, String> getObjectNamesToDescription() {
-        return objectNamesToDescription;
-    }
-
-    public HashMap<String, RemoteDevice> getObejctNamesToRemoteDevice() {
-        return obejctNamesToRemoteDevice;
-    }
-
-    public String getDescriptionByOid (String oid){
-      return objectNamesToDescription.get(getKey(objectNamesToOids,oid));
-
-    }
 
 }
 

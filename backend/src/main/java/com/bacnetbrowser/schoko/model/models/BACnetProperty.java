@@ -5,11 +5,11 @@ package com.bacnetbrowser.schoko.model.models;
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */
-public class BACnetProperties {
+public class BACnetProperty {
         private String value;
         private String propertyIdentifier;
 
-    public BACnetProperties(String value, String propertyIdentifier) {
+    public BACnetProperty(String value, String propertyIdentifier) {
         this.value = value;
         this.propertyIdentifier = propertyIdentifier;
     }
@@ -29,4 +29,6 @@ public class BACnetProperties {
     public void setPropertyIdentifier(String propertyIdentifier) {
         this.propertyIdentifier = propertyIdentifier;
     }
+
+
 }

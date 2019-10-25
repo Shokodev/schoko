@@ -1,4 +1,4 @@
-package com.bacnetbrowser.schoko.webSockets;
+package com.bacnetbrowser.schoko.webSocketConfig;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -6,21 +6,19 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
-
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketObjects implements WebSocketMessageBrokerConfigurer {
+public class WebSocketEvents implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic");
+        config.enableSimpleBroker("/eventList");
         config.setApplicationDestinationPrefixes("/app");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws/Object").setAllowedOrigins("*");
+        registry.addEndpoint("/ws/events").setAllowedOrigins("*");
     }
-
 
 }

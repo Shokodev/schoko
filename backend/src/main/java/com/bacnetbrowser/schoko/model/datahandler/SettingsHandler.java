@@ -22,10 +22,10 @@ import java.io.File;
 @Component
 public class SettingsHandler {
 
-    private String port;
-    private String siteName;
-    private String siteDescription;
-    private String bacnetSeparator;
+    private  String port;
+    private  String siteName;
+    private  String siteDescription;
+    private  String bacnetSeparator;
 
     public String getPort() {
         return port;
@@ -59,6 +59,9 @@ public class SettingsHandler {
         this.bacnetSeparator = bacnetSeparator;
     }
 
+    /**
+     * read the stored settings out of the xml
+     */
     public void readXMLSettings() {
         try {
         File xml = getXmlSettingsFile();
@@ -75,6 +78,9 @@ public class SettingsHandler {
             System.err.println("Can't read XML settings");;}
     }
 
+    /**
+     * write the new settings request from the client into the xml
+     */
     public void writeXMLSettings() {
         try {
             File xml = getXmlSettingsFile();
@@ -99,6 +105,10 @@ public class SettingsHandler {
             ;}
     }
 
+    /**
+     * get the xml file with the default settings
+     * @return defaultSetting
+     */
     private File getXmlSettingsFile(){
         File xml = new File("src\\main\\resources\\defaultSettings");
         if(!xml.exists()){

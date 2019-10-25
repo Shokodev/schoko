@@ -1,6 +1,7 @@
 import Home from '../views/Home.vue'
 import Structure from '../views/Structure.vue'
 import Settings from '../views/Settings.vue'
+import AlarmList from "../views/AlarmList";
 
 
 const routes = [
@@ -12,6 +13,11 @@ const routes = [
     path: '/home',
     name: 'home',
     component: Home,
+  },
+  {
+    path: '/alarmlist',
+    name: 'alarmlist',
+    component: AlarmList,
   },
   {
     path: '/settings',
