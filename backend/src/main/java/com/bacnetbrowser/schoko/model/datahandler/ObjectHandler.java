@@ -5,7 +5,6 @@ import com.bacnetbrowser.schoko.model.models.BACnetTypes;
 import com.bacnetbrowser.schoko.model.services.ObjectService;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 

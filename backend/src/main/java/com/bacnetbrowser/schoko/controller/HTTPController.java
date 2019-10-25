@@ -1,20 +1,16 @@
 package com.bacnetbrowser.schoko.controller;
 
 import com.bacnetbrowser.schoko.model.datahandler.*;
-import com.bacnetbrowser.schoko.model.models.BACnetEvent;
 import com.bacnetbrowser.schoko.model.models.BACnetNode;
-import com.bacnetbrowser.schoko.model.models.BACnetProperty;
 import com.bacnetbrowser.schoko.model.models.BACnetStructure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
-import java.util.LinkedList;
+;
 
 
 /**
