@@ -5,9 +5,12 @@
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
+                            <button v-on:click="sendValue">hoi</button>
+
                             <BinaryOutput v-if="this.connected"
-                            :node="getBACnetObject"
+                            :node="myObject"
                             ></BinaryOutput>
+
                         </div>
                         <pulse-loader :loading=!this.connected :color="color" :size="size"></pulse-loader>
                     </div>
@@ -23,52 +26,65 @@
 <script>
     import Stomp from 'stompjs';
     import BinaryOutput from "./bacnetobject/BinaryOutput";
-    import { mapGetters } from "vuex";
+    import { mapGetters} from "vuex";
     import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
     export default {
         name: "modal",
         data() {
-            return{
+            return {
                 stompClient: Object,
                 connected: false,
                 color: '#2c3e50',
                 size: '15px',
-               // loading:true
+                myObject: null,
             };
         },
-        components: {BinaryOutput, PulseLoader},
+        components: { BinaryOutput, PulseLoader},
 
         mounted() {
-        this.connect();
+            this.connect();
         },
         methods: {
-            connect: function(){
+            connect: function () {
                 const socket = new WebSocket('ws://localhost:8098/ws/Object');
                 this.stompClient = Stomp.over(socket);
-                this.stompClient.connect({},this.callbackStomp);
+                this.stompClient.connect({}, this.callbackStomp);
             },
-            connectClose: function(){
-                this.stompClient.send("/app/end",{},"WebSocket Closed");
+            connectClose: function () {
+                this.stompClient.send("/app/end", {}, "WebSocket Closed");
                 this.stompClient.unsubscribe('/topic/user');
                 this.stompClient.disconnect();
                 this.connected = false;
             },
-            callbackStomp: function(frame) {
-                if(frame.command ==="CONNECTED"){
-                    this.stompClient.subscribe('/topic/user', this.callback,{});
+            callbackStomp: function (frame) {
+                if (frame.command === "CONNECTED") {
+                    this.stompClient.subscribe('/topic/user', this.callback, {});
+                } else {
+                    console.log("failed")
                 }
-                else{ console.log("failed")}
-                this.stompClient.send("/app/user",{}, this.$store.getters.getObjectName)
+
+                this.stompClient.send("/app/user", {}, this.$store.getters.getObjectName)
+
             },
-            callback: function(message){
+            callback: function (message) {
                 this.$store.commit('setBACnetObject', JSON.parse(message.body));
                 this.connected = true;
-            }
-        },
-        computed: mapGetters (["getBACnetObject"])
-    }
+                this.myObject=this.getBACnetObject
 
+            },
+
+            sendValue: function () {
+                console.log(this.stompClient)
+                this.stompClient.send("/app/setValue", {}, JSON.stringify(this.$store.getters.getBACnetProperty));
+            },
+
+        },
+        computed: {
+            ...mapGetters(["getBACnetObject"]),
+
+        }
+    }
 </script>
 
 <style>

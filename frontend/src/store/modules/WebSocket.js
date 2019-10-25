@@ -1,36 +1,41 @@
 
 
 const state = {
-
-    object: {
         objectName: String,
-        properties: [],
-        subscribedBACnetObject: null
-
-            }
+        subscribedBACnetObject: [],
+        objectNameValue: "",
+        bacnetProperty: {
+            propertyIdentifier: String,
+            value: Number
+        },
+        myData: {
+            myPresentValue: "",
+        },
 };
 const getters = {
-    getObjectName: state => state.object.objectName,
-    getBACnetObject: state => state.object.subscribedBACnetObject
+    getObjectName: state => state.objectName,
+    getBACnetObject: state => state.subscribedBACnetObject,
+    getBACnetProperty: state => state.bacnetProperty,
+    getMyPresentValue: state => state.myData.myPresentValue,
 
 };
 
-/*export const actions = {
-    readObjectName({commit}, objectName) {
-    }
+const actions = {
 
-};*/
+
+};
 
 export const mutations = {
-    setObjectName: (state, objectName) => (state.object.objectName = objectName),
-    setProperties: (state, properties) => (state.object.properties = properties),
-    setBACnetObject: (state, newBACnetObject) => (state.object.subscribedBACnetObject = newBACnetObject),
+    setObjectName: (state, objectName) => (state.objectName = objectName),
+    setBACnetObject: (state, newBACnetObject) => (state.subscribedBACnetObject = newBACnetObject),
+    SetBACnetProperty: (state, newBACnetProperty) => (state.bacnetProperty = newBACnetProperty),
+
 
 };
 
 export default{
     state,
-    // actions,
+    actions,
     mutations,
     getters
 };

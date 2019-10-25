@@ -6,14 +6,14 @@
                 </span>
                 <span class="level-right">
               <span class="select">
-                <select>
+                <select v-model="writeValue">
                     <option>{{this.inactiveValue}}</option>
                     <option>{{this.activeValue}}</option>
                 </select>
               </span>
-                <a class="button is-primary">
+                <button class="button is-primary" v-on:click="setWriteValue()">
                      Senden
-                 </a>
+                 </button>
                 </span>
         </span>
         <div class="box">
@@ -52,14 +52,13 @@
 </template>
 
 <script>
-
+    import { mapMutations , mapGetters} from 'vuex'
     export default {
         name: "BinaryOutput",
         props: {
             node: null
         },
         data(){
-
             return{
                 inactiveValue:"",
                 activeValue:"",
@@ -69,6 +68,7 @@
                 descriptionValue:"",
                 outOfServiceValue:"",
                 polarityValue:"",
+                writeValue:""
             };
         },
         mounted(){
@@ -80,42 +80,66 @@
 
         },
 
-        methods:{
+        computed:{
+            ...mapGetters([
+                'getBACnetObject', 'getMyPresentValue'
+            ])
+        },
 
-            objectName: function () {
+        methods:{
+        ...mapMutations([
+            'SetBACnetProperty', 'myTest'
+        ]),
+
+        objectName: function () {
                 this.objectNameValue = this.searchPropertyIdentifierValue("Object name")
-            },
-            presentValue: function () {
+        },
+        presentValue: function () {
+
                 this.presentValueValue = this.searchPropertyIdentifierValue("Present value");
                 this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
                 this.activeValue = this.searchPropertyIdentifierValue("Active text");
                 this.polarityValue = this.searchPropertyIdentifierValue("Polarity");
-                if(this.presentValueValue==="0"){
-                    return this.presentValueValue = this.inactiveValue
-                }else
-                    return this.presentValueValue = this.activeValue
-            },
-            description: function () {
-                this.descriptionValue = this.searchPropertyIdentifierValue("Description")
 
-            },
-            outOfService: function () {
-                this.outOfServiceValue = this.searchPropertyIdentifierValue("Out of service")
-            },
-            searchPropertyIdentifierValue: function (search) {
-                for (let i = 0; i < this.node.length; i++) {
-                    if (this.node[i]["propertyIdentifier"] === (search)) {
-                        return this.node[i].value;
-                    } else {
-                        console.log("Not Found")
-                    }
-                }
-            },
+                if (this.presentValueValue === "0") {
+                    return this.presentValueValue = this.inactiveValue
+                } else
+                    return this.presentValueValue = this.activeValue
+                },
+        description: function () {
+            this.descriptionValue = this.searchPropertyIdentifierValue("Description")
 
         },
+        outOfService: function () {
+            this.outOfServiceValue = this.searchPropertyIdentifierValue("Out of service")
+        },
+
+        searchPropertyIdentifierValue: function (search) {
+            for (let i = 0; i < this.node.length; i++) {
+                if (this.node[i]["propertyIdentifier"] === (search)) {
+                    return this.node[i].value;
+                } else {
+                    console.log("Not Found")
+                }
+            }
+        },
+        setWriteValue: function () {
+            console.log(this.getBACnetObject)
 
 
+            if(this.writeValue=== this.activeValue){
+                this.writeValue=1
+            }else{
+                this.writeValue=0
+            }
+            let bacnetProperty = {
+                propertyIdentifier: "Present value",
+                value: this.writeValue
+            };
+            this.SetBACnetProperty(bacnetProperty)
+        },
     }
+}
 </script>
 
 <style scoped>
