@@ -34,7 +34,8 @@ public class EventHandler {
      * by changes sent from the remote device the new list will be sent to the client
      */
     public void  updateStream(){
-        template.convertAndSend("/eventList/events", eventService.getEvents());
+        template.convertAndSend("/broker/eventSub", eventService.getEvents());
+        System.out.println("Send updated eventList");
     }
 
 }

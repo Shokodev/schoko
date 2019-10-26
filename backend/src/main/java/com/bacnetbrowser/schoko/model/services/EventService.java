@@ -53,6 +53,7 @@ public class EventService extends DeviceEventAdapter {
             //Temporary remove event by toState = normal
             if (toState.toString().equals("normal")){
                 removeEventByID(existingEvent.getEventID());}
+                eventHandler.updateStream();
                 System.out.println("Update or finishing event with ID: " + existingEvent.getEventID() + " from object: " + existingEvent.getOid());
 
         } catch (NullPointerException e){
@@ -61,11 +62,12 @@ public class EventService extends DeviceEventAdapter {
             BACnetEvent baCnetEvent = new BACnetEvent(getEvents().size() + 1,eventObjectIdentifier.toString(),initiatingDevice.getVendorName(),date.getDate().toString() + " "+ date.getTime().toString(),
                     fromState.toString(),toState.toString(),getDescriptionOfObject(eventObjectIdentifier.toString()),getPresentValue(eventObjectIdentifier,initiatingDevice));
             addEvent(baCnetEvent);
+            eventHandler.updateStream();
             System.out.println("New event: " + baCnetEvent.getEventID() + " from object: " + baCnetEvent.getOid());
         }
 
     }
-    eventHandler.updateStream();
+
     }
 
     /**
