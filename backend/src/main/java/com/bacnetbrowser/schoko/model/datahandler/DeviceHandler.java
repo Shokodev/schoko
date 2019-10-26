@@ -51,7 +51,7 @@ public class DeviceHandler {
      * @param port port to read Network
      */
     public void createLocalDevice(Integer port)  {
-
+        rebaseLocalDevice();
         IpNetwork ipNetwork = new IpNetwork(IpNetwork.DEFAULT_BROADCAST_IP, port);
         Transport transport = new Transport(ipNetwork);
         int localDevice_ID = 10001;
@@ -174,6 +174,17 @@ public class DeviceHandler {
             } catch (BACnetException bac){
                 System.err.println("Cant read remote device information");
             }
+        }
+    }
+
+    /**
+     * Reset local device if creating is called again in runtime
+     */
+    private void rebaseLocalDevice(){
+        if(localDevice != null){
+            localDevice.terminate();
+            System.out.println("*********************Reset*********************");
+
         }
     }
 

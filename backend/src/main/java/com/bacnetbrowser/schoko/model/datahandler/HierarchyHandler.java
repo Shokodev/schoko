@@ -33,19 +33,20 @@ public class HierarchyHandler {
      * @return Object to Rest
      */
     public BACnetNode getChildrenByNodeElementName(String structure) {
-        BACnetStructure tempNode = hierarchyService.getBacnetStructure();
-        String[] splitted = structure.split(hierarchyService.getStructureSeparator());
-        if ((splitted.length == 1) && (settingsHandler.getSiteName().equals(structure))) {
-            return createAndAddChildren(tempNode);
+            BACnetStructure tempNode = hierarchyService.getBacnetStructure();
+            String[] splitted = structure.split(hierarchyService.getStructureSeparator());
+            if ((splitted.length == 1) && (settingsHandler.getSiteName().equals(structure))) {
+                return createAndAddChildren(tempNode);
 
-        }else{
-        BACnetStructure node = null;
-            for (int i = 1; i < splitted.length; i++) {
-            node = tempNode.getChildByElementName(splitted[i]);
-            tempNode = node;
+            } else {
+                BACnetStructure node = null;
+                for (int i = 1; i < splitted.length; i++) {
+                    node = tempNode.getChildByElementName(splitted[i]);
+                    tempNode = node;
+                }
+                return createAndAddChildren(node);
+            }
         }
-            return createAndAddChildren(node);
-        }}
 
     /**
      * Needed for the method getChildrenByNodeElementName for create the nodes of the given parent
@@ -70,7 +71,8 @@ public class HierarchyHandler {
      */
     public void createStructure(String siteName, String siteDescription, String structureSeparator){
         hierarchyService.deleteStructure();
-        hierarchyService.create(siteName,siteDescription,structureSeparator);
+        hierarchyService.create(siteName, siteDescription, structureSeparator);
+
     }
 
     public BACnetStructure getStructure() {
