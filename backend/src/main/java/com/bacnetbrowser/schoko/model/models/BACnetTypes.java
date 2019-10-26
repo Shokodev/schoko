@@ -16,7 +16,7 @@ public class BACnetTypes {
         } else if ((objectType.equals(ObjectType.analogOutput)) ||(objectType.equals(ObjectType.analogValue))) {
             return new Real(Integer.parseInt(value));
         } else if ((objectType.equals(ObjectType.multiStateOutput)) ||(objectType.equals(ObjectType.multiStateValue))) {
-            return new Enumerated(Integer.parseInt(value));
+            return new UnsignedInteger(Integer.parseInt(value));
         }
         return new UnsignedInteger(Integer.parseInt(value));
     }

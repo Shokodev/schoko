@@ -116,7 +116,7 @@
             setWriteValue: function () {
                 console.log(this.getBACnetObject)
                 console.log(this.writeValue)
-                var index= this.getStateText.indexOf(this.writeValue);
+                let index= (this.getStateText.indexOf(this.writeValue))+1;
                 console.log(this.getStateText)
                 console.log(index)
                 let bacnetProperty = {
