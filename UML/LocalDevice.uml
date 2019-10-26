@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.serotonin.bacnet4j.LocalDevice</OriginalElement>
+  <nodes>
+    <node x="744.5" y="259.0">com.serotonin.bacnet4j.RemoteDevice</node>
+    <node x="709.5" y="419.0">com.serotonin.bacnet4j.event.DeviceEventListener</node>
+    <node x="74.5" y="339.0">com.serotonin.bacnet4j.event.DeviceEventHandler</node>
+    <node x="1074.5" y="419.0">com.serotonin.bacnet4j.event.DeviceEventAdapter</node>
+    <node x="469.5" y="99.0">com.serotonin.bacnet4j.LocalDevice</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.serotonin.bacnet4j.event.DeviceEventHandler" target="com.serotonin.bacnet4j.RemoteDevice">
+      <point x="0.0" y="-21.0" />
+      <point x="200.0" y="0.0" />
+      <point x="840.0" y="0.0" />
+      <point x="0.0" y="-21.0" />
+    </edge>
+    <edge source="com.serotonin.bacnet4j.LocalDevice" target="com.serotonin.bacnet4j.RemoteDevice">
+      <point x="90.5" y="0.0" />
+      <point x="800.0" y="120.0" />
+      <point x="-40.0" y="-21.0" />
+    </edge>
+    <edge source="com.serotonin.bacnet4j.event.DeviceEventAdapter" target="com.serotonin.bacnet4j.RemoteDevice">
+      <point x="0.0" y="-21.0" />
+      <point x="1200.0" y="280.0" />
+      <point x="95.5" y="0.0" />
+    </edge>
+    <edge source="com.serotonin.bacnet4j.event.DeviceEventListener" target="com.serotonin.bacnet4j.RemoteDevice">
+      <point x="0.0" y="-21.0" />
+      <point x="0.0" y="21.0" />
+    </edge>
+    <edge source="com.serotonin.bacnet4j.event.DeviceEventHandler" target="com.serotonin.bacnet4j.event.DeviceEventListener">
+      <point x="-125.5" y="0.0" />
+      <point x="0.0" y="360.0" />
+      <point x="0.0" y="520.0" />
+      <point x="840.0" y="520.0" />
+      <point x="0.0" y="21.0" />
+    </edge>
+    <edge source="com.serotonin.bacnet4j.LocalDevice" target="com.serotonin.bacnet4j.event.DeviceEventHandler">
+      <point x="-40.0" y="21.0" />
+      <point x="520.0" y="360.0" />
+      <point x="125.5" y="0.0" />
+    </edge>
+    <edge source="com.serotonin.bacnet4j.event.DeviceEventAdapter" target="com.serotonin.bacnet4j.event.DeviceEventListener">
+      <point x="-125.5" y="0.0" />
+      <point x="130.5" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Orthogonal" zoom="1.1" x="615.4336219336225" y="421.04292929292944" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
