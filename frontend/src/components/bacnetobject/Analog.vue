@@ -62,7 +62,7 @@
 <script>
     import { mapMutations , mapGetters} from 'vuex'
     export default {
-        name: "BinaryOutput",
+        name: "Analog",
         props: {
             node: {}
         },
@@ -81,8 +81,8 @@
             };
         },
         mounted(){
-                this.myObject = this.getBACnetObject;
-                this.presentValue()
+            this.myObject = this.getBACnetObject;
+            this.presentValue()
 
 
         },
@@ -97,44 +97,44 @@
         },
 
         methods:{
-        ...mapMutations([
-            'SetBACnetProperty'
-        ]),
+            ...mapMutations([
+                'SetBACnetProperty'
+            ]),
 
 
 
-        presentValue: function () {
+            presentValue: function () {
                 this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
                 this.activeValue = this.searchPropertyIdentifierValue("Active text");
-                },
+            },
 
 
-        searchPropertyIdentifierValue: function (search) {
-            for (let i = 0; i < this.node.length; i++) {
-                if (this.node[i]["propertyIdentifier"] === (search)) {
-                    return this.node[i].value;
-                } else {
-                    console.log("Not Found")
+            searchPropertyIdentifierValue: function (search) {
+                for (let i = 0; i < this.node.length; i++) {
+                    if (this.node[i]["propertyIdentifier"] === (search)) {
+                        return this.node[i].value;
+                    } else {
+                        console.log("Not Found")
+                    }
                 }
-            }
-        },
-        setWriteValue: function () {
-            console.log(this.getBACnetObject)
+            },
+            setWriteValue: function () {
+                console.log(this.getBACnetObject)
 
-            if(this.writeValue=== this.activeValue){
-                this.writeValue=1
-            }else{
-                this.writeValue=0
-            }
-            let bacnetProperty = {
-                propertyIdentifier: "Present value",
-                value: this.writeValue
-            };
-            this.SetBACnetProperty(bacnetProperty);
-            this.$emit('event', this.getBACnetProperty)
+                if(this.writeValue=== this.activeValue){
+                    this.writeValue=1
+                }else{
+                    this.writeValue=0
+                }
+                let bacnetProperty = {
+                    propertyIdentifier: "Present value",
+                    value: this.writeValue
+                };
+                this.SetBACnetProperty(bacnetProperty);
+                this.$emit('event', this.getBACnetProperty)
+            },
         },
-    },
-}
+    }
 </script>
 
 <style scoped>

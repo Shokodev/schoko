@@ -5,7 +5,7 @@
     </h1>
     <div>
             <span>
-                <span  class="columns box" :key="child.elementName" v-for="child in bacnetEvents">
+                <span  class="columns box is-three-fifths" :key="child.eventID" v-for="child in getEvents">
                     <div Class="column">Datum: {{child.timeStamp}} </div>
                       <div Class="column">Beschreibung: {{child.description}} </div>
                         <div Class="column">  Aktuller Wert: {{child.presentValue}} </div>
@@ -20,6 +20,7 @@
 
 <script>
     import Stomp from 'stompjs';
+    import {mapGetters,mapMutations} from 'vuex';
         export default {
         name: "AlarmList",
             data() {
@@ -35,6 +36,7 @@
             },
             methods:{
 
+            ...mapMutations(["newEventList"]),
 
                 connect: function () {
                     const socket = new WebSocket('ws://localhost:8098/ws/events');
@@ -56,14 +58,13 @@
                 },
 
                 callback: function (message) {
-                   console.log(message.body);
+                  this.newEventList(JSON.parse(message.body));
                     this.connected = true;
                 },
                 //ToDo Alarm Handling
                 sendValue: function () {
                     this.stompClient.send("", {}, JSON.stringify());
                 },
-
 
 
             searchPropertyIdentifierValue: function () {
@@ -75,13 +76,19 @@
                         }
                     }
                 }
+            },
 
-
-
+            computed:{
+            ...mapGetters(["getEvents"])
             }
     };
 </script>
 
 <style scoped>
+
+
+
+
+
 
 </style>

@@ -5,9 +5,12 @@
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
-                            <BinaryOutput @event="sendValue" v-if="this.connected"
+                            <BinaryOutput @event="sendValue" v-if="getObjectType==='Binary output'"
                             :node="this.getBACnetObject"
                             ></BinaryOutput>
+                            <Analog @event="sendValue" v-if="getObjectType==='Analog Input 1'"
+                            :node="this.getBACnetObject"
+                            ></Analog>
                         </div>
                         <pulse-loader :loading=!this.connected :color="color" :size="size"></pulse-loader>
                     </div>
@@ -22,6 +25,7 @@
 <script>
     import Stomp from 'stompjs';
     import BinaryOutput from "./bacnetobject/BinaryOutput";
+    import Analog from "./bacnetobject/Analog";
     import { mapGetters, mapMutations, mapActions} from "vuex";
     import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
@@ -37,7 +41,7 @@
 
             };
         },
-        components: { BinaryOutput, PulseLoader},
+        components: {Analog, BinaryOutput, PulseLoader},
 
         mounted() {
             this.connect();
@@ -80,7 +84,7 @@
             'myTest'
         ]),
         computed: {
-            ...mapGetters(["getBACnetObject", "getBACnetProperty"]),
+            ...mapGetters(["getBACnetObject", "getBACnetProperty","getObjectType"]),
 
         }
     }
