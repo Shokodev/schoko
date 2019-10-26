@@ -102,6 +102,7 @@
                     //console.log("reading BACnet Object");
                     var name= this.element + "'" + child["elementName"];
                     this.$store.commit('setObjectName', name.replace(/Anlage'/i,""));
+                    this.$store.commit('setObjectType', (child["elementType"]));
                     this.isModalVisible= true;
                 }else
                     return false;
