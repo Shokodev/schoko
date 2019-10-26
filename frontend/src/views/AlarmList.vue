@@ -19,32 +19,56 @@
 </template>
 
 <script>
+    import Stomp from 'stompjs';
         export default {
         name: "AlarmList",
             data() {
                 return {
-                    bacnetEvents: [{
-                        "eventID": "5",
-                        "oid": "532",
-                        "oidRemoteDevice": "Controller Test",
-                        "timeStamp": "08:00 25.10.2019",
-                        "fromState": "Normal",
-                        "toState": "to Fault",
-                        "description": "Alles Defekt",
-                        "presentValue": "Störung"
-                    },
-                        {"eventID": "5",
-                    "oid": "532",
-                    "oidRemoteDevice": "Controller Test",
-                    "timeStamp": "07:00 25.10.2019",
-                    "fromState": "Normal",
-                    "toState": "to Fault",
-                    "description": "Alles Defekt",
-                    "presentValue": "Störung"
-                        }]
+                    connected: false,
+                    stompClient: Object,
+
+                    bacnetEvents: null,
                 };
             },
+            mounted(){
+                this.connect();
+            },
             methods:{
+
+
+                connect: function () {
+                    const socket = new WebSocket('ws://localhost:8098/ws/events');
+                    this.stompClient = Stomp.over(socket);
+                    this.stompClient.connect({}, this.callbackStomp);
+                },
+                connectClose: function () {
+                    this.stompClient.send("/app/endEvents", {}, "WebSocket Closed");
+                    this.stompClient.unsubscribe('/eventList/events');
+                    this.stompClient.disconnect();
+                    this.connected = false;
+                },
+                callbackStomp: function (frame) {
+                    if (frame.command === "CONNECTED") {
+                        this.stompClient.subscribe('/eventList/events', this.callback, {});
+                    } else {
+                        console.log("failed")
+                    }
+                    this.stompClient.send("/app/events", {}, this.bacnetEvents)
+
+                },
+
+                callback: function (message) {
+                    this.$store.commit('setBACnetObject', JSON.parse(message.body));
+                    this.connected = true;
+
+                },
+                //ToDo Alarm Handling
+                sendValue: function () {
+                    this.stompClient.send("", {}, JSON.stringify());
+                },
+
+
+
             searchPropertyIdentifierValue: function () {
                     for (let i = 0; i < this.bacnetEvents.length; i++) {
                         if (this.bacnetEvents[i].propertyIdentifier) {
