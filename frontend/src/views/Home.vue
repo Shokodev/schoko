@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>
+        <div v-if="this.this.getSiteName">
             <h1 class="subtitle is 3">
                 Home
             </h1>
@@ -27,7 +27,7 @@
 <script>
     import axios from 'axios';
     import modal from "../components/modal"
-    import { mapActions} from "vuex"
+    import { mapActions , mapGetters} from "vuex"
 
 
     //TODO make this work
@@ -37,7 +37,7 @@
         data() {
             return {
                 posts: {},
-                element: "Anlage",
+                element: this.getSiteName,
                 parent: "",
                 firstElement: true,
                 properties: [],
@@ -52,7 +52,7 @@
             };
           },
         mounted() {
-            this.loadJSON();
+           this.loadJSON();
         },
         methods: {
 
@@ -104,6 +104,10 @@
                 }else
                     return false;
             }
+        }, computed: {
+            ...mapGetters([
+                'getSiteName'
+            ])
         }
     };
 </script>

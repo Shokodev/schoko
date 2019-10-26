@@ -22,10 +22,6 @@
       methods: {
       ...mapActions(["readSettings"])
   },
-
-    created() {
-      this.readSettings();
-    },
   }
 
 </script>

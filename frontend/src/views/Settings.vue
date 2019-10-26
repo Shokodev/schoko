@@ -61,7 +61,6 @@
 </template>
 
 <script>
-    //TODO change static settings to vuex settings!!!
     import { mapGetters, mapActions} from "vuex"
 
     export default {
@@ -87,10 +86,14 @@
             }
         },
         mounted() {
+
+
             this.settings.siteDescription = this.getSettings.siteDescription;
             this.settings.siteName = this.getSettings.siteName;
             this.settings.port = this.getSettings.port;
             this.settings.bacnetSeparator = this.getSettings.bacnetSeparator;
+
+
         }
     }
 </script>

@@ -5,7 +5,7 @@
     </h1>
     <div>
             <span>
-                <span  class="columns box" :key="child.elementName" v-for="child in bacnetEvents">
+                <span  class="columns box" :key="child.eventID" v-for="child in getEvents">
                     <div Class="column">Datum: {{child.timeStamp}} </div>
                       <div Class="column">Beschreibung: {{child.description}} </div>
                         <div Class="column">  Aktuller Wert: {{child.presentValue}} </div>
@@ -13,20 +13,20 @@
                             <div Class="column"> {{child.toState}} </div>
                 </span>
             </span>
-
     </div>
     </div>
 </template>
 
 <script>
     import Stomp from 'stompjs';
+    import {mapGetters, mapMutations} from 'vuex'
+
         export default {
         name: "AlarmList",
             data() {
                 return {
                     connected: false,
                     stompClient: Object,
-
                     bacnetEvents: null,
                 };
             },
@@ -34,8 +34,9 @@
                 this.connect();
             },
             methods:{
-
-
+                ...mapMutations([
+                    'setEventList'
+                ]),
                 connect: function () {
                     const socket = new WebSocket('ws://localhost:8098/ws/events');
                     this.stompClient = Stomp.over(socket);
@@ -57,6 +58,7 @@
 
                 callback: function (message) {
                    console.log(message.body);
+                   this.setEventList(JSON.parse(message.body))
                     this.connected = true;
                 },
                 //ToDo Alarm Handling
@@ -64,20 +66,10 @@
                     this.stompClient.send("", {}, JSON.stringify());
                 },
 
-
-
-            searchPropertyIdentifierValue: function () {
-                    for (let i = 0; i < this.bacnetEvents.length; i++) {
-                        if (this.bacnetEvents[i].propertyIdentifier) {
-                            return this.bacnetEvents[i].value;
-                        } else {
-                            console.log("Not Found")
-                        }
-                    }
-                }
-
-
-
+            },
+            computed: {
+            ...mapGetters(['getEvents'
+            ])
             }
     };
 </script>

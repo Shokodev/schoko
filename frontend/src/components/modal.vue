@@ -22,7 +22,7 @@
 <script>
     import Stomp from 'stompjs';
     import BinaryOutput from "./bacnetobject/BinaryOutput";
-    import { mapGetters, mapMutations, mapActions} from "vuex";
+    import { mapGetters} from "vuex";
     import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
     export default {
@@ -43,9 +43,6 @@
             this.connect();
         },
         methods: {
-            ...mapActions(["connect"]),
-
-
             connect: function () {
                 const socket = new WebSocket('ws://localhost:8098/ws/objects');
                 this.stompClient = Stomp.over(socket);
@@ -76,9 +73,6 @@
                 this.stompClient.send("/app/setValue", {}, JSON.stringify(this.getBACnetProperty));
             },
         },
-        ...mapMutations([
-            'myTest'
-        ]),
         computed: {
             ...mapGetters(["getBACnetObject", "getBACnetProperty"]),
 

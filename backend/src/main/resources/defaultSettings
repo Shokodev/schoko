@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><settings id="1">
         <port>BAC0</port>
-        <siteName>Anlage</siteName>
-        <siteDescription>Gebäude xy</siteDescription>
+        <siteName>MyAnlage</siteName>
+        <siteDescription>Matrix</siteDescription>
         <bacnetSeparator>'</bacnetSeparator>
     </settings>
