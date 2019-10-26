@@ -2,12 +2,9 @@
     <span>
         <span class="level box">
                 <span class="level-left">
-                <span  >
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
                 <div v-if="prop.propertyIdentifier==='Present value'">
                   Aktueller Wert:  {{prop.value}}
-                </div>
-                <div v-if="prop.propertyIdentifier==='Description'">
-                  Description:  {{prop.value}}
                 </div>
                 </span>
                 </span>
@@ -84,13 +81,17 @@
             };
         },
         mounted(){
-                this.myObject = this.getBACnetObject,
+                this.myObject = this.getBACnetObject;
                 this.presentValue()
+
+
         },
         computed:{
             ...mapGetters([
                 'getBACnetObject'
             ]),
+
+
 
 
         },

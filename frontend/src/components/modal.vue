@@ -47,23 +47,23 @@
 
 
             connect: function () {
-                const socket = new WebSocket('ws://localhost:8098/ws/Object');
+                const socket = new WebSocket('ws://localhost:8098/ws/objects');
                 this.stompClient = Stomp.over(socket);
                 this.stompClient.connect({}, this.callbackStomp);
             },
             connectClose: function () {
                 this.stompClient.send("/app/end", {}, "WebSocket Closed");
-                this.stompClient.unsubscribe('/topic/user');
+                this.stompClient.unsubscribe('/broker/objectSub');
                 this.stompClient.disconnect();
                 this.connected = false;
             },
             callbackStomp: function (frame) {
                 if (frame.command === "CONNECTED") {
-                    this.stompClient.subscribe('/topic/user', this.callback, {});
+                    this.stompClient.subscribe('/broker/objectSub', this.callback, {});
                 } else {
                     console.log("failed")
                 }
-                this.stompClient.send("/app/user", {}, this.$store.getters.getObjectName)
+                this.stompClient.send("/app/objectSub", {}, this.$store.getters.getObjectName)
 
             },
             callback: function (message) {
