@@ -10,6 +10,7 @@
         </div>
         <div class="container is-fluid">
             <div>
+
             <span v-if="posts.length!==0">
                 <span id="childButton" class="button is-fullwidth level-left" v-on:click="goIn(child)" :key="child.elementName" v-for="child in posts.children">
                     {{child.elementName}}<span id="description" v-if="child.elementDescription!==''">({{child.elementDescription}})</span>
@@ -26,6 +27,9 @@
 <script>
     import axios from 'axios';
     import modal from "../components/modal"
+    import { mapActions} from "vuex"
+
+
     //TODO make this work
     export default {
         name: 'structure',
@@ -42,12 +46,18 @@
                 child: {
                     elementDescription: ""
                 },
+                color: '#000000',
+                size: '1000px',
+                loading:true
             };
           },
         mounted() {
             this.loadJSON();
         },
         methods: {
+
+            ...mapActions(["readObjectName"]),
+
             // This Function get the Hierarchy from Backend only the need one
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
@@ -71,12 +81,11 @@
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             goIn: function (child) {
-                console.log(child)
                 if (this.isBACnetObject(child) === false ) {
-                    console.log(child);
+                    //console.log(child);
                     if(this.firstElement === false) {
                     this.element = this.element.concat("'"+ child["elementName"]);
-                    console.log(this.element)
+                    //console.log(this.element)
                     this.loadJSON();
                 }
             }
@@ -86,17 +95,16 @@
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             isBACnetObject: function (child){
-                console.log(child["elementType"]);
+                //console.log(child["elementType"]);
                 if(child["elementType"] !== "Structure Element") {
-                    console.log("reading BACnet Object");
-                    this.isModalVisible= true;
+                    //console.log("reading BACnet Object");
                     var name= this.element + "'" + child["elementName"];
-                    var result = name.replace(/Anlage'/i,"");
-                    modal.methods.setObjectName(result);
+                    this.$store.commit('setObjectName', name.replace(/Anlage'/i,""));
+                    this.isModalVisible= true;
                 }else
                     return false;
             }
-        },
+        }
     };
 </script>
 

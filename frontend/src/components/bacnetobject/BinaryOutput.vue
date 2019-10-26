@@ -1,141 +1,142 @@
 <template>
-<span>
-
-            <div class="columns">
-                    <span class="column is-three-fifths">
-                    <span>Aktueller Wert: {{this.presentValueValue}}</span>
-                    </span>
-                    <span class="column is-right">
-                  <span class="select">
-                    <select v-model="writeValue">
-                        <option>{{this.inactiveValue}}</option>
-                        <option>{{this.activeValue}}</option>
-                    </select>
-                  </span>
-                    <a class="button is-primary" v-on:click="setWriteValue()">
-                         Senden
-                     </a>
-                    </span>
-            </div>
-            <div class="column" >
-                    <span>
-                        Polarität:
-                    </span>
-                    <span>
-                        {{this.polarityValue}}
-                    </span>
-            </div>
-            <div class="column">
-                    <span>
-                        Beschreibung:
-                    </span>
-                    <span>
-                        {{this.descriptionValue}}
-                    </span>
-            </div>
-            <div class="column">
-                    <span>
-                        Ausser Betrieb:
-                    </span>
-                    <span>
-                        {{this.outOfServiceValue}}
-                    </span>
-            </div>
-            <div class="column">
-                    <span>
-                        Objekt Name:
-                    </span>
-                    <span>
-                        {{this.objectNameValue}}
-                    </span>
-            </div>
-</span>
-
-
+    <span>
+        <span class="level box">
+                <span class="level-left">
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
+                <div v-if="prop.propertyIdentifier==='Present value'">
+                  Aktueller Wert:  {{prop.value}}
+                </div>
+                </span>
+                </span>
+                <span class="level-right">
+              <span class="select">
+                <select v-model="writeValue">
+                    <option>{{this.inactiveValue}}</option>
+                    <option>{{this.activeValue}}</option>
+                </select>
+              </span>
+                <button class="button is-primary" v-on:click="setWriteValue()">
+                     Senden
+                 </button>
+                </span>
+        </span>
+        <div class="box">
+                <span>
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
+                <div v-if="prop.propertyIdentifier==='Polarity'">
+                   Polarität: {{prop.value}}
+                </div>
+                </span>
+                </span>
+        </div>
+        <div class="box">
+                <span>
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
+                <div v-if="prop.propertyIdentifier==='Description'">
+                   Beschreibung: {{prop.value}}
+                </div>
+                </span>
+                </span>
+        </div>
+        <div class="box">
+                <span>
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
+                <div v-if="prop.propertyIdentifier==='Out of service'">
+                   Ausser Betrieb: {{prop.value}}
+                </div>
+                </span>
+                </span>
+        </div>
+        <div class="box">
+                <span>
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
+                <div v-if="prop.propertyIdentifier==='Object name'">
+                   Objekt Name: {{prop.value}}
+                </div>
+                </span>
+                </span>
+        </div>
+    </span>
 </template>
 
 <script>
-import modal from "../modal";
-
+    import { mapMutations , mapGetters} from 'vuex'
     export default {
         name: "BinaryOutput",
+        props: {
+            node: {}
+        },
         data(){
             return{
-                bacnetObject: null,
                 inactiveValue:"",
                 activeValue:"",
-                objectNameValue:"",
-                presentValueValue:"",
+                objectNameValue: "",
+                presentValueValue: "",
                 objectTypeValue:"",
                 descriptionValue:"",
                 outOfServiceValue:"",
                 polarityValue:"",
-                writeValue:""
-
+                writeValue:"",
+                myObject: null,
             };
         },
         mounted(){
-                this.setBacnetObject(),
+                this.myObject = this.getBACnetObject,
                 this.presentValue(),
                 this.outOfService(),
-                    this.description(),
+                this.description(),
                 this.objectName()
         },
-        methods:{
+        computed:{
+            ...mapGetters([
+                'getBACnetObject'
+            ]),
+            isPresentValue() {
+               return this.propertyIdentifier==='Present value'
 
-            setWriteValue: function () {
-                if(this.writeValue=== this.activeValue){
-                console.log(1);
-                    this.writeValue=1
-
-                }else{
-                    console.log(0);
-                    this.writeValue=0
-                }
-                var bacnetProperty = (
-                    "value: "+ this.writeValue + ", " +
-                        "propertyIdentifier: Present value"
-                );
-
-                modal.methods.sendValue(JSON.stringify(bacnetProperty));
-            },
-            setBacnetObject: function () {
-               this.bacnetObject= modal.methods.getProperties()
-            },
-            objectName: function () {
-                this.objectNameValue = this.searchPropertyIdentifierValue("Object name")
-            },
-            presentValue: function () {
-                this.presentValueValue = this.searchPropertyIdentifierValue("Present value");
-                this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
-                this.activeValue = this.searchPropertyIdentifierValue("Active text");
-                this.polarityValue = this.searchPropertyIdentifierValue("Polarity");
-                if(this.presentValueValue==="0"){
-                    return this.presentValueValue = this.inactiveValue
-                }else
-                    return this.presentValueValue = this.activeValue
-            },
-            description: function () {
-                this.descriptionValue = this.searchPropertyIdentifierValue("Description")
-
-            },
-            outOfService: function () {
-                this.outOfServiceValue = this.searchPropertyIdentifierValue("Out of service")
-            },
-            searchPropertyIdentifierValue: function (search) {
-                for (let i = 0; i < this.bacnetObject.length; i++) {
-                    if (this.bacnetObject[i].propertyIdentifier === (search)) {
-                        return this.bacnetObject[i].value;
-                    } else {
-                        console.log("Not Found")
-                    }
-                }
             }
 
+        },
 
-        }
+        methods:{
+        ...mapMutations([
+            'SetBACnetProperty'
+        ]),
 
-    }
+
+
+        presentValue: function () {
+                this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
+                this.activeValue = this.searchPropertyIdentifierValue("Active text");
+                },
+
+
+        searchPropertyIdentifierValue: function (search) {
+            for (let i = 0; i < this.node.length; i++) {
+                if (this.node[i]["propertyIdentifier"] === (search)) {
+                    return this.node[i].value;
+                } else {
+                    console.log("Not Found")
+                }
+            }
+        },
+        setWriteValue: function () {
+            console.log(this.getBACnetObject)
+
+            if(this.writeValue=== this.activeValue){
+                this.writeValue=1
+            }else{
+                this.writeValue=0
+            }
+            let bacnetProperty = {
+                propertyIdentifier: "Present value",
+                value: this.writeValue
+            };
+            this.SetBACnetProperty(bacnetProperty);
+            this.$emit('event', this.getBACnetProperty)
+        },
+    },
+}
 </script>
 
 <style scoped>
