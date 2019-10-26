@@ -43,24 +43,22 @@
                 },
                 connectClose: function () {
                     this.stompClient.send("/app/endEvents", {}, "WebSocket Closed");
-                    this.stompClient.unsubscribe('/eventList/events');
+                    this.stompClient.unsubscribe('/broker/eventSub');
                     this.stompClient.disconnect();
                     this.connected = false;
                 },
                 callbackStomp: function (frame) {
                     if (frame.command === "CONNECTED") {
-                        this.stompClient.subscribe('/eventList/events', this.callback, {});
+                        this.stompClient.subscribe('/broker/eventSub', this.callback, {});
                     } else {
                         console.log("failed")
                     }
-                    this.stompClient.send("/app/events", {}, this.bacnetEvents)
-
+                    this.stompClient.send("/app/eventSub", {}, "Hallo")
                 },
 
                 callback: function (message) {
-                    this.$store.commit('setBACnetObject', JSON.parse(message.body));
+                   console.log(message.body);
                     this.connected = true;
-
                 },
                 //ToDo Alarm Handling
                 sendValue: function () {

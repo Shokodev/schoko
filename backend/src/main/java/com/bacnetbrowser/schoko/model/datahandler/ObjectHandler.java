@@ -49,7 +49,7 @@ public class ObjectHandler {
      * This method does update the properties by changes sent from the remote device
      */
     public void  updateStream(){
-        template.convertAndSend("/topic/user", objectService.getProperties());
+        template.convertAndSend("/broker/objectSub", objectService.getProperties());
     }
 
     /**

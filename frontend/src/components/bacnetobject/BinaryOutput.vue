@@ -81,20 +81,18 @@
             };
         },
         mounted(){
-                this.myObject = this.getBACnetObject,
-                this.presentValue(),
-                this.outOfService(),
-                this.description(),
-                this.objectName()
+                this.myObject = this.getBACnetObject;
+                this.presentValue()
+
+
         },
         computed:{
             ...mapGetters([
                 'getBACnetObject'
             ]),
-            isPresentValue() {
-               return this.propertyIdentifier==='Present value'
 
-            }
+
+
 
         },
 
