@@ -59,11 +59,4 @@ public class WSController {
     }
 
 
-    @MessageMapping("/eventSub")
-    @SendTo("/broker/eventSub")
-    public void subscribeEventList (String message) {
-        System.out.println(message);
-    }
-
-
 }
