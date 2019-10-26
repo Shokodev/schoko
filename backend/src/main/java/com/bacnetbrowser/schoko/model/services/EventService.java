@@ -59,8 +59,9 @@ public class EventService extends DeviceEventAdapter {
         } catch (NullPointerException e){
             if (toState.toString().equals("off normal")){
                DateTime date  = timeStamp.getDateTime();
-            BACnetEvent baCnetEvent = new BACnetEvent(getEvents().size() + 1,eventObjectIdentifier.toString(),initiatingDevice.getVendorName(),date.getDate().toString() + " "+ date.getTime().toString(),
+            BACnetEvent baCnetEvent = new BACnetEvent(eventObjectIdentifier.toString(),initiatingDevice.getVendorName(),date.getDate().toString() + " "+ date.getTime().toString(),
                     fromState.toString(),toState.toString(),getDescriptionOfObject(eventObjectIdentifier.toString()),getPresentValue(eventObjectIdentifier,initiatingDevice));
+            baCnetEvent.setEventID(baCnetEvent.hashCode());
             addEvent(baCnetEvent);
             eventHandler.updateStream();
             System.out.println("New event: " + baCnetEvent.getEventID() + " from object: " + baCnetEvent.getOid());
@@ -120,6 +121,5 @@ public class EventService extends DeviceEventAdapter {
         event.setFromState(fromState);
         event.setToState(toState);
     }
-
 
 }

@@ -80,7 +80,7 @@ public class ObjectService extends DeviceEventAdapter {
             BACnetProperty property = new BACnetProperty(result.getValue().toString(),result.getPropertyIdentifier().toString());
             properties.add(property);
             } catch (BACnetException bac){
-                System.err.println("Cant read property " + op.getPropertyIdentifier().toString() + " of Object: " + oid.toString());
+                System.err.println("Cant read property " + op.getPropertyIdentifier().toString() + " of Object: " + oid.toString());;
             }
         }
     }
@@ -98,6 +98,8 @@ public class ObjectService extends DeviceEventAdapter {
             System.out.println("Subscription @: '" + objectIdentifier + "' on: " + remoteDevice.getObjectIdentifier());
     } catch (BACnetException bac){
         System.err.println("Cant subscribed data point: " + objectIdentifier.getObjectType());
+            objectHandler.updateStream();
+
     }}
 
     /**
@@ -110,6 +112,7 @@ public class ObjectService extends DeviceEventAdapter {
         System.out.println("Unsubscription @: '" + objectIdentifier + "' on: " + remoteDevice.getObjectIdentifier());
     } catch (BACnetException bac){
         System.err.println("Cant unsubscribed data point: " + objectIdentifier.getObjectType());
+
     }}
 
     public void clearPropertyList(){

@@ -66,7 +66,7 @@ public class HierarchyService {
             String[] splittedObjectName = key.split(structureSeparator);
             for (int i = 0; i < splittedObjectName.length; i++) {
                     BACnetStructure parent = getParentNode(bacnetStructure ,i,splittedObjectName);
-                    BACnetStructure node = createNode(splittedObjectName[i], objectNamesToOids.get(key), objectNamesToDescription.get(key), obejctNamesToRemoteDevice.get(key).getInstanceNumber(), parent);
+                    BACnetStructure node = createNode(splittedObjectName[i], oidStringToOid.get(objectNamesToOids.get(key)).getObjectType().toString(), objectNamesToDescription.get(key), obejctNamesToRemoteDevice.get(key).getInstanceNumber(), parent);
                     if (node != null) {
                         parent.addChild(node);
                         nodeCounter++;
