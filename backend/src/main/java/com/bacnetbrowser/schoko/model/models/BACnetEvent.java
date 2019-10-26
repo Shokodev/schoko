@@ -4,7 +4,7 @@ package com.bacnetbrowser.schoko.model.models;
 public class BACnetEvent {
 
     // Event Properties
-    private Integer eventID = 0;
+    private Integer eventID;
     private String oid;
     private String RemoteDeviceName;
     private String timeStamp;
@@ -17,8 +17,7 @@ public class BACnetEvent {
     private String presentValue;
 
 
-    public BACnetEvent(Integer eventID, String oid, String RemoteDeviceName, String timeStamp, String fromState, String toState, String description, String presentValue) {
-        this.eventID = eventID;
+    public BACnetEvent(String oid, String RemoteDeviceName, String timeStamp, String fromState, String toState, String description, String presentValue) {
         this.oid = oid;
         this.RemoteDeviceName = RemoteDeviceName;
         this.timeStamp = timeStamp;
@@ -66,6 +65,10 @@ public class BACnetEvent {
 
     public void setToState(String toState) {
         this.toState = toState;
+    }
+
+    public void setEventID(Integer eventID) {
+        this.eventID = eventID;
     }
 }
 

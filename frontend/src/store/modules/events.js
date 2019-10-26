@@ -1,24 +1,21 @@
-const state = {
-    events: []
+const state={
 
-};
-const getters = {
-    getEvents: state => state.events,
+    events:[]
 
 };
 
-export const actions = {
+const getters={
 
+    getEvents: state => state.events
 };
 
-export const mutations = {
-    setEventList: (state, eventList) => (state.events = eventList),
+const mutations={
 
+    newEventList: (state, eventList) => (state.events=eventList)
 };
 
 export default{
     state,
-    actions,
-    mutations,
-    getters
+    getters,
+    mutations
 };

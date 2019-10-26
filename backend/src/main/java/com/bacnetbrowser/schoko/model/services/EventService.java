@@ -22,9 +22,8 @@ import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-
 import java.util.LinkedList;
+
 
 @Component
 public class EventService extends DeviceEventAdapter {
@@ -59,8 +58,10 @@ public class EventService extends DeviceEventAdapter {
         } catch (NullPointerException e){
             if (toState.toString().equals("off normal")){
                DateTime date  = timeStamp.getDateTime();
-            BACnetEvent baCnetEvent = new BACnetEvent(getEvents().size() + 1,eventObjectIdentifier.toString(),initiatingDevice.getVendorName(),date.getDate().toString() + " "+ date.getTime().toString(),
+            BACnetEvent baCnetEvent = new BACnetEvent(eventObjectIdentifier.toString(),initiatingDevice.getVendorName(),date.getDate().toString() + " "+ date.getTime().toString(),
                     fromState.toString(),toState.toString(),getDescriptionOfObject(eventObjectIdentifier.toString()),getPresentValue(eventObjectIdentifier,initiatingDevice));
+            //TODO As soon as the event history will be implemented, the eventID will be the ID of the Database. We are going to use this: https://docs.objectbox.io/getting-started
+            baCnetEvent.setEventID(baCnetEvent.hashCode());
             addEvent(baCnetEvent);
             eventHandler.updateStream();
             System.out.println("New event: " + baCnetEvent.getEventID() + " from object: " + baCnetEvent.getOid());
@@ -120,6 +121,5 @@ public class EventService extends DeviceEventAdapter {
         event.setFromState(fromState);
         event.setToState(toState);
     }
-
 
 }

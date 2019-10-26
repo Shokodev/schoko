@@ -5,9 +5,15 @@
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
-                            <BinaryOutput @event="sendValue" v-if="this.connected"
+                            <BinaryOutput @event="sendValue" v-if="getObjectType==='Binary Output'&&this.connected"
                             :node="this.getBACnetObject"
                             ></BinaryOutput>
+                            <Analog @event="sendValue" v-if="getObjectType==='Analog Input'&&this.connected"
+                            :node="this.getBACnetObject"
+                            ></Analog>
+                            <Multistate @event="sendValue" v-if="getObjectType==='Multi-state Value'&&this.connected"
+                            :node="this.getBACnetObject"
+                            ></Multistate>
                         </div>
                         <pulse-loader :loading=!this.connected :color="color" :size="size"></pulse-loader>
                     </div>
@@ -22,8 +28,10 @@
 <script>
     import Stomp from 'stompjs';
     import BinaryOutput from "./bacnetobject/BinaryOutput";
-    import { mapGetters} from "vuex";
+    import Analog from "./bacnetobject/Analog";
+    import { mapGetters, mapMutations, mapActions} from "vuex";
     import PulseLoader from "vue-spinner/src/PulseLoader.vue";
+    import Multistate from "./bacnetobject/Multistate";
 
     export default {
         name: "modal",
@@ -37,12 +45,15 @@
 
             };
         },
-        components: { BinaryOutput, PulseLoader},
+        components: {Multistate, Analog, BinaryOutput, PulseLoader},
 
         mounted() {
             this.connect();
         },
         methods: {
+            ...mapActions(["connect"]),
+
+
             connect: function () {
                 const socket = new WebSocket('ws://localhost:8098/ws/objects');
                 this.stompClient = Stomp.over(socket);
@@ -73,8 +84,11 @@
                 this.stompClient.send("/app/setValue", {}, JSON.stringify(this.getBACnetProperty));
             },
         },
+        ...mapMutations([
+            'myTest'
+        ]),
         computed: {
-            ...mapGetters(["getBACnetObject", "getBACnetProperty"]),
+            ...mapGetters(["getBACnetObject", "getBACnetProperty","getObjectType"]),
 
         }
     }

@@ -49,7 +49,7 @@ public class HierarchyService {
         this.structureSeparator = structureSeparator;
         readallBACnetObjects();
         this.structureElements = getAllStructureElements();
-        this.bacnetStructure = createStructure();
+        this.bacnetStructure = buildStructure();
 
 
     }
@@ -59,14 +59,14 @@ public class HierarchyService {
      * This method need support from getParentNode() and createNode()
      * @return BACnetStructure bacnetStructure
      */
-    private BACnetStructure createStructure() {
+    private BACnetStructure buildStructure() {
         BACnetStructure bacnetStructure = new BACnetStructure(siteName, "Top Element",siteDescription, null);
         Integer nodeCounter = 0;
         for ( String key : objectNamesToOids.keySet() ) {
             String[] splittedObjectName = key.split(structureSeparator);
             for (int i = 0; i < splittedObjectName.length; i++) {
                     BACnetStructure parent = getParentNode(bacnetStructure ,i,splittedObjectName);
-                    BACnetStructure node = createNode(splittedObjectName[i], objectNamesToOids.get(key), objectNamesToDescription.get(key), obejctNamesToRemoteDevice.get(key).getInstanceNumber(), parent);
+                    BACnetStructure node = createNode(splittedObjectName[i], oidStringToOid.get(objectNamesToOids.get(key)).getObjectType().toString(), objectNamesToDescription.get(key), obejctNamesToRemoteDevice.get(key).getInstanceNumber(), parent);
                     if (node != null) {
                         parent.addChild(node);
                         nodeCounter++;
@@ -123,7 +123,7 @@ public class HierarchyService {
         for (ObjectIdentifier oid : oidStringToOid.values()){
            if (oid.getObjectType().equals(ObjectType.structuredView)) {
               String obejctName = getKey(objectNamesToOids,oid.toString());
-              String[] splitted = obejctName.split(getStructureSeparator());
+              String[] splitted = obejctName.split(structureSeparator);
               String name = splitted[splitted.length -1];
               allStructureElements.put(name,objectNamesToDescription.get(obejctName));
            }}

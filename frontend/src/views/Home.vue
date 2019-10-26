@@ -4,12 +4,14 @@
             <h1 class="subtitle is 3">
                 Home
             </h1>
+            <div class="posts">
             <span>
-              <span id="postsButton" class="button is-fullwidth level-left " v-on:click="goBack">{{posts.elementName}} ({{(posts.elementDescription)}})</span>
+                <span id="postsButton" class="button is-fullwidth level-left " v-on:click="goBack">{{posts.elementName}} ({{(posts.elementDescription)}})</span>
             </span>
+            </div>
         </div>
         <div class="container is-fluid">
-            <div>
+            <div class="child">
 
             <span v-if="posts.length!==0">
                 <span id="childButton" class="button is-fullwidth level-left" v-on:click="goIn(child)" :key="child.elementName" v-for="child in posts.children">
@@ -100,6 +102,7 @@
                     //console.log("reading BACnet Object");
                     var name= this.element + "'" + child["elementName"];
                     this.$store.commit('setObjectName', name.replace(/Anlage'/i,""));
+                    this.$store.commit('setObjectType', (child["elementType"]));
                     this.isModalVisible= true;
                 }else
                     return false;
@@ -114,6 +117,12 @@
 
 <style scoped>
 #childButton{margin: 0.2em; background: #FCF9F9;}
-#postsButton{background: #EFEAEA;}
+#postsButton{margin: 0.2em; background: #EFEAEA;}
 #description{padding-left: 0.5em}
+    .child{
+        padding-right: 1em;
+    }
+    .posts{
+        padding-right: 1em;
+    }
 </style>

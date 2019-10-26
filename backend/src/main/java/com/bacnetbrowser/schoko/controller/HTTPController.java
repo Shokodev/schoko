@@ -27,29 +27,14 @@ public class HTTPController {
 
     private HierarchyHandler hierarchyHandler;
     private SettingsHandler settingsHandler;
+    private DeviceHandler deviceHandler;
 
 
     @Autowired
     public HTTPController(HierarchyHandler hierarchyHandler, SettingsHandler settingsHandler, DeviceHandler deviceHandler) {
         this.hierarchyHandler = hierarchyHandler;
         this.settingsHandler = settingsHandler;
-
-
-
-
-        //TODO This has to be executed after settings button "create" is press
-        settingsHandler.readXMLSettings();
-        try {
-            //parse HEX BACx port to Integer
-            deviceHandler.createLocalDevice(Integer.parseInt(settingsHandler.getPort(), 16));
-        }
-        catch (NumberFormatException err){
-            System.err.println("Warning wrong port "+settingsHandler.getPort());
-        }
-        //TODO this has to be moved in (updateSettings) method as soon as settings ready and no more tests needed
-        System.out.println("Build structure.......");
-        hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
-
+        this.deviceHandler = deviceHandler;
     }
 
 
@@ -75,6 +60,15 @@ public class HTTPController {
         settingsHandler.setBacnetSeparator(settings.getBacnetSeparator());
         settingsHandler.setSiteDescription(settings.getSiteDescription());
         settingsHandler.writeXMLSettings();
+        try {
+            //parse HEX BACx port to Integer
+            deviceHandler.createLocalDevice(Integer.parseInt(settingsHandler.getPort(), 16));
+        }
+        catch (NumberFormatException err){
+            System.err.println("Warning wrong port "+settingsHandler.getPort());
+        }
+        System.out.println("Build structure.......");
+        hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
         return new ResponseEntity<SettingsHandler>(settings, HttpStatus.OK);
     }
 
@@ -85,6 +79,7 @@ public class HTTPController {
     @GetMapping(value = "/settings")
     public SettingsHandler allSettings ()
     {
+        settingsHandler.readXMLSettings();
         return settingsHandler;
     }
 
@@ -96,10 +91,14 @@ public class HTTPController {
     @GetMapping("/structure/{elementName}")
     public BACnetNode getBacnetStructure(@PathVariable String elementName){
         System.out.println("Get node: " + elementName);
-        BACnetNode BACnetNodes = hierarchyHandler.getChildrenByNodeElementName(elementName);
-        if (BACnetNodes == null) throw  new NodeNotFoundException();
-        return BACnetNodes;
-    }
+        try {
+            return hierarchyHandler.getChildrenByNodeElementName(elementName);
+        } catch (NullPointerException e){
+            return new BACnetNode("Achtung!"," ","Bitte zuerst Einstellungen vornehmen",0);
+            }
+        }
+
+
 
     /**
      * Used to rebase reload data from BacNet Network
