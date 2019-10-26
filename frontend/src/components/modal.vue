@@ -5,10 +5,10 @@
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
-                            <BinaryOutput @event="sendValue" v-if="getObjectType==='Binary output'"
+                            <BinaryOutput @event="sendValue" v-if="getObjectType==='Binary Output'"
                             :node="this.getBACnetObject"
                             ></BinaryOutput>
-                            <Analog @event="sendValue" v-if="getObjectType==='Analog Input 1'"
+                            <Analog @event="sendValue" v-if="getObjectType==='Analog Input'"
                             :node="this.getBACnetObject"
                             ></Analog>
                         </div>
