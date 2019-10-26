@@ -2,7 +2,11 @@
     <span>
         <span class="level box">
                 <span class="level-left">
-                <span>Aktueller Wert: {{this.presentValueValue}}</span>
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
+                <div v-if="prop.propertyIdentifier==='Present value'">
+                  Aktueller Wert:  {{prop.value}}
+                </div>
+                </span>
                 </span>
                 <span class="level-right">
               <span class="select">
@@ -18,34 +22,38 @@
         </span>
         <div class="box">
                 <span>
-                    Polarität:
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
+                <div v-if="prop.propertyIdentifier==='Polarity'">
+                   Polarität: {{prop.value}}
+                </div>
                 </span>
-                <span>
-                    {{this.polarityValue}}
-                </span>
-        </div>
-        <div class="box">
-                <span>
-                    Beschreibung:
-                </span>
-                <span>
-                    {{this.descriptionValue}}
                 </span>
         </div>
         <div class="box">
                 <span>
-                    Ausser Betrieb:
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
+                <div v-if="prop.propertyIdentifier==='Description'">
+                   Beschreibung: {{prop.value}}
+                </div>
                 </span>
-                <span>
-                    {{this.outOfServiceValue}}
                 </span>
         </div>
         <div class="box">
                 <span>
-                    Objekt Name:
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
+                <div v-if="prop.propertyIdentifier==='Out of service'">
+                   Ausser Betrieb: {{prop.value}}
+                </div>
                 </span>
+                </span>
+        </div>
+        <div class="box">
                 <span>
-                    {{this.objectNameValue}}
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
+                <div v-if="prop.propertyIdentifier==='Object name'">
+                   Objekt Name: {{prop.value}}
+                </div>
+                </span>
                 </span>
         </div>
     </span>
@@ -56,63 +64,52 @@
     export default {
         name: "BinaryOutput",
         props: {
-            node: null
+            node: {}
         },
         data(){
             return{
                 inactiveValue:"",
                 activeValue:"",
-                objectNameValue:"",
-                presentValueValue:"",
+                objectNameValue: "",
+                presentValueValue: "",
                 objectTypeValue:"",
                 descriptionValue:"",
                 outOfServiceValue:"",
                 polarityValue:"",
-                writeValue:""
+                writeValue:"",
+                myObject: null,
             };
         },
         mounted(){
-
+                this.myObject = this.getBACnetObject,
                 this.presentValue(),
                 this.outOfService(),
                 this.description(),
                 this.objectName()
-
         },
-
         computed:{
             ...mapGetters([
-                'getBACnetObject', 'getMyPresentValue'
-            ])
+                'getBACnetObject'
+            ]),
+            isPresentValue() {
+               return this.propertyIdentifier==='Present value'
+
+            }
+
         },
 
         methods:{
         ...mapMutations([
-            'SetBACnetProperty', 'myTest'
+            'SetBACnetProperty'
         ]),
 
-        objectName: function () {
-                this.objectNameValue = this.searchPropertyIdentifierValue("Object name")
-        },
-        presentValue: function () {
 
-                this.presentValueValue = this.searchPropertyIdentifierValue("Present value");
+
+        presentValue: function () {
                 this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
                 this.activeValue = this.searchPropertyIdentifierValue("Active text");
-                this.polarityValue = this.searchPropertyIdentifierValue("Polarity");
-
-                if (this.presentValueValue === "0") {
-                    return this.presentValueValue = this.inactiveValue
-                } else
-                    return this.presentValueValue = this.activeValue
                 },
-        description: function () {
-            this.descriptionValue = this.searchPropertyIdentifierValue("Description")
 
-        },
-        outOfService: function () {
-            this.outOfServiceValue = this.searchPropertyIdentifierValue("Out of service")
-        },
 
         searchPropertyIdentifierValue: function (search) {
             for (let i = 0; i < this.node.length; i++) {
@@ -126,7 +123,6 @@
         setWriteValue: function () {
             console.log(this.getBACnetObject)
 
-
             if(this.writeValue=== this.activeValue){
                 this.writeValue=1
             }else{
@@ -136,9 +132,10 @@
                 propertyIdentifier: "Present value",
                 value: this.writeValue
             };
-            this.SetBACnetProperty(bacnetProperty)
+            this.SetBACnetProperty(bacnetProperty);
+            this.$emit('event', this.getBACnetProperty)
         },
-    }
+    },
 }
 </script>
 

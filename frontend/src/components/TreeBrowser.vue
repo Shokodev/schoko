@@ -73,7 +73,6 @@
                 return this.node["elementDescription"] !== "";
             }
         }
-
             }
 </script>
 

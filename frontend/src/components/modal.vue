@@ -5,12 +5,9 @@
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
-                            <button v-on:click="sendValue">hoi</button>
-
-                            <BinaryOutput v-if="this.connected"
-                            :node="myObject"
+                            <BinaryOutput @event="sendValue" v-if="this.connected"
+                            :node="this.getBACnetObject"
                             ></BinaryOutput>
-
                         </div>
                         <pulse-loader :loading=!this.connected :color="color" :size="size"></pulse-loader>
                     </div>
@@ -22,11 +19,10 @@
         </div>
     </div>
 </template>
-
 <script>
     import Stomp from 'stompjs';
     import BinaryOutput from "./bacnetobject/BinaryOutput";
-    import { mapGetters} from "vuex";
+    import { mapGetters, mapMutations, mapActions} from "vuex";
     import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
     export default {
@@ -38,6 +34,7 @@
                 color: '#2c3e50',
                 size: '15px',
                 myObject: null,
+
             };
         },
         components: { BinaryOutput, PulseLoader},
@@ -46,6 +43,9 @@
             this.connect();
         },
         methods: {
+            ...mapActions(["connect"]),
+
+
             connect: function () {
                 const socket = new WebSocket('ws://localhost:8098/ws/Object');
                 this.stompClient = Stomp.over(socket);
@@ -63,25 +63,24 @@
                 } else {
                     console.log("failed")
                 }
-
                 this.stompClient.send("/app/user", {}, this.$store.getters.getObjectName)
 
             },
             callback: function (message) {
                 this.$store.commit('setBACnetObject', JSON.parse(message.body));
                 this.connected = true;
-                this.myObject=this.getBACnetObject
 
             },
 
             sendValue: function () {
-                console.log(this.stompClient)
-                this.stompClient.send("/app/setValue", {}, JSON.stringify(this.$store.getters.getBACnetProperty));
+                this.stompClient.send("/app/setValue", {}, JSON.stringify(this.getBACnetProperty));
             },
-
         },
+        ...mapMutations([
+            'myTest'
+        ]),
         computed: {
-            ...mapGetters(["getBACnetObject"]),
+            ...mapGetters(["getBACnetObject", "getBACnetProperty"]),
 
         }
     }
