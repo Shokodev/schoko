@@ -53,7 +53,6 @@
                     } else {
                         console.log("failed")
                     }
-                    this.stompClient.send("/app/eventSub", {}, "Hallo")
                 },
 
                 callback: function (message) {
