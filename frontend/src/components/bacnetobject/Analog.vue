@@ -146,6 +146,7 @@
         color: #4a4a4a;
         display: block;
         padding: 1rem;
+        margin: 0.1em;
 
     }
     .select {
