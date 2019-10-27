@@ -3,6 +3,7 @@ package com.bacnetbrowser.schoko.model.services;
 import com.bacnetbrowser.schoko.model.datahandler.DeviceHandler;
 import com.bacnetbrowser.schoko.model.datahandler.EventHandler;
 import com.bacnetbrowser.schoko.model.models.BACnetEvent;
+import com.bacnetbrowser.schoko.model.models.BACnetTypes;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
 import com.serotonin.bacnet4j.exception.BACnetException;
@@ -10,19 +11,17 @@ import com.serotonin.bacnet4j.service.acknowledgement.ReadPropertyAck;
 import com.serotonin.bacnet4j.service.confirmed.ConfirmedRequestService;
 import com.serotonin.bacnet4j.service.confirmed.ReadPropertyRequest;
 import com.serotonin.bacnet4j.type.constructed.DateTime;
+import com.serotonin.bacnet4j.type.constructed.SequenceOf;
 import com.serotonin.bacnet4j.type.constructed.TimeStamp;
-import com.serotonin.bacnet4j.type.enumerated.EventState;
-import com.serotonin.bacnet4j.type.enumerated.EventType;
-import com.serotonin.bacnet4j.type.enumerated.NotifyType;
-import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
+import com.serotonin.bacnet4j.type.enumerated.*;
 import com.serotonin.bacnet4j.type.notificationParameters.NotificationParameters;
+import com.serotonin.bacnet4j.type.primitive.*;
 import com.serotonin.bacnet4j.type.primitive.Boolean;
-import com.serotonin.bacnet4j.type.primitive.CharacterString;
-import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
-import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
+import com.serotonin.bacnet4j.util.RequestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.LinkedList;
+import java.util.List;
 
 
 @Component
@@ -50,23 +49,22 @@ public class EventService extends DeviceEventAdapter {
             update(existingEvent,fromState.toString(),toState.toString());
             //TODO, event handling with acknowledgement
             //Temporary remove event by toState = normal
-            if (toState.toString().equals("normal")){
+            if (toState.equals(EventState.normal)){
                 removeEventByID(existingEvent.getEventID());}
                 eventHandler.updateStream();
                 System.out.println("Update or finishing event with ID: " + existingEvent.getEventID() + " from object: " + existingEvent.getOid());
 
         } catch (NullPointerException e){
-            if (toState.toString().equals("off normal")){
+            if (!toState.equals(EventState.normal)){
                DateTime date  = timeStamp.getDateTime();
             BACnetEvent baCnetEvent = new BACnetEvent(eventObjectIdentifier.toString(),initiatingDevice.getVendorName(),date.getDate().toString() + " "+ date.getTime().toString(),
-                    fromState.toString(),toState.toString(),getDescriptionOfObject(eventObjectIdentifier.toString()),getPresentValue(eventObjectIdentifier,initiatingDevice));
+                    fromState.toString(),toState.toString(),getDescriptionOfObject(eventObjectIdentifier.toString()), BACnetTypes.getPresentValueAsText(eventObjectIdentifier,initiatingDevice));
             //TODO As soon as the event history will be implemented, the eventID will be the ID of the Database. We are going to use this: https://docs.objectbox.io/getting-started
             baCnetEvent.setEventID(baCnetEvent.hashCode());
             addEvent(baCnetEvent);
             eventHandler.updateStream();
             System.out.println("New event: " + baCnetEvent.getEventID() + " from object: " + baCnetEvent.getOid());
         }
-
     }
 
     }
@@ -79,17 +77,6 @@ public class EventService extends DeviceEventAdapter {
     private String getDescriptionOfObject (String oid){
         return HierarchyService.getKey(HierarchyService.objectNamesToDescription,oid);
 
-    }
-
-    private String getPresentValue(ObjectIdentifier oid, RemoteDevice remoteDevice){
-        ConfirmedRequestService request = new ReadPropertyRequest(oid, PropertyIdentifier.presentValue);
-        try{
-            ReadPropertyAck result = (ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, request);
-            return result.getValue().toString();
-        } catch (BACnetException bac){
-            System.out.println("Cant read present value of: " + oid + " @ " + remoteDevice);
-        }
-        return null;
     }
 
     private BACnetEvent getEventByOid(String oid){
@@ -122,4 +109,38 @@ public class EventService extends DeviceEventAdapter {
         event.setToState(toState);
     }
 
+    public void getEventInformation() {
+
+        for (RemoteDevice remoteDevice : DeviceHandler.localDevice.getRemoteDevices()) {
+            List<ObjectIdentifier> oids = null;
+            try {
+                oids = ((SequenceOf<ObjectIdentifier>)
+                        RequestUtils.sendReadPropertyAllowNull(
+                                DeviceHandler.localDevice, remoteDevice, remoteDevice.getObjectIdentifier(),
+                                PropertyIdentifier.objectList)).getValues();
+                } catch (BACnetException bac) {
+                System.err.println("Cant read object identifier for events");
+                }
+                for (ObjectIdentifier oid : oids) {
+                    ConfirmedRequestService request = new ReadPropertyRequest(oid, PropertyIdentifier.eventState);
+                    try {
+                    ReadPropertyAck result = (ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, request);
+
+                    if(!result.getValue().equals(EventState.normal)){
+                        addExistingEvents(oid,remoteDevice,result.getValue().toString());
+                    }}catch (BACnetException ignored){
+
+                    }
+                }
+
+
+        }
+        eventHandler.updateStream();
+    }
+
+    private void addExistingEvents(ObjectIdentifier oid, RemoteDevice remoteDevice, String eventState){
+        BACnetEvent event = new BACnetEvent(oid.toString(),remoteDevice.getVendorName(),"coming soo",EventState.normal.toString(),eventState,getDescriptionOfObject(oid.toString()),BACnetTypes.getPresentValueAsText(oid,remoteDevice));
+        event.setEventID(event.hashCode());
+        addEvent(event);
+    }
 }

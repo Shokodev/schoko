@@ -24,6 +24,7 @@ public class EventHandler {
     public EventHandler(EventService eventService, SimpMessagingTemplate template) {
         this.eventService = eventService;
         this.template = template;
+
     }
 
     public LinkedList<BACnetEvent> getEvents() {

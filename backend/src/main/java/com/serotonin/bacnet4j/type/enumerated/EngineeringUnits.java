@@ -288,15 +288,15 @@ public class EngineeringUnits extends Enumerated {
     public String toString() {
         int type = intValue();
         if (type == metersPerSecondPerSecond.intValue())
-            return "meters per second per second";
+            return "m/s/s";
         if (type == squareMeters.intValue())
-            return "square meters";
+            return "m²";
         if (type == squareCentimeters.intValue())
-            return "square centimeters";
+            return "cm²";
         if (type == squareFeet.intValue())
-            return "square feet";
+            return "feet²";
         if (type == squareInches.intValue())
-            return "square inches";
+            return "inch²";
         if (type == currency1.intValue())
             return "currency 1";
         if (type == currency2.intValue())
@@ -318,355 +318,355 @@ public class EngineeringUnits extends Enumerated {
         if (type == currency10.intValue())
             return "currency 10";
         if (type == milliamperes.intValue())
-            return "milliamperes";
+            return "mA";
         if (type == amperes.intValue())
-            return "amperes";
+            return "A";
         if (type == amperesPerMeter.intValue())
-            return "amperes per meter";
+            return "A/m";
         if (type == amperesPerSquareMeter.intValue())
-            return "amperes per square meter";
+            return "A/m²";
         if (type == ampereSquareMeters.intValue())
-            return "ampere square meters";
+            return "A²/m";
         if (type == farads.intValue())
-            return "farads";
+            return "F";
         if (type == henrys.intValue())
-            return "henrys";
+            return "H";
         if (type == ohms.intValue())
-            return "ohms";
+            return "Ω";
         if (type == ohmMeters.intValue())
-            return "ohm meters";
+            return "Ωm";
         if (type == milliohms.intValue())
-            return "milliohms";
+            return "mΩ";
         if (type == kilohms.intValue())
-            return "kilohms";
+            return "kΩ";
         if (type == megohms.intValue())
-            return "megohms";
+            return "MΩ";
         if (type == siemens.intValue())
-            return "siemens";
+            return "S";
         if (type == siemensPerMeter.intValue())
-            return "siemens per meter";
+            return "S/m";
         if (type == teslas.intValue())
-            return "teslas";
+            return "T";
         if (type == volts.intValue())
-            return "volts";
+            return "V";
         if (type == millivolts.intValue())
-            return "millivolts";
+            return "mV";
         if (type == kilovolts.intValue())
-            return "kilovolts";
+            return "kV";
         if (type == megavolts.intValue())
-            return "megavolts";
+            return "MV";
         if (type == voltAmperes.intValue())
-            return "volt amperes";
+            return "VA";
         if (type == kilovoltAmperes.intValue())
-            return "kilovolt amperes";
+            return "kVA";
         if (type == megavoltAmperes.intValue())
-            return "megavolt amperes";
+            return "MVA";
         if (type == voltAmperesReactive.intValue())
-            return "volt amperes reactive";
+            return "Var";
         if (type == kilovoltAmperesReactive.intValue())
-            return "kilovolt amperes reactive";
+            return "kVar";
         if (type == megavoltAmperesReactive.intValue())
-            return "megavolt amperes reactive";
+            return "MVAr";
         if (type == voltsPerDegreeKelvin.intValue())
-            return "volts per degree kelvin";
+            return "V/°K";
         if (type == voltsPerMeter.intValue())
-            return "volts per meter";
+            return "V/m";
         if (type == degreesPhase.intValue())
-            return "degrees phase";
+            return "φ";
         if (type == powerFactor.intValue())
-            return "power factor";
+            return "cos(φ)";
         if (type == webers.intValue())
-            return "webers";
+            return "Wb";
         if (type == joules.intValue())
-            return "joules";
+            return "J";
         if (type == kilojoules.intValue())
-            return "kilojoules";
+            return "kJ";
         if (type == kilojoulesPerKilogram.intValue())
-            return "kilojoules per kilogram";
+            return "kJ/kg";
         if (type == megajoules.intValue())
-            return "megajoules";
+            return "MJ";
         if (type == wattHours.intValue())
-            return "watt hours";
+            return "Wh";
         if (type == kilowattHours.intValue())
-            return "kilowatt hours";
+            return "kWh";
         if (type == megawattHours.intValue())
-            return "megawatt hours";
+            return "MWh";
         if (type == btus.intValue())
-            return "btus";
+            return "BTU";
         if (type == kiloBtus.intValue())
-            return "kilo btus";
+            return "kBTU";
         if (type == megaBtus.intValue())
-            return "mega btus";
+            return "MBTU";
         if (type == therms.intValue())
-            return "therms";
+            return "thm";
         if (type == tonHours.intValue())
             return "ton hours";
         if (type == joulesPerKilogramDryAir.intValue())
-            return "joules per kilogram dry air";
+            return "J/kgDA";
         if (type == kilojoulesPerKilogramDryAir.intValue())
-            return "kilojoules per kilogram dry air";
+            return "kJ/kgDA";
         if (type == megajoulesPerKilogramDryAir.intValue())
-            return "megajoules per kilogram dry air";
+            return "MJ/kgDA";
         if (type == btusPerPoundDryAir.intValue())
-            return "btus per pound dry air";
+            return "BTU/lbDA";
         if (type == btusPerPound.intValue())
-            return "btus per pound";
+            return "BTU/lb";
         if (type == joulesPerDegreeKelvin.intValue())
-            return "joules per degree kelvin";
+            return "J/°K";
         if (type == kilojoulesPerDegreeKelvin.intValue())
-            return "kilojoules per degree kelvin";
+            return "kJ/°K";
         if (type == megajoulesPerDegreeKelvin.intValue())
-            return "megajoules per degree kelvin";
+            return "MJ/°K";
         if (type == joulesPerKilogramDegreeKelvin.intValue())
-            return "joules per kilogram degree kelvin";
+            return "J/kg°K";
         if (type == newton.intValue())
-            return "newton";
+            return "N";
         if (type == cyclesPerHour.intValue())
-            return "cycles per hour";
+            return "U/h";
         if (type == cyclesPerMinute.intValue())
-            return "cycles per minute";
+            return "U/min";
         if (type == hertz.intValue())
-            return "hertz";
+            return "Hz";
         if (type == kilohertz.intValue())
-            return "kilohertz";
+            return "kHz";
         if (type == megahertz.intValue())
-            return "megahertz";
+            return "MHz";
         if (type == perHour.intValue())
-            return "per hour";
+            return "/h";
         if (type == gramsOfWaterPerKilogramDryAir.intValue())
-            return "grams of water per kilogram dry air";
+            return "gW/kgDA";
         if (type == percentRelativeHumidity.intValue())
-            return "percent relative humidity";
+            return "% g/m3";
         if (type == millimeters.intValue())
-            return "millimeters";
+            return "mm";
         if (type == centimeters.intValue())
-            return "centimeters";
+            return "cm";
         if (type == meters.intValue())
-            return "meters";
+            return "m";
         if (type == inches.intValue())
-            return "inches";
+            return "inch";
         if (type == feet.intValue())
             return "feet";
         if (type == candelas.intValue())
-            return "candelas";
+            return "lm";
         if (type == candelasPerSquareMeter.intValue())
-            return "candelas per square meter";
+            return "lm/m²";
         if (type == wattsPerSquareFoot.intValue())
-            return "watts per square foot";
+            return "W/foot²";
         if (type == wattsPerSquareMeter.intValue())
-            return "watts per square meter";
+            return "W/m²";
         if (type == lumens.intValue())
-            return "lumens";
+            return "lm";
         if (type == luxes.intValue())
             return "luxes";
         if (type == footCandles.intValue())
-            return "foot candles";
+            return "foot lm";
         if (type == kilograms.intValue())
-            return "kilograms";
+            return "kg";
         if (type == poundsMass.intValue())
-            return "pounds mass";
+            return "lb";
         if (type == tons.intValue())
-            return "tons";
+            return "t";
         if (type == gramsPerSecond.intValue())
-            return "grams per second";
+            return "g/s";
         if (type == gramsPerMinute.intValue())
-            return "grams per minute";
+            return "g/min";
         if (type == kilogramsPerSecond.intValue())
-            return "kilograms per second";
+            return "kg/s";
         if (type == kilogramsPerMinute.intValue())
-            return "kilograms per minute";
+            return "kg/min";
         if (type == kilogramsPerHour.intValue())
-            return "kilograms per hour";
+            return "kg/h";
         if (type == poundsMassPerSecond.intValue())
-            return "pounds mass per second";
+            return "lb/s";
         if (type == poundsMassPerMinute.intValue())
-            return "pounds mass per minute";
+            return "lb/min";
         if (type == poundsMassPerHour.intValue())
-            return "pounds mass per hour";
+            return "lb/h";
         if (type == tonsPerHour.intValue())
-            return "tons per hour";
+            return "t/h";
         if (type == milliwatts.intValue())
-            return "milliwatts";
+            return "mW";
         if (type == watts.intValue())
-            return "watts";
+            return "W";
         if (type == kilowatts.intValue())
-            return "kilowatts";
+            return "kW";
         if (type == megawatts.intValue())
-            return "megawatts";
+            return "MW";
         if (type == btusPerHour.intValue())
-            return "btus per hour";
+            return "BTU/h";
         if (type == kiloBtusPerHour.intValue())
-            return "kilo btus per hour";
+            return "kBTU/h";
         if (type == horsepower.intValue())
-            return "horsepower";
+            return "PS";
         if (type == tonsRefrigeration.intValue())
             return "tons refrigeration";
         if (type == pascals.intValue())
-            return "pascals";
+            return "Pa";
         if (type == hectopascals.intValue())
-            return "hectopascals";
+            return "hPa";
         if (type == kilopascals.intValue())
-            return "kilopascals";
+            return "kPa";
         if (type == millibars.intValue())
-            return "millibars";
+            return "mbar";
         if (type == bars.intValue())
-            return "bars";
+            return "bar";
         if (type == poundsForcePerSquareInch.intValue())
-            return "pounds force per square inch";
+            return "lb/inch²";
         if (type == centimetersOfWater.intValue())
-            return "centimeters of water";
+            return "cm Wa";
         if (type == inchesOfWater.intValue())
-            return "inches of water";
+            return "inch Wa";
         if (type == millimetersOfMercury.intValue())
-            return "millimeters of mercury";
+            return "mm Hg";
         if (type == centimetersOfMercury.intValue())
-            return "centimeters of mercury";
+            return "cm Hg";
         if (type == inchesOfMercury.intValue())
-            return "inches of mercury";
+            return "inch Hg";
         if (type == degreesCelsius.intValue())
             return "°C";
         if (type == degreesKelvin.intValue())
-            return "degrees kelvin";
+            return "°K";
         if (type == degreesKelvinPerHour.intValue())
-            return "degrees kelvin per hour";
+            return "°K/h";
         if (type == degreesKelvinPerMinute.intValue())
-            return "degrees kelvin per minute";
+            return "°K/min";
         if (type == degreesFahrenheit.intValue())
-            return "degrees fahrenheit";
+            return "°F";
         if (type == degreeDaysCelsius.intValue())
-            return "degree days celsius";
+            return "°C day";
         if (type == degreeDaysFahrenheit.intValue())
-            return "degree days fahrenheit";
+            return "°F day";
         if (type == deltaDegreesFahrenheit.intValue())
-            return "delta degrees fahrenheit";
+            return "Δ°F";
         if (type == deltaDegreesKelvin.intValue())
-            return "delta degrees kelvin";
+            return "Δ°K";
         if (type == years.intValue())
-            return "years";
+            return "y";
         if (type == months.intValue())
-            return "months";
+            return "mon";
         if (type == weeks.intValue())
-            return "weeks";
+            return "week";
         if (type == days.intValue())
-            return "days";
+            return "day";
         if (type == hours.intValue())
-            return "hours";
+            return "h";
         if (type == minutes.intValue())
-            return "minutes";
+            return "min";
         if (type == seconds.intValue())
-            return "seconds";
+            return "s";
         if (type == hundredthsSeconds.intValue())
-            return "hundredths seconds";
+            return "hs";
         if (type == milliseconds.intValue())
-            return "milliseconds";
+            return "ms";
         if (type == newtonMeters.intValue())
-            return "newton meters";
+            return "NM";
         if (type == millimetersPerSecond.intValue())
-            return "millimeters per second";
+            return "mm/s";
         if (type == millimetersPerMinute.intValue())
-            return "millimeters per minute";
+            return "mm/min";
         if (type == metersPerSecond.intValue())
-            return "meters per second";
+            return "m/s";
         if (type == metersPerMinute.intValue())
-            return "meters per minute";
+            return "m/min";
         if (type == metersPerHour.intValue())
-            return "meters per hour";
+            return "m/h";
         if (type == kilometersPerHour.intValue())
-            return "kilometers per hour";
+            return "km/h";
         if (type == feetPerSecond.intValue())
-            return "feet per second";
+            return "feet/s";
         if (type == feetPerMinute.intValue())
-            return "feet per minute";
+            return "feet/min";
         if (type == milesPerHour.intValue())
-            return "miles per hour";
+            return "mile/h";
         if (type == cubicFeet.intValue())
-            return "cubic feet";
+            return "feet3 ";
         if (type == cubicMeters.intValue())
-            return "cubic meters";
+            return "m3";
         if (type == imperialGallons.intValue())
             return "imperial gallons";
         if (type == liters.intValue())
-            return "liters";
+            return "l";
         if (type == usGallons.intValue())
             return "us gallons";
         if (type == cubicFeetPerSecond.intValue())
-            return "cubic feet per second";
+            return "feet3/s";
         if (type == cubicFeetPerMinute.intValue())
-            return "cubic feet per minute";
+            return "feet3/min";
         if (type == cubicMetersPerSecond.intValue())
-            return "cubic meters per second";
+            return " m3/s ";
         if (type == cubicMetersPerMinute.intValue())
-            return "cubic meters per minute";
+            return "m3/min";
         if (type == cubicMetersPerHour.intValue())
-            return "cubic meters per hour";
+            return "m3/h";
         if (type == imperialGallonsPerMinute.intValue())
             return "imperial gallons per minute";
         if (type == litersPerSecond.intValue())
-            return "liters per second";
+            return "l/s";
         if (type == litersPerMinute.intValue())
-            return "liters per minute";
+            return "l/min";
         if (type == litersPerHour.intValue())
-            return "liters per hour";
+            return "l/h";
         if (type == usGallonsPerMinute.intValue())
             return "us gallons per minute";
         if (type == degreesAngular.intValue())
             return "degrees angular";
         if (type == degreesCelsiusPerHour.intValue())
-            return "degrees celsius per hour";
+            return "°C/h";
         if (type == degreesCelsiusPerMinute.intValue())
-            return "degrees celsius per minute";
+            return "°C/min";
         if (type == degreesFahrenheitPerHour.intValue())
-            return "degrees fahrenheit per hour";
+            return "°F/h";
         if (type == degreesFahrenheitPerMinute.intValue())
-            return "degrees fahrenheit per minute";
+            return "°F/min";
         if (type == jouleSeconds.intValue())
-            return "joule seconds";
+            return "J/s";
         if (type == kilogramsPerCubicMeter.intValue())
-            return "kilograms per cubic meter";
+            return "kg/m3";
         if (type == kilowattHoursPerSquareMeter.intValue())
-            return "kilowatt hours per square meter";
+            return "kWh/m²";
         if (type == kilowattHoursPerSquareFoot.intValue())
-            return "kilowatt hours per square foot";
+            return "kWh/foot²";
         if (type == megajoulesPerSquareMeter.intValue())
-            return "megajoules per square meter";
+            return "MJ/m²";
         if (type == megajoulesPerSquareFoot.intValue())
-            return "megajoules per square foot";
+            return "MJ/foot²";
         if (type == noUnits.intValue())
             return "";
         if (type == newtonSeconds.intValue())
-            return "newton seconds";
+            return "Ns";
         if (type == newtonsPerMeter.intValue())
-            return "newtons per meter";
+            return "N/m";
         if (type == partsPerMillion.intValue())
-            return "parts per million";
+            return "ppm";
         if (type == partsPerBillion.intValue())
-            return "parts per billion";
+            return "ppb";
         if (type == percent.intValue())
-            return "percent";
+            return "%";
         if (type == percentObscurationPerFoot.intValue())
             return "percent obscuration per foot";
         if (type == percentObscurationPerMeter.intValue())
             return "percent obscuration per meter";
         if (type == percentPerSecond.intValue())
-            return "percent per second";
+            return "%/s";
         if (type == perMinute.intValue())
-            return "per minute";
+            return "/min";
         if (type == perSecond.intValue())
-            return "per second";
+            return "/s";
         if (type == psiPerDegreeFahrenheit.intValue())
             return "psi per degree fahrenheit";
         if (type == radians.intValue())
-            return "radians";
+            return "rad";
         if (type == radiansPerSecond.intValue())
-            return "radians per second";
+            return "rad/s";
         if (type == revolutionsPerMinute.intValue())
-            return "revolutions per minute";
+            return "1/s";
         if (type == squareMetersPerNewton.intValue())
-            return "square meters per Newton";
+            return "m²/N";
         if (type == wattsPerMeterPerDegreeKelvin.intValue())
-            return "watts per meter per degree kelvin";
+            return "W/m/°K";
         if (type == wattsPerSquareMeterDegreeKelvin.intValue())
-            return "watts per square meter degree kelvin";
+            return "W/m²/°K";
         return "Unknown: " + type;
     }
 }

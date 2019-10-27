@@ -67,6 +67,7 @@ public class DeviceHandler {
         scanForRemoteDevices();
         getRemoteDeviceInformation();
         setLocalDeviceAsAlarmReceiver();
+        eventService.getEventInformation();
 
     }
 

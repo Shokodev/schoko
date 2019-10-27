@@ -70,6 +70,26 @@ public class BACnetEvent {
     public void setEventID(Integer eventID) {
         this.eventID = eventID;
     }
+
+    public void setOid(String oid) {
+        this.oid = oid;
+    }
+
+    public void setRemoteDeviceName(String remoteDeviceName) {
+        RemoteDeviceName = remoteDeviceName;
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPresentValue(String presentValue) {
+        this.presentValue = presentValue;
+    }
 }
 
 
