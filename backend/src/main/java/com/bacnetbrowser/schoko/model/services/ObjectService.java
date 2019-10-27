@@ -126,7 +126,7 @@ public class ObjectService extends DeviceEventAdapter {
      */
     public void writeValue(PropertyIdentifier poid, Encodable value){
         // 8 is default priority for process level commands
-        WritePropertyRequest request = new WritePropertyRequest(objectIdentifier, poid, null, value, new UnsignedInteger(0));
+        WritePropertyRequest request = new WritePropertyRequest(objectIdentifier, poid, null, value, new UnsignedInteger(8));
         System.out.println("Write on :" + poid.toString() + " with: " + value.toString());
         try {
             DeviceHandler.localDevice.send(remoteDevice, request);

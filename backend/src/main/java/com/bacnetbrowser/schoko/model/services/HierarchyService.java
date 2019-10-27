@@ -26,10 +26,10 @@ import java.util.Map;
 @Component
 public class HierarchyService {
     // This lists have main information about structure an objects
-    public static HashMap<String, ObjectIdentifier> oidStringToOid = new HashMap<>();
-    public static   HashMap<String, String> objectNamesToOids = new HashMap<>();
-    public static HashMap<String, String> objectNamesToDescription = new HashMap<>();
-    public static HashMap<String, RemoteDevice> obejctNamesToRemoteDevice = new HashMap<>();
+    static HashMap<String, ObjectIdentifier> oidStringToOid = new HashMap<>();
+    static   HashMap<String, String> objectNamesToOids = new HashMap<>();
+    static HashMap<String, String> objectNamesToDescription = new HashMap<>();
+    static HashMap<String, RemoteDevice> obejctNamesToRemoteDevice = new HashMap<>();
     private HashMap<String, String> structureElements;
     private BACnetStructure bacnetStructure;
     private String siteName;
@@ -60,6 +60,7 @@ public class HierarchyService {
      * @return BACnetStructure bacnetStructure
      */
     private BACnetStructure buildStructure() {
+
         BACnetStructure bacnetStructure = new BACnetStructure(siteName, "Top Element",siteDescription, null);
         int nodeCounter = 0;
         for ( String key : objectNamesToOids.keySet() ) {
@@ -141,7 +142,7 @@ public class HierarchyService {
      * @param value value witch you need the key
      * @return key of hash map
      */
-    public static <K, V> K getKey(Map<K, V> map, V value) {
+    static <K, V> K getKey(Map<K, V> map, V value) {
         for (Map.Entry<K, V> entry : map.entrySet()) {
             if (entry.getValue().equals(value)) {
                 return entry.getKey();
@@ -150,16 +151,16 @@ public class HierarchyService {
         return null;
     }
 
-    public String getStructureSeparator() {
-        return structureSeparator;
-    }
-
     public BACnetStructure getBacnetStructure() {
         return bacnetStructure;
     }
 
     public void deleteStructure(){
         bacnetStructure = null;
+        oidStringToOid.clear();
+        objectNamesToOids.clear();
+        obejctNamesToRemoteDevice.clear();
+        objectNamesToDescription.clear();
 
     }
 
