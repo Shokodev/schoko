@@ -5,12 +5,15 @@
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
-                            <BinaryOutput @event="sendValue" v-if="getObjectType==='Binary Output'"
+                            <BinaryOutput @event="sendValue" v-if="getObjectType===('Binary Output'|| 'Binary Value')&&this.connected"
                             :node="this.getBACnetObject"
                             ></BinaryOutput>
-                            <Analog @event="sendValue" v-if="getObjectType==='Analog Input'"
+                            <Analog @event="sendValue" v-if="getObjectType===('Analog Value' || 'Analog Output' || 'Analog Input') && this.connected"
                             :node="this.getBACnetObject"
                             ></Analog>
+                            <Multistate @event="sendValue" v-if="getObjectType===('Multi-state Value'||'Multi-state Output') &&this.connected"
+                            :node="this.getBACnetObject"
+                            ></Multistate>
                         </div>
                         <pulse-loader :loading=!this.connected :color="color" :size="size"></pulse-loader>
                     </div>
@@ -28,6 +31,7 @@
     import Analog from "./bacnetobject/Analog";
     import { mapGetters, mapMutations, mapActions} from "vuex";
     import PulseLoader from "vue-spinner/src/PulseLoader.vue";
+    import Multistate from "./bacnetobject/Multistate";
 
     export default {
         name: "modal",
@@ -41,7 +45,7 @@
 
             };
         },
-        components: {Analog, BinaryOutput, PulseLoader},
+        components: {Multistate, Analog, BinaryOutput, PulseLoader},
 
         mounted() {
             this.connect();
