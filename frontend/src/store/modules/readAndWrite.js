@@ -21,11 +21,9 @@ const getters = {
     getStateText: state => state.stateTextValue,
     getBACnetUnit: state => state.bacnetUnit,
     getIsConnected: state => state.connected,
-
 };
 
 const actions = {
-
 };
 export const mutations = {
     setObjectName: (state, objectName) => (state.objectName = objectName),
