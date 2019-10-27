@@ -3,50 +3,57 @@
         <div>
                 <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div class="box" v-if="prop.propertyIdentifier==='Description'">
-                   Beschreibung: {{prop.value}}
-                </div>
+                <span class="box" v-if="prop.propertyIdentifier==='Description'">
+                    <span class="has-text-weight-bold">Beschreibung: </span>
+                   {{prop.value}}
+                </span>
                 </span>
                 </span>
         </div>
         <div>
         <span class="box">
-                <span v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div v-if="prop.propertyIdentifier==='Present value'">
-                  Aktueller Wert:  {{prop.value}}{{getBACnetUnit}}
-                </div>
+            <span class="level">
+                <span class="level-left" v-for="prop in node" :key="prop.propertyIdentifier" >
+                <span v-if="prop.propertyIdentifier==='Present value'">
+                    <span class="has-text-weight-bold">Aktueller Wert:</span>
+                    {{prop.value}}{{getBACnetUnit}}
                 </span>
-                <span >
+                </span>
+                <span class="level-right">
                 <input v-model="writeValue"  class=" input" type="text">
                 <button class=" button is-primary" v-on:click="setWriteValue()">
                      Senden
                  </button>
                 </span>
         </span>
+            </span>
         </div>
         <div>
                 <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div class="box" v-if="prop.propertyIdentifier==='Low limit'">
-                   Minimaler Wert: {{prop.value}}{{getBACnetUnit}}
-                </div>
+                <span class="box" v-if="prop.propertyIdentifier==='Low limit'">
+                    <span class="has-text-weight-bold">Minimaler Wert:</span>
+                    {{prop.value}}{{getBACnetUnit}}
+                </span>
                 </span>
                 </span>
         </div><div>
                 <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div class="box" v-if="prop.propertyIdentifier==='High limit'">
-                   Maximaler Wert: {{prop.value}}{{getBACnetUnit}}
-                </div>
+                <span class="box" v-if="prop.propertyIdentifier==='High limit'">
+                    <span class="has-text-weight-bold">Maximaler Wert:</span>
+                    {{prop.value}}{{getBACnetUnit}}
+                </span>
                 </span>
                 </span>
         </div>
         <div>
                 <span>
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div class="box" v-if="prop.propertyIdentifier==='Object name'">
-                   Objekt Name: {{prop.value}}
-                </div>
+                <span class="box" v-if="prop.propertyIdentifier==='Object name'">
+                    <span class="has-text-weight-bold">Objekt Name: </span>
+                   {{prop.value}}
+                </span>
                 </span>
                 </span>
         </div>
@@ -124,7 +131,7 @@
 
     .box {
         background-color: white;
-        border-radius: 6px;
+        border-radius: 10px;
         box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
         color: #4a4a4a;
         display: block;
@@ -134,10 +141,8 @@
     }
     .input {
         box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
-        max-width: 20%;
-        width: 15%;
+        max-width: 30%;
+        width: 30%;
     }
-
-
 
 </style>

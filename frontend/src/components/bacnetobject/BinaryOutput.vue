@@ -1,22 +1,28 @@
 <template>
     <span>
+
         <div>
-                <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div class="box" v-if="prop.propertyIdentifier==='Description'">
-                   Beschreibung: {{prop.value}}
-                </div>
+                <span class="box" v-if="prop.propertyIdentifier==='Description'">
+                    <span class="has-text-weight-bold">Beschreibung:</span>
+                    {{prop.value}}
                 </span>
                 </span>
+
         </div>
-        <div>
-        <span class="box">
+        <div >
+            <span class="box">
+        <span class="level">
+            <span class="level-left">
+
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div v-if="prop.propertyIdentifier==='Present value'">
-                  Aktueller Wert: {{getStateText[prop.value]}}
-                </div>
+                <span v-if="prop.propertyIdentifier==='Present value'">
+                    <span  class="has-text-weight-bold">Aktueller Wert:</span>
+                   {{getStateText[prop.value]}}
                 </span>
-                <span>
+                </span>
+            </span>
+                <span class="level-right">
               <span class="select">
                 <select v-model="writeValue">
                     <option>{{this.inactiveValue}}</option>
@@ -28,22 +34,25 @@
                  </button>
                 </span>
         </span>
+            </span>
         </div>
         <div>
                 <span>
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div class="box" v-if="prop.propertyIdentifier==='Polarity'">
-                   Polarität: {{getPolarityValue}}
-                </div>
+                <span class="box" v-if="prop.propertyIdentifier==='Polarity'">
+                    <span class="has-text-weight-bold">Polarität:</span>
+                    {{getPolarityValue}}
+                </span>
                 </span>
                 </span>
         </div>
         <div>
                 <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div class="box" v-if="prop.propertyIdentifier==='Out of service'">
-                   Ausser Betrieb: {{prop.value}}
-                </div>
+                <span class="box" v-if="prop.propertyIdentifier==='Out of service'">
+                    <span  class="has-text-weight-bold"> Ausser Betrieb:</span>
+                   {{prop.value}}
+                </span>
                 </span>
                 </span>
         </div>
@@ -51,7 +60,8 @@
                 <span>
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
                 <div class="box" v-if="prop.propertyIdentifier==='Object name'">
-                   Objekt Name: {{prop.value}}
+                    <span  class="has-text-weight-bold">Objekt Name: </span>
+                   {{prop.value}}
                 </div>
                 </span>
                 </span>
@@ -148,15 +158,15 @@
 <style scoped>
 
     .box {
-        background-color: white;
-        border-radius: 6px;
-        box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
-        color: #4a4a4a;
-        display: block;
-        padding: 1rem;
-        margin: 0.1em;
+         background-color: white;
+         border-radius: 10px;
+         box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+         color: #4a4a4a;
+         display: block;
+         padding: 1rem;
+         margin: 0.1em;
 
-    }
+     }
     .select {
         display: inline-block;
         max-width: 100%;

@@ -4,7 +4,7 @@
     <header>
       <section class="hero is-primary">
         <div class="container">
-          <h1>
+          <h1 class="title">
         <span class="icon is-large" v-on:click="ackAlarm()" v-if="getHasNewAlarm">
           <router-link class="far fa-bell button is-danger" to="/alarmList"></router-link>
         </span>
@@ -89,12 +89,16 @@
 
   }
   #menu{
-    padding-left: 1.5em;
+    padding-left: 2em;
+    padding-top: 3em;
   }
   #content{
     padding-left: 1.5em;
+    padding-top: 3em;
   }
   .container{
     height: 3em;
   }
+
+
 </style>
