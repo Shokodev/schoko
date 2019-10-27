@@ -26,15 +26,6 @@
         </div>
         <div>
                 <span>
-                <span v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div class="box" v-if="prop.propertyIdentifier==='Polarity'">
-                   Polarität: {{prop.value}}
-                </div>
-                </span>
-                </span>
-        </div>
-        <div>
-                <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
                 <div class="box" v-if="prop.propertyIdentifier==='Out of service'">
                    Ausser Betrieb: {{prop.value}}
@@ -133,6 +124,11 @@
         padding: 1rem;
         margin: 0.1em;
 
+    }
+    .input {
+        box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+        max-width: 20%;
+        width: 10%;
     }
 
 
