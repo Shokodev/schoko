@@ -21,7 +21,6 @@ public class HierarchyHandler {
     private HierarchyService hierarchyService;
     private SettingsHandler settingsHandler;
 
-
     @Autowired
     public HierarchyHandler(HierarchyService hierarchyService, SettingsHandler settingsHandler) {
         this.hierarchyService = hierarchyService;
@@ -35,7 +34,8 @@ public class HierarchyHandler {
      */
     public BACnetNode getChildrenByNodeElementName(String structure) {
             BACnetStructure tempNode = hierarchyService.getBacnetStructure();
-            String[] splitted = structure.split(hierarchyService.getStructureSeparator());
+            String[] splitted = structure.split(settingsHandler.getBacnetSeparator());
+        try {
             //Check if its the top element
             if ((splitted.length == 1) && (settingsHandler.getSiteName().equals(structure))) {
                 return createAndAddChildren(tempNode);
@@ -45,12 +45,12 @@ public class HierarchyHandler {
                     node = tempNode.getChildByElementName(splitted[i]);
                     tempNode = node;
                 }
-                try {
-                    return createAndAddChildren(node);
+                return createAndAddChildren(node);
+            }
                 } catch (NullPointerException e){
                     return new BACnetNode("Achtung!"," ","Bitte zuerst Einstellungen vornehmen",0);
                 }
-            }
+
 
         }
 

@@ -99,8 +99,6 @@
                 console.log(node);
                 var nodeReplaced=node.replace(/\[|\]|\s/g,"");
                 this.setStateText(nodeReplaced.split(','))
-              //  this.stateTextValue=nodeReplaced.split(',');
-                console.log(this.stateTextValue);
             },
 
 

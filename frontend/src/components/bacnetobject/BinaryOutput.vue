@@ -13,12 +13,12 @@
         <span class="box">
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
                 <div v-if="prop.propertyIdentifier==='Present value'">
-                  Aktueller Wert:  {{prop.value}}
+                  Aktueller Wert:  {{getStateText[prop.value]}}
                 </div>
                 </span>
                 <span>
               <span class="select">
-                <select v-model="writeValue" v-on:click="dropdownValue">
+                <select v-model="writeValue">
                     <option>{{this.inactiveValue}}</option>
                     <option>{{this.activeValue}}</option>
                 </select>
@@ -82,13 +82,13 @@
         },
         mounted(){
                 this.myObject = this.getBACnetObject;
-
+                this.dropdownValue();
 
 
         },
         computed:{
             ...mapGetters([
-                'getBACnetObject'
+                'getBACnetObject','getStateText'
             ]),
 
 
@@ -98,15 +98,17 @@
 
         methods:{
         ...mapMutations([
-            'SetBACnetProperty'
+            'SetBACnetProperty','setStateText'
         ]),
 
 
 
-            dropdownValue: function () {
-                this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
-                this.activeValue = this.searchPropertyIdentifierValue("Active text");
-                },
+        dropdownValue: function () {
+            this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
+            this.activeValue = this.searchPropertyIdentifierValue("Active text");
+            this.setStateText= [this.inactiveValue,this.activeValue]
+            console.log(this.setStateText)
+            },
 
 
         searchPropertyIdentifierValue: function (search) {
