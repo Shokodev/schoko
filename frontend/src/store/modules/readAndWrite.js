@@ -23,7 +23,6 @@ const getters = {
 const actions = {
 
 };
-
 export const mutations = {
     setObjectName: (state, objectName) => (state.objectName = objectName),
     setObjectType: (state, objectType) => (state.objectType = objectType),

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="this.this.getSiteName">
+        <div>
             <h1 class="subtitle is 3">
                 Home
             </h1>
@@ -12,34 +12,32 @@
         </div>
         <div class="container is-fluid">
             <div class="child">
-
             <span v-if="posts.length!==0">
                 <span id="childButton" class="button is-fullwidth level-left" v-on:click="goIn(child)" :key="child.elementName" v-for="child in posts.children">
                     {{child.elementName}}<span id="description" v-if="child.elementDescription!==''">({{child.elementDescription}})</span>
                 </span>
             </span>
             </div>
-            <modal v-if="isModalVisible" @close="isModalVisible = false" :node="root">
-
-            </modal>
+            <BACnetObjectModal v-if="isModalVisible" @close="isModalVisible = false" :node="root">
+            </BACnetObjectModal>
         </div>
     </div>
 </template>
 
 <script>
     import axios from 'axios';
-    import modal from "../components/modal"
-    import { mapActions , mapGetters} from "vuex"
-
+    import BACnetObjectModal from "../components/BACnetObjectModal"
+    import { mapActions , mapGetters, mapMutations} from "vuex"
+    import Stomp from 'stompjs';
 
     //TODO make this work
     export default {
         name: 'structure',
-        components:{ modal} ,
+        components:{ BACnetObjectModal} ,
         data() {
             return {
                 posts: {},
-                element: this.getSiteName,
+                element: "",
                 parent: "",
                 firstElement: true,
                 properties: [],
@@ -50,27 +48,46 @@
                 },
                 color: '#000000',
                 size: '1000px',
-                loading:true
+                loading: 'pending'
             };
           },
         mounted() {
-           this.loadJSON();
+            this.loadSite();
+            this.connect();
+            this.loadJSON();
         },
         methods: {
-
             ...mapActions(["readObjectName"]),
+            ...mapMutations(['isConnected', 'newStompClient']),
+
+            connect: function () {
+                const socket = new WebSocket('ws://localhost:8098/ws/events');
+                this.newStompClient(Stomp.over(socket));
+                this.getStompClient.connect({}, this.callbackStomp);
+            },
+            loadSite: function(){
+
+             this.element = this.getSiteName;
+
+            },
+            connectClose: function () {
+                this.getStompClient.send("/app/endEvents", {}, "WebSocket Closed");
+                this.getStompClient.unsubscribe('/broker/eventSub');
+                this.getStompClient.disconnect();
+                this.isConnected(false);
+            },
 
             // This Function get the Hierarchy from Backend only the need one
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             loadJSON: function() {
+                {
                 axios.get("http://localhost:8098/structure/" + this.element)
                     .then(response => {
                         this.posts = response.data;
                         this.parent = this.posts["elementName"];
                         this.firstElement = false;
-
-                    })
+                    })}
             },
             // This Function Go Back to the last Element
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
@@ -109,8 +126,8 @@
             }
         }, computed: {
             ...mapGetters([
-                'getSiteName'
-            ])
+                'getStompClient','getSiteName'
+            ]),
         }
     };
 </script>
