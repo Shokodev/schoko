@@ -100,16 +100,11 @@
         ...mapMutations([
             'SetBACnetProperty','setStateText'
         ]),
-
-
-
         dropdownValue: function () {
-            let inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
-            let activeValue = this.searchPropertyIdentifierValue("Active text");
-            console.log(inactiveValue);
-            let node= [inactiveValue, activeValue];
+            this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
+            this.activeValue = this.searchPropertyIdentifierValue("Active text");
+            let node= [this.inactiveValue, this.activeValue];
             this.setStateText(node);
-            console.log(this.getStateText)
             },
 
 
