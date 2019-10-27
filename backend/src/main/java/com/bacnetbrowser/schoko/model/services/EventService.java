@@ -10,6 +10,7 @@ import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.service.acknowledgement.ReadPropertyAck;
 import com.serotonin.bacnet4j.service.confirmed.ConfirmedRequestService;
 import com.serotonin.bacnet4j.service.confirmed.ReadPropertyRequest;
+import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.DateTime;
 import com.serotonin.bacnet4j.type.constructed.SequenceOf;
 import com.serotonin.bacnet4j.type.constructed.TimeStamp;
@@ -57,8 +58,10 @@ public class EventService extends DeviceEventAdapter {
         } catch (NullPointerException e){
             if (!toState.equals(EventState.normal)){
                DateTime date  = timeStamp.getDateTime();
-            BACnetEvent baCnetEvent = new BACnetEvent(eventObjectIdentifier.toString(),initiatingDevice.getVendorName(),date.getDate().toString() + " "+ date.getTime().toString(),
-                    fromState.toString(),toState.toString(),getDescriptionOfObject(eventObjectIdentifier.toString()), BACnetTypes.getPresentValueAsText(eventObjectIdentifier,initiatingDevice));
+            BACnetEvent baCnetEvent = new BACnetEvent(eventObjectIdentifier.toString(),initiatingDevice.getVendorName(),parseDateTime(date),
+                    BACnetTypes.getGermanEventStateText(fromState.toString()),BACnetTypes.getGermanEventStateText(toState.toString()),
+                    getDescriptionOfObject(eventObjectIdentifier,initiatingDevice),
+                    BACnetTypes.getPresentValueAsText(eventObjectIdentifier,initiatingDevice));
             //TODO As soon as the event history will be implemented, the eventID will be the ID of the Database. We are going to use this: https://docs.objectbox.io/getting-started
             baCnetEvent.setEventID(baCnetEvent.hashCode());
             addEvent(baCnetEvent);
@@ -72,11 +75,31 @@ public class EventService extends DeviceEventAdapter {
     /**
      * This private method is used to get the description of a object by object-identifier for the event list
      * @param oid object-identifier
-     * @return description
+     * @param remoteDevice remote device of object
+     * @return description of object
      */
-    private String getDescriptionOfObject (String oid){
-        return HierarchyService.getKey(HierarchyService.objectNamesToDescription,oid);
+    private String getDescriptionOfObject (ObjectIdentifier oid,RemoteDevice remoteDevice){
+        try {
+            return ((ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.description))).getValue().toString();
+        } catch (BACnetException ignored){}
+        return null;
+    }
 
+    private DateTime getTimeStampofObject(ObjectIdentifier oid,RemoteDevice remoteDevice, String eventState){
+        try {
+            Encodable a =  ((ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.eventTimeStamps))).getValue();
+            List<TimeStamp> stamps = ((SequenceOf<TimeStamp>) RequestUtils.sendReadPropertyAllowNull(
+                    DeviceHandler.localDevice, remoteDevice, oid,
+                    PropertyIdentifier.eventTimeStamps)).getValues();
+            if (eventState.equals(EventState.fault.toString())) {
+                return stamps.get(1).getDateTime();
+
+            } else {
+                return stamps.get(0).getDateTime();
+
+            }
+        } catch (BACnetException ignored){}
+        return new DateTime();
     }
 
     private BACnetEvent getEventByOid(String oid){
@@ -125,7 +148,6 @@ public class EventService extends DeviceEventAdapter {
                     ConfirmedRequestService request = new ReadPropertyRequest(oid, PropertyIdentifier.eventState);
                     try {
                     ReadPropertyAck result = (ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, request);
-
                     if(!result.getValue().equals(EventState.normal)){
                         addExistingEvents(oid,remoteDevice,result.getValue().toString());
                     }}catch (BACnetException ignored){
@@ -139,8 +161,16 @@ public class EventService extends DeviceEventAdapter {
     }
 
     private void addExistingEvents(ObjectIdentifier oid, RemoteDevice remoteDevice, String eventState){
-        BACnetEvent event = new BACnetEvent(oid.toString(),remoteDevice.getVendorName(),"coming soo",EventState.normal.toString(),eventState,getDescriptionOfObject(oid.toString()),BACnetTypes.getPresentValueAsText(oid,remoteDevice));
+        if(!oid.toString().startsWith("Vendor")){
+        DateTime date = getTimeStampofObject(oid,remoteDevice,eventState);
+        BACnetEvent event = new BACnetEvent(oid.toString(),remoteDevice.getVendorName(),parseDateTime(date),EventState.normal.toString(),BACnetTypes.getGermanEventStateText(eventState),getDescriptionOfObject(oid,remoteDevice),BACnetTypes.getPresentValueAsText(oid,remoteDevice));
         event.setEventID(event.hashCode());
         addEvent(event);
+    }}
+
+    private String parseDateTime(DateTime dateTime){
+        String finalDate = dateTime.getDate().toString() + " | " + dateTime.getTime().toString();
+        return finalDate.replaceAll(", 119","");
     }
+
 }

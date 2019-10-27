@@ -39,5 +39,8 @@ public class EventHandler {
         System.out.println("Send updated eventList");
     }
 
+    public void lookForExistingEvents(){
+        eventService.getEventInformation();
+    }
 }
 

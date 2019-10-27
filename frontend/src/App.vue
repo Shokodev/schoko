@@ -52,6 +52,7 @@
           } else {
             console.log("failed")
           }
+          this.getStompClient.send("/app/eventSub", {}, "init")
         },
         callback: function (message) {
           let events = ((JSON).parse(message.body));

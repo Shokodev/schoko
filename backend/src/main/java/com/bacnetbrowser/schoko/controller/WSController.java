@@ -58,5 +58,15 @@ public class WSController {
         objectHandler.setNewValue(baCnetProperty.getPropertyIdentifier(),baCnetProperty.getValue());
     }
 
+    /**
+     * Gets a List of all properties of a datapoint
+     */
+    @MessageMapping("/eventSub")
+    @SendTo("/broker/eventSub")
+    public void subscribeEvents (String message) {
+        System.out.println(message +" events");
+       eventHandler.lookForExistingEvents();
+    }
+
 
 }

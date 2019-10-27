@@ -17,6 +17,8 @@ import com.serotonin.bacnet4j.type.primitive.Real;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
 import com.serotonin.bacnet4j.util.RequestUtils;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 //TODO this class should be able to get the right PropertyValue type
@@ -71,7 +73,7 @@ public class BACnetTypes {
             } catch (BACnetException bac){
                 System.out.println("Cant read present value of: " + oid + " @ " + remoteDevice);
             }
-        } else if ((oid.getObjectType() == ObjectType.analogValue) || (oid.getObjectType() == ObjectType.analogOutput) || (oid.getObjectType() == ObjectType.analogInput)) {
+        } else if ((oid.getObjectType().equals(ObjectType.analogValue)) || (oid.getObjectType().equals(ObjectType.analogOutput)) || (oid.getObjectType().equals(ObjectType.analogInput))) {
             ConfirmedRequestService requestValue = new ReadPropertyRequest(oid, PropertyIdentifier.presentValue);
             ConfirmedRequestService requestUnit = new ReadPropertyRequest(oid, PropertyIdentifier.units);
             try{
@@ -86,6 +88,16 @@ public class BACnetTypes {
         return null;
     }
 
+    public static String getGermanEventStateText(String eventState){
+        HashMap<String,String> germanEventStates = new HashMap<>();
+        germanEventStates.put("fault","Störung");
+        germanEventStates.put("off normal","Nicht Normal");
+        germanEventStates.put("high limit","Obere Grenze");
+        germanEventStates.put("low limit","Untere Grenze");
+        germanEventStates.put("normal","Normal");
+        return germanEventStates.get(eventState);
+
+    }
 
 }
 
