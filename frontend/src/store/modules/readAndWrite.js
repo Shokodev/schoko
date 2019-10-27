@@ -12,6 +12,7 @@ const state = {
         stateTextValue: [],
         bacnetUnit: String,
         connected: false,
+        polarityValue: String,
 };
 const getters = {
     getObjectName: state => state.objectName,
@@ -21,6 +22,7 @@ const getters = {
     getStateText: state => state.stateTextValue,
     getBACnetUnit: state => state.bacnetUnit,
     getIsConnected: state => state.connected,
+    getPolarityValue: state => state.polarityValue,
 
 };
 
@@ -35,6 +37,7 @@ export const mutations = {
     setStateText: (state, newStateText) => (state.stateTextValue = newStateText),
     setBACnetUnit: (state, bacnetUnit) => (state.bacnetUnit = bacnetUnit),
     setIsConnected: (state, connected) => (state.connected = connected),
+    setPolarityValue: (state, polarityValue) => (state.polarityValue = polarityValue),
 
 
 
