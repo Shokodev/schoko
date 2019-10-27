@@ -3,19 +3,19 @@
         <div class="modal-wrapper">
             <div class="modal-container">
                 <article class="media">
-                    <div class="media-content">
-                        <div class="content">
-                            <BinaryOutput @event="sendValue" v-if="this.getObjectType===('Binary Output'|| 'Binary Value' &&this.connected)"
+                    <div class="media-content" >
+                        <div class="content" v-if="this.getIsConnected">
+                            <BinaryOutput @event="sendValue" v-if=isBinary
                             :node="this.getBACnetObject"
                             ></BinaryOutput>
-                            <Analog @event="sendValue" v-if="this.getObjectType===('Analog Value' || 'Analog Output' || 'Analog Input' && this.connected)"
+                            <Analog @event="sendValue" v-if=isAnalog
                             :node="this.getBACnetObject"
                             ></Analog>
-                            <Multistate @event="sendValue" v-if="this.getObjectType===('Multi-state Value'||'Multi-state Output' &&this.connected)"
+                            <Multistate @event="sendValue" v-if=isMultiState
                             :node="this.getBACnetObject"
                             ></Multistate>
                         </div>
-                        <pulse-loader :loading=!this.connected :color="color" :size="size"></pulse-loader>
+                        <pulse-loader :loading=!this.getIsConnected :color="color" :size="size"></pulse-loader>
                     </div>
                 </article>
                 <button class="button" v-on:click="connectClose" @click="$emit('close')">
@@ -52,6 +52,7 @@
         },
         methods: {
             ...mapActions(["connect"]),
+            ...mapMutations(["setIsConnected"]),
 
 
             connect: function () {
@@ -63,7 +64,7 @@
                 this.stompClient.send("/app/end", {}, "WebSocket Closed");
                 this.stompClient.unsubscribe('/broker/objectSub');
                 this.stompClient.disconnect();
-                this.connected = false;
+                this.setIsConnected(false);
             },
             callbackStomp: function (frame) {
                 if (frame.command === "CONNECTED") {
@@ -76,19 +77,42 @@
             },
             callback: function (message) {
                 this.$store.commit('setBACnetObject', JSON.parse(message.body));
-                this.connected = true;
+                this.setIsConnected(true)
+                console.log("i am callback")
 
             },
 
             sendValue: function () {
                 this.stompClient.send("/app/setValue", {}, JSON.stringify(this.getBACnetProperty));
             },
+
+
         },
         ...mapMutations([
             'myTest'
         ]),
         computed: {
-            ...mapGetters(["getBACnetObject", "getBACnetProperty","getObjectType"]),
+            ...mapGetters(["getBACnetObject", "getBACnetProperty","getObjectType", "getIsConnected"]),
+
+            isBinary: function () {
+                if (['Binary Output', 'Binary Value', 'Binary Input'].indexOf(this.getObjectType) >= 0) {
+                    return true;
+                }
+                return false
+            },
+
+            isAnalog: function () {
+                if (['Analog Output', 'Analog Value', 'Analog Input'].indexOf(this.getObjectType) >= 0) {
+                    return true;
+                }
+                return false
+            },
+            isMultiState: function () {
+                if (['Multi-state Value', 'Multi-state Output', 'Multi-state Input'].indexOf(this.getObjectType) >= 0) {
+                    return true;
+                }
+                return false
+            },
 
         }
     }
