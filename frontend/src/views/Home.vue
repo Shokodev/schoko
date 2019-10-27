@@ -58,7 +58,7 @@
         },
         methods: {
             ...mapActions(["readObjectName"]),
-            ...mapMutations(['isConnected', 'newStompClient']),
+            ...mapMutations(['isConnected', 'newStompClient','newEventList']),
 
             connect: function () {
                 const socket = new WebSocket('ws://localhost:8098/ws/events');
@@ -136,7 +136,8 @@
                 if(child["elementType"] !== "Structure Element") {
                     //console.log("reading BACnet Object");
                     var name= this.element + "'" + child["elementName"];
-                    this.$store.commit('setObjectName', name.replace(/Anlage'/i,""));
+                    var re = new RegExp((this.getSiteName + "'"), "i");
+                    this.$store.commit('setObjectName', name.replace(re,""));
                     this.$store.commit('setObjectType', (child["elementType"]));
                     this.isModalVisible= true;
                 }else
@@ -144,7 +145,7 @@
             }
         }, computed: {
             ...mapGetters([
-                'getStompClient','getSiteName'
+                'getStompClient','getSiteName',
             ]),
         }
     };

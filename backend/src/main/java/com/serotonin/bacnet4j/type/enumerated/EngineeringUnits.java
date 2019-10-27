@@ -524,7 +524,7 @@ public class EngineeringUnits extends Enumerated {
         if (type == inchesOfMercury.intValue())
             return "inches of mercury";
         if (type == degreesCelsius.intValue())
-            return "degrees celsius";
+            return "°C";
         if (type == degreesKelvin.intValue())
             return "degrees kelvin";
         if (type == degreesKelvinPerHour.intValue())
