@@ -51,5 +51,5 @@
 </script>
 
 <style scoped>
-    
+
 </style>

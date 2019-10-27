@@ -117,7 +117,9 @@
         width: 100%;
     }
     .input{
-
+        box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+        max-width: 20%;
+        width: 15%;
     }
     .modal-mask {
         position: fixed;

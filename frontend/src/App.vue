@@ -89,10 +89,12 @@
 
   }
   #menu{
-    padding-left: 1.5em;
+    padding-left: 2em;
+    padding-top: 3em;
   }
   #content{
     padding-left: 1.5em;
+    padding-top: 3em;
   }
   .container{
     height: 3em;

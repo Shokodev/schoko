@@ -4,19 +4,22 @@
                 <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
                 <div class="box" v-if="prop.propertyIdentifier==='Description'" >
-                   Beschreibung: {{prop.value}}
+                    <span class="has-text-weight-bold">Beschreibung:</span>
+                   {{prop.value}}
                 </div>
                 </span>
                 </span>
         </div>
         <div>
         <span class="box">
-                <span v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div v-if="prop.propertyIdentifier==='Present value'">
-                  Aktueller Wert: {{getStateText[prop.value -1]}}
-                </div>
+            <span class="level">
+                <span class="level-left" v-for="prop in node" :key="prop.propertyIdentifier" >
+                <span v-if="prop.propertyIdentifier==='Present value'">
+                    <span class="has-text-weight-bold">Aktueller Wert:</span>
+                  {{getStateText[prop.value -1]}}
                 </span>
-                <span>
+                </span>
+                <span class="level-right">
               <span class="select">
                 <select v-model="writeValue">
                     <option v-for="index in this.getStateText" v-bind:key="index.id">{{index}}</option>
@@ -26,13 +29,15 @@
                      Senden
                  </button>
                 </span>
+            </span>
         </span>
         </div>
         <div>
                 <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
                 <div class="box" v-if="prop.propertyIdentifier==='Out of service'">
-                   Ausser Betrieb: {{prop.value}}
+                    <span class="has-text-weight-bold">Ausser Betrieb:</span>
+                    {{prop.value}}
                 </div>
                 </span>
                 </span>
@@ -41,7 +46,8 @@
                 <span>
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
                 <div class="box" v-if="prop.propertyIdentifier==='Object name'">
-                   Objekt Name: {{prop.value}}
+                    <span class="has-text-weight-bold">Objekt Name:</span>
+                    {{prop.value}}
                 </div>
                 </span>
                 </span>
@@ -96,7 +102,6 @@
             dropdownValue: function () {
                 this.numberOfStatesValue= this.searchPropertyIdentifierValue("Number of states");
                 var node= this.searchPropertyIdentifierValue("State text");
-                console.log(node);
                 var nodeReplaced=node.replace(/\[|\]|\s/g,"");
                 this.setStateText(nodeReplaced.split(','))
             },
