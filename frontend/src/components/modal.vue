@@ -5,7 +5,7 @@
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
-                            <BinaryOutput @event="sendValue" v-if="getObjectType==='Binary Output'&&this.connected"
+                            <BinaryOutput @event="sendValue" v-if="getObjectType==='Binary Output'|| 'Binary Value'|| 'Binary Input'&&this.connected"
                             :node="this.getBACnetObject"
                             ></BinaryOutput>
                             <Analog @event="sendValue" v-if="getObjectType==='Analog Input'&&this.connected"
