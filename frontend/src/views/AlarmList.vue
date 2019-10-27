@@ -48,7 +48,7 @@
                     this.stompClient.disconnect();
                     this.connected = false;
                 },
-                */
+
                 callbackStomp: function (frame) {
                     if (frame.command === "CONNECTED") {
                         this.stompClient.subscribe('/broker/eventSub', this.callback, {});
@@ -65,6 +65,9 @@
                 sendValue: function () {
                     this.stompClient.send("", {}, JSON.stringify());
                 },
+
+
+ */
             },
 
             computed:{
