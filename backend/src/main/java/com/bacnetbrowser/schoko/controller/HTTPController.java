@@ -1,6 +1,7 @@
 package com.bacnetbrowser.schoko.controller;
 
 import com.bacnetbrowser.schoko.model.datahandler.*;
+import com.bacnetbrowser.schoko.model.models.BACnetEvent;
 import com.bacnetbrowser.schoko.model.models.BACnetNode;
 import com.bacnetbrowser.schoko.model.models.BACnetStructure;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,10 @@ public class HTTPController {
         this.hierarchyHandler = hierarchyHandler;
         this.settingsHandler = settingsHandler;
         this.deviceHandler = deviceHandler;
-    }
+        tryToBuildStructureWithXMLSettings();
 
+
+    }
 
     /**
      *
@@ -60,14 +63,8 @@ public class HTTPController {
         settingsHandler.setBacnetSeparator(settings.getBacnetSeparator());
         settingsHandler.setSiteDescription(settings.getSiteDescription());
         settingsHandler.writeXMLSettings();
-        try {
-            //parse HEX BACx port to Integer
-            deviceHandler.createLocalDevice(Integer.parseInt(settingsHandler.getPort(), 16));
-        }
-        catch (NumberFormatException err){
-            System.err.println("Warning wrong port "+settingsHandler.getPort());
-        }
-        System.out.println("Build structure.......");
+        deviceHandler.createLocalDevice(Integer.parseInt(settingsHandler.getPort(), 16));
+        System.out.println("Build structure with new settings.....");
         hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
         return new ResponseEntity<SettingsHandler>(settings, HttpStatus.OK);
     }
@@ -79,7 +76,6 @@ public class HTTPController {
     @GetMapping(value = "/settings")
     public SettingsHandler allSettings ()
     {
-        settingsHandler.readXMLSettings();
         return settingsHandler;
     }
 
@@ -91,14 +87,8 @@ public class HTTPController {
     @GetMapping("/structure/{elementName}")
     public BACnetNode getBacnetStructure(@PathVariable String elementName){
         System.out.println("Get node: " + elementName);
-        try {
-            return hierarchyHandler.getChildrenByNodeElementName(elementName);
-        } catch (NullPointerException e){
-            return new BACnetNode("Achtung!"," ","Bitte zuerst Einstellungen vornehmen",0);
-            }
+        return hierarchyHandler.getChildrenByNodeElementName(elementName);
         }
-
-
 
     /**
      * Used to rebase reload data from BacNet Network
@@ -114,11 +104,21 @@ public class HTTPController {
         return BACnetNodes;
     }
 
-
     /**
      * Exception if wrong URL tipped
      */
     @ResponseStatus(value= HttpStatus.NOT_FOUND, reason = "Node not found") //404
     private class NodeNotFoundException extends RuntimeException {
             }
+
+    /**
+     * If the application will be restarted or if its the first start, this method will try to build the structure with the settings saved in xml
+     */
+    private void tryToBuildStructureWithXMLSettings(){
+        settingsHandler.readXMLSettings();
+        //parse HEX BACx port to Integer
+        deviceHandler.createLocalDevice(Integer.parseInt(settingsHandler.getPort(), 16));
+        System.out.println("Try to build structure with default settings or saved settings");
+        hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
+    }
 }
