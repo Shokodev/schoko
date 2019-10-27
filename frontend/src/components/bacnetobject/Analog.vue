@@ -87,10 +87,8 @@
 
 
             presentValueUnit: function () {
-
-                this.setBACnetUnit = this.searchPropertyIdentifierValue("Units");
-                console.log(this.setBACnetUnit)
-            },
+                this.setBACnetUnit(this.searchPropertyIdentifierValue("Units"));
+                           },
 
 
             searchPropertyIdentifierValue: function (search) {
