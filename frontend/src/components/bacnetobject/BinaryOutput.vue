@@ -106,7 +106,7 @@
         dropdownValue: function () {
             this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
             this.activeValue = this.searchPropertyIdentifierValue("Active text");
-            this.setStateText= [this.inactiveValue,this.activeValue]
+            this.setStateText= [this.inactiveValue,this.activeValue];
             console.log(this.setStateText)
             },
 

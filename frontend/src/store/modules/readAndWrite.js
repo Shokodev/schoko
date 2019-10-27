@@ -9,7 +9,8 @@ const state = {
             propertyIdentifier: String,
             value: Number
         },
-        stateTextValue: []
+        stateTextValue: [],
+        bacnetUnit: String
 };
 const getters = {
     getObjectName: state => state.objectName,
@@ -17,6 +18,7 @@ const getters = {
     getBACnetObject: state => state.subscribedBACnetObject,
     getBACnetProperty: state => state.bacnetProperty,
     getStateText: state => state.stateTextValue,
+    getBACnetUnit: state => state.bacnetUnit,
 
 };
 
@@ -29,6 +31,7 @@ export const mutations = {
     setBACnetObject: (state, newBACnetObject) => (state.subscribedBACnetObject = newBACnetObject),
     SetBACnetProperty: (state, newBACnetProperty) => (state.bacnetProperty = newBACnetProperty),
     setStateText: (state, newStateText) => (state.stateTextValue = newStateText),
+    setBACnetUnit: (state, bacnetUnit) => (state.bacnetUnit = bacnetUnit),
 
 
 

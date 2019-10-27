@@ -13,7 +13,7 @@
         <span class="box">
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
                 <div v-if="prop.propertyIdentifier==='Present value'">
-                  Aktueller Wert:  {{prop.value}}
+                  Aktueller Wert:  {{prop.value}}{{getBACnetUnit}}
                 </div>
                 </span>
                 <span >
@@ -65,13 +65,13 @@
         },
         mounted(){
             this.myObject = this.getBACnetObject;
-            this.presentValue()
+            this.presentValueUnit()
 
 
         },
         computed:{
             ...mapGetters([
-                'getBACnetObject'
+                'getBACnetObject','getBACnetUnit'
             ]),
 
 
@@ -81,14 +81,15 @@
 
         methods:{
             ...mapMutations([
-                'SetBACnetProperty'
+                'SetBACnetProperty','setBACnetUnit'
             ]),
 
 
 
-            presentValue: function () {
-                this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
-                this.activeValue = this.searchPropertyIdentifierValue("Active text");
+            presentValueUnit: function () {
+
+                this.setBACnetUnit = this.searchPropertyIdentifierValue("Units");
+                console.log(this.setBACnetUnit)
             },
 
 
@@ -128,7 +129,7 @@
     .input {
         box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
         max-width: 20%;
-        width: 10%;
+        width: 15%;
     }
 
 
