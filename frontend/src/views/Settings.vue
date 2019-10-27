@@ -1,10 +1,10 @@
 <template>
     <div>
         <p class="subtitle is 3">Einstellungen</p>
-        <div class="modal-mask" v-if="this.getSyncSettings">
+        <div class="modal-mask" v-if="!this.getSyncSettings">
             <div class="modal-wrapper">
                 <div class="modal-container">
-            <pulse-loader :loading=this.getSyncSettings :color="color" :size="size"></pulse-loader>
+            <pulse-loader :loading=!this.getSyncSettings :color="color" :size="size"></pulse-loader>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
 
 <script>
     import { mapGetters, mapActions} from "vuex";
-    import PulseLoader from "vue-spinner/src/PulseLoader.vue";
+    import PulseLoader from "vue-spinner/src/PacmanLoader";
 
     export default {
         name: "Settings",
@@ -81,7 +81,7 @@
                     bacnetSeparator: "'",
                 },
                 color: '#2c3e50',
-                size: '15px',
+                size: '25px',
             }
         },
         components: {PulseLoader},

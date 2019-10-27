@@ -76,6 +76,24 @@
                 this.getStompClient.disconnect();
                 this.isConnected(false);
             },
+            callbackStomp: function (frame) {
+                if (frame.command === "CONNECTED") {
+                    this.getStompClient.subscribe('/broker/eventSub', this.callback, {});
+                } else {
+                    console.log("failed")
+                }
+            },
+
+            callback: function (message) {
+                this.newEventList(JSON.parse(message.body));
+                this.isConnected(true);
+            },
+            //ToDo Alarm Handling
+            sendValue: function () {
+                this.stompClient.send("", {}, JSON.stringify());
+            },
+
+
 
             // This Function get the Hierarchy from Backend only the need one
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
