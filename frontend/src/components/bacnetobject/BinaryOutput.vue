@@ -119,8 +119,6 @@
             }
         },
         setWriteValue: function () {
-            console.log(this.getBACnetObject)
-
             if(this.writeValue=== this.activeValue){
                 this.writeValue=1
             }else{

@@ -16,14 +16,9 @@
                   Aktueller Wert:  {{prop.value}}
                 </div>
                 </span>
-                <span>
-              <span class="select">
-                <select v-model="writeValue">
-                    <option>{{this.inactiveValue}}</option>
-                    <option>{{this.activeValue}}</option>
-                </select>
-              </span>
-                <button class="button is-primary" v-on:click="setWriteValue()">
+                <span >
+                <input v-model="writeValue"  class=" input" type="text">
+                <button class=" button is-primary" v-on:click="setWriteValue()">
                      Senden
                  </button>
                 </span>
@@ -68,14 +63,11 @@
         },
         data(){
             return{
-                inactiveValue:"",
-                activeValue:"",
                 objectNameValue: "",
                 presentValueValue: "",
                 objectTypeValue:"",
                 descriptionValue:"",
                 outOfServiceValue:"",
-                polarityValue:"",
                 writeValue:"",
                 myObject: null,
             };
@@ -119,13 +111,6 @@
                 }
             },
             setWriteValue: function () {
-                console.log(this.getBACnetObject)
-
-                if(this.writeValue=== this.activeValue){
-                    this.writeValue=1
-                }else{
-                    this.writeValue=0
-                }
                 let bacnetProperty = {
                     propertyIdentifier: "Present value",
                     value: this.writeValue
@@ -148,12 +133,6 @@
         padding: 1rem;
         margin: 0.1em;
 
-    }
-    .select {
-        display: inline-block;
-        max-width: 100%;
-        position: relative;
-        vertical-align: top;
     }
 
 
