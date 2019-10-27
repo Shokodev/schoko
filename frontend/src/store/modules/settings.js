@@ -3,7 +3,7 @@ import axios from 'axios';
 const state = {
     settings: [
         {
-        siteName: "Default Site Name",
+        siteName: String,
         port: Number,
         siteDescription: String,
         bacnetSeparator: String
@@ -13,10 +13,12 @@ const state = {
 
 export const actions = {
     async newSettings({commit}, settings) {
+
         const response = axios.post(
             "http://localhost:8098/settings", settings
         );
         commit('setSettings', response.data)
+
     },
     async readSettings({commit}) {
         const response = await axios.get(
@@ -33,7 +35,8 @@ export const mutations = {
 };
 
 const getters = {
-  getSettings: state => state.settings
+  getSettings: state => state.settings,
+  getSiteName: state => state.settings.siteName,
 };
 
 export default {

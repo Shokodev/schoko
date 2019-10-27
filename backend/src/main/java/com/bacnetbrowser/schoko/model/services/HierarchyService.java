@@ -61,7 +61,7 @@ public class HierarchyService {
      */
     private BACnetStructure buildStructure() {
         BACnetStructure bacnetStructure = new BACnetStructure(siteName, "Top Element",siteDescription, null);
-        Integer nodeCounter = 0;
+        int nodeCounter = 0;
         for ( String key : objectNamesToOids.keySet() ) {
             String[] splittedObjectName = key.split(structureSeparator);
             for (int i = 0; i < splittedObjectName.length; i++) {
@@ -73,6 +73,10 @@ public class HierarchyService {
                     }
                 }
             }
+        if (bacnetStructure.getChildren().isEmpty()){
+            System.err.println("No Nodes were created, check settings!");
+            return null;
+        }
         System.out.println("Structure successfully created with " + nodeCounter + " nodes");
         return bacnetStructure;
     }

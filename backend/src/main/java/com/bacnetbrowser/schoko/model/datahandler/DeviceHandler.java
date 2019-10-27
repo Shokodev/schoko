@@ -51,7 +51,7 @@ public class DeviceHandler {
      * @param port port to read Network
      */
     public void createLocalDevice(Integer port)  {
-        rebaseLocalDevice();
+        rebaseLocalDeviceIfExists();
         IpNetwork ipNetwork = new IpNetwork(IpNetwork.DEFAULT_BROADCAST_IP, port);
         Transport transport = new Transport(ipNetwork);
         int localDevice_ID = 10001;
@@ -142,7 +142,7 @@ public class DeviceHandler {
             }}
         }
     } else {
-            System.out.println("No destinations added");
+            System.err.println("No destinations added");
         }
 
     }
@@ -180,7 +180,7 @@ public class DeviceHandler {
     /**
      * Reset local device if creating is called again in runtime
      */
-    private void rebaseLocalDevice(){
+    private void rebaseLocalDeviceIfExists(){
         if(localDevice != null){
             localDevice.terminate();
             System.out.println("*********************Reset*********************");
