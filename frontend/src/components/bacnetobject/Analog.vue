@@ -27,8 +27,16 @@
         <div>
                 <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div class="box" v-if="prop.propertyIdentifier==='Out of service'">
-                   Ausser Betrieb: {{prop.value}}
+                <div class="box" v-if="prop.propertyIdentifier==='Low limit'">
+                   Minimaler Wert: {{prop.value}}{{getBACnetUnit}}
+                </div>
+                </span>
+                </span>
+        </div><div>
+                <span>
+                <span  v-for="prop in node" :key="prop.propertyIdentifier" >
+                <div class="box" v-if="prop.propertyIdentifier==='High limit'">
+                   Maximaler Wert: {{prop.value}}{{getBACnetUnit}}
                 </div>
                 </span>
                 </span>

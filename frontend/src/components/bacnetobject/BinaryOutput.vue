@@ -33,7 +33,7 @@
                 <span>
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
                 <div class="box" v-if="prop.propertyIdentifier==='Polarity'">
-                   Polarität: {{prop.value}}
+                   Polarität: {{getPolarityValue}}
                 </div>
                 </span>
                 </span>
@@ -83,12 +83,13 @@
         mounted(){
                 this.myObject = this.getBACnetObject;
                 this.dropdownValue();
+                this.isPolarityValue()
 
 
         },
         computed:{
             ...mapGetters([
-                'getBACnetObject','getStateText'
+                'getBACnetObject','getStateText','getPolarityValue'
             ]),
 
 
@@ -98,18 +99,23 @@
 
         methods:{
         ...mapMutations([
-            'SetBACnetProperty','setStateText'
+            'SetBACnetProperty','setStateText','setPolarityValue'
         ]),
 
 
+        isPolarityValue: function(){
+            if (this.searchPropertyIdentifierValue("Polarity")==="0"){
+                this.setPolarityValue("Normal")
+            } else{
+                this.setPolarityValue("Invertiert")
+            }
+        },
 
         dropdownValue: function () {
-            let inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
-            let activeValue = this.searchPropertyIdentifierValue("Active text");
-            console.log(inactiveValue);
-            let node= [inactiveValue, activeValue];
+            this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
+            this.activeValue = this.searchPropertyIdentifierValue("Active text");
+            let node= [this.inactiveValue, this.activeValue];
             this.setStateText(node);
-            console.log(this.getStateText)
             },
 
 
