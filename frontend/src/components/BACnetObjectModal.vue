@@ -5,10 +5,10 @@
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
-                            <BinaryOutput @event="sendValue" v-if="this.getObjectType===('Binary Output'|| 'Binary Value' &&this.connected)"
+                            <BinaryOutput @event="sendValue" v-if="((this.getObjectType==='Binary Output'|| 'Binary Value') &&this.connected)"
                             :node="this.getBACnetObject"
                             ></BinaryOutput>
-                            <Analog @event="sendValue" v-if="this.getObjectType===('Analog Value' || 'Analog Output' || 'Analog Input' && this.connected)"
+                            <Analog @event="sendValue" v-if="((this.getObjectType==='Analog Value' || 'Analog Output' || 'Analog Input') && this.connected)"
                             :node="this.getBACnetObject"
                             ></Analog>
                             <Multistate @event="sendValue" v-if="this.getObjectType===('Multi-state Value'||'Multi-state Output' &&this.connected)"
@@ -77,6 +77,7 @@
             callback: function (message) {
                 this.$store.commit('setBACnetObject', JSON.parse(message.body));
                 this.connected = true;
+                console.log(this.connected)
 
             },
 

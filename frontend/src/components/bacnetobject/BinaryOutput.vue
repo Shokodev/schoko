@@ -13,7 +13,7 @@
         <span class="box">
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
                 <div v-if="prop.propertyIdentifier==='Present value'">
-                  Aktueller Wert:  {{getStateText[prop.value]}}
+                  Aktueller Wert: {{getStateText[prop.value]}}
                 </div>
                 </span>
                 <span>
@@ -104,10 +104,12 @@
 
 
         dropdownValue: function () {
-            this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
-            this.activeValue = this.searchPropertyIdentifierValue("Active text");
-            this.setStateText= [this.inactiveValue,this.activeValue];
-            console.log(this.setStateText)
+            let inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
+            let activeValue = this.searchPropertyIdentifierValue("Active text");
+            console.log(inactiveValue);
+            let node= [inactiveValue, activeValue];
+            this.setStateText(node);
+            console.log(this.getStateText)
             },
 
 
