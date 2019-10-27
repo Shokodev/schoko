@@ -65,17 +65,6 @@
                 sendValue: function () {
                     this.stompClient.send("", {}, JSON.stringify());
                 },
-
-
-            searchPropertyIdentifierValue: function () {
-                    for (let i = 0; i < this.bacnetEvents.length; i++) {
-                        if (this.bacnetEvents[i].propertyIdentifier) {
-                            return this.bacnetEvents[i].value;
-                        } else {
-                            console.log("Not Found")
-                        }
-                    }
-                }
             },
 
             computed:{
