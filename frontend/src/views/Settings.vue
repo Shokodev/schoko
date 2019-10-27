@@ -1,6 +1,13 @@
 <template>
     <div>
         <p class="subtitle is 3">Einstellungen</p>
+        <div class="modal-mask" v-if="this.getSyncSettings">
+            <div class="modal-wrapper">
+                <div class="modal-container">
+            <pulse-loader :loading=this.getSyncSettings :color="color" :size="size"></pulse-loader>
+                </div>
+            </div>
+        </div>
         <div class="control">
             <div class="field">
                 <label class="label">Site Name</label>
@@ -56,12 +63,12 @@
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
 <script>
-    import { mapGetters, mapActions} from "vuex"
+    import { mapGetters, mapActions} from "vuex";
+    import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
     export default {
         name: "Settings",
@@ -72,28 +79,29 @@
                     port: Number,
                     siteDescription: "Description",
                     bacnetSeparator: "'",
-                }
+                },
+                color: '#2c3e50',
+                size: '15px',
             }
         },
+        components: {PulseLoader},
         computed: {
-            ...mapGetters(["getSettings"]),
+            ...mapGetters(["getSettings", "getSyncSettings"]),
         },methods: {
             ...mapActions(["newSettings"]),
 
+
             SetSettings() {
-                this.newSettings(this.settings)
+                this.newSettings(this.settings);
+                console.log(this.settings);
                 console.log("send")
             }
         },
         mounted() {
-
-
             this.settings.siteDescription = this.getSettings.siteDescription;
             this.settings.siteName = this.getSettings.siteName;
             this.settings.port = this.getSettings.port;
             this.settings.bacnetSeparator = this.getSettings.bacnetSeparator;
-
-
         }
     }
 </script>
@@ -111,5 +119,40 @@
     .input{
 
     }
+    .modal-mask {
+        position: fixed;
+        z-index: 9998;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .5);
+        display: table;
+        transition: opacity .3s ease;
+    }
 
+    .modal-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .modal-container {
+        width: 100px;
+        margin: 0px auto;
+        padding: 20px 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, .33);
+        transition: all .3s ease;
+        font-family: Helvetica, Arial, sans-serif;
+    }
+
+    .modal-header h3 {
+
+    }
+    .modal-enter .modal-container,
+    .modal-leave-active .modal-container {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
 </style>

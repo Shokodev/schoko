@@ -22,6 +22,9 @@
       methods: {
       ...mapActions(["readSettings"])
   },
+    mounted() {
+      this.readSettings()
+    }
   }
 
 </script>

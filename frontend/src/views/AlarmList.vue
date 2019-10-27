@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import Stomp from 'stompjs';
+//    import Stomp from 'stompjs';
     import {mapGetters,mapMutations} from 'vuex';
         export default {
         name: "AlarmList",
@@ -27,18 +27,17 @@
                 return {
                     connected: false,
                     stompClient: Object,
-
                     bacnetEvents: null,
                 };
             },
             mounted(){
-                this.connect();
+                // this.connect();
             },
             methods:{
 
             ...mapMutations(["newEventList"]),
 
-                connect: function () {
+/*                connect: function () {
                     const socket = new WebSocket('ws://localhost:8098/ws/events');
                     this.stompClient = Stomp.over(socket);
                     this.stompClient.connect({}, this.callbackStomp);
@@ -49,6 +48,7 @@
                     this.stompClient.disconnect();
                     this.connected = false;
                 },
+                */
                 callbackStomp: function (frame) {
                     if (frame.command === "CONNECTED") {
                         this.stompClient.subscribe('/broker/eventSub', this.callback, {});

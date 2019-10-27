@@ -34,7 +34,7 @@
     import Multistate from "./bacnetobject/Multistate";
 
     export default {
-        name: "modal",
+        name: "BACnetObjectModal",
         data() {
             return {
                 stompClient: Object,
