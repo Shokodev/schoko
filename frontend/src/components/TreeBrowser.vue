@@ -9,7 +9,7 @@
               v-if="hasChildren"
               class="type"
       >
-                {{expanded ? '&#9660;' : '&#9658;'}}
+                {{expanded ? '&#9661;' : '&#9658;'}}
         </span>
         <span
                 class="type" v-else
