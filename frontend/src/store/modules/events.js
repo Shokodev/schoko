@@ -9,7 +9,7 @@ const state={
 const getters={
 
     getEvents: state => state.events,
-    getIsConnected: state => state.events,
+    getIsConnectedEvents: state => state.events,
     getStompClient: state => state.stompClient,
 };
 

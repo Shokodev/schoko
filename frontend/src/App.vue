@@ -1,5 +1,20 @@
 <template>
+
   <div id="app">
+    <header>
+      <section class="hero is-primary">
+        <div class="container">
+          <h1>
+        <span class="icon is-large">
+          <router-link v-if="!newAlarm" class="far fa-bell button" to="/alarmList" v-on:click="AlarmList"></router-link>
+
+          <router-link v-if="newAlarm" class="far fa-bell button is-danger" to="/alarmList" v-on:click="AlarmList"></router-link>
+        </span>
+            BACnet Browser
+          </h1>
+        </div>
+      </section>
+    </header>
     <section class="columns is-fullheight">
       <aside id="menu" class="column is-narrow is-fullheight">
         <p  class="menu-label">Menu</p>
@@ -19,11 +34,20 @@
     components: {
       Menu
     },
-      methods: {
-      ...mapActions(["readSettings"])
-  },
     mounted() {
       this.readSettings()
+    },
+      methods: {
+      ...mapActions(["readSettings"]),
+
+        AlarmList: function () {
+          console.log("AlarmList")
+        },
+    },
+    computed: {
+      newAlarm: function () {
+        return false;
+      }
     }
   }
 
@@ -35,13 +59,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    margin-top: 0.75em;
   }
   #menu{
     padding-left: 1.5em;
-
   }
-
   #content{
     padding-left: 1.5em;
   }

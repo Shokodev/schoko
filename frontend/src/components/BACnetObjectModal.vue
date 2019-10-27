@@ -95,23 +95,17 @@
             ...mapGetters(["getBACnetObject", "getBACnetProperty","getObjectType", "getIsConnected"]),
 
             isBinary: function () {
-                if (['Binary Output', 'Binary Value', 'Binary Input'].indexOf(this.getObjectType) >= 0) {
-                    return true;
-                }
-                return false
+                return ['Binary Output', 'Binary Value', 'Binary Input'].indexOf(this.getObjectType) >= 0;
+
             },
 
             isAnalog: function () {
-                if (['Analog Output', 'Analog Value', 'Analog Input'].indexOf(this.getObjectType) >= 0) {
-                    return true;
-                }
-                return false
+                return ['Analog Output', 'Analog Value', 'Analog Input'].indexOf(this.getObjectType) >= 0;
+
             },
             isMultiState: function () {
-                if (['Multi-state Value', 'Multi-state Output', 'Multi-state Input'].indexOf(this.getObjectType) >= 0) {
-                    return true;
-                }
-                return false
+                return ['Multi-state Value', 'Multi-state Output', 'Multi-state Input'].indexOf(this.getObjectType) >= 0;
+
             },
 
         }
