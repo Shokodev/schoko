@@ -12,11 +12,9 @@ import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.util.RequestUtils;
 import org.springframework.stereotype.Component;
-
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+
 
 /**
  * This class used to generate a BACnet structure by the BACnet structure view objects
@@ -30,7 +28,7 @@ public class HierarchyService {
     static   HashMap<String, ObjectIdentifier> objectNamesToOids = new HashMap<>();
     static HashMap<String, String> objectNamesToDescription = new HashMap<>();
     static HashMap<String, RemoteDevice> obejctNamesToRemoteDevice = new HashMap<>();
-    private HashMap<String, String> structureElements;
+    private HashMap<String, String> structureElements = new HashMap<>();
     private BACnetStructure bacnetStructure;
     private String siteName;
     private String siteDescription;
@@ -43,12 +41,11 @@ public class HierarchyService {
      * @param siteDescription Description of site
      * @param structureSeparator BacNet separator in ObjectName
      */
-    public void create (String siteName, String siteDescription, String structureSeparator){
+    public void create (String siteName, String siteDescription, String structureSeparator) {
         this.siteName = siteName;
         this.siteDescription = siteDescription;
         this.structureSeparator = structureSeparator;
-        readallBACnetObjects();
-        this.structureElements = getAllStructureElements();
+        readAllBACnetObjects();
         this.bacnetStructure = buildStructure();
 
 
@@ -63,7 +60,7 @@ public class HierarchyService {
 
         BACnetStructure bacnetStructure = new BACnetStructure(siteName, "Top Element",siteDescription, null);
         int nodeCounter = 0;
-        for ( String key : objectNamesToOids.keySet() ) {
+        for (String key : objectNamesToOids.keySet()) {
             String[] splittedObjectName = key.split(structureSeparator);
             for (int i = 0; i < splittedObjectName.length; i++) {
                     BACnetStructure parent = getParentNode(bacnetStructure ,i,splittedObjectName);
@@ -120,36 +117,17 @@ public class HierarchyService {
     }
 
     /**
-     *
-     * @return all structure elements and their description
+     *Add all structured view objects in list with their description
      */
-    private HashMap<String, String> getAllStructureElements () {
-        HashMap<String, String> allStructureElements = new HashMap<>();
-        for (ObjectIdentifier oid : objectNamesToOids.values()){
-           if (oid.getObjectType().equals(ObjectType.structuredView)) {
-              String obejctName = getKey(objectNamesToOids,oid);
-              String[] splitted = obejctName.split(structureSeparator);
+    private void getAllStructureElements (ObjectIdentifier oid, String objectName, String description)  {
+        if (oid.getObjectType().equals(ObjectType.structuredView)) {
+              String[] splitted = objectName.split(structureSeparator);
               String name = splitted[splitted.length -1];
-              allStructureElements.put(name,objectNamesToDescription.get(obejctName));
-           }}
-        return allStructureElements;
+              structureElements.put(name,description);
+           }
+
     }
 
-    /**
-     * General method to read a key of a hash map
-     * this method is copied from the internet
-     * @param map witch map you want to read the key
-     * @param value value witch you need the key
-     * @return key of hash map
-     */
-    static <K, V> K getKey(Map<K, V> map, V value) {
-        for (Map.Entry<K, V> entry : map.entrySet()) {
-            if (entry.getValue().equals(value)) {
-                return entry.getKey();
-            }
-        }
-        return null;
-    }
 
     public BACnetStructure getBacnetStructure() {
         return bacnetStructure;
@@ -164,9 +142,9 @@ public class HierarchyService {
     }
 
     /**
-     * Reads all BACnet Objects of all Remote Devises
+     * Reads all BACnet Objects of all remote devises
      */
-    private void readallBACnetObjects(){
+    private void readAllBACnetObjects(){
         try {
 
             for (RemoteDevice remoteDevice : DeviceHandler.localDevice.getRemoteDevices()) {
@@ -181,9 +159,9 @@ public class HierarchyService {
                         objectNamesToOids.put(tempObjectName,oid);
                         objectNamesToDescription.put(tempObjectName,tempDescription);
                         obejctNamesToRemoteDevice.put(tempObjectName,remoteDevice);
+                        getAllStructureElements(oid,tempObjectName,tempDescription);
                     }}}} catch (BACnetException e) {
             System.out.println("Failed to read objects");
-
         }
     }
 

@@ -51,7 +51,7 @@ public class EventService extends DeviceEventAdapter {
     public void eventNotificationReceived(UnsignedInteger processIdentifier, RemoteDevice initiatingDevice, ObjectIdentifier eventObjectIdentifier, TimeStamp timeStamp, UnsignedInteger notificationClass, UnsignedInteger priority, EventType eventType, CharacterString messageText, NotifyType notifyType, Boolean ackRequired, EventState fromState, EventState toState, NotificationParameters eventValues) {
         BACnetEvent existingEvent;
         try {
-            existingEvent = getEventByOid(eventObjectIdentifier.toString());
+            existingEvent = getEventByOidAndDevice(eventObjectIdentifier,initiatingDevice);
             update(existingEvent,fromState.toString(),toState.toString());
             //TODO, event handling with acknowledgement
             //Temporary remove event by toState = normal
@@ -115,13 +115,12 @@ public class EventService extends DeviceEventAdapter {
     }
 
     /**
-     * gets events bei the object identifier
-     * @param oid object identifier
+     * gets events by ID
      * @return BACnet event
      */
-    private BACnetEvent getEventByOid(String oid){
+    private BACnetEvent getEventByOidAndDevice(ObjectIdentifier oid, RemoteDevice remoteDevice){
         for (BACnetEvent event : events) {
-            if (event.getOid().contains(oid)){
+            if (event.getOid().equals(oid.toString()) && event.getRemoteDeviceName().equals(remoteDevice.getVendorName())){
                 return event;
             }
         }
