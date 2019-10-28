@@ -93,8 +93,6 @@
 
             SetSettings() {
                 this.newSettings(this.settings);
-                console.log(this.settings);
-                console.log("send")
             }
         },
         mounted() {
