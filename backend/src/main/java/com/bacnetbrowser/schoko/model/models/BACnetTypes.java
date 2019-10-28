@@ -25,6 +25,12 @@ import java.util.List;
 //TODO this class will be extended to manage more type parsing for further commanding
 public class BACnetTypes {
 
+    /**
+     * get the right writable format for the given object
+     * @param objectType type of object
+     * @param value value to write
+     * @return right property write format
+     */
     public static Encodable getPropertyValuesByObjectType(ObjectType objectType, String value) {
         if ((objectType.equals(ObjectType.binaryOutput)) ||(objectType.equals(ObjectType.binaryValue))) {
             return new BinaryPV(Integer.parseInt(value));
