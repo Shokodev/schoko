@@ -100,22 +100,27 @@
                 'SetBACnetProperty','setBACnetUnit'
             ]),
 
-
-
+            // This Function save the unit in a value
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             presentValueUnit: function () {
                 this.setBACnetUnit(this.searchPropertyIdentifierValue("Units"));
-                           },
-
-
+            },
+            // This Function search the name and give the value back
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             searchPropertyIdentifierValue: function (search) {
                 for (let i = 0; i < this.node.length; i++) {
                     if (this.node[i]["propertyIdentifier"] === (search)) {
                         return this.node[i].value;
                     } else {
-                        console.log("Not Found")
+                        return
                     }
                 }
             },
+            // This Function send the value was overriden
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             setWriteValue: function () {
                 let bacnetProperty = {
                     propertyIdentifier: "Present value",

@@ -100,25 +100,30 @@
                 'SetBACnetProperty','setStateText'
             ]),
 
-
-
+            // This Function clear all special charackter and save in a array for the dropdown
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             dropdownValue: function () {
                 this.numberOfStatesValue= this.searchPropertyIdentifierValue("Number of states");
                 var node= this.searchPropertyIdentifierValue("State text");
                 var nodeReplaced=node.replace(/\[|\]|\s/g,"");
                 this.setStateText(nodeReplaced.split(','))
             },
-
-
+            // This Function search the name and give the value back
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             searchPropertyIdentifierValue: function (search) {
                 for (let i = 0; i < this.node.length; i++) {
                     if (this.node[i]["propertyIdentifier"] === (search)) {
                         return this.node[i].value;
                     } else {
-                        console.log("Not Found")
+                        return
                     }
                 }
             },
+            // This Function send the value was overriden
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             setWriteValue: function () {
                 let index= (this.getStateText.indexOf(this.writeValue))+1;
                 let bacnetProperty = {

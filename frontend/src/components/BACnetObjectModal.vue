@@ -54,18 +54,26 @@
             ...mapActions(["connect"]),
             ...mapMutations(["setIsConnected"]),
 
-
+            // This Function create the websockert
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             connect: function () {
                 const socket = new WebSocket('ws://localhost:8098/ws/objects');
                 this.stompClient = Stomp.over(socket);
                 this.stompClient.connect({}, this.callbackStomp);
             },
+            // This Function closed the websocket
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             connectClose: function () {
                 this.stompClient.send("/app/end", {}, "WebSocket Closed");
                 this.stompClient.unsubscribe('/broker/objectSub');
                 this.stompClient.disconnect();
                 this.setIsConnected(false);
             },
+            // This Function websocket subscribe and send
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             callbackStomp: function (frame) {
                 if (frame.command === "CONNECTED") {
                     this.stompClient.subscribe('/broker/objectSub', this.callback, {});
@@ -75,13 +83,18 @@
                 this.stompClient.send("/app/objectSub", {}, this.$store.getters.getObjectName)
 
             },
+            // This Function recevide message over the websocket and save
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             callback: function (message) {
                 this.$store.commit('setBACnetObject', JSON.parse(message.body));
                 this.setIsConnected(true)
                 console.log("i am callback")
 
             },
-
+            // This Function
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             sendValue: function () {
                 this.stompClient.send("/app/setValue", {}, JSON.stringify(this.getBACnetProperty));
             },
@@ -93,15 +106,21 @@
         ]),
         computed: {
             ...mapGetters(["getBACnetObject", "getBACnetProperty","getObjectType", "getIsConnected"]),
-
+            // This Function is the objectType a Binary
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             isBinary: function () {
                 return ['Binary Output', 'Binary Value', 'Binary Input'].indexOf(this.getObjectType) >= 0;
 
             },
-
+            // This Function is the objectType a Analog
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             isAnalog: function () {
                 return ['Analog Output', 'Analog Value', 'Analog Input'].indexOf(this.getObjectType) >= 0;
-
+            // This Function is the objectType a Multi-state
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             },
             isMultiState: function () {
                 return ['Multi-state Value', 'Multi-state Output', 'Multi-state Input'].indexOf(this.getObjectType) >= 0;

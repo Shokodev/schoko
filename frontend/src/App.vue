@@ -41,11 +41,17 @@
       ...mapActions(["readSettings", "newEvent"]),
       ...mapMutations(['isConnectedEvents', 'newStompClient','newEventList', 'getIsConnectedEvents']),
 
+        // This Function create the websockert
+        // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+        // @version 1.0
         connect: function () {
             const socket = new WebSocket('ws://localhost:8098/ws/events');
             this.newStompClient(Stomp.over(socket));
             this.getStompClient.connect({}, this.callbackStomp);
         },
+        // This Function websocket subscribe and send
+        // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+        // @version 1.0
         callbackStomp: function (frame) {
           if (frame.command === "CONNECTED") {
             this.getStompClient.subscribe('/broker/eventSub', this.callback, {});
@@ -54,6 +60,9 @@
           }
           this.getStompClient.send("/app/eventSub", {}, "init")
         },
+        // This Function recevide message over the websocket and save
+        // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+        // @version 1.0
         callback: function (message) {
           let events = ((JSON).parse(message.body));
           if (events.length > this.getEvents.length) {
@@ -62,12 +71,18 @@
           this.newEventList(JSON.parse(message.body));
           this.isConnectedEvents(true);
         },
+        // This Function closed the websocket
+        // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+        // @version 1.0
         connectClose: function () {
           this.getStompClient.send("/app/endEvents", {}, "WebSocket Closed");
           this.getStompClient.unsubscribe('/broker/eventSub');
           this.getStompClient.disconnect();
           this.isConnectedEvents(false);
         },
+        // This Function acknolage with the alarmicon
+        // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+        // @version 1.0
         ackAlarm: function () {
         console.log("click")
           this.newEvent(false)

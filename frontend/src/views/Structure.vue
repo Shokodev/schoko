@@ -12,7 +12,6 @@
     import TreeBrowser from '../components/TreeBrowser.vue'
     import { mapGetters, mapActions} from "vuex"
 
-    //TODO work with vuex instead
     export default {
         name: 'structure',
         methods: mapActions(["completeHierarchy"])

@@ -28,9 +28,7 @@
     import axios from 'axios';
     import BACnetObjectModal from "../components/BACnetObjectModal"
     import { mapActions , mapGetters} from "vuex"
-    // import Stomp from 'stompjs';
 
-    //TODO make this work
     export default {
         name: 'structure',
         components:{ BACnetObjectModal} ,
@@ -58,41 +56,10 @@
         },
         methods: {
             ...mapActions(["readObjectName"]),
-            // ...mapMutations(['isConnected', 'newStompClient','newEventList', 'getIsConnectedEvents']),
 
             loadSite: function(){
                 this.element = this.getSiteName;
             },
-
-/*            connect: function () {
-                console.log(this.getIsConnectedEvents)
-                if(this.getIsConnectedEvents === false) {
-                    const socket = new WebSocket('ws://localhost:8098/ws/events');
-                    this.newStompClient(Stomp.over(socket));
-                    this.getStompClient.connect({}, this.callbackStomp);
-                }
-            },
-
-            callbackStomp: function (frame) {
-                if (frame.command === "CONNECTED") {
-                    this.getStompClient.subscribe('/broker/eventSub', this.callback, {});
-                } else {
-                    console.log("failed")
-                }
-            },
-
-            callback: function (message) {
-                this.newEventList(JSON.parse(message.body));
-                this.isConnectedEvents(true);
-            },
-            connectClose: function () {
-                this.getStompClient.send("/app/endEvents", {}, "WebSocket Closed");
-                this.getStompClient.unsubscribe('/broker/eventSub');
-                this.getStompClient.disconnect();
-                this.isConnectedEvents(false);
-            },
-
-            */
             // This Function get the Hierarchy from Backend only the need one
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0

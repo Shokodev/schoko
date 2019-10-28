@@ -111,7 +111,9 @@
             'SetBACnetProperty','setStateText','setPolarityValue'
         ]),
 
-
+        // This Function translate the priorityvalue to german
+        // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+        // @version 1.0
         isPolarityValue: function(){
             if (this.searchPropertyIdentifierValue("Polarity")==="0"){
                 this.setPolarityValue("Normal")
@@ -119,24 +121,30 @@
                 this.setPolarityValue("Invertiert")
             }
         },
-
+        // This Function clear all special charackter and save in a array for the dropdown
+        // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+        // @version 1.0
         dropdownValue: function () {
             this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
             this.activeValue = this.searchPropertyIdentifierValue("Active text");
             let node= [this.inactiveValue, this.activeValue];
             this.setStateText(node);
             },
-
-
+        // This Function search the name and give the value back
+        // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+        // @version 1.0
         searchPropertyIdentifierValue: function (search) {
             for (let i = 0; i < this.node.length; i++) {
                 if (this.node[i]["propertyIdentifier"] === (search)) {
                     return this.node[i].value;
                 } else {
-                    console.log("Not Found")
+                    return
                 }
             }
         },
+        // This Function send the value was overriden
+        // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+        // @version 1.0
         setWriteValue: function () {
             if(this.writeValue=== this.activeValue){
                 this.writeValue=1
