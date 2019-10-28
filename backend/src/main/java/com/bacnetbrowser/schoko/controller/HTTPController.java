@@ -1,7 +1,6 @@
 package com.bacnetbrowser.schoko.controller;
 
 import com.bacnetbrowser.schoko.model.datahandler.*;
-import com.bacnetbrowser.schoko.model.models.BACnetEvent;
 import com.bacnetbrowser.schoko.model.models.BACnetNode;
 import com.bacnetbrowser.schoko.model.models.BACnetStructure;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
-;
+
 
 
 /**

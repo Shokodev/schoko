@@ -24,7 +24,12 @@ import org.springframework.stereotype.Component;
 import java.util.LinkedList;
 import java.util.List;
 
-
+/**
+ * This class is for manage the events out of the BACnet network
+ * Communication to Network in here
+ * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+ * @version 1.0
+ */
 @Component
 public class EventService extends DeviceEventAdapter {
 
@@ -85,6 +90,13 @@ public class EventService extends DeviceEventAdapter {
         return null;
     }
 
+    /**
+     * Read the right time stamp dependent on the event state of the object
+     * @param oid object identifier
+     * @param remoteDevice remote device of the object
+     * @param eventState event state of the object
+     * @return time stamp as dateTime
+     */
     private DateTime getTimeStampofObject(ObjectIdentifier oid,RemoteDevice remoteDevice, String eventState){
         try {
             Encodable a =  ((ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.eventTimeStamps))).getValue();
@@ -102,6 +114,11 @@ public class EventService extends DeviceEventAdapter {
         return new DateTime();
     }
 
+    /**
+     * gets events bei the object identifier
+     * @param oid object identifier
+     * @return BACnet event
+     */
     private BACnetEvent getEventByOid(String oid){
         for (BACnetEvent event : events) {
             if (event.getOid().contains(oid)){
@@ -111,6 +128,10 @@ public class EventService extends DeviceEventAdapter {
         return null;
     }
 
+    /**
+     * Remove a event by its ID
+     * @param eventID event ID
+     */
     private void removeEventByID (int eventID){
         for (BACnetEvent event : events) {
             if (event.getEventID().equals(eventID)){
@@ -127,11 +148,20 @@ public class EventService extends DeviceEventAdapter {
         return events;
     }
 
+    /**
+     *
+     * @param event BACnet event
+     * @param fromState event state before change of caught event
+     * @param toState new event state of caught event
+     */
     public void update(BACnetEvent event, String fromState, String toState) {
         event.setFromState(fromState);
         event.setToState(toState);
     }
 
+    /**
+     * Gos trough all objects and checks their event state
+     */
     public void getEventInformation() {
 
         for (RemoteDevice remoteDevice : DeviceHandler.localDevice.getRemoteDevices()) {
@@ -160,6 +190,12 @@ public class EventService extends DeviceEventAdapter {
         eventHandler.updateStream();
     }
 
+    /**
+     * Is in the sequence of getEventInformation, has a object not a normal event state a new event object will be created
+     * @param oid object identifier
+     * @param remoteDevice remote device of object
+     * @param eventState event state of the object
+     */
     private void addExistingEvents(ObjectIdentifier oid, RemoteDevice remoteDevice, String eventState){
         if(!oid.toString().startsWith("Vendor")){
         DateTime date = getTimeStampofObject(oid,remoteDevice,eventState);
@@ -168,9 +204,15 @@ public class EventService extends DeviceEventAdapter {
         addEvent(event);
     }}
 
+    /**
+     * Parse the BACnet DateTime into german and readable format
+     * @param dateTime Date and Time property of BACnet
+     * @return String with Date and Time to send to the client
+     */
     private String parseDateTime(DateTime dateTime){
-        String finalDate = dateTime.getDate().toString() + " | " + dateTime.getTime().toString();
-        return finalDate.replaceAll(", 119","");
+       return   dateTime.getDate().getDay() + "." + BACnetTypes.getMothAsDigit(dateTime.getDate().getMonth().toString()) + "."
+                + dateTime.getDate().getCenturyYear() + " / " + dateTime.getTime().getHour() + ":" + dateTime.getTime().getMinute() + ":" + dateTime.getTime().getSecond();
+
     }
 
 }
