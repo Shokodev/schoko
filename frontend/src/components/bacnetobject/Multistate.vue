@@ -11,12 +11,14 @@
                 </span>
         </div>
         <div>
-        <span class="box">
+        <span class="box1">
             <span class="level">
-                <span class="level-left" v-for="prop in node" :key="prop.propertyIdentifier" >
+                <span class="level-left">
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
                 <span v-if="prop.propertyIdentifier==='Present value'">
                     <span class="has-text-weight-bold">Aktueller Wert:</span>
                   {{getStateText[prop.value -1]}}
+                </span>
                 </span>
                 </span>
                 <span class="level-right">
@@ -29,6 +31,7 @@
                      Senden
                  </button>
                 </span>
+
             </span>
         </span>
         </div>
@@ -146,6 +149,16 @@
         max-width: 100%;
         position: relative;
         vertical-align: top;
+    }
+    .box1 {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+        color: #4a4a4a;
+        display: block;
+        padding: 1rem;
+        margin: 0.1em;
+
     }
 
 
