@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Component
 @Configuration
-@EnableScheduling
 public class HTTPController {
 
     private HierarchyHandler hierarchyHandler;

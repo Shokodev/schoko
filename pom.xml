@@ -5,10 +5,10 @@
 
 <groupId>com.bacnetbrowser</groupId>
 <artifactId>schoko</artifactId>
-<version>0.5-ALPHA</version>
+<version>0.0.1-SNAPSHOT</version>
 <packaging>pom</packaging>
 <name>schoko</name>
-<description>BACnet Browser</description>
+<description>Demo project for Spring Boot</description>
 
 <parent>
 	<groupId>org.springframework.boot</groupId>

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * This class used to generate a BACnet structure by the BACnet structure view objects
@@ -26,8 +27,7 @@ import java.util.Map;
 @Component
 public class HierarchyService {
     // This lists have main information about structure an objects
-    static HashMap<String, ObjectIdentifier> oidStringToOid = new HashMap<>();
-    static   HashMap<String, String> objectNamesToOids = new HashMap<>();
+    static   HashMap<String, ObjectIdentifier> objectNamesToOids = new HashMap<>();
     static HashMap<String, String> objectNamesToDescription = new HashMap<>();
     static HashMap<String, RemoteDevice> obejctNamesToRemoteDevice = new HashMap<>();
     private HashMap<String, String> structureElements;
@@ -67,7 +67,7 @@ public class HierarchyService {
             String[] splittedObjectName = key.split(structureSeparator);
             for (int i = 0; i < splittedObjectName.length; i++) {
                     BACnetStructure parent = getParentNode(bacnetStructure ,i,splittedObjectName);
-                    BACnetStructure node = createNode(splittedObjectName[i], oidStringToOid.get(objectNamesToOids.get(key)).getObjectType().toString(), objectNamesToDescription.get(key), obejctNamesToRemoteDevice.get(key).getInstanceNumber(), parent);
+                    BACnetStructure node = createNode(splittedObjectName[i],objectNamesToOids.get(key).getObjectType().toString() , objectNamesToDescription.get(key), obejctNamesToRemoteDevice.get(key).getInstanceNumber(), parent);
                     if (node != null) {
                         parent.addChild(node);
                         nodeCounter++;
@@ -125,9 +125,9 @@ public class HierarchyService {
      */
     private HashMap<String, String> getAllStructureElements () {
         HashMap<String, String> allStructureElements = new HashMap<>();
-        for (ObjectIdentifier oid : oidStringToOid.values()){
+        for (ObjectIdentifier oid : objectNamesToOids.values()){
            if (oid.getObjectType().equals(ObjectType.structuredView)) {
-              String obejctName = getKey(objectNamesToOids,oid.toString());
+              String obejctName = getKey(objectNamesToOids,oid);
               String[] splitted = obejctName.split(structureSeparator);
               String name = splitted[splitted.length -1];
               allStructureElements.put(name,objectNamesToDescription.get(obejctName));
@@ -157,7 +157,6 @@ public class HierarchyService {
 
     public void deleteStructure(){
         bacnetStructure = null;
-        oidStringToOid.clear();
         objectNamesToOids.clear();
         obejctNamesToRemoteDevice.clear();
         objectNamesToDescription.clear();
@@ -179,10 +178,9 @@ public class HierarchyService {
                     if (checkIfNecessaryForStructure(oid)) {
                     String tempObjectName = ((ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.objectName))).getValue().toString();
                     String tempDescription = ((ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.description))).getValue().toString();
-                        objectNamesToOids.put(tempObjectName,oid.toString());
+                        objectNamesToOids.put(tempObjectName,oid);
                         objectNamesToDescription.put(tempObjectName,tempDescription);
                         obejctNamesToRemoteDevice.put(tempObjectName,remoteDevice);
-                        oidStringToOid.put(oid.toString(),oid);
                     }}}} catch (BACnetException e) {
             System.out.println("Failed to read objects");
 

@@ -49,8 +49,7 @@ public class ObjectService extends DeviceEventAdapter {
      */
     public void readDataPointProperties(String elementName) {
         RemoteDevice remoteDevice = HierarchyService.obejctNamesToRemoteDevice.get(elementName);
-        String elementType = HierarchyService.objectNamesToOids.get(elementName);
-        ObjectIdentifier oid = HierarchyService.oidStringToOid.get(elementType);
+        ObjectIdentifier oid = HierarchyService.objectNamesToOids.get(elementName);
         this.objectIdentifier = oid;
         this.remoteDevice = remoteDevice;
         ObjectType[] objectType = ObjectType.ALL;

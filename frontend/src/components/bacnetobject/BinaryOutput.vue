@@ -138,7 +138,7 @@
                 if (this.node[i]["propertyIdentifier"] === (search)) {
                     return this.node[i].value;
                 } else {
-                    return
+                    console.log("wrong")
                 }
             }
         },
