@@ -91,24 +91,10 @@ public class HTTPController {
         }
 
     /**
-     * Used to rebase reload data from BacNet Network
-     * @param home reload command
-     * @return Top element of the new structure
-     */
-    @GetMapping("/home/{home}")
-    public BACnetNode getHome(@PathVariable String home)  {
-        System.out.println("Rebuild structure");
-        hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
-        BACnetNode BACnetNodes = hierarchyHandler.getChildrenByNodeElementName(home);
-        if (BACnetNodes == null) throw  new NodeNotFoundException();
-        return BACnetNodes;
-    }
-
-    /**
      * Exception if wrong URL tipped
      */
     @ResponseStatus(value= HttpStatus.NOT_FOUND, reason = "Node not found") //404
-    private class NodeNotFoundException extends RuntimeException {
+    private static class NodeNotFoundException extends RuntimeException {
             }
 
     /**
