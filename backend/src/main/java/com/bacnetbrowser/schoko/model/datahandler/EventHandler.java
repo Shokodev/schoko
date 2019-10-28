@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 
 /**
- *
+ * Handles the events between the stack and client
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */

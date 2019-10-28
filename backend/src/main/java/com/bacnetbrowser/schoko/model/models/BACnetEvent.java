@@ -1,6 +1,10 @@
 package com.bacnetbrowser.schoko.model.models;
 
-
+/**
+ * is used to generate BACnet event Objects with needed properties for the client
+ * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+ * @version 1.0
+ */
 public class BACnetEvent {
 
     // Event Properties
@@ -10,7 +14,6 @@ public class BACnetEvent {
     private String timeStamp;
     private String fromState;
     private String toState;
-
 
     // Object Properties
     private String description;

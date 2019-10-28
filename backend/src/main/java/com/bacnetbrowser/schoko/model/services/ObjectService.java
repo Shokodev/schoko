@@ -27,7 +27,12 @@ import org.springframework.stereotype.Component;
 import java.util.LinkedList;
 import java.util.List;
 
-
+/**
+ * This class used manage communication to BACnet objects
+ * Communication to Network in here
+ * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+ * @version 1.0
+ */
 @Component
 public class ObjectService extends DeviceEventAdapter {
 

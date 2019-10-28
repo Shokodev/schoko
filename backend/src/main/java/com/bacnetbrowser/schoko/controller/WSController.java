@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.LinkedList;
-
+/**
+ * Controller for WebSockets
+ * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+ * @version 1.0
+ */
 @CrossOrigin
 @RestController
 @Component

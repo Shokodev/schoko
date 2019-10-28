@@ -19,7 +19,7 @@ import java.util.Map;
 
 /**
  * This class used to generate a BACnet structure by the BACnet structure view objects
- * Communication to BacStack in here
+ * Communication to Network in here
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */

@@ -19,7 +19,10 @@ import com.serotonin.bacnet4j.util.RequestUtils;
 import java.util.HashMap;
 import java.util.List;
 
-//TODO this class should be able to get the right PropertyValue type
+/**
+ * This class extents the stack for our purpose
+ */
+//TODO this class will be extended to manage more type parsing for further commanding
 public class BACnetTypes {
 
     public static Encodable getPropertyValuesByObjectType(ObjectType objectType, String value) {
@@ -37,7 +40,7 @@ public class BACnetTypes {
      * Used to get Text Texts mapped to the present value
      * @param oid needs the oid of the given object
      * @param remoteDevice remote device of the given object
-     * @return
+     * @return present value as text
      */
     public static String getPresentValueAsText(ObjectIdentifier oid, RemoteDevice remoteDevice){
         if((oid.getObjectType().equals(ObjectType.binaryValue)) || (oid.getObjectType().equals(ObjectType.binaryOutput)) || (oid.getObjectType().equals(ObjectType.binaryInput)))
@@ -86,6 +89,11 @@ public class BACnetTypes {
         return null;
     }
 
+    /**
+     *
+     * @param eventState event state as string english
+     * @return event state as string german
+     */
     public static String getGermanEventStateText(String eventState){
         HashMap<String,String> germanEventStates = new HashMap<>();
         germanEventStates.put("fault","Störung");
@@ -94,6 +102,29 @@ public class BACnetTypes {
         germanEventStates.put("low limit","Untere Grenze");
         germanEventStates.put("normal","Normal");
         return germanEventStates.get(eventState);
+
+    }
+
+    /**
+     * parse BACnet DateTime month into digit
+     * @param moth BACnet DateTime month
+     * @return digit as String
+     */
+    public static String getMothAsDigit(String moth){
+        HashMap<String,String> monthToDigit = new HashMap<>();
+        monthToDigit.put("JANUARY","01");
+        monthToDigit.put("FEBRUARY","02");
+        monthToDigit.put("MARCH","03");
+        monthToDigit.put("APRIL","04");
+        monthToDigit.put("MAY","05");
+        monthToDigit.put("June","06");
+        monthToDigit.put("JULY","07");
+        monthToDigit.put("AUGUST","08");
+        monthToDigit.put("SEPTEMBER","09");
+        monthToDigit.put("OCTOBER","10");
+        monthToDigit.put("NOVEMBER","11");
+        monthToDigit.put("DECEMBER","12");
+        return monthToDigit.get(moth);
 
     }
 
