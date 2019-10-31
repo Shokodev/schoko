@@ -15,9 +15,9 @@ public class BACnetStructure {
     private String elementDescription;
     private Integer device;
 
-    private List<BACnetStructure> children = new ArrayList<>();
+   private List<BACnetStructure> children = new ArrayList<>();
 
-    public BACnetStructure(String elementName, String elementType, String elementDescription, Integer device) {
+   public BACnetStructure(String elementName, String elementType, String elementDescription, Integer device) {
         this.elementName = elementName;
         this.elementType = elementType;
         this.elementDescription = elementDescription;
@@ -28,7 +28,7 @@ public class BACnetStructure {
         this.children.add(child);
     }
 
-    public List<BACnetStructure> getChildren() {
+   public List<BACnetStructure> getChildren() {
         return children;
     }
 
@@ -38,7 +38,7 @@ public class BACnetStructure {
      * @param elementName element name to check
      * @return boolean
      */
-    public boolean checkIfNodeExists(BACnetStructure parent, String elementName){
+   public boolean checkIfNodeExists(BACnetStructure parent, String elementName){
         List<BACnetStructure> children = parent.getChildren();
         for (BACnetStructure child : children) {
             if (child.getElementName().equals(elementName)) {
@@ -53,7 +53,7 @@ public class BACnetStructure {
      * @param elementName object identifier
      * @return BACnetStructure<Structure> child
      */
-    public BACnetStructure getChildByElementName(String elementName) {
+   public BACnetStructure getChildByElementName(String elementName) {
         List<BACnetStructure> children = getChildren();
         for(BACnetStructure child : children) {
             if (child.getElementName().equals(elementName)) {
@@ -63,17 +63,17 @@ public class BACnetStructure {
         return null;
     }
 
-    public String getElementName() {
+   public String getElementName() {
         return elementName;
     }
 
-    public String getElementType() { return elementType; }
+   public String getElementType() { return elementType; }
 
-    public String getElementDescription() {
+   public String getElementDescription() {
         return elementDescription;
     }
 
-    public Integer getDevice() {
+   public Integer getDevice() {
         return device;
     }
 }

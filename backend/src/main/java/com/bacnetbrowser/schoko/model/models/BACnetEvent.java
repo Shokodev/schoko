@@ -18,16 +18,18 @@ public class BACnetEvent {
     // Object Properties
     private String description;
     private String presentValue;
+    private String objectName;
 
 
-    public BACnetEvent(String oid, String RemoteDeviceName, String timeStamp, String fromState, String toState, String description, String presentValue) {
+    public BACnetEvent(String oid, String remoteDeviceName, String timeStamp, String fromState, String toState, String description, String presentValue, String objectName) {
         this.oid = oid;
-        this.RemoteDeviceName = RemoteDeviceName;
+        RemoteDeviceName = remoteDeviceName;
         this.timeStamp = timeStamp;
         this.fromState = fromState;
         this.toState = toState;
         this.description = description;
         this.presentValue = presentValue;
+        this.objectName = objectName;
     }
 
     public Integer getEventID() {
@@ -62,6 +64,10 @@ public class BACnetEvent {
         return presentValue;
     }
 
+    public String getObjectName() {
+        return objectName;
+    }
+
     public void setFromState(String fromState) {
         this.fromState = fromState;
     }
@@ -92,6 +98,10 @@ public class BACnetEvent {
 
     public void setPresentValue(String presentValue) {
         this.presentValue = presentValue;
+    }
+
+    public void setObjectName(String objectName) {
+        this.objectName = objectName;
     }
 }
 

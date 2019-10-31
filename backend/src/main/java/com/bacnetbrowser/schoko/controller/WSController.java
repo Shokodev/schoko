@@ -24,7 +24,7 @@ import java.util.LinkedList;
 @RestController
 @Component
 @Configuration
-@EnableScheduling
+
 public class WSController {
 
     private ObjectHandler objectHandler;

@@ -36,8 +36,6 @@ public class HTTPController {
         this.deviceHandler = deviceHandler;
         tryToBuildStructureWithXMLSettings();
 
-
-
     }
 
     /**

@@ -3,6 +3,7 @@ package com.bacnetbrowser.schoko.model.services;
 import com.bacnetbrowser.schoko.model.datahandler.DeviceHandler;
 import com.bacnetbrowser.schoko.model.datahandler.ObjectHandler;
 import com.bacnetbrowser.schoko.model.models.BACnetProperty;
+import com.bacnetbrowser.schoko.model.models.BACnetTypes;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
 import com.serotonin.bacnet4j.exception.BACnetException;
@@ -42,6 +43,8 @@ public class ObjectService extends DeviceEventAdapter {
     private final LinkedList<BACnetProperty> properties = new LinkedList<>();
     private  RemoteDevice remoteDevice;
     private  ObjectIdentifier objectIdentifier;
+    //TODO this value should be changeable by the client (User)
+    private  Integer roundPlacesAfterComma = 2;
 
 
     /**
@@ -147,14 +150,18 @@ public class ObjectService extends DeviceEventAdapter {
      * Listen at change of value at the given remote device
      */
     @Override
-    public void covNotificationReceived(UnsignedInteger subscriberProcessIdentifier, RemoteDevice initiatingDevice, ObjectIdentifier monitoredObjectIdentifier, UnsignedInteger timeRemaining, SequenceOf<PropertyValue> listOfValues) {
+    public void covNotificationReceived(UnsignedInteger subscriberProcessIdentifier, RemoteDevice remoteDevice, ObjectIdentifier monitoredObjectIdentifier, UnsignedInteger timeRemaining, SequenceOf<PropertyValue> listOfValues) {
 
 
         for (PropertyValue pv : listOfValues){
-            for(BACnetProperty pid : getProperties()){
-               if(pv.getPropertyIdentifier().toString().equals(pid.getPropertyIdentifier())){
-                   pid.setValue(pv.getValue().toString());
-                   System.out.println("Device: " + initiatingDevice.getObjectIdentifier() + " has sent new " +pid.getPropertyIdentifier() + ": " + pid.getValue());
+            for(BACnetProperty baCnetProperty : getProperties()){
+               if(pv.getPropertyIdentifier().toString().equals(baCnetProperty.getPropertyIdentifier())){
+                   if(pv.getPropertyIdentifier().equals(PropertyIdentifier.presentValue)) {
+                       baCnetProperty.setValue(BACnetTypes.round(pv.getValue(), roundPlacesAfterComma));
+                   } else {
+                       baCnetProperty.setValue(pv.getValue().toString());
+                   }
+                   System.out.println("Device: " + remoteDevice.getObjectIdentifier() + " has sent new " +baCnetProperty.getPropertyIdentifier() + ": " + baCnetProperty.getValue());
 
                }
 

@@ -48,10 +48,10 @@ public class EventService extends DeviceEventAdapter {
      * Catchs all event changes on the network an update the alarm list
      */
     @Override
-    public void eventNotificationReceived(UnsignedInteger processIdentifier, RemoteDevice initiatingDevice, ObjectIdentifier eventObjectIdentifier, TimeStamp timeStamp, UnsignedInteger notificationClass, UnsignedInteger priority, EventType eventType, CharacterString messageText, NotifyType notifyType, Boolean ackRequired, EventState fromState, EventState toState, NotificationParameters eventValues) {
+    public void eventNotificationReceived(UnsignedInteger processIdentifier, RemoteDevice remoteDevice, ObjectIdentifier oid, TimeStamp timeStamp, UnsignedInteger notificationClass, UnsignedInteger priority, EventType eventType, CharacterString messageText, NotifyType notifyType, Boolean ackRequired, EventState fromState, EventState toState, NotificationParameters eventValues) {
         BACnetEvent existingEvent;
         try {
-            existingEvent = getEventByOidAndDevice(eventObjectIdentifier,initiatingDevice);
+            existingEvent = getEventByOidAndDevice(oid,remoteDevice);
             update(existingEvent,fromState.toString(),toState.toString());
             //TODO, event handling with acknowledgement
             //Temporary remove event by toState = normal
@@ -63,10 +63,10 @@ public class EventService extends DeviceEventAdapter {
         } catch (NullPointerException e){
             if (!toState.equals(EventState.normal)){
                DateTime date  = timeStamp.getDateTime();
-            BACnetEvent baCnetEvent = new BACnetEvent(eventObjectIdentifier.toString(),initiatingDevice.getVendorName(),parseDateTime(date),
+            BACnetEvent baCnetEvent = new BACnetEvent(oid.toString(),remoteDevice.getVendorName(),BACnetTypes.parseDateTime(date),
                     BACnetTypes.getGermanEventStateText(fromState.toString()),BACnetTypes.getGermanEventStateText(toState.toString()),
-                    getDescriptionOfObject(eventObjectIdentifier,initiatingDevice),
-                    BACnetTypes.getPresentValueAsText(eventObjectIdentifier,initiatingDevice));
+                    getDescriptionOfObject(oid,remoteDevice),
+                    BACnetTypes.getPresentValueAsText(oid,remoteDevice), getObjectNameOfObject(oid,remoteDevice));
             //TODO As soon as the event history will be implemented, the eventID will be the ID of the Database. We are going to use this: https://docs.objectbox.io/getting-started
             baCnetEvent.setEventID(baCnetEvent.hashCode());
             addEvent(baCnetEvent);
@@ -198,20 +198,18 @@ public class EventService extends DeviceEventAdapter {
     private void addExistingEvents(ObjectIdentifier oid, RemoteDevice remoteDevice, String eventState){
         if(!oid.toString().startsWith("Vendor")){
         DateTime date = getTimeStampofObject(oid,remoteDevice,eventState);
-        BACnetEvent event = new BACnetEvent(oid.toString(),remoteDevice.getVendorName(),parseDateTime(date),EventState.normal.toString(),BACnetTypes.getGermanEventStateText(eventState),getDescriptionOfObject(oid,remoteDevice),BACnetTypes.getPresentValueAsText(oid,remoteDevice));
+        BACnetEvent event = new BACnetEvent(oid.toString(),remoteDevice.getVendorName(),BACnetTypes.parseDateTime(date),EventState.normal.toString(),
+                BACnetTypes.getGermanEventStateText(eventState),getDescriptionOfObject(oid,remoteDevice), BACnetTypes.getPresentValueAsText(oid,remoteDevice), getObjectNameOfObject(oid,remoteDevice));
         event.setEventID(event.hashCode());
         addEvent(event);
     }}
 
-    /**
-     * Parse the BACnet DateTime into german and readable format
-     * @param dateTime Date and Time property of BACnet
-     * @return String with Date and Time to send to the client
-     */
-    private String parseDateTime(DateTime dateTime){
-       return   dateTime.getDate().getDay() + "." + BACnetTypes.getMothAsDigit(dateTime.getDate().getMonth().toString()) + "."
-                + dateTime.getDate().getCenturyYear() + " / " + dateTime.getTime().getHour() + ":" + dateTime.getTime().getMinute() + ":" + dateTime.getTime().getSecond();
-
+    private String getObjectNameOfObject(ObjectIdentifier oid,RemoteDevice remoteDevice){
+        try {
+            return ((ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.objectName))).getValue().toString();
+        } catch (BACnetException ignored){}
+        return null;
     }
+
 
 }
