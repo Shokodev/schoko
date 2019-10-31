@@ -24,7 +24,6 @@ import java.util.LinkedList;
 @RestController
 @Component
 @Configuration
-
 public class WSController {
 
     private ObjectHandler objectHandler;

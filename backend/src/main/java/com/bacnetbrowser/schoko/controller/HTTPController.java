@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,10 +33,8 @@ public class HTTPController {
         this.hierarchyHandler = hierarchyHandler;
         this.settingsHandler = settingsHandler;
         this.deviceHandler = deviceHandler;
-        tryToBuildStructureWithXMLSettings();
-
+        tryToBuildStructureWithSavedSettings();
     }
-
     /**
      *
      *
@@ -49,7 +46,7 @@ public class HTTPController {
     }
 
     /**
-     * update Settings in settingsHandler and the xml file
+     * update Settings in settingsHandler and the settings store
      * @param settings from Client
      * @return new settings
      */
@@ -59,7 +56,6 @@ public class HTTPController {
         settingsHandler.setPort(settings.getPort());
         settingsHandler.setBacnetSeparator(settings.getBacnetSeparator());
         settingsHandler.setSiteDescription(settings.getSiteDescription());
-        settingsHandler.writeXMLSettings();
         deviceHandler.createLocalDevice(Integer.parseInt(settingsHandler.getPort(), 16));
         System.out.println("Build structure with new settings.....");
         hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
@@ -95,10 +91,10 @@ public class HTTPController {
             }
 
     /**
-     * If the application will be restarted or if its the first start, this method will try to build the structure with the settings saved in xml
+     * If the application will be restarted or if its the first start, this method will try to build the structure with the settings saved in application.properties
      */
-    private void tryToBuildStructureWithXMLSettings(){
-        settingsHandler.readXMLSettings();
+
+    private void tryToBuildStructureWithSavedSettings(){
         //parse HEX BACx port to Integer
         deviceHandler.createLocalDevice(Integer.parseInt(settingsHandler.getPort(), 16));
         System.out.println("Try to build structure with default settings or saved settings");

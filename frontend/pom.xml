@@ -64,19 +64,6 @@
 						<arguments>run test:unit</arguments>
 					</configuration>
 					</execution>
-					<!-- Run End2End tests with Nightwatch -->
-					<!--
-					<execution>
-					<id>npm run test:e2e</id>
-					<goals>
-						<goal>npm</goal>
-					</goals>
-					<phase>test</phase>
-					<configuration>
-					  	<arguments>run test:e2e</arguments>
-					</configuration>
-					</execution>
-					-->
 				</executions>
 			</plugin>
 		</plugins>
