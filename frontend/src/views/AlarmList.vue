@@ -7,6 +7,7 @@
             <thead>
             <tr>
                 <th title="DatumZeit">Datum / Zeit</th>
+                <th title="Objekt Name">Objekt Name</th>
                 <th title="Beschreibung">Beschreibung</th>
                 <th title="Aktueller Wert">Aktueller Wert</th>
                 <th title="Zustand">Zustand</th>
@@ -16,6 +17,7 @@
             <tbody>
             <tr id="alarmlist" :key="child.eventID" v-for="child in getEvents">
                 <td>{{child.timeStamp}}</td>
+                <td>{{child.oid}}</td>
                 <td>{{child.description}}</td>
                 <td>{{child.presentValue}}</td>
                 <td>{{child.toState}}</td>

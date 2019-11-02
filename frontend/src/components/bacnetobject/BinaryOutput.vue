@@ -93,17 +93,11 @@
                 this.myObject = this.getBACnetObject;
                 this.dropdownValue();
                 this.isPolarityValue()
-
-
         },
         computed:{
             ...mapGetters([
                 'getBACnetObject','getStateText','getPolarityValue'
             ]),
-
-
-
-
         },
 
         methods:{
