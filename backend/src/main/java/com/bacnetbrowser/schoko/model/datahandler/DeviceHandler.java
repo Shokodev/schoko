@@ -129,6 +129,7 @@ public class DeviceHandler {
                 System.err.println("No objects in " + remoteDevice + "found");
             }
 
+            if (oids != null ) {
             for (ObjectIdentifier oid : oids) {
                 if (oid.getObjectType().equals(ObjectType.notificationClass)){
                 WritePropertyRequest request = new WritePropertyRequest(oid, PropertyIdentifier.recipientList, null, creatAlarmDestination(), new UnsignedInteger(16));
@@ -140,7 +141,7 @@ public class DeviceHandler {
                }
                 System.out.println("LocalDevice " + localDevice.getConfiguration().getInstanceId() + " as receiver registered to: " + oid.toString() + " @ " + remoteDevice.getObjectIdentifier());
 
-            }}
+            }}}
         }
     } else {
             System.err.println("No destinations added");

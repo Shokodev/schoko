@@ -145,9 +145,10 @@ public class HierarchyService {
      * Reads all BACnet Objects of all remote devises
      */
     private void readAllBACnetObjects(){
-        try {
+
 
             for (RemoteDevice remoteDevice : DeviceHandler.localDevice.getRemoteDevices()) {
+                try {
                 List<ObjectIdentifier> oids = ((SequenceOf<ObjectIdentifier>)
                         RequestUtils.sendReadPropertyAllowNull(
                                 DeviceHandler.localDevice, remoteDevice, remoteDevice.getObjectIdentifier(),
@@ -160,9 +161,10 @@ public class HierarchyService {
                         objectNamesToDescription.put(tempObjectName,tempDescription);
                         obejctNamesToRemoteDevice.put(tempObjectName,remoteDevice);
                         getAllStructureElements(oid,tempObjectName,tempDescription);
-                    }}}} catch (BACnetException e) {
+                    }}} catch (BACnetException | NullPointerException e) {
             System.out.println("Failed to read objects");
         }
+    }
     }
 
     /**

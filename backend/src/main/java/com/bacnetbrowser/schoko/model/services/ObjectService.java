@@ -150,13 +150,13 @@ public class ObjectService extends DeviceEventAdapter {
      * Listen at change of value at the given remote device
      */
     @Override
-    public void covNotificationReceived(UnsignedInteger subscriberProcessIdentifier, RemoteDevice remoteDevice, ObjectIdentifier monitoredObjectIdentifier, UnsignedInteger timeRemaining, SequenceOf<PropertyValue> listOfValues) {
+    public void covNotificationReceived(UnsignedInteger subscriberProcessIdentifier, RemoteDevice remoteDevice, ObjectIdentifier oid, UnsignedInteger timeRemaining, SequenceOf<PropertyValue> listOfValues) {
 
 
         for (PropertyValue pv : listOfValues){
             for(BACnetProperty baCnetProperty : getProperties()){
                if(pv.getPropertyIdentifier().toString().equals(baCnetProperty.getPropertyIdentifier())){
-                   if(pv.getPropertyIdentifier().equals(PropertyIdentifier.presentValue)) {
+                   if((pv.getPropertyIdentifier().equals(PropertyIdentifier.presentValue))&& (oid.getObjectType().equals((ObjectType.analogInput)))) {
                        baCnetProperty.setValue(BACnetTypes.round(pv.getValue(), roundPlacesAfterComma));
                    } else {
                        baCnetProperty.setValue(pv.getValue().toString());

@@ -3,18 +3,15 @@ package com.bacnetbrowser.schoko.controller;
 
 import com.bacnetbrowser.schoko.model.datahandler.EventHandler;
 import com.bacnetbrowser.schoko.model.datahandler.ObjectHandler;
-import com.bacnetbrowser.schoko.model.models.BACnetEvent;
 import com.bacnetbrowser.schoko.model.models.BACnetProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.LinkedList;
 /**
  * Controller for WebSockets
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
