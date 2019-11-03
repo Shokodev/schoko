@@ -47,7 +47,7 @@ public class BACnetTypes {
     }
 
     /**
-     * Used to get Text Texts mapped to the present value
+     * Used to get Texts mapped to the present value
      * @param oid needs the oid of the given object
      * @param remoteDevice remote device of the given object
      * @return present value as text
@@ -100,7 +100,7 @@ public class BACnetTypes {
     }
 
     /**
-     *
+     *Translate event state to german
      * @param eventState event state as string english
      * @return event state as string german
      */

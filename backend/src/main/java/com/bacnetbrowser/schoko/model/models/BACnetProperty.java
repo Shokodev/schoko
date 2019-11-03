@@ -1,7 +1,7 @@
 package com.bacnetbrowser.schoko.model.models;
 
 /**
- * is used to generate Objects in needed format for frontend
+ * Is used to generate Objects in needed format for frontend
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */

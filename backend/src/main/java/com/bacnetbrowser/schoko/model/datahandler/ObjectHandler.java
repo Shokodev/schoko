@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * This class used to handle the object functions for the object properties between stack and REST
+ * This class used to handle the BACnet object properties between BACnet and REST
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */
@@ -38,7 +38,7 @@ public class ObjectHandler {
     }
 
     /**
-     * after closing the websocket, the subscription have to end as well and the propertyList have to be empty for next websocket stream
+     * After closing the websocket, the subscription at the remote device have to end as well and the propertyList have to be empty for next websocket stream
      */
     public void disconnectPropertyStream(){
         objectService.unsubscribeToCovRequest();

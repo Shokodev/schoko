@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 /**
- * Controller for REST server
+ * Controller for REST server, communication between server and client
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */
@@ -36,8 +36,6 @@ public class HTTPController {
         tryToBuildStructureWithSavedSettings();
     }
     /**
-     *
-     *
      * @return complete hierarchy structure
      */
     @GetMapping("/hierarchy")
@@ -73,9 +71,9 @@ public class HTTPController {
     }
 
     /**
-     * Site01'B'A'Ahu01'
      *
-     * @return hierarchy structure with the children
+     * @param elementName is equals to object name like "Site01'B'A'Ahu01"
+     * @return hierarchy structure node with his children
      */
     @GetMapping("/structure/{elementName}")
     public BACnetNode getBacnetStructure(@PathVariable String elementName){
@@ -93,7 +91,6 @@ public class HTTPController {
     /**
      * If the application will be restarted or if its the first start, this method will try to build the structure with the settings saved in application.properties
      */
-
     private void tryToBuildStructureWithSavedSettings(){
         //parse HEX BACx port to Integer
         deviceHandler.createLocalDevice(Integer.parseInt(settingsHandler.getPort(), 16));

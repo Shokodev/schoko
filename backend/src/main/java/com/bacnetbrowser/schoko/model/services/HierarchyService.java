@@ -17,7 +17,7 @@ import java.util.List;
 
 
 /**
- * This class used to generate a BACnet structure by the BACnet structure view objects
+ * This class used to generate a BACnet structure by the BACnet "Structure View" objects
  * Communication to Network in here
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
@@ -128,7 +128,6 @@ public class HierarchyService {
 
     }
 
-
     public BACnetStructure getBacnetStructure() {
         return bacnetStructure;
     }
@@ -168,7 +167,7 @@ public class HierarchyService {
     }
 
     /**
-     * checks if the given object identifier is necessary for building the structure
+     * Checks if the given object identifier is necessary for building the structure
      * @param oid object identifier
      * @return true or false
      */

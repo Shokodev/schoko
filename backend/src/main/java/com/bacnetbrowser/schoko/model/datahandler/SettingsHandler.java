@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * This class handel defaultSettings done in the browser
+ * This class handle the settings saved in configuration settings
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */

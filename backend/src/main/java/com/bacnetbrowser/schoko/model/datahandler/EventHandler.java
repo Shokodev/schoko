@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 
 /**
- * Handles the events between the stack and client
+ * Handles the events between the BACnet and client
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */
@@ -39,6 +39,10 @@ public class EventHandler {
         System.out.println("Send updated eventList");
     }
 
+    /**
+     * Gets information about all event states of all objects in the network
+     * the return will be over the updateStream method
+     */
     public void lookForExistingEvents(){
         eventService.getEventInformation();
     }
