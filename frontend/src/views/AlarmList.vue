@@ -25,9 +25,6 @@
             </tr>
             </tbody>
         </table>
-        <div>
-
-        </div>
     </div>
 </template>
 
@@ -37,14 +34,8 @@
         name: "AlarmList",
             data() {
                 return {
-                    connected: false,
-                    stompClient: Object,
                     bacnetEvents: null,
                 };
-            },
-            mounted() {
-            },
-            methods:{
             },
             computed:{
             ...mapGetters(["getEvents"])

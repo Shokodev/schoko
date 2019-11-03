@@ -82,43 +82,33 @@
         mounted(){
             this.myObject = this.getBACnetObject;
             this.presentValueUnit()
-
-
         },
         computed:{
             ...mapGetters([
                 'getBACnetObject','getBACnetUnit'
             ]),
-
-
-
-
         },
-
         methods:{
             ...mapMutations([
                 'SetBACnetProperty','setBACnetUnit'
             ]),
-
-            // This Function save the unit in a value
+            // This Function saves the unit in a value
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             presentValueUnit: function () {
                 this.setBACnetUnit(this.searchPropertyIdentifierValue("Units"));
             },
-            // This Function search the name and give the value back
+            // This Function searches the name and give the value back
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             searchPropertyIdentifierValue: function (search) {
                 for (let i = 0; i < this.node.length; i++) {
                     if (this.node[i]["propertyIdentifier"] === (search)) {
                         return this.node[i].value;
-                    } else {
-                        console.log("wrong")
                     }
                 }
             },
-            // This Function send the value was overriden
+            // This Function sends the new value
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             setWriteValue: function () {

@@ -99,13 +99,11 @@
                 'getBACnetObject','getStateText','getPolarityValue'
             ]),
         },
-
         methods:{
         ...mapMutations([
             'SetBACnetProperty','setStateText','setPolarityValue'
         ]),
-
-        // This Function translate the priorityvalue to german
+        // This Function translates the priorityvalue to german
         // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
         // @version 1.0
         isPolarityValue: function(){
@@ -115,7 +113,7 @@
                 this.setPolarityValue("Invertiert")
             }
         },
-        // This Function clear all special charackter and save in a array for the dropdown
+        // This Function removes all special charackters and saves it in a array for the dropdown menu
         // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
         // @version 1.0
         dropdownValue: function () {
@@ -124,19 +122,17 @@
             let node= [this.inactiveValue, this.activeValue];
             this.setStateText(node);
             },
-        // This Function search the name and give the value back
+        // This Function searches the name and gives the value back
         // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
         // @version 1.0
         searchPropertyIdentifierValue: function (search) {
             for (let i = 0; i < this.node.length; i++) {
                 if (this.node[i]["propertyIdentifier"] === (search)) {
                     return this.node[i].value;
-                } else {
-                    console.log("wrong")
                 }
             }
         },
-        // This Function send the value was overriden
+        // This Function sends the new value
         // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
         // @version 1.0
         setWriteValue: function () {
@@ -157,7 +153,6 @@
 </script>
 
 <style scoped>
-
     .box1 {
          background-color: white;
         border-radius: 10px;
@@ -184,7 +179,4 @@
         position: relative;
         vertical-align: top;
     }
-
-
-
 </style>

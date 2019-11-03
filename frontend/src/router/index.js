@@ -3,7 +3,9 @@ import Structure from '../views/Structure.vue'
 import Settings from '../views/Settings.vue'
 import AlarmList from "../views/AlarmList";
 
-
+// routes[] with all the different views.
+// @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+// @version 1.0
 const routes = [
   {
     path: '/',

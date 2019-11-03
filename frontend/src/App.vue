@@ -1,5 +1,4 @@
 <template>
-
   <div id="app">
     <header>
       <section class="hero is-primary">
@@ -41,7 +40,8 @@
       ...mapActions(["readSettings", "newEvent"]),
       ...mapMutations(['isConnectedEvents', 'newStompClient','newEventList', 'getIsConnectedEvents']),
 
-        // This Function create the websockert
+        // This Function creates the websocket with stomp on startup
+        // The stompclient gets passed in the store for it being available in other components and views like the alarmview
         // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
         // @version 1.0
         connect: function () {
@@ -49,18 +49,17 @@
             this.newStompClient(Stomp.over(socket));
             this.getStompClient.connect({}, this.callbackStomp);
         },
-        // This Function websocket subscribe and send
+        // This Function subscribe to the eventSub channel on the backend server
         // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
         // @version 1.0
         callbackStomp: function (frame) {
           if (frame.command === "CONNECTED") {
             this.getStompClient.subscribe('/broker/eventSub', this.callback, {});
-          } else {
-            console.log("failed")
           }
           this.getStompClient.send("/app/eventSub", {}, "init")
         },
-        // This Function recevide message over the websocket and save
+        // This Function gets called by the stompclient and the message body gets passed in the store as a JSON
+        // If new events have been created the alarm bell will light up
         // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
         // @version 1.0
         callback: function (message) {
@@ -71,7 +70,7 @@
           this.newEventList(JSON.parse(message.body));
           this.isConnectedEvents(true);
         },
-        // This Function closed the websocket
+        // This Function closes the websocket
         // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
         // @version 1.0
         connectClose: function () {
@@ -84,7 +83,6 @@
         // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
         // @version 1.0
         ackAlarm: function () {
-        console.log("click")
           this.newEvent(false)
         }
     },
@@ -94,7 +92,6 @@
       ]),
     }
   }
-
 </script>
 
 <style>
@@ -115,6 +112,4 @@
   .container{
     height: 3em;
   }
-
-
 </style>

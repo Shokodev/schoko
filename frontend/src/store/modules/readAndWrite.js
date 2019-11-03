@@ -1,5 +1,3 @@
-
-
 const state = {
         objectName: String,
         objectType: String,
@@ -23,12 +21,12 @@ const getters = {
     getBACnetUnit: state => state.bacnetUnit,
     getIsConnected: state => state.connected,
     getPolarityValue: state => state.polarityValue,
-
 };
 
-const actions = {
-};
 export const mutations = {
+    // The mutations can be called directly because there are no modifications done to the data.
+    // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+    // @version 1.0
     setObjectName: (state, objectName) => (state.objectName = objectName),
     setObjectType: (state, objectType) => (state.objectType = objectType),
     setBACnetObject: (state, newBACnetObject) => (state.subscribedBACnetObject = newBACnetObject),
@@ -38,13 +36,9 @@ export const mutations = {
     setIsConnected: (state, connected) => (state.connected = connected),
     setPolarityValue: (state, polarityValue) => (state.polarityValue = polarityValue),
 
-
-
 };
-
 export default{
     state,
-    actions,
     mutations,
     getters
 };

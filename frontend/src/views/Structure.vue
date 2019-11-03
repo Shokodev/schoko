@@ -3,13 +3,13 @@
         <h1 class="subtitle is 3">
             BACnet Struktur
         </h1>
-        <TreeBrowser
+        <StructureView
                 :node="getHierarchy"
         />
     </div>
 </template>
 <script>
-    import TreeBrowser from '../components/TreeBrowser.vue'
+    import StructureView from '../components/StructureView.vue'
     import { mapGetters, mapActions} from "vuex"
 
     export default {
@@ -18,11 +18,14 @@
         ,
         computed: mapGetters(["getHierarchy"])
         ,
+        // Call the method for creating the complete hierarchy structure view
+        // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+        // @version 1.0
         created()  {
             this.completeHierarchy();
         },
             components: {
-            TreeBrowser
+                StructureView
         },
     }
 
