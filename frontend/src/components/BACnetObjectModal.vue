@@ -42,7 +42,6 @@
                 color: '#2c3e50',
                 size: '15px',
                 myObject: null,
-
             };
         },
         components: {Multistate, Analog, BinaryOutput, PulseLoader},
@@ -54,7 +53,7 @@
             ...mapActions(["connect"]),
             ...mapMutations(["setIsConnected"]),
 
-            // This Function create the websockert
+            // This Function creates the websocket when the component gets mounted
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             connect: function () {
@@ -62,7 +61,7 @@
                 this.stompClient = Stomp.over(socket);
                 this.stompClient.connect({}, this.callbackStomp);
             },
-            // This Function closed the websocket
+            // This Function closes the websocket
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             connectClose: function () {
@@ -71,54 +70,50 @@
                 this.stompClient.disconnect();
                 this.setIsConnected(false);
             },
-            // This Function websocket subscribe and send
+            // This Function gets called by the stompclient and passes the frame, if the websocket is connected the application subscribes to the
+            // opened bacnet object.
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             callbackStomp: function (frame) {
                 if (frame.command === "CONNECTED") {
                     this.stompClient.subscribe('/broker/objectSub', this.callback, {});
-                } else {
-                    console.log("failed")
                 }
                 this.stompClient.send("/app/objectSub", {}, this.$store.getters.getObjectName)
 
             },
-            // This Function recevide message over the websocket and save
+            // This Function gets called by the sompclient and passes the massage that was send by the server.
+            // The body over the message gets parsed as a JSON for easier transformation.
+            // The value setIsConnected is changed to true and the information gets displayed in the web
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             callback: function (message) {
                 this.$store.commit('setBACnetObject', JSON.parse(message.body));
-                this.setIsConnected(true)
-                console.log("i am callback")
+                this.setIsConnected(true);
 
             },
-            // This Function
+            // This Function gets called from the child components with an $emit
+            // A new value gets send over the stompclient to the backend server
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             sendValue: function () {
                 this.stompClient.send("/app/setValue", {}, JSON.stringify(this.getBACnetProperty));
             },
-
-
         },
-        ...mapMutations([
-            'myTest'
-        ]),
         computed: {
             ...mapGetters(["getBACnetObject", "getBACnetProperty","getObjectType", "getIsConnected"]),
-            // This Function is the objectType a Binary
+            // This computed method if the bacnet object type is from type Binary
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             isBinary: function () {
                 return ['Binary Output', 'Binary Value', 'Binary Input'].indexOf(this.getObjectType) >= 0;
 
             },
-            // This Function is the objectType a Analog
+            // This computed method if the bacnet object type is from type Analog
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             isAnalog: function () {
                 return ['Analog Output', 'Analog Value', 'Analog Input'].indexOf(this.getObjectType) >= 0;
-            // This Function is the objectType a Multi-state
+                // This computed method if the bacnet object type is from type Multi-state
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             },
@@ -159,9 +154,7 @@
         transition: all .3s ease;
         font-family: Helvetica, Arial, sans-serif;
     }
-
     .modal-header h3 {
-
     }
     .modal-enter .modal-container,
     .modal-leave-active .modal-container {

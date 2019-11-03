@@ -20,7 +20,6 @@
 				<artifactId>frontend-maven-plugin</artifactId>
 				<version>1.8.0</version>
 				<executions>
-					<!-- Install our node and npm version to run npm/node scripts-->
 					<execution>
 						<id>install node and npm</id>
 						<goals>
@@ -30,20 +29,17 @@
 							<nodeVersion>v12.12.0</nodeVersion>
 						</configuration>
 					</execution>
-					<!-- Install all project dependencies -->
+					<!-- run npm run install-->
 					<execution>
 						<id>npm install</id>
 						<goals>
 							<goal>npm</goal>
 						</goals>
-						<!-- optional: default phase is "generate-resources" -->
 						<phase>generate-resources</phase>
-						<!-- Optional configuration which provides for running any npm command -->
 						<configuration>
 							<arguments>install</arguments>
 						</configuration>
 					</execution>
-					<!-- Build and minify static files -->
 					<execution>
 						<id>npm run build</id>
 						<goals>
@@ -53,7 +49,7 @@
 							<arguments>run build</arguments>
             			</configuration>
 					</execution>
-					<!-- Run Unit tests with Jest -->
+					<!-- not implemented yet -->
 					<execution>
 					<id>npm run test:unit</id>
 					<goals>

@@ -16,8 +16,7 @@
         >
             {{expanded = '&#9671;' }}
         </span>
-        <span
-                :style="getStyle(node)">{{node.elementName}} <span v-if="hasDescription"> ({{node.elementDescription}})</span> </span>
+        <span>{{node.elementName}} <span v-if="hasDescription"> ({{node.elementDescription}})</span> </span>
         </div>
         <div v-if="expanded">
             <TreeBrowser
@@ -33,7 +32,7 @@
 
 <script>
     export default {
-        name: 'TreeBrowser',
+        name: 'StructureView',
         props: {
             node: Object,
             depth: {
@@ -47,21 +46,11 @@
             }
         },
         methods: {
+            //If a node gets clicked its gets checked for children and therefore emitted to the parent class
             nodeClicked() {
                 this.expanded = !this.expanded;
                 if (!this.hasChildren) {
                     this.$emit('onClick', this.node);
-                }
-            },
-            getStyle(node) {
-                if(typeof this.node.children != "undefined") {
-                    let color = 'black';
-                    if (!node.children) {
-                        color = 'red';
-                    }
-                    return {
-                        color,
-                    }
                 }
             }
         },
@@ -78,7 +67,6 @@
 
 <style scoped>
     .node {
-
         font-size: 24px;
     }
     .type {

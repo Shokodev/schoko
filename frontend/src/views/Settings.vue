@@ -89,8 +89,9 @@
             ...mapGetters(["getSettings", "getSyncSettings"]),
         },methods: {
             ...mapActions(["newSettings"]),
-
-
+            // Call the action from vuex store and pass the new settings for the backend server
+            // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+            // @version 1.0
             SetSettings() {
                 this.newSettings(this.settings);
             }
@@ -130,12 +131,10 @@
         display: table;
         transition: opacity .3s ease;
     }
-
     .modal-wrapper {
         display: table-cell;
         vertical-align: middle;
     }
-
     .modal-container {
         width: 100px;
         margin: 0px auto;
@@ -146,9 +145,7 @@
         transition: all .3s ease;
         font-family: Helvetica, Arial, sans-serif;
     }
-
     .modal-header h3 {
-
     }
     .modal-enter .modal-container,
     .modal-leave-active .modal-container {

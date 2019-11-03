@@ -18,18 +18,15 @@
 </parent>
 
 
-
 <properties>
 	<main.basedir>${project.basedir}</main.basedir>
 	<build-plugin.jacoco.version>0.8.5</build-plugin.jacoco.version>
-	<build-plugin.coveralls.version>4.3.0</build-plugin.coveralls.version>
 </properties>
 
 <modules>
 	<module>frontend</module>
 	<module>backend</module>
 </modules>
-
 
 
 <build>
@@ -54,12 +51,6 @@
 				</execution>
 			</executions>
 		</plugin>
-		<plugin>
-			<groupId>org.eluder.coveralls</groupId>
-			<artifactId>coveralls-maven-plugin</artifactId>
-			<version>${build-plugin.coveralls.version}</version>
-		</plugin>
-
 	</plugins>
 </build>
 

@@ -51,7 +51,6 @@
           },
         mounted() {
             this.loadSite();
-          //  this.connect();
             this.loadJSON();
         },
         methods: {
@@ -60,7 +59,8 @@
             loadSite: function(){
                 this.element = this.getSiteName;
             },
-            // This Function get the Hierarchy from Backend only the need one
+            // This Function gets the needed hierarchy element from the server
+            // Add this method the the vuex store
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             loadJSON: function() {
@@ -72,28 +72,26 @@
                         this.firstElement = false;
                     })}
             },
-            // This Function Go Back to the last Element
+            // This Functions goes one element back
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             goBack: function () {
                  this.element = this.element.replace("'"+ this.parent,"");
                 this.loadJSON();
             },
-            // This Function Go to the next deeper Element
+            // This Function goes one element deeper
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             goIn: function (child) {
                 if (this.isBACnetObject(child) === false ) {
-                    //console.log(child);
                     if(this.firstElement === false) {
                     this.element = this.element.concat("'"+ child["elementName"]);
-                    //console.log(this.element)
                     this.loadJSON();
                         }
                     }
                 }
             ,
-            // This Function checked to a Datapoint or Structer Element
+            // This Function checkes if the element is e Structure element or a BACnet object
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             isBACnetObject: function (child){

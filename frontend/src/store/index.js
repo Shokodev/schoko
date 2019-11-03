@@ -6,6 +6,9 @@ import readAndWrite from "./modules/readAndWrite";
 import events from "./modules/events";
 
 Vue.use(Vuex);
+// Store modules for vuex, also passing the vuex to vue
+// @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+// @version 1.0
 
 export default new Vuex.Store({
 modules: {
@@ -13,5 +16,5 @@ modules: {
   settings,
   readAndWrite,
   events
-}
+  }
 });
