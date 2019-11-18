@@ -28,6 +28,7 @@ import java.util.List;
 
 /**
  * This class used to generate local device an get remote devices from bacnet network
+ * Communication to the BACnet network in here
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */
@@ -48,7 +49,7 @@ public class DeviceHandler {
     /**
      * Create Local Device and add listener
      *
-     * @param port port to read Network
+     * @param port port to read BACnet Network
      */
     public void createLocalDevice(Integer port)  {
         rebaseLocalDeviceIfExists();
@@ -72,7 +73,7 @@ public class DeviceHandler {
     }
 
     /**
-     *Send WhoIs request to the network
+     *Send WhoIs request to the BACnet network
      */
     private void scanForRemoteDevices()  {
         System.out.println("Scan for remote devices.........");
@@ -91,7 +92,7 @@ public class DeviceHandler {
     }
 
     /**
-     * checks list for remote devices at LocalDevice after network scan
+     * Checks list for remote devices at LocalDevice after network scan
      * @return massage and boolean
      */
     private boolean alertNoDeviceFound(){
@@ -103,7 +104,7 @@ public class DeviceHandler {
     }
 
     /**
-     * Create a destination objects to send to notificationClass objects in remote devices
+     * Create a destination object to send to notificationClass objects in remote devices
      * @return destination as required
      */
     private Destination creatAlarmDestination(){
@@ -150,7 +151,7 @@ public class DeviceHandler {
     }
 
     /**
-     * read and save more information about each remote device
+     * Reads and save more information about each remote device
      */
     private void getRemoteDeviceInformation() {
 

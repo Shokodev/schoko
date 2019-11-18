@@ -33,7 +33,7 @@ public class WSController {
     }
 
     /**
-     * Gets a List of all properties of a datapoint
+     * Gets a List of all properties of a data point
      * @param objectName get object properties by objectName
      */
     @MessageMapping("/objectSub")
@@ -44,8 +44,8 @@ public class WSController {
     }
 
     /**
-     * Gets a List of all properties of a datapoint
-     * @param closed  get object properties by objectName
+     * Client informs server to close property stream
+     * @param closed message for logging
      */
     @MessageMapping("/end")
     public void closed (String closed) {
@@ -53,13 +53,18 @@ public class WSController {
         objectHandler.disconnectPropertyStream();
     }
 
+    /**
+     * Client want to write a new value on a specific object
+     * @param bacnetProperty is the object the client wants to write, this also have
+     *                       the new value as a property
+     */
     @MessageMapping("/setValue")
-    public void setValue (BACnetProperty baCnetProperty) {
-        objectHandler.setNewValue(baCnetProperty.getPropertyIdentifier(),baCnetProperty.getValue());
+    public void setValue (BACnetProperty bacnetProperty) {
+        objectHandler.setNewValue(bacnetProperty.getPropertyIdentifier(),bacnetProperty.getValue());
     }
 
     /**
-     * Gets a List of all properties of a datapoint
+     * Used to get the existing events in the BACnet network by opening of the websocket
      */
     @MessageMapping("/eventSub")
     @SendTo("/broker/eventSub")

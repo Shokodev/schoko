@@ -29,7 +29,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * This class used manage communication to BACnet objects
+ * This class used to manage communication to BACnet objects
  * Communication to Network in here
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
@@ -43,12 +43,12 @@ public class ObjectService extends DeviceEventAdapter {
     private final LinkedList<BACnetProperty> properties = new LinkedList<>();
     private  RemoteDevice remoteDevice;
     private  ObjectIdentifier objectIdentifier;
-    //TODO this value should be changeable by the client (User)
+    //TODO this value should perhaps be changeable by the client (User)
     private  Integer roundPlacesAfterComma = 2;
 
 
     /**
-     * gets All properties from a DataPoint by elementTyp
+     * Gets all properties from a data point by elementTyp
      */
     public void readDataPointProperties(String elementName) {
         RemoteDevice remoteDevice = HierarchyService.obejctNamesToRemoteDevice.get(elementName);

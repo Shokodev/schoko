@@ -45,7 +45,7 @@ public class EventService extends DeviceEventAdapter {
     }
 
     /**
-     * Catchs all event changes on the network an update the alarm list
+     * Catchs all event changes on the network and update the alarm list
      */
     @Override
     public void eventNotificationReceived(UnsignedInteger processIdentifier, RemoteDevice remoteDevice, ObjectIdentifier oid, TimeStamp timeStamp, UnsignedInteger notificationClass, UnsignedInteger priority, EventType eventType, CharacterString messageText, NotifyType notifyType, Boolean ackRequired, EventState fromState, EventState toState, NotificationParameters eventValues) {
@@ -78,7 +78,7 @@ public class EventService extends DeviceEventAdapter {
     }
 
     /**
-     * This private method is used to get the description of a object by object-identifier for the event list
+     * This method is used to get the description of a object by object-identifier for the event list
      * @param oid object-identifier
      * @param remoteDevice remote device of object
      * @return description of object
@@ -115,7 +115,7 @@ public class EventService extends DeviceEventAdapter {
     }
 
     /**
-     * gets events by ID
+     * Gets events by ID
      * @return BACnet event
      */
     private BACnetEvent getEventByOidAndDevice(ObjectIdentifier oid, RemoteDevice remoteDevice){
@@ -148,7 +148,8 @@ public class EventService extends DeviceEventAdapter {
     }
 
     /**
-     *
+     * Update event state on a BACnet event
+     * TODO this method will be used after the  acknowledgement is implemented
      * @param event BACnet event
      * @param fromState event state before change of caught event
      * @param toState new event state of caught event

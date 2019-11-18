@@ -1,7 +1,7 @@
 package com.bacnetbrowser.schoko.model.models;
 
 /**
- * is used to generate BACnet event Objects with needed properties for the client
+ * Is used to generate BACnet event Objects with needed properties for the client
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */

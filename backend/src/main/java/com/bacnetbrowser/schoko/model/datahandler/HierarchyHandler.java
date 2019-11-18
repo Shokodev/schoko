@@ -1,6 +1,6 @@
 package com.bacnetbrowser.schoko.model.datahandler;
 
-import com.bacnetbrowser.schoko.controller.HTTPController;
+
 import com.bacnetbrowser.schoko.model.models.BACnetNode;
 import com.bacnetbrowser.schoko.model.models.BACnetStructure;
 import com.bacnetbrowser.schoko.model.services.HierarchyService;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This Class is offers the framework for generate a BACnet structure
+ * Objects of this class are the BACnet structure
  *
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
