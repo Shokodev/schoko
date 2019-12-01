@@ -58,11 +58,14 @@ public class ObjectHandler {
      * @param newValue new value for property
      */
     public void setNewValue(String propertyIdentifier, String newValue){
-
         for (PropertyIdentifier oid : PropertyIdentifier.ALL)
             if (oid.toString().equals(propertyIdentifier)){
-                objectService.writeValue(oid, BACnetTypes.getPropertyValuesByObjectType(objectService.getObjectIdentifier().getObjectType(), newValue));
-        }}
+                try {
+                    objectService.writeValue(oid, BACnetTypes.getPropertyValuesByObjectType(objectService.getObjectIdentifier().getObjectType(), newValue));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }}
 
     }
 

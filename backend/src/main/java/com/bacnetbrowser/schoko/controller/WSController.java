@@ -61,6 +61,7 @@ public class WSController {
     @MessageMapping("/setValue")
     public void setValue (BACnetProperty bacnetProperty) {
         objectHandler.setNewValue(bacnetProperty.getPropertyIdentifier(),bacnetProperty.getValue());
+
     }
 
     /**
