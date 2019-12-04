@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <header>
-      <section class="hero is-primary">
+      <section class="hero has-background-grey-dark">
         <div class="container">
-          <h1 class="title">
+          <h1 class="title has-text-white-ter">
         <span class="icon is-large" v-on:click="ackAlarm()" v-if="getHasNewAlarm">
           <router-link class="far fa-bell button is-danger" to="/alarmList"></router-link>
         </span>
-            BACnet Browser
+            Schoko BACnet Browser
           </h1>
         </div>
       </section>
