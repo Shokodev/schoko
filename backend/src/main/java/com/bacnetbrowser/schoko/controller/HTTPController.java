@@ -33,7 +33,6 @@ public class HTTPController {
         this.hierarchyHandler = hierarchyHandler;
         this.settingsHandler = settingsHandler;
         this.deviceHandler = deviceHandler;
-        tryToBuildStructureWithSavedSettings();
     }
     /**
      * @return complete hierarchy structure
@@ -87,14 +86,4 @@ public class HTTPController {
     @ResponseStatus(value= HttpStatus.NOT_FOUND, reason = "Node not found") //404
     private static class NodeNotFoundException extends RuntimeException {
             }
-
-    /**
-     * If the application will be restarted or if its the first start, this method will try to build the structure with the settings saved in application.properties
-     */
-    private void tryToBuildStructureWithSavedSettings(){
-        //parse HEX BACx port to Integer
-        deviceHandler.createLocalDevice(Integer.parseInt(settingsHandler.getPort(), 16));
-        System.out.println("Try to build structure with default settings or saved settings");
-        hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
-    }
 }

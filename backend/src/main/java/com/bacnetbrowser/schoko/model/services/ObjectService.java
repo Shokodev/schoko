@@ -46,6 +46,7 @@ public class ObjectService extends DeviceEventAdapter {
     private ObjectHandler objectHandler;
 
     private final LinkedList<BACnetProperty> properties = new LinkedList<>();
+    private List<PropertyTypeDefinition> propertyTypeDefinitions = new LinkedList<>();
     private  RemoteDevice remoteDevice;
     private  ObjectIdentifier objectIdentifier;
     //TODO this value should perhaps be changeable by the client (User)
@@ -64,11 +65,12 @@ public class ObjectService extends DeviceEventAdapter {
         for (ObjectType type : objectType) {
             if (oid.getObjectType().equals(type)) {
                 try {
-                    List<PropertyTypeDefinition> poids = ObjectProperties.getPropertyTypeDefinitions(type);
-                    creatProperties(properties, remoteDevice, oid, poids);
+                    this.propertyTypeDefinitions = ObjectProperties.getPropertyTypeDefinitions(type);
+                    creatProperties(properties, remoteDevice, oid, propertyTypeDefinitions);
+
                 } catch (Exception e) {
-                    List<PropertyTypeDefinition> poids = ObjectProperties.getRequiredPropertyTypeDefinitions(type);
-                    creatProperties(properties, remoteDevice, oid, poids);
+                    this.propertyTypeDefinitions = ObjectProperties.getRequiredPropertyTypeDefinitions(type);
+                    creatProperties(properties, remoteDevice, oid, propertyTypeDefinitions);
                 }
             }
         }
@@ -84,7 +86,6 @@ public class ObjectService extends DeviceEventAdapter {
      *
      */
     private void creatProperties(LinkedList<BACnetProperty> properties, RemoteDevice remoteDevice, ObjectIdentifier oid, List<PropertyTypeDefinition> poids)  {
-
         for (PropertyTypeDefinition op : poids) {
             try {
             ConfirmedRequestService request = new ReadPropertyRequest(oid, op.getPropertyIdentifier());
@@ -92,9 +93,27 @@ public class ObjectService extends DeviceEventAdapter {
             BACnetProperty property = new BACnetProperty(result.getValue().toString(),result.getPropertyIdentifier().toString());
             properties.add(property);
             } catch (BACnetException bac){
-                System.err.println("Cant read property " + op.getPropertyIdentifier().toString() + " of Object: " + oid.toString());;
+                System.err.println("Cant read property " + op.getPropertyIdentifier().toString() + " of Object: " + oid.toString());
             }
         }
+    }
+
+    private void updateProperties(){
+        for (PropertyTypeDefinition op : propertyTypeDefinitions) {
+            try {
+                ConfirmedRequestService request = new ReadPropertyRequest(objectIdentifier, op.getPropertyIdentifier());
+                ReadPropertyAck result = (ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, request);
+                for (BACnetProperty baCnetProperty : properties){
+                    if (baCnetProperty.getPropertyIdentifier().equals(op.getPropertyIdentifier().toString())){
+                        baCnetProperty.setValue(result.getValue().toString());
+                    }
+                }
+
+            } catch (BACnetException bac){
+                System.err.println("Cant update property " + op.getPropertyIdentifier().toString() + " of Object: " + objectIdentifier.toString());
+            }
+        }
+
     }
 
     public LinkedList<BACnetProperty> getProperties() {
@@ -157,7 +176,7 @@ public class ObjectService extends DeviceEventAdapter {
         try {
             DeviceHandler.localDevice.send(remoteDevice, request);
         }catch(BACnetException bac){
-            System.err.println("Cant release " + objectIdentifier.toString() + " you fool!");
+            System.err.println("Cant release " + objectIdentifier.toString());
         }
     }
 
@@ -170,8 +189,6 @@ public class ObjectService extends DeviceEventAdapter {
      */
     @Override
     public void covNotificationReceived(UnsignedInteger subscriberProcessIdentifier, RemoteDevice remoteDevice, ObjectIdentifier oid, UnsignedInteger timeRemaining, SequenceOf<PropertyValue> listOfValues) {
-
-
         for (PropertyValue pv : listOfValues){
             for(BACnetProperty baCnetProperty : getProperties()){
                if(pv.getPropertyIdentifier().toString().equals(baCnetProperty.getPropertyIdentifier())){
@@ -181,11 +198,12 @@ public class ObjectService extends DeviceEventAdapter {
                        baCnetProperty.setValue(pv.getValue().toString());
                    }
                    System.out.println("Device: " + remoteDevice.getObjectIdentifier() + " has sent new " +baCnetProperty.getPropertyIdentifier() + ": " + baCnetProperty.getValue());
-
                }
 
             }
         }
+        //TODO this method should replace the code above
+        updateProperties();
     objectHandler.updateStream();
     }
 

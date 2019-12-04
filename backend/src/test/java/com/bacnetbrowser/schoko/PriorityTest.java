@@ -34,12 +34,8 @@ public class PriorityTest {
         System.out.println(localDevice.getRemoteDevices().get(0).getInstanceNumber());
         RemoteDevice remoteDevice = localDevice.getRemoteDevices().get(0);
 
-        PriorityValue pv = new PriorityValue(new BinaryPV(1));
-        //System.out.println(pv.getNullValue().toString());
-
         WritePropertyRequest req = new WritePropertyRequest(new ObjectIdentifier(ObjectType.binaryValue, 39),PropertyIdentifier.presentValue,null,new PriorityValue(new Null()),new UnsignedInteger(8));
         localDevice.send(remoteDevice,req);
-
 
         ConfirmedRequestService request = new ReadPropertyRequest(new ObjectIdentifier(ObjectType.binaryValue, 39), PropertyIdentifier.priorityArray);
         ReadPropertyAck result = (ReadPropertyAck) localDevice.send(remoteDevice, request);
