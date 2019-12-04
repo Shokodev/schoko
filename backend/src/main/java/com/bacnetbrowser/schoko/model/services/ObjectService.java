@@ -15,14 +15,18 @@ import com.serotonin.bacnet4j.service.confirmed.ReadPropertyRequest;
 import com.serotonin.bacnet4j.service.confirmed.SubscribeCOVRequest;
 import com.serotonin.bacnet4j.service.confirmed.WritePropertyRequest;
 import com.serotonin.bacnet4j.type.Encodable;
+import com.serotonin.bacnet4j.type.constructed.PriorityArray;
+import com.serotonin.bacnet4j.type.constructed.PriorityValue;
 import com.serotonin.bacnet4j.type.constructed.PropertyValue;
 import com.serotonin.bacnet4j.type.constructed.SequenceOf;
+import com.serotonin.bacnet4j.type.enumerated.BinaryPV;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import com.serotonin.bacnet4j.type.primitive.Boolean;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.support.NullValue;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
@@ -131,14 +135,27 @@ public class ObjectService extends DeviceEventAdapter {
      * @param poid witch property to write
      * @param value new value for property
      */
-    public void writeValue(PropertyIdentifier poid, Encodable value){
-        // 8 is default priority for process level commands
-        WritePropertyRequest request = new WritePropertyRequest(objectIdentifier, poid, null, value, new UnsignedInteger(8));
+    public void writeValue(PropertyIdentifier poid, Encodable value) {
+        WritePropertyRequest request = new WritePropertyRequest(objectIdentifier, poid,null,value, new UnsignedInteger(8));
         System.out.println("Write on :" + poid.toString() + " with: " + value.toString());
         try {
             DeviceHandler.localDevice.send(remoteDevice, request);
         }catch(BACnetException bac){
-            System.err.println("Cant write " + poid.toString() + " at " + objectIdentifier.toString() + " you fool!");
+            System.err.println("Cant write " + poid.toString() + " at " + objectIdentifier.toString());
+        }
+    }
+
+    /**
+     * Release a manual written property of the priority 8
+     */
+    public void releaseManualCommand(){
+
+        WritePropertyRequest request = new WritePropertyRequest(objectIdentifier, PropertyIdentifier.priorityArray,new UnsignedInteger(8), null, null);
+        System.out.println("Release :" + objectIdentifier);
+        try {
+            DeviceHandler.localDevice.send(remoteDevice, request);
+        }catch(BACnetException bac){
+            System.err.println("Cant release " + objectIdentifier.toString() + " you fool!");
         }
     }
 
