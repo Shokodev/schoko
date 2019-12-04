@@ -1,38 +1,36 @@
 <template>
     <span>
-
         <div>
-                <span  v-for="prop in node" :key="prop.propertyIdentifier" >
-                <span class="box" v-if="prop.propertyIdentifier==='Description'">
-                    <span class="has-text-weight-bold">Beschreibung:</span>
-                    {{prop.value}}
-                </span>
-                </span>
-
+            <span  v-for="prop in node" :key="prop.propertyIdentifier" >
+            <span class="box" v-if="prop.propertyIdentifier==='Description'">
+                <span class="has-text-weight-bold">Beschreibung:</span>
+                {{prop.value}}
+            </span>
+            </span>
         </div>
         <div >
-            <span class="box1">
-        <span class="level">
-            <span class="level-left">
-                <span v-for="prop in node" :key="prop.propertyIdentifier" >
-                <span v-if="prop.propertyIdentifier==='Present value'">
-                    <span  class="has-text-weight-bold">Aktueller Wert:</span>
-                   {{getStateText[prop.value]}}
+        <span class="box1">
+            <span class="level">
+                <span class="level-left">
+                    <span v-for="prop in node" :key="prop.propertyIdentifier" >
+                    <span v-if="prop.propertyIdentifier==='Present value'">
+                        <span  class="has-text-weight-bold">Aktueller Wert:</span>
+                       {{getStateText[prop.value]}}
+                    </span>
+                    </span>
                 </span>
-                </span>
+                    <span class="level-right">
+                  <span class="select">
+                    <select v-model="writeValue">
+                        <option>{{this.inactiveValue}}</option>
+                        <option>{{this.activeValue}}</option>
+                    </select>
+                  </span>
+                    <button class="button is-primary" v-on:click="setWriteValue()">
+                         Senden
+                     </button>
+                    </span>
             </span>
-                <span class="level-right">
-              <span class="select">
-                <select v-model="writeValue">
-                    <option>{{this.inactiveValue}}</option>
-                    <option>{{this.activeValue}}</option>
-                </select>
-              </span>
-                <button class="button is-primary" v-on:click="setWriteValue()">
-                     Senden
-                 </button>
-                </span>
-        </span>
             </span>
         </div>
         <div>
