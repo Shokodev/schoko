@@ -61,6 +61,7 @@ public class ObjectHandler {
         for (PropertyIdentifier oid : PropertyIdentifier.ALL)
             if (oid.toString().equals(propertyIdentifier)){
                     objectService.writeValue(oid, BACnetTypes.getPropertyValuesByObjectType(objectService.getObjectIdentifier().getObjectType(), newValue));
+
             }}
 
     }
