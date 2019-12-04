@@ -23,6 +23,7 @@ import com.serotonin.bacnet4j.type.enumerated.BinaryPV;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import com.serotonin.bacnet4j.type.primitive.Boolean;
+import com.serotonin.bacnet4j.type.primitive.Null;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,6 +137,7 @@ public class ObjectService extends DeviceEventAdapter {
      * @param value new value for property
      */
     public void writeValue(PropertyIdentifier poid, Encodable value) {
+        // 8 is default priority for manual operations
         WritePropertyRequest request = new WritePropertyRequest(objectIdentifier, poid,null,value, new UnsignedInteger(8));
         System.out.println("Write on :" + poid.toString() + " with: " + value.toString());
         try {
@@ -143,14 +145,14 @@ public class ObjectService extends DeviceEventAdapter {
         }catch(BACnetException bac){
             System.err.println("Cant write " + poid.toString() + " at " + objectIdentifier.toString());
         }
+
     }
 
     /**
      * Release a manual written property of the priority 8
      */
     public void releaseManualCommand(){
-
-        WritePropertyRequest request = new WritePropertyRequest(objectIdentifier, PropertyIdentifier.priorityArray,new UnsignedInteger(8), null, null);
+        WritePropertyRequest request = new WritePropertyRequest(objectIdentifier,PropertyIdentifier.presentValue,null,new PriorityValue(new Null()),new UnsignedInteger(8));
         System.out.println("Release :" + objectIdentifier);
         try {
             DeviceHandler.localDevice.send(remoteDevice, request);

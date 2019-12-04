@@ -12,6 +12,7 @@ import com.serotonin.bacnet4j.service.unconfirmed.WhoIsRequest;
 import com.serotonin.bacnet4j.transport.Transport;
 import com.serotonin.bacnet4j.type.constructed.BaseType;
 import com.serotonin.bacnet4j.type.constructed.PriorityValue;
+import com.serotonin.bacnet4j.type.enumerated.BinaryPV;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import com.serotonin.bacnet4j.type.primitive.Null;
@@ -33,11 +34,12 @@ public class PriorityTest {
         System.out.println(localDevice.getRemoteDevices().get(0).getInstanceNumber());
         RemoteDevice remoteDevice = localDevice.getRemoteDevices().get(0);
 
-        PriorityValue pv = new PriorityValue(new Null());
+        PriorityValue pv = new PriorityValue(new BinaryPV(1));
+        //System.out.println(pv.getNullValue().toString());
 
+        WritePropertyRequest req = new WritePropertyRequest(new ObjectIdentifier(ObjectType.binaryValue, 39),PropertyIdentifier.presentValue,null,new PriorityValue(new Null()),new UnsignedInteger(8));
+        localDevice.send(remoteDevice,req);
 
-       WritePropertyRequest req = new WritePropertyRequest(new ObjectIdentifier(ObjectType.binaryValue, 39),PropertyIdentifier.priorityArray,new UnsignedInteger(8),pv,null);
-       localDevice.send(remoteDevice,req);
 
         ConfirmedRequestService request = new ReadPropertyRequest(new ObjectIdentifier(ObjectType.binaryValue, 39), PropertyIdentifier.priorityArray);
         ReadPropertyAck result = (ReadPropertyAck) localDevice.send(remoteDevice, request);

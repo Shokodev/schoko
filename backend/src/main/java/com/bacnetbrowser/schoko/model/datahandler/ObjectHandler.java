@@ -64,6 +64,13 @@ public class ObjectHandler {
 
             }}
 
+    /**
+     * Use to release manual operation
+     */
+    public void releaseValue(){
+        objectService.releaseManualCommand();
+    }
+
     }
 
 

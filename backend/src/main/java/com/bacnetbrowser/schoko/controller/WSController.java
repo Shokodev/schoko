@@ -65,6 +65,15 @@ public class WSController {
     }
 
     /**
+     * Use to release manual operation
+     */
+    @MessageMapping("/releaseValue")
+    public void releaseValue (String releaseMessage) {
+        objectHandler.releaseValue();
+    }
+
+
+    /**
      * Used to get the existing events in the BACnet network by opening of the websocket
      */
     @MessageMapping("/eventSub")

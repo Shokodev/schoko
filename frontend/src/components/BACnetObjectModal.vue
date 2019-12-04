@@ -95,9 +95,13 @@
             // A new value gets send over the stompclient to the backend server
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
-            sendValue: function () {
-                this.stompClient.send("/app/setValue", {}, JSON.stringify(this.getBACnetProperty));
-            },
+            sendValue: function (value) {
+                if(value !== "release") {
+                    this.stompClient.send("/app/setValue", {}, JSON.stringify(this.getBACnetProperty));
+                }else{
+                this.stompClient.send("/app/releaseValue", {}, JSON.stringify("object is released"));
+            }},
+
         },
         computed: {
             ...mapGetters(["getBACnetObject", "getBACnetProperty","getObjectType", "getIsConnected"]),

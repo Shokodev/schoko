@@ -29,6 +29,9 @@
                     <button class="button is-primary" v-on:click="setWriteValue()">
                          Senden
                      </button>
+                        <button class="button is-primary" v-on:click="releaseValue()">
+                         Freigabe
+                     </button>
                     </span>
             </span>
             </span>
@@ -146,6 +149,10 @@
             this.SetBACnetProperty(bacnetProperty);
             this.$emit('event', this.getBACnetProperty)
         },
+            releaseValue: function () {
+            this.$emit('event',"release")
+
+            }
     },
 }
 </script>
