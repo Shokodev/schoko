@@ -32,7 +32,7 @@ public class ObjectTest {
         localDevice.sendGlobalBroadcast(new WhoIsRequest());
 
         // Wait a bit for responses to come in.
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         for (RemoteDevice remoteDevice : localDevice.getRemoteDevices()) {
             RequestUtils.getExtendedDeviceInformation(localDevice, remoteDevice);
@@ -54,7 +54,7 @@ public class ObjectTest {
     static class Listener extends DeviceEventAdapter {
         @Override
         public void iAmReceived(RemoteDevice d) {
-            System.out.println("IAm received" + d);
+            System.out.println("IAm received" + d.getVendorName() + ": " + d.getObjectIdentifier().toString());
         }
     }
 }

@@ -60,11 +60,7 @@ public class ObjectHandler {
     public void setNewValue(String propertyIdentifier, String newValue){
         for (PropertyIdentifier oid : PropertyIdentifier.ALL)
             if (oid.toString().equals(propertyIdentifier)){
-                try {
                     objectService.writeValue(oid, BACnetTypes.getPropertyValuesByObjectType(objectService.getObjectIdentifier().getObjectType(), newValue));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
             }}
 
     }
