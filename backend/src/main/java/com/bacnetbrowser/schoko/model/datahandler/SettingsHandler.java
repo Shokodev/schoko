@@ -16,6 +16,7 @@ public class SettingsHandler {
     private String siteName;
     private String siteDescription;
     private String bacnetSeparator;
+    private String localDeviceID;
 
 
     public String getPort() {
@@ -50,5 +51,11 @@ public class SettingsHandler {
         this.bacnetSeparator = bacnetSeparator;
     }
 
+    public String getLocalDeviceID() {
+        return localDeviceID;
+    }
 
+    public void setLocalDeviceID(String localDeviceID) {
+        this.localDeviceID = localDeviceID;
+    }
 }

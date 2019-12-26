@@ -1,109 +1,205 @@
 package com.bacnetbrowser.schoko.model.models;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.*;
 
 /**
  * Is used to generate BACnet event Objects with needed properties for the client
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */
+
+@Entity
 public class BACnetEvent {
 
-    // Event Properties
+    @javax.persistence.Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int ID;
     private Integer eventID;
+
+    // Event Properties
+    private String processIdentifier;
+    private String remoteDeviceName;
     private String oid;
-    private String RemoteDeviceName;
     private String timeStamp;
+    private String notificationClass;
+    private String priority;
+    private String eventType;
+    private String messageText;
+    private String notifyType;
+    private String ackRequired;
     private String fromState;
     private String toState;
+    private String eventValues;
 
     // Object Properties
     private String description;
     private String presentValue;
     private String objectName;
 
+    public BACnetEvent(String processIdentifier, String remoteDeviceName, String oid,
+                       String timeStamp, String notificationClass, String priority, String eventType,
+                       String messageText, String notifyType, String ackRequired, String fromState, String toState,
+                       String eventValues, String description, String presentValue, String objectName) {
 
-    public BACnetEvent(String oid, String remoteDeviceName, String timeStamp, String fromState, String toState, String description, String presentValue, String objectName) {
+        this.processIdentifier = processIdentifier;
+        this.remoteDeviceName = remoteDeviceName;
         this.oid = oid;
-        RemoteDeviceName = remoteDeviceName;
         this.timeStamp = timeStamp;
+        this.notificationClass = notificationClass;
+        this.priority = priority;
+        this.eventType = eventType;
+        this.messageText = messageText;
+        this.notifyType = notifyType;
+        this.ackRequired = ackRequired;
         this.fromState = fromState;
         this.toState = toState;
+        this.eventValues = eventValues;
         this.description = description;
         this.presentValue = presentValue;
         this.objectName = objectName;
+    }
+
+    public BACnetEvent() {
     }
 
     public Integer getEventID() {
         return eventID;
     }
 
-    public String getOid() {
-        return oid;
+    public void setEventID(Integer eventID) {
+        this.eventID = eventID;
+    }
+
+    public String getProcessIdentifier() {
+        return processIdentifier;
+    }
+
+    public void setProcessIdentifier(String processIdentifier) {
+        this.processIdentifier = processIdentifier;
     }
 
     public String getRemoteDeviceName() {
-        return RemoteDeviceName;
+        return remoteDeviceName;
     }
 
-    public String getTimeStamp() {
-        return timeStamp;
+    public void setRemoteDeviceName(String remoteDeviceName) {
+        this.remoteDeviceName = remoteDeviceName;
     }
 
-    public String getFromState() {
-        return fromState;
-    }
-
-    public String getToState() {
-        return toState;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getPresentValue() {
-        return presentValue;
-    }
-
-    public String getObjectName() {
-        return objectName;
-    }
-
-    public void setFromState(String fromState) {
-        this.fromState = fromState;
-    }
-
-    public void setToState(String toState) {
-        this.toState = toState;
-    }
-
-    public void setEventID(Integer eventID) {
-        this.eventID = eventID;
+    public String getOid() {
+        return oid;
     }
 
     public void setOid(String oid) {
         this.oid = oid;
     }
 
-    public void setRemoteDeviceName(String remoteDeviceName) {
-        RemoteDeviceName = remoteDeviceName;
+    public String getTimeStamp() {
+        return timeStamp;
     }
 
     public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }
 
+    public String getNotificationClass() {
+        return notificationClass;
+    }
+
+    public void setNotificationClass(String notificationClass) {
+        this.notificationClass = notificationClass;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public String getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
+    }
+
+    public String getMessageText() {
+        return messageText;
+    }
+
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
+    }
+
+    public String getNotifyType() {
+        return notifyType;
+    }
+
+    public void setNotifyType(String notifyType) {
+        this.notifyType = notifyType;
+    }
+
+    public String getAckRequired() {
+        return ackRequired;
+    }
+
+    public void setAckRequired(String ackRequired) {
+        this.ackRequired = ackRequired;
+    }
+
+    public String getFromState() {
+        return fromState;
+    }
+
+    public void setFromState(String fromState) {
+        this.fromState = fromState;
+    }
+
+    public String getToState() {
+        return toState;
+    }
+
+    public void setToState(String toState) {
+        this.toState = toState;
+    }
+
+    public String getEventValues() {
+        return eventValues;
+    }
+
+    public void setEventValues(String eventValues) {
+        this.eventValues = eventValues;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPresentValue() {
+        return presentValue;
     }
 
     public void setPresentValue(String presentValue) {
         this.presentValue = presentValue;
     }
 
+    public String getObjectName() {
+        return objectName;
+    }
+
     public void setObjectName(String objectName) {
         this.objectName = objectName;
     }
 }
+
 
 
 

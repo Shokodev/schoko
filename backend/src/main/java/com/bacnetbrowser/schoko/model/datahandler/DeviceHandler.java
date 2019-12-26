@@ -51,11 +51,10 @@ public class DeviceHandler {
      *
      * @param port port to read BACnet Network
      */
-    public void createLocalDevice(Integer port)  {
+    public void createLocalDevice(Integer port, Integer localDevice_ID)  {
         rebaseLocalDeviceIfExists();
         IpNetwork ipNetwork = new IpNetwork(IpNetwork.DEFAULT_BROADCAST_IP, port);
         Transport transport = new Transport(ipNetwork);
-        int localDevice_ID = 10001;
         localDevice = new LocalDevice(localDevice_ID, transport);
         localDevice.getEventHandler().addListener(eventService);
         localDevice.getEventHandler().addListener(objectService);
@@ -68,7 +67,7 @@ public class DeviceHandler {
         scanForRemoteDevices();
         getRemoteDeviceInformation();
         setLocalDeviceAsAlarmReceiver();
-
+        eventService.getEventInformation();
 
     }
 

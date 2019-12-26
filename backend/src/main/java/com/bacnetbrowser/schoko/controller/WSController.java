@@ -83,15 +83,4 @@ public class WSController {
 
     }
 
-    /**
-     * get all existing events in the network
-     */
-    @MessageMapping("/getEvents")
-    public void getEvents (String message) {
-        //TODO look if existing events creates OR update event list
-        eventHandler.lookForExistingEvents();
-        System.out.println(message + "get existing events");
-    }
-
-
 }
