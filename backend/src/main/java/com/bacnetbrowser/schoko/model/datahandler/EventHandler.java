@@ -38,13 +38,6 @@ public class EventHandler {
         template.convertAndSend("/broker/eventSub", eventService.getEvents());
         System.out.println("Send updated eventList");
     }
-    //TODO this one should trigger this process
-    /**
-     * Gets information about all event states of all objects in the network
-     * the return will be over the updateStream method
-     */
-    public void lookForExistingEvents(){
-        eventService.getEventInformation();
-    }
+
 }
 

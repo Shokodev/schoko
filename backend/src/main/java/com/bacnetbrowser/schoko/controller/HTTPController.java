@@ -2,7 +2,6 @@ package com.bacnetbrowser.schoko.controller;
 
 import com.bacnetbrowser.schoko.model.datahandler.*;
 import com.bacnetbrowser.schoko.model.models.BACnetNode;
-import com.bacnetbrowser.schoko.model.models.BACnetStructure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -34,12 +33,21 @@ public class HTTPController {
         this.settingsHandler = settingsHandler;
         this.deviceHandler = deviceHandler;
     }
+
     /**
      * @return complete hierarchy structure
      */
     @GetMapping("/hierarchy")
-    public BACnetStructure all (){
-        return hierarchyHandler.getStructure();
+    public BACnetNode all (){
+        return hierarchyHandler.getBacnetStructure();
+    }
+
+    /**
+     * @return complete device structure
+     */
+    @GetMapping("/devices")
+    public BACnetNode devcieStructure (){
+        return hierarchyHandler.getDeviceStructure();
     }
 
     /**
@@ -48,13 +56,14 @@ public class HTTPController {
      * @return new settings
      */
     @PostMapping(value = "/settings")
-    public ResponseEntity<SettingsHandler> updateSettings(@RequestBody SettingsHandler settings) {
+    public ResponseEntity<SettingsHandler> updateSettingsAndBuildProcess(@RequestBody SettingsHandler settings) {
         settingsHandler.setSiteName(settings.getSiteName());
         settingsHandler.setPort(settings.getPort());
         settingsHandler.setBacnetSeparator(settings.getBacnetSeparator());
         settingsHandler.setSiteDescription(settings.getSiteDescription());
+        //TODO as soon as frontend ready, this can be activated
         //settingsHandler.setLocalDeviceID(settings.getLocalDeviceID());
-        deviceHandler.createLocalDevice(Integer.parseInt(settingsHandler.getPort(), 16),Integer.parseInt(settingsHandler.getLocalDeviceID()));
+        deviceHandler.createNetwork(Integer.parseInt(settingsHandler.getPort(), 16),Integer.parseInt(settingsHandler.getLocalDeviceID()));
         System.out.println("Build structure with new settings.....");
         hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
         return new ResponseEntity<SettingsHandler>(settings, HttpStatus.OK);
@@ -72,13 +81,13 @@ public class HTTPController {
 
     /**
      *
-     * @param elementName is equals to object name like "Site01'B'A'Ahu01"
+     * @param objectName is equals to object name like "Site01'B'A'Ahu01"
      * @return hierarchy structure node with his children
      */
-    @GetMapping("/structure/{elementName}")
-    public BACnetNode getBacnetStructure(@PathVariable String elementName){
-        System.out.println("Get node: " + elementName);
-        return hierarchyHandler.getChildrenByNodeElementName(elementName);
+    @GetMapping("/structure/{objectName}")
+    public BACnetNode getBacnetStructure(@PathVariable String objectName){
+        System.out.println("Get node: " + objectName);
+        return hierarchyHandler.getChildrenByObjectName(objectName);
         }
 
     /**
