@@ -25,6 +25,13 @@
                 <p class="help">Site Description eingeben</p>
             </div>
             <div class="field">
+                <label class="label">Device ID</label>
+                <div class="control">
+                    <input v-model="settings.localDeviceID"  class="input" type="number" >
+                </div>
+                <p class="help">Schoko Device ID</p>
+            </div>
+            <div class="field">
                 <label class="label">BACnet Separator</label>
                 <div class="control">
                     <input v-model="settings.bacnetSeparator"  class="input" type="text" >
@@ -75,6 +82,7 @@
                     port: Number,
                     siteDescription: "Description",
                     bacnetSeparator: "'",
+                    localDeviceID: "",
                 },
                 color: '#2c3e50',
                 size: '25px',
@@ -97,6 +105,7 @@
             this.settings.siteName = this.getSettings.siteName;
             this.settings.port = this.getSettings.port;
             this.settings.bacnetSeparator = this.getSettings.bacnetSeparator;
+            this.settings.localDeviceID = this.getSettings.localDeviceID;
         }
     }
 </script>

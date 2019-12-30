@@ -2,12 +2,8 @@
   <div id="app">
     <body>
 
-            <section class="columns has-background-grey-dark">
-
-              <div class="column icon is-large" v-on:click="ackAlarm()" v-if="getHasNewAlarm">
-                <router-link class="far fa-bell button is-danger" to="/alarmList"></router-link>
-              </div>
-                <h1 class="column title has-text-white-ter">
+            <section class="has-background-grey-dark">
+                <h1 class=" main-title title has-text-white-ter">
                   Schoko BACnet Browser
                 </h1>
             </section>
@@ -82,12 +78,7 @@
           this.getStompClient.disconnect();
           this.isConnectedEvents(false);
         },
-        // This Function acknolage with the alarmicon
-        // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
-        // @version 1.0
-        ackAlarm: function () {
-          this.newEvent(false)
-        }
+
     },
     computed: {
       ...mapGetters([
@@ -117,6 +108,9 @@
     position: sticky;
     top: 0px;
   }
+ .main-title{
+     text-align: center;
+ }
 
 
 </style>

@@ -29,13 +29,22 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex';
+    import {mapGetters, mapActions} from 'vuex';
         export default {
         name: "AlarmList",
             data() {
                 return {
                     bacnetEvents: null,
                 };
+            },
+            mounted() {
+                // This Function acknolage with the alarmicon
+                // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
+                // @version 1.0
+                    this.newEvent(false)
+            },
+            methods: {
+                ...mapActions(["newEvent"])
             },
             computed:{
             ...mapGetters(["getEvents"])

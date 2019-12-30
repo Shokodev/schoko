@@ -61,8 +61,7 @@ public class HTTPController {
         settingsHandler.setPort(settings.getPort());
         settingsHandler.setBacnetSeparator(settings.getBacnetSeparator());
         settingsHandler.setSiteDescription(settings.getSiteDescription());
-        //TODO as soon as frontend ready, this can be activated
-        //settingsHandler.setLocalDeviceID(settings.getLocalDeviceID());
+        settingsHandler.setLocalDeviceID(settings.getLocalDeviceID());
         deviceHandler.createNetwork(Integer.parseInt(settingsHandler.getPort(), 16),Integer.parseInt(settingsHandler.getLocalDeviceID()));
         System.out.println("Build structure with new settings.....");
         hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
