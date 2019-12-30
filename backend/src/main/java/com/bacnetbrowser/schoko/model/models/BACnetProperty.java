@@ -1,5 +1,8 @@
 package com.bacnetbrowser.schoko.model.models;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 /**
  * Is used to generate Objects in needed format for frontend
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
@@ -29,6 +32,7 @@ public class BACnetProperty {
     public void setPropertyIdentifier(String propertyIdentifier) {
         this.propertyIdentifier = propertyIdentifier;
     }
+
 
 
 }

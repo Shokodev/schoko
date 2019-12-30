@@ -50,29 +50,25 @@ public class ObjectService extends DeviceEventAdapter {
     private Integer roundPlacesAfterComma = 2;
 
 
+    //TODO get direct from remote device
     /**
-     * Gets all properties from a data point by elementTyp
+     * Gets all properties from a data point by objectName
      */
-    public void readDataPointProperties(String elementName) {
-        RemoteDevice remoteDevice = HierarchyService.obejctNamesToRemoteDevice.get(elementName);
-        ObjectIdentifier oid = HierarchyService.objectNamesToOids.get(elementName);
+    public void readDataPointProperties(String objectName) {
+        RemoteDevice remoteDevice = HierarchyService.obejctNamesToRemoteDevice.get(objectName);
+        ObjectIdentifier oid = HierarchyService.objectNamesToOids.get(objectName);
         this.objectIdentifier = oid;
         this.remoteDevice = remoteDevice;
-        ObjectType[] objectType = ObjectType.ALL;
-        for (ObjectType type : objectType) {
-            if (oid.getObjectType().equals(type)) {
                 try {
-                    this.propertyTypeDefinitions = ObjectProperties.getPropertyTypeDefinitions(type);
+                    this.propertyTypeDefinitions = ObjectProperties.getPropertyTypeDefinitions(oid.getObjectType());
                     creatProperties(properties, remoteDevice, oid, propertyTypeDefinitions);
 
                 } catch (Exception e) {
-                    this.propertyTypeDefinitions = ObjectProperties.getRequiredPropertyTypeDefinitions(type);
+                    this.propertyTypeDefinitions = ObjectProperties.getRequiredPropertyTypeDefinitions(oid.getObjectType());
                     creatProperties(properties, remoteDevice, oid, propertyTypeDefinitions);
                 }
-            }
-        }
 
-    }
+        }
 
     /**
      * Used to create properties for sending to the client
