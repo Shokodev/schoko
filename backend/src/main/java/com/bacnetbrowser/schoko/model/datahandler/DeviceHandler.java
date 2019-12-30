@@ -35,7 +35,7 @@ public class DeviceHandler {
     //TODO alert user if device is inconsistent
     public void getInconsistencyDevices(){
             for (RemoteDevice remoteDevice : DeviceService.localDevice.getRemoteDevices()){
-                System.out.println("Test: " +remoteDevice.getProtocolRevision());
+                System.out.println("Test: " +remoteDevice.getApplicationSoftwareVersion());
             }
     }
 

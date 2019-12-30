@@ -1,6 +1,5 @@
 package com.bacnetbrowser.schoko.model.services;
 
-import com.bacnetbrowser.schoko.model.models.BACnetNode;
 import com.serotonin.bacnet4j.LocalDevice;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.RemoteObject;
@@ -168,6 +167,9 @@ public class DeviceService  {
                 ack = (ReadPropertyAck) localDevice.send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.description));
                 remoteDevice.setVendorName(ack.getValue().toString());
 
+                ack = (ReadPropertyAck) localDevice.send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.applicationSoftwareVersion));
+                remoteDevice.setApplicationSoftwareVersion(ack.getValue().toString());
+
             } catch (BACnetException bac){
                 System.err.println("Cant read remote device information of" + remoteDevice.getVendorName());
             }
@@ -206,6 +208,8 @@ public class DeviceService  {
             }
         }
     }
+
+
 
 
 

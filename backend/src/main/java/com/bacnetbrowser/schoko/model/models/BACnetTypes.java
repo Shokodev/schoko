@@ -12,14 +12,13 @@ import com.serotonin.bacnet4j.type.constructed.SequenceOf;
 import com.serotonin.bacnet4j.type.enumerated.BinaryPV;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
-import com.serotonin.bacnet4j.type.primitive.CharacterString;
-import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
-import com.serotonin.bacnet4j.type.primitive.Real;
-import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
+import com.serotonin.bacnet4j.type.primitive.*;
 import com.serotonin.bacnet4j.util.RequestUtils;
 
+import java.lang.Double;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -120,9 +119,8 @@ public class BACnetTypes {
      * @param dateTime Date and Time property of BACnet
      * @return String with Date and Time to send to the client
      */
-    public static String parseDateTime(DateTime dateTime){
-        return   dateTime.getDate().getDay() + "." + BACnetTypes.getMothAsDigit(dateTime.getDate().getMonth().toString()) + "."
-                + dateTime.getDate().getCenturyYear() + " / " + dateTime.getTime().getHour() + ":" + dateTime.getTime().getMinute() + ":" + dateTime.getTime().getSecond();
+    public static Date parseDateTime(DateTime dateTime){
+        return new java.sql.Date(dateTime.getTimeMillis());
 
     }
 
@@ -155,7 +153,7 @@ public class BACnetTypes {
      * @param places how many places after comma
      * @return string to send to client
      */
-   public static String round(Encodable value, int places) {
+    public static String round(Encodable value, int places) {
         if (places < 0) throw new IllegalArgumentException();
         BigDecimal bd = new BigDecimal(Double.parseDouble(value.toString()));
         bd = bd.setScale(places, RoundingMode.HALF_UP);

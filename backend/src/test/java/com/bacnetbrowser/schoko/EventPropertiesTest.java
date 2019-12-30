@@ -3,6 +3,7 @@ package com.bacnetbrowser.schoko;
 import com.bacnetbrowser.schoko.model.datahandler.DeviceHandler;
 import com.bacnetbrowser.schoko.model.models.BACnetEvent;
 import com.bacnetbrowser.schoko.model.models.BACnetTypes;
+import com.bacnetbrowser.schoko.model.services.DeviceService;
 import com.serotonin.bacnet4j.LocalDevice;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
@@ -40,18 +41,21 @@ public class EventPropertiesTest {
         Thread.sleep(2000);
         System.out.println(localDevice.getRemoteDevices().get(0).getInstanceNumber());
         RemoteDevice remoteDevice = localDevice.getRemoteDevices().get(0);
-        ObjectIdentifier oid = new ObjectIdentifier(ObjectType.binaryValue, 39);
+        ObjectIdentifier oid = new ObjectIdentifier(ObjectType.analogInput, 2);
         PropertyIdentifier[] properties = {PropertyIdentifier.priority,PropertyIdentifier.eventType,
                     PropertyIdentifier.actionText,PropertyIdentifier.notifyType,PropertyIdentifier.ackRequired,
                     PropertyIdentifier.eventParameters};
 
+
+        for (PropertyIdentifier propertyIdentifier : properties) {
+                ConfirmedRequestService request = new ReadPropertyRequest(oid, propertyIdentifier);
             try {
-                Map<PropertyIdentifier, Encodable>  values = RequestUtils.getProperties(localDevice,remoteDevice,oid,null,
-                        properties);
-                System.out.println(values);
+                ReadPropertyAck result = (ReadPropertyAck) localDevice.send(remoteDevice, request);
+                System.out.println(propertyIdentifier + " " +  result.getValue());
             } catch (BACnetException bac) {
-                System.err.println("Cant read event properties");
+                System.err.println("Cant read property " + propertyIdentifier.toString() + " of Object: " + oid.toString());
             }
+        }
         }
 
 
