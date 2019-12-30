@@ -5,6 +5,7 @@
                 <li><router-link class="button" to="/home">Home</router-link></li>
                 <li><router-link class="button" :class="{'button is-danger' : getHasNewAlarm}" to="/alarmList">Alarmliste</router-link></li>
                 <li><router-link class="button" to="/structure">Struktur</router-link></li>
+                <li><router-link class="button" to="/devices">Gerätesicht</router-link></li>
                 <li><router-link class="button" to="/settings">Einstellungen</router-link></li>
                 <li><router-link class="button" to="/about">Schoko</router-link></li>
             </ul>

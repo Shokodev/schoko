@@ -38,7 +38,7 @@
                 </div>
                 <p class="help">BACnet Separator eingeben</p>
             </div>
-            <container class="control">
+            <div class="control">
                 <label class="label">BACnet Port</label>
                     <div class="select">
                         <select v-model="settings.port">
@@ -61,7 +61,7 @@
                         </select>
                     </div>
                     <p class="help">BACnet port auswählen</p>
-            </container>
+            </div>
             <div class="saveButton">
                 <button @click="SetSettings()" class="button is-link">Speichern</button>
             </div>
