@@ -19,7 +19,7 @@
         <span>{{node.objectName}} <span v-if="hasDescription"> ({{node.description}})</span> </span>
         </div>
         <div v-if="expanded">
-            <TreeBrowser
+            <StructureView
                     v-for="child in node.children"
                     :node="child"
                     :key="child.objectName"

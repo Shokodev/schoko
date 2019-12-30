@@ -1,22 +1,33 @@
 <template>
-    <ul  class="menu-list">
-        <li><router-link to="/home">Home</router-link></li>
-        <li><router-link to="/alarmList">Alarmliste</router-link></li>
-        <li><router-link to="/structure">Struktur</router-link></li>
-        <li><router-link to="/settings">Einstellungen</router-link></li>
-        <li class="about"><router-link  to="/about">Schoko</router-link></li>
-    </ul>
+    <div>
+        <p  class="menu-label">Menu</p>
+            <ul  class="menu-list ">
+                <li><router-link class="button" to="/home">Home</router-link></li>
+                <li><router-link class="button" :class="{'button is-danger' : getHasNewAlarm}" to="/alarmList">Alarmliste</router-link></li>
+                <li><router-link class="button" to="/structure">Struktur</router-link></li>
+                <li><router-link class="button" to="/settings">Einstellungen</router-link></li>
+                <li><router-link class="button" to="/about">Schoko</router-link></li>
+            </ul>
+    </div>
 </template>
 
 <script>
+    import {mapGetters } from "vuex";
+    
     export default {
         name: "Menu",
+        data() {
+            return {
+                }
+            },
+        computed: {
+            ...mapGetters([
+               'getHasNewAlarm'
+           ])
+        }
     }
 </script>
 
 <style >
-.about{
-    position: absolute;
-    bottom: 10px;
-}
+
 </style>
