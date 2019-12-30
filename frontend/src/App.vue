@@ -1,25 +1,28 @@
 <template>
   <div id="app">
-    <header>
-      <section class="hero has-background-grey-dark">
-        <div class="container">
-          <h1 class="title has-text-white-ter">
-        <span class="icon is-large" v-on:click="ackAlarm()" v-if="getHasNewAlarm">
-          <router-link class="far fa-bell button is-danger" to="/alarmList"></router-link>
-        </span>
-            Schoko BACnet Browser
-          </h1>
-        </div>
-      </section>
-    </header>
-    <section class="columns is-fullheight">
-      <aside id="menu" class="column is-narrow is-fullheight">
-        <p  class="menu-label">Menu</p>
-        <Menu></Menu>
-      </aside>
-      <router-view id="content" class="column"></router-view>
-    </section>
+    <body>
+
+            <section class="columns has-background-grey-dark">
+
+              <div class="column icon is-large" v-on:click="ackAlarm()" v-if="getHasNewAlarm">
+                <router-link class="far fa-bell button is-danger" to="/alarmList"></router-link>
+              </div>
+                <h1 class="column title has-text-white-ter">
+                  Schoko BACnet Browser
+                </h1>
+            </section>
+
+
+        <section class="columns ">
+          <aside id="menu" class="column is-narrow">
+            <Menu  class="sticky"></Menu>
+          </aside>
+          <router-view id="content" class="column"></router-view>
+        </section>
+    </body>
+
   </div>
+
 </template>
 
 <script>
@@ -95,6 +98,7 @@
 </script>
 
 <style>
+
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -109,7 +113,10 @@
     padding-left: 1.5em;
     padding-top: 3em;
   }
-  .container{
-    height: 3em;
+  .sticky{
+    position: sticky;
+    top: 0px;
   }
+
+
 </style>
