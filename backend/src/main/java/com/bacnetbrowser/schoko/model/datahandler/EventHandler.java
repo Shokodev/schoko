@@ -39,12 +39,5 @@ public class EventHandler {
         System.out.println("Send updated eventList");
     }
 
-    /**
-     * Gets information about all event states of all objects in the network
-     * the return will be over the updateStream method
-     */
-    public void lookForExistingEvents(){
-        eventService.getEventInformation();
-    }
 }
 

@@ -6,15 +6,15 @@
             </h1>
             <div class="posts">
             <span>
-                <span id="postsButton" class="button is-fullwidth level-left " v-on:click="goBack">{{posts.elementName}} ({{(posts.elementDescription)}})</span>
+                <span id="postsButton" class="button is-fullwidth level-left " v-on:click="goBack">{{posts.objectName}} ({{(posts.description)}})</span>
             </span>
             </div>
         </div>
         <div class="container is-fluid">
             <div class="child">
             <span v-if="posts.length!==0">
-                <span id="childButton" class="button is-fullwidth level-left" v-on:click="goIn(child)" :key="child.elementName" v-for="child in posts.children">
-                    {{child.elementName}}<span id="description" v-if="child.elementDescription!==''">({{child.elementDescription}})</span>
+                <span id="childButton" class="button is-fullwidth level-left" v-on:click="goIn(child)" :key="child.objectName" v-for="child in posts.children">
+                    {{child.objectName}}<span id="description" v-if="child.description!==''">({{child.description}})</span>
                 </span>
             </span>
             </div>
@@ -68,7 +68,7 @@
                 axios.get("http://localhost:8098/structure/" + this.element)
                     .then(response => {
                         this.posts = response.data;
-                        this.parent = this.posts["elementName"];
+                        this.parent = this.posts["objectName"];
                         this.firstElement = false;
                     })}
             },
@@ -85,7 +85,7 @@
             goIn: function (child) {
                 if (this.isBACnetObject(child) === false ) {
                     if(this.firstElement === false) {
-                    this.element = this.element.concat("'"+ child["elementName"]);
+                    this.element = this.element.concat("'"+ child["objectName"]);
                     this.loadJSON();
                         }
                     }
@@ -95,11 +95,11 @@
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             isBACnetObject: function (child){
-                if(child["elementType"] !== "Structure Element") {
-                    var name= this.element + "'" + child["elementName"];
+                if(child["objectIdentifier"] !== "Structure Element") {
+                    var name= this.element + "'" + child["objectName"];
                     var re = new RegExp((this.getSiteName + "'"), "i");
                     this.$store.commit('setObjectName', name.replace(re,""));
-                    this.$store.commit('setObjectType', (child["elementType"]));
+                    this.$store.commit('setObjectType', (child["objectIdentifier"]));
                     this.isModalVisible= true;
                 }else
                     return false;

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Events" uuid="c27ab318-e12c-4d59-a2b5-f9f74b6a37fa">
-      <driver-ref>sqlite.xerial</driver-ref>
+    <data-source source="LOCAL" name="MariaDB - jdbc:mariadb://catecahi.mysql,db.hostpoint.ch:3306" uuid="20240872-7cfe-4681-8033-4f8c1754c4f9">
+      <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\admin\IdeaProjects\schoko\backend\src\main\resources\Events.db</jdbc-url>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://catecahi.mysql,db.hostpoint.ch:3306</jdbc-url>
     </data-source>
   </component>
 </project>

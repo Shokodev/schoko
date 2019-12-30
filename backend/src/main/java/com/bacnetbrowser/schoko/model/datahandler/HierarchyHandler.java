@@ -2,7 +2,6 @@ package com.bacnetbrowser.schoko.model.datahandler;
 
 
 import com.bacnetbrowser.schoko.model.models.BACnetNode;
-import com.bacnetbrowser.schoko.model.models.BACnetStructure;
 import com.bacnetbrowser.schoko.model.services.HierarchyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,20 +28,20 @@ public class HierarchyHandler {
 
     /**
      * Returns Node with his children without children of the children
-     * @param structure as said
+     * @param objectName as said
      * @return Object to Rest
      */
-    public BACnetNode getChildrenByNodeElementName(String structure) {
-            BACnetStructure tempNode = hierarchyService.getBacnetStructure();
-            String[] splitted = structure.split(settingsHandler.getBacnetSeparator());
+    public BACnetNode getChildrenByObjectName(String objectName) {
+            BACnetNode tempNode = hierarchyService.getBacnetStructure();
+            String[] splitted = objectName.split(settingsHandler.getBacnetSeparator());
         try {
             //Check if its the top element
-            if ((splitted.length == 1) && (settingsHandler.getSiteName().equals(structure))) {
+            if ((splitted.length == 1) && (settingsHandler.getSiteName().equals(objectName))) {
                 return createAndAddChildren(tempNode);
             } else {
-                BACnetStructure node = null;
+                BACnetNode node = null;
                 for (int i = 1; i < splitted.length; i++) {
-                    node = tempNode.getChildByElementName(splitted[i]);
+                    node = tempNode.getChildByObjectName(splitted[i]);
                     tempNode = node;
                 }
                 return createAndAddChildren(node);
@@ -50,8 +49,6 @@ public class HierarchyHandler {
                 } catch (NullPointerException e){
                     return new BACnetNode("Achtung!"," ","Bitte zuerst Einstellungen vornehmen",0);
                 }
-
-
         }
 
     /**
@@ -59,14 +56,14 @@ public class HierarchyHandler {
      * @param parent as said
      * @return the Object to send to REST
      */
-    private BACnetNode createAndAddChildren(BACnetStructure parent) {
-        BACnetNode nodeTopElement = new BACnetNode(parent.getElementName(),parent.getElementType(),parent.getElementDescription(),parent.getDevice());
-        List<BACnetStructure> children = parent.getChildren();
-        for (BACnetStructure child : children ) {
-            BACnetNode childForJSON = new BACnetNode(child.getElementName(),child.getElementType(),child.getElementDescription(),child.getDevice());
-            nodeTopElement.addChild(childForJSON);
+    private BACnetNode createAndAddChildren(BACnetNode parent) {
+        BACnetNode node = new BACnetNode(parent.getObjectName(),parent.getObjectIdentifier(),parent.getDescription(),parent.getDeviceInstanceNumber());
+        List<BACnetNode> children = parent.getChildren();
+        for (BACnetNode child : children ) {
+            BACnetNode childForJSON = new BACnetNode(child.getObjectName(),child.getObjectIdentifier(),child.getDescription(),child.getDeviceInstanceNumber());
+            node.addChild(childForJSON);
         }
-        return nodeTopElement;
+        return node;
     }
 
     /**
@@ -81,10 +78,13 @@ public class HierarchyHandler {
 
     }
 
-    public BACnetStructure getStructure() {
+    public BACnetNode getBacnetStructure() {
         return hierarchyService.getBacnetStructure();
     }
 
+    public BACnetNode getDeviceStructure(){
+        return hierarchyService.getDeviceStructure();
+    }
 }
 
 

@@ -1,6 +1,6 @@
 package com.bacnetbrowser.schoko.model.models;
 
-import com.bacnetbrowser.schoko.model.datahandler.DeviceHandler;
+import com.bacnetbrowser.schoko.model.services.DeviceService;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.service.acknowledgement.ReadPropertyAck;
@@ -59,9 +59,9 @@ public class BACnetTypes {
             ConfirmedRequestService requestActive = new ReadPropertyRequest(oid, PropertyIdentifier.activeText);
             ConfirmedRequestService requestInactive = new ReadPropertyRequest(oid, PropertyIdentifier.inactiveText);
             try{
-                ReadPropertyAck resultValue = (ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, requestValue);
-                ReadPropertyAck resultActive = (ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, requestActive);
-                ReadPropertyAck resultInactive = (ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, requestInactive);
+                ReadPropertyAck resultValue = (ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, requestValue);
+                ReadPropertyAck resultActive = (ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, requestActive);
+                ReadPropertyAck resultInactive = (ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, requestInactive);
                 if(resultValue.getValue().equals(BinaryPV.active)){
                     return resultActive.getValue().toString();
                 } else {
@@ -75,9 +75,9 @@ public class BACnetTypes {
         } else if ((oid.getObjectType().equals(ObjectType.multiStateValue)) || (oid.getObjectType().equals(ObjectType.multiStateOutput)) || (oid.getObjectType().equals(ObjectType.multiStateInput))) {
             ConfirmedRequestService requestValue = new ReadPropertyRequest(oid, PropertyIdentifier.presentValue);
             try{
-                ReadPropertyAck resultValue = (ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, requestValue);
+                ReadPropertyAck resultValue = (ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, requestValue);
                 List<CharacterString> texts = ((SequenceOf<CharacterString>) RequestUtils.sendReadPropertyAllowNull(
-                        DeviceHandler.localDevice, remoteDevice, oid,
+                        DeviceService.localDevice, remoteDevice, oid,
                         PropertyIdentifier.stateText)).getValues();
                 return (texts.get((Integer.parseInt(resultValue.getValue().toString()))-1).getValue());
 
@@ -88,8 +88,8 @@ public class BACnetTypes {
             ConfirmedRequestService requestValue = new ReadPropertyRequest(oid, PropertyIdentifier.presentValue);
             ConfirmedRequestService requestUnit = new ReadPropertyRequest(oid, PropertyIdentifier.units);
             try{
-                ReadPropertyAck resultValue = (ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, requestValue);
-                ReadPropertyAck resultUnit = (ReadPropertyAck) DeviceHandler.localDevice.send(remoteDevice, requestUnit);
+                ReadPropertyAck resultValue = (ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, requestValue);
+                ReadPropertyAck resultUnit = (ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, requestUnit);
                 return resultValue.getValue().toString() + " " + resultUnit.getValue().toString();
 
             } catch (BACnetException bac){
@@ -114,7 +114,6 @@ public class BACnetTypes {
         return germanEventStates.get(eventState);
 
     }
-
 
     /**
      * Parse the BACnet DateTime into german and readable format

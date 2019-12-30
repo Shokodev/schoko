@@ -16,13 +16,13 @@
         >
             {{expanded = '&#9671;' }}
         </span>
-        <span>{{node.elementName}} <span v-if="hasDescription"> ({{node.elementDescription}})</span> </span>
+        <span>{{node.objectName}} <span v-if="hasDescription"> ({{node.description}})</span> </span>
         </div>
         <div v-if="expanded">
             <TreeBrowser
                     v-for="child in node.children"
                     :node="child"
-                    :key="child.elementName"
+                    :key="child.objectName"
                     :depth="depth + 1"
                     @onClick="(node) => $emit('onClick', node)"
             />
@@ -59,7 +59,7 @@
                 return this.node.children.length > 0;
             },
             hasDescription() {
-                return this.node["elementDescription"] !== "";
+                return this.node["description"] !== "";
             }
         }
             }
