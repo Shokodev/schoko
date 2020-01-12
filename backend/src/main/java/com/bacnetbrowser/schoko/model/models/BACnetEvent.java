@@ -1,9 +1,8 @@
 package com.bacnetbrowser.schoko.model.models;
-import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
-import org.springframework.data.annotation.Id;
+
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Is used to generate BACnet event Objects with needed properties for the client
@@ -17,12 +16,13 @@ public class BACnetEvent {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int ID;
+    private int eventID;
 
     // Event Properties
     private String processIdentifier;
     private String remoteDeviceName;
     private String oid;
-    private Date timeStamp;
+    private java.sql.Timestamp timeStamp;
     private String notificationClass;
     private String priority;
     private String eventType;
@@ -38,13 +38,16 @@ public class BACnetEvent {
     private String presentValue;
     private String objectName;
 
+    // Frontend
+    private boolean visableInFrontend;
+
     public BACnetEvent() {
     }
 
-    public BACnetEvent(String processIdentifier, String remoteDeviceName, String oid, Date timeStamp,
-                       String notificationClass, String priority, String eventType, String messageText,
-                       String notifyType, String ackRequired, String fromState, String toState, String eventValues,
-                       String description, String presentValue, String objectName) {
+    public BACnetEvent(String processIdentifier, String remoteDeviceName, String oid, Timestamp timeStamp,
+                       String notificationClass, String priority, String eventType, String messageText, String notifyType,
+                       String ackRequired, String fromState, String toState, String eventValues, String description,
+                       String presentValue, String objectName) {
         this.processIdentifier = processIdentifier;
         this.remoteDeviceName = remoteDeviceName;
         this.oid = oid;
@@ -61,6 +64,15 @@ public class BACnetEvent {
         this.description = description;
         this.presentValue = presentValue;
         this.objectName = objectName;
+    }
+
+    public int getEventID() {
+        return eventID;
+    }
+
+    public void setEventID(int eventID) {
+
+        this.eventID = eventID;
     }
 
     public String getProcessIdentifier() {
@@ -87,11 +99,11 @@ public class BACnetEvent {
         this.oid = oid;
     }
 
-    public Date getTimeStamp() {
+    public Timestamp getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(Date timeStamp) {
+    public void setTimeStamp(Timestamp timeStamp) {
         this.timeStamp = timeStamp;
     }
 
@@ -189,6 +201,14 @@ public class BACnetEvent {
 
     public void setObjectName(String objectName) {
         this.objectName = objectName;
+    }
+
+    public boolean isVisableInFrontend() {
+        return visableInFrontend;
+    }
+
+    public void setVisableInFrontend(boolean visableForFrontend) {
+        this.visableInFrontend = visableForFrontend;
     }
 }
 

@@ -6,8 +6,6 @@ import com.bacnetbrowser.schoko.model.services.HierarchyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 /**
  * This class used to handel the hierarchy
  *
@@ -31,40 +29,25 @@ public class HierarchyHandler {
      * @param objectName as said
      * @return Object to Rest
      */
-    public BACnetNode getChildrenByObjectName(String objectName) {
-            BACnetNode tempNode = hierarchyService.getBacnetStructure();
+    public BACnetNode getNodeByObjectName(String objectName) {
+            BACnetNode structure = getBacnetStructure();
             String[] splitted = objectName.split(settingsHandler.getBacnetSeparator());
         try {
             //Check if its the top element
             if ((splitted.length == 1) && (settingsHandler.getSiteName().equals(objectName))) {
-                return createAndAddChildren(tempNode);
+                return structure;
             } else {
                 BACnetNode node = null;
                 for (int i = 1; i < splitted.length; i++) {
-                    node = tempNode.getChildByObjectName(splitted[i]);
-                    tempNode = node;
+                    node = structure.getChildByObjectName(splitted[i]);
+                    structure = node;
                 }
-                return createAndAddChildren(node);
+                return node;
             }
                 } catch (NullPointerException e){
                     return new BACnetNode("Achtung!"," ","Bitte zuerst Einstellungen vornehmen",0);
                 }
         }
-
-    /**
-     * Needed for the method getChildrenByNodeElementName for create the nodes of the given parent
-     * @param parent as said
-     * @return the Object to send to REST
-     */
-    private BACnetNode createAndAddChildren(BACnetNode parent) {
-        BACnetNode node = new BACnetNode(parent.getObjectName(),parent.getObjectIdentifier(),parent.getDescription(),parent.getDeviceInstanceNumber());
-        List<BACnetNode> children = parent.getChildren();
-        for (BACnetNode child : children ) {
-            BACnetNode childForJSON = new BACnetNode(child.getObjectName(),child.getObjectIdentifier(),child.getDescription(),child.getDeviceInstanceNumber());
-            node.addChild(childForJSON);
-        }
-        return node;
-    }
 
     /**
      * delete structure if exists, read BacNet network and create new structure

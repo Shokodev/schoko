@@ -86,7 +86,7 @@ public class HTTPController {
     @GetMapping("/structure/{objectName}")
     public BACnetNode getBacnetStructure(@PathVariable String objectName){
         System.out.println("Get node: " + objectName);
-        return hierarchyHandler.getChildrenByObjectName(objectName);
+        return hierarchyHandler.getNodeByObjectName(objectName);
         }
 
     /**

@@ -9,6 +9,7 @@ import com.serotonin.bacnet4j.service.confirmed.ReadPropertyRequest;
 import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.DateTime;
 import com.serotonin.bacnet4j.type.constructed.SequenceOf;
+import com.serotonin.bacnet4j.type.constructed.TimeStamp;
 import com.serotonin.bacnet4j.type.enumerated.BinaryPV;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
@@ -18,7 +19,8 @@ import com.serotonin.bacnet4j.util.RequestUtils;
 import java.lang.Double;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -115,13 +117,12 @@ public class BACnetTypes {
     }
 
     /**
-     * Parse the BACnet DateTime into german and readable format
-     * @param dateTime Date and Time property of BACnet
-     * @return String with Date and Time to send to the client
+     * Parse the BACnet TimeStamp into SQL format
+     * @param timeStamp Date and Time property of BACnet
+     * @return SQL time stamp format
      */
-    public static Date parseDateTime(DateTime dateTime){
-        return new java.sql.Date(dateTime.getTimeMillis());
-
+    public static java.sql.Timestamp parseToSQLTimeStamp(TimeStamp timeStamp){
+        return new java.sql.Timestamp(timeStamp.getDateTime().getTimeMillis());
     }
 
     /**
