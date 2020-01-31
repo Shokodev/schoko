@@ -1,8 +1,8 @@
 package com.bacnetbrowser.schoko.model.services;
 
+import com.bacnetbrowser.schoko.model.models.BACnetObject;
 import com.serotonin.bacnet4j.LocalDevice;
 import com.serotonin.bacnet4j.RemoteDevice;
-import com.serotonin.bacnet4j.RemoteObject;
 import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.npdu.ip.IpNetwork;
 import com.serotonin.bacnet4j.service.acknowledgement.ReadPropertyAck;
@@ -199,10 +199,10 @@ public class DeviceService  {
                                 DeviceService.localDevice, remoteDevice, remoteDevice.getObjectIdentifier(),
                                 PropertyIdentifier.objectList)).getValues();
                 for (ObjectIdentifier oid : oids) {
-                    RemoteObject remoteObject = new RemoteObject(oid);
+                    BACnetObject bacnetObject = new BACnetObject(oid,remoteDevice);
                     String tempObjectName = ((ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.objectName))).getValue().toString();
-                    remoteObject.setObjectName(tempObjectName);
-                    remoteDevice.setObject(remoteObject);
+                    bacnetObject.setObjectName(tempObjectName);
+                    remoteDevice.setObject(bacnetObject);
                     }} catch (BACnetException | NullPointerException e) {
                 System.out.println("Failed to read objects");
             }

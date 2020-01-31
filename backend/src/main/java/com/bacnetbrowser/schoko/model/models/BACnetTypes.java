@@ -1,28 +1,16 @@
 package com.bacnetbrowser.schoko.model.models;
 
-import com.bacnetbrowser.schoko.model.services.DeviceService;
-import com.serotonin.bacnet4j.RemoteDevice;
-import com.serotonin.bacnet4j.exception.BACnetException;
-import com.serotonin.bacnet4j.service.acknowledgement.ReadPropertyAck;
-import com.serotonin.bacnet4j.service.confirmed.ConfirmedRequestService;
-import com.serotonin.bacnet4j.service.confirmed.ReadPropertyRequest;
 import com.serotonin.bacnet4j.type.Encodable;
-import com.serotonin.bacnet4j.type.constructed.DateTime;
-import com.serotonin.bacnet4j.type.constructed.SequenceOf;
 import com.serotonin.bacnet4j.type.constructed.TimeStamp;
 import com.serotonin.bacnet4j.type.enumerated.BinaryPV;
+import com.serotonin.bacnet4j.type.enumerated.NotifyType;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
-import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import com.serotonin.bacnet4j.type.primitive.*;
-import com.serotonin.bacnet4j.util.RequestUtils;
-
 import java.lang.Double;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.List;
+
 
 /**
  * This class extents the stack for our purpose
@@ -45,59 +33,6 @@ public class BACnetTypes {
             return new UnsignedInteger(Integer.parseInt(value));
         }
         return new UnsignedInteger(Integer.parseInt(value));
-    }
-
-    /**
-     * Used to get Texts mapped to the present value
-     * @param oid needs the oid of the given object
-     * @param remoteDevice remote device of the given object
-     * @return present value as text
-     */
-    public static String getPresentValueAsText(ObjectIdentifier oid, RemoteDevice remoteDevice){
-        if((oid.getObjectType().equals(ObjectType.binaryValue)) || (oid.getObjectType().equals(ObjectType.binaryOutput)) || (oid.getObjectType().equals(ObjectType.binaryInput)))
-        {
-            ConfirmedRequestService requestValue = new ReadPropertyRequest(oid, PropertyIdentifier.presentValue);
-            ConfirmedRequestService requestActive = new ReadPropertyRequest(oid, PropertyIdentifier.activeText);
-            ConfirmedRequestService requestInactive = new ReadPropertyRequest(oid, PropertyIdentifier.inactiveText);
-            try{
-                ReadPropertyAck resultValue = (ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, requestValue);
-                ReadPropertyAck resultActive = (ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, requestActive);
-                ReadPropertyAck resultInactive = (ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, requestInactive);
-                if(resultValue.getValue().equals(BinaryPV.active)){
-                    return resultActive.getValue().toString();
-                } else {
-                    return resultInactive.getValue().toString();
-                }
-
-            } catch (BACnetException bac){
-                System.out.println("Cant read present value of: " + oid + " @ " + remoteDevice);
-            }
-            return null;
-        } else if ((oid.getObjectType().equals(ObjectType.multiStateValue)) || (oid.getObjectType().equals(ObjectType.multiStateOutput)) || (oid.getObjectType().equals(ObjectType.multiStateInput))) {
-            ConfirmedRequestService requestValue = new ReadPropertyRequest(oid, PropertyIdentifier.presentValue);
-            try{
-                ReadPropertyAck resultValue = (ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, requestValue);
-                List<CharacterString> texts = ((SequenceOf<CharacterString>) RequestUtils.sendReadPropertyAllowNull(
-                        DeviceService.localDevice, remoteDevice, oid,
-                        PropertyIdentifier.stateText)).getValues();
-                return (texts.get((Integer.parseInt(resultValue.getValue().toString()))-1).getValue());
-
-            } catch (BACnetException bac){
-                System.out.println("Cant read present value of: " + oid + " @ " + remoteDevice);
-            }
-        } else if ((oid.getObjectType().equals(ObjectType.analogValue)) || (oid.getObjectType().equals(ObjectType.analogOutput)) || (oid.getObjectType().equals(ObjectType.analogInput))) {
-            ConfirmedRequestService requestValue = new ReadPropertyRequest(oid, PropertyIdentifier.presentValue);
-            ConfirmedRequestService requestUnit = new ReadPropertyRequest(oid, PropertyIdentifier.units);
-            try{
-                ReadPropertyAck resultValue = (ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, requestValue);
-                ReadPropertyAck resultUnit = (ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, requestUnit);
-                return resultValue.getValue().toString() + " " + resultUnit.getValue().toString();
-
-            } catch (BACnetException bac){
-                System.out.println("Cant read present value of: " + oid + " @ " + remoteDevice);
-            }
-        }
-        return null;
     }
 
     /**
@@ -125,27 +60,12 @@ public class BACnetTypes {
         return new java.sql.Timestamp(timeStamp.getDateTime().getTimeMillis());
     }
 
-    /**
-     * parse BACnet DateTime month into digit
-     * @param moth BACnet DateTime month
-     * @return digit as String
-     */
-    public static String getMothAsDigit(String moth){
-        HashMap<String,String> monthToDigit = new HashMap<>();
-        monthToDigit.put("JANUARY","01");
-        monthToDigit.put("FEBRUARY","02");
-        monthToDigit.put("MARCH","03");
-        monthToDigit.put("APRIL","04");
-        monthToDigit.put("MAY","05");
-        monthToDigit.put("June","06");
-        monthToDigit.put("JULY","07");
-        monthToDigit.put("AUGUST","08");
-        monthToDigit.put("SEPTEMBER","09");
-        monthToDigit.put("OCTOBER","10");
-        monthToDigit.put("NOVEMBER","11");
-        monthToDigit.put("DECEMBER","12");
-        return monthToDigit.get(moth);
-
+    public static String getNotifyTypeAsText(NotifyType notifyType){
+        if(notifyType.equals(NotifyType.alarm)){
+            return "Alarm";
+        } else if(notifyType.equals(NotifyType.event)){
+            return "Event";
+        } else return "AckNotification";
     }
 
     /**

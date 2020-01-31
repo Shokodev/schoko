@@ -1,6 +1,6 @@
 package com.bacnetbrowser.schoko;
 
-import com.bacnetbrowser.schoko.model.datahandler.DeviceHandler;
+
 import com.serotonin.bacnet4j.LocalDevice;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;

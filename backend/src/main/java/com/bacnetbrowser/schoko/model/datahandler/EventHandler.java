@@ -25,6 +25,10 @@ public class EventHandler {
     @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
+    private EventService eventService;
+
+
     final private LinkedList<BACnetEvent> events = new LinkedList<>();
 
     @Autowired
@@ -44,6 +48,12 @@ public class EventHandler {
         events.addAll(eventRepository.findAllByVisableInFrontend(true));
         template.convertAndSend("/broker/eventSub", events);
         System.out.println("Send updated eventList");
+    }
+
+    public void ackAll(){
+        for(BACnetEvent event : eventRepository.findAll()){
+        eventService.acknowledgeEvent(event);
+    }
     }
 
 }
