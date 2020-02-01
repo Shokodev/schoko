@@ -8,6 +8,7 @@ import com.serotonin.bacnet4j.service.acknowledgement.ReadPropertyAck;
 import com.serotonin.bacnet4j.service.confirmed.ConfirmedRequestService;
 import com.serotonin.bacnet4j.service.confirmed.ReadPropertyRequest;
 import com.serotonin.bacnet4j.type.Encodable;
+import com.serotonin.bacnet4j.type.constructed.EventTransitionBits;
 import com.serotonin.bacnet4j.type.constructed.SequenceOf;
 import com.serotonin.bacnet4j.type.enumerated.BinaryPV;
 import com.serotonin.bacnet4j.type.enumerated.EventState;
@@ -129,5 +130,23 @@ public class BACnetObject extends RemoteObject {
         return "COM";
     }
 
+
+    public String getAckTransitBitsByStatus(EventState eventState){
+        try {
+            EventTransitionBits priorities = ((EventTransitionBits) RequestUtils.sendReadPropertyAllowNull(
+                    DeviceService.localDevice, remoteDevice, super.getObjectIdentifier(),
+                    PropertyIdentifier.ackRequired));
+            if(eventState.equals(EventState.normal)){
+                return String.valueOf(priorities.isToNormal());
+            } else if (eventState.equals(EventState.fault)){
+                return String.valueOf(priorities.isToFault());
+            } else {
+                return String.valueOf(priorities.isToOffnormal());
+            }
+        } catch (BACnetException bac) {
+            System.err.println("Can't read " + PropertyIdentifier.priority  + " of " + getObjectName());
+        }
+        return "COM";
+    }
 
 }

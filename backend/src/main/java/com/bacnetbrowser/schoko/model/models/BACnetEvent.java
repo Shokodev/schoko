@@ -38,8 +38,6 @@ public class BACnetEvent {
     private String presentValue;
     private String objectName;
 
-    // Frontend
-    private boolean visableInFrontend;
 
     public BACnetEvent() {
     }
@@ -203,13 +201,6 @@ public class BACnetEvent {
         this.objectName = objectName;
     }
 
-    public boolean isVisableInFrontend() {
-        return visableInFrontend;
-    }
-
-    public void setVisableInFrontend(boolean visableForFrontend) {
-        this.visableInFrontend = visableForFrontend;
-    }
 }
 
 

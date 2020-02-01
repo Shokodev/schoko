@@ -45,7 +45,7 @@ public class EventHandler {
      */
     public void  updateStream(){
         events.clear();
-        events.addAll(eventRepository.findAllByVisableInFrontend(true));
+        events.addAll(eventRepository.findAll());
         template.convertAndSend("/broker/eventSub", events);
         System.out.println("Send updated eventList");
     }

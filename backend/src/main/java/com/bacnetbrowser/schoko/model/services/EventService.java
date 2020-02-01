@@ -9,7 +9,6 @@ import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
 import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.service.acknowledgement.GetEventInformationAck;
-import com.serotonin.bacnet4j.service.acknowledgement.ReadPropertyAck;
 import com.serotonin.bacnet4j.service.confirmed.*;
 import com.serotonin.bacnet4j.type.constructed.DateTime;
 import com.serotonin.bacnet4j.type.constructed.SequenceOf;
@@ -22,6 +21,7 @@ import com.serotonin.bacnet4j.util.RequestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -55,25 +55,32 @@ public class EventService extends DeviceEventAdapter {
                                           UnsignedInteger priority, EventType eventType, CharacterString messageText,
                                           NotifyType notifyType, Boolean ackRequired, EventState fromState,
                                           EventState toState, NotificationParameters eventValues) {
-
+        System.out.println("Event message received");
         BACnetObject object = (BACnetObject) remoteDevice.getObject(oid);
+        BACnetEvent bacnetEvent;
 
-        BACnetEvent bacnetEvent = new BACnetEvent(processIdentifier.toString(), remoteDevice.getVendorName(), oid.toString(),
-                BACnetTypes.parseToSQLTimeStamp(timeStamp), notificationClass.toString(), priority.toString(), eventType.toString(),
-                messageText.toString(), BACnetTypes.getNotifyTypeAsText(notifyType), ackRequired.toString(),
-                BACnetTypes.getGermanEventStateText(fromState.toString()),
-                BACnetTypes.getGermanEventStateText(toState.toString()), eventValues.toString(),
-                object.getDescription(), object.getPresentValueAsText(),
-                object.getObjectName());
-        bacnetEvent.setEventID(createNewEventID(remoteDevice.getVendorName(), oid.toString()));
-        if (toState.equals(EventState.normal)){
-            bacnetEvent.setVisableInFrontend(false);
-        }else {
-            bacnetEvent.setVisableInFrontend(true);
+        if(!notifyType.equals(NotifyType.ackNotification)) {
+            bacnetEvent = new BACnetEvent(processIdentifier.toString(), remoteDevice.getVendorName(), oid.toString(),
+                    BACnetTypes.parseToSQLTimeStamp(timeStamp), notificationClass.toString(), priority.toString(), eventType.toString(),
+                    messageText.toString(), BACnetTypes.getNotifyTypeAsText(notifyType), ackRequired.toString(),
+                    BACnetTypes.getGermanEventStateText(fromState.toString()),
+                    BACnetTypes.getGermanEventStateText(toState.toString()), eventValues.toString(),
+                    object.getDescription(), object.getPresentValueAsText(),
+                    object.getObjectName());
+
         }
+        else {
+            bacnetEvent = new BACnetEvent(processIdentifier.toString(), remoteDevice.getVendorName(), oid.toString(),
+                    BACnetTypes.parseToSQLTimeStamp(timeStamp), notificationClass.toString(), priority.toString(), eventType.toString(),
+                    messageText.toString(), BACnetTypes.getNotifyTypeAsText(notifyType), " ",
+                    " ",
+                    " ", " ",
+                    object.getDescription(), object.getPresentValueAsText(),
+                    object.getObjectName());
+            }
+        bacnetEvent.setEventID(createNewEventID(bacnetEvent,toState,oid));
         eventRepository.save(bacnetEvent);
         eventHandler.updateStream();
-
     }
 
 
@@ -106,20 +113,22 @@ public class EventService extends DeviceEventAdapter {
      * Get all active events
      */
     public void getEventInformation() {
-
-            try {
-                for (RemoteDevice remotedevice : DeviceService.localDevice.getRemoteDevices()) {
+        for (RemoteDevice remotedevice : DeviceService.localDevice.getRemoteDevices()) {
+                    try {
                     GetEventInformation eventInfos = new GetEventInformation(null);
                     GetEventInformationAck events = (GetEventInformationAck) DeviceService.localDevice.send(remotedevice, eventInfos);
-                    for (GetEventInformationAck.EventSummary event : events.getListOfEventSummaries()){
-                       eventRepository.save(createSQLEvent(event,remotedevice));
+                        for (GetEventInformationAck.EventSummary event : events.getListOfEventSummaries()){
+                            try {
+                                eventRepository.save(Objects.requireNonNull(createSQLEvent(event, remotedevice)));
+                            } catch (NullPointerException ignored){
+
+                            }
+                        }
+                    }catch (BACnetException bac) {
+                        System.err.println("Faild to read Event information of device " + remotedevice.getVendorName());
                     }
                 }
-            }catch (BACnetException | NullPointerException bac) {
-                System.err.println("Faild to read Event information");
-            }
         eventHandler.updateStream();
-
     }
 
     public void acknowledgeEvent(BACnetEvent bacnetEvent){
@@ -146,33 +155,34 @@ public class EventService extends DeviceEventAdapter {
     }
 
     private BACnetEvent createSQLEvent(GetEventInformationAck.EventSummary event, RemoteDevice remoteDevice) {
-        BACnetObject object = (BACnetObject) remoteDevice.getObject(event.getObjectIdentifier());
-        BACnetObject notiClass = (BACnetObject) remoteDevice.getObject(new ObjectIdentifier(ObjectType.notificationClass, Integer.parseInt(object.getProperty(PropertyIdentifier.notificationClass).toString())));
         TimeStamp timeStamp = getTimeStampofObject(event.getObjectIdentifier(),remoteDevice, event.getEventState().toString());
-        BACnetEvent bacnetEvent =  new BACnetEvent("1", remoteDevice.getVendorName(), object.getObjectIdentifier().toString()
-                ,BACnetTypes.parseToSQLTimeStamp(timeStamp), object.getProperty(PropertyIdentifier.notificationClass).toString(),notiClass.getPriorityByStatus(event.getEventState())
-                , event.getNotifyType().toString(), " ", BACnetTypes.getNotifyTypeAsText(event.getNotifyType()),
-                notiClass.getProperty(PropertyIdentifier.ackRequired).toString(), BACnetTypes.getGermanEventStateText(EventState.normal.toString()), BACnetTypes.getGermanEventStateText(event.getEventState().toString()),event.getNotifyType().toString() ,object.getDescription(),
-                object.getPresentValueAsText(),object.getObjectName());
-        bacnetEvent.setEventID(createNewEventID(remoteDevice.getVendorName(), object.getObjectIdentifier().toString()));
-        if (event.getEventState().equals(EventState.normal)){
-            bacnetEvent.setVisableInFrontend(false);
-        }else {
-            bacnetEvent.setVisableInFrontend(true);
+        try {
+           BACnetEvent eventSQL = eventRepository.findBACnetEventByRemoteDeviceNameAndOidAndAndTimeStamp(remoteDevice.getVendorName(),event.getObjectIdentifier().toString(),BACnetTypes.parseToSQLTimeStamp(timeStamp));
+           System.out.println("Event already exists in database: " + eventSQL.getObjectName() + " ID: " + eventSQL.getEventID());
+           return null;
+        }catch (NullPointerException n) {
+            BACnetObject object = (BACnetObject) remoteDevice.getObject(event.getObjectIdentifier());
+            BACnetObject notiClass = (BACnetObject) remoteDevice.getObject(new ObjectIdentifier(ObjectType.notificationClass, Integer.parseInt(object.getProperty(PropertyIdentifier.notificationClass).toString())));
+            BACnetEvent bacnetEvent = new BACnetEvent("1", remoteDevice.getVendorName(), object.getObjectIdentifier().toString()
+                    , BACnetTypes.parseToSQLTimeStamp(timeStamp), object.getProperty(PropertyIdentifier.notificationClass).toString(), notiClass.getPriorityByStatus(event.getEventState())
+                    , "99", " ", BACnetTypes.getNotifyTypeAsText(event.getNotifyType()),
+                    notiClass.getAckTransitBitsByStatus(event.getEventState()), BACnetTypes.getGermanEventStateText(EventState.normal.toString()), BACnetTypes.getGermanEventStateText(event.getEventState().toString()), "EventSummaryLogEntry", object.getDescription(),
+                    object.getPresentValueAsText(), object.getObjectName());
+            bacnetEvent.setEventID(createNewEventID(bacnetEvent, event.getEventState(),object.getObjectIdentifier()));
+            return bacnetEvent;
         }
-
-        return bacnetEvent;
-
-
-
     }
 
-    private int createNewEventID(String remoteDevice, String oid){
-       BACnetEvent bacnetEvent = eventRepository.findTopBACnetEventByRemoteDeviceNameAndOid(remoteDevice, oid);
-       try{
-       return bacnetEvent.getEventID() + 1;
-       } catch (NullPointerException e){
-       return 0;
+    private int createNewEventID(BACnetEvent bacnetEvent, EventState toState, ObjectIdentifier oid){
+       if((toState.equals(EventState.normal))) {
+           try {
+               BACnetEvent bacnetEventSQL = eventRepository.findBACnetEventByRemoteDeviceNameAndOidAndAndTimeStamp(bacnetEvent.getRemoteDeviceName(), bacnetEvent.getOid(), bacnetEvent.getTimeStamp());
+               return bacnetEventSQL.getEventID();
+           } catch (NullPointerException e){
+               return ((int) bacnetEvent.getTimeStamp().getTime()) + oid.getInstanceNumber();
+           }
+       } else{
+           return ((int) bacnetEvent.getTimeStamp().getTime()) + oid.getInstanceNumber();
        }
     }
 
