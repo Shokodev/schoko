@@ -10,6 +10,7 @@ import com.serotonin.bacnet4j.service.confirmed.ReadPropertyRequest;
 import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.EventTransitionBits;
 import com.serotonin.bacnet4j.type.constructed.SequenceOf;
+import com.serotonin.bacnet4j.type.constructed.TimeStamp;
 import com.serotonin.bacnet4j.type.enumerated.BinaryPV;
 import com.serotonin.bacnet4j.type.enumerated.EventState;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
@@ -25,6 +26,7 @@ public class BACnetObject extends RemoteObject {
 
     private RemoteDevice remoteDevice;
     private ObjectType objectType;
+
 
     public BACnetObject(ObjectIdentifier oid, RemoteDevice remoteDevice) {
         super(oid);
@@ -66,7 +68,6 @@ public class BACnetObject extends RemoteObject {
     }
 
     public String getPresentValueAsText() {
-
         if ((objectType.equals(ObjectType.binaryValue)) || (objectType.equals(ObjectType.binaryOutput)) || (objectType.equals(ObjectType.binaryInput))) {
             ConfirmedRequestService requestValue = new ReadPropertyRequest(super.getObjectIdentifier(), PropertyIdentifier.presentValue);
             ConfirmedRequestService requestActive = new ReadPropertyRequest(super.getObjectIdentifier(), PropertyIdentifier.activeText);
@@ -84,7 +85,6 @@ public class BACnetObject extends RemoteObject {
             } catch (BACnetException bac) {
                 System.out.println("Cant read present value of: " + super.getObjectIdentifier() + " @ " + remoteDevice);
             }
-            return null;
         } else if ((objectType.equals(ObjectType.multiStateValue)) || (objectType.equals(ObjectType.multiStateOutput)) || (objectType.equals(ObjectType.multiStateInput))) {
             ConfirmedRequestService requestValue = new ReadPropertyRequest(super.getObjectIdentifier(), PropertyIdentifier.presentValue);
             try {
@@ -130,7 +130,6 @@ public class BACnetObject extends RemoteObject {
         return "COM";
     }
 
-
     public String getAckTransitBitsByStatus(EventState eventState){
         try {
             EventTransitionBits priorities = ((EventTransitionBits) RequestUtils.sendReadPropertyAllowNull(
@@ -147,6 +146,28 @@ public class BACnetObject extends RemoteObject {
             System.err.println("Can't read " + PropertyIdentifier.priority  + " of " + getObjectName());
         }
         return "COM";
+    }
+
+    public EventTransitionBits getAckTransitBits() {
+        try {
+            return  ((EventTransitionBits) RequestUtils.sendReadPropertyAllowNull(
+                    DeviceService.localDevice, remoteDevice, super.getObjectIdentifier(),
+                    PropertyIdentifier.ackRequired));
+        } catch (BACnetException bac) {
+            System.err.println("Cant read time stamp of: " + super.getObjectIdentifier() + " from: " + remoteDevice.getVendorName());
+        }
+        return null;
+    }
+
+    public List<TimeStamp> getTimeStamps() {
+        try {
+            return ((SequenceOf<TimeStamp>) RequestUtils.sendReadPropertyAllowNull(
+                    DeviceService.localDevice, remoteDevice, super.getObjectIdentifier(),
+                    PropertyIdentifier.eventTimeStamps)).getValues();
+        } catch (BACnetException bac) {
+            System.err.println("Cant read time stamp of: " + super.getObjectIdentifier() + " from: " + remoteDevice.getVendorName());
+        }
+        return null;
     }
 
 }

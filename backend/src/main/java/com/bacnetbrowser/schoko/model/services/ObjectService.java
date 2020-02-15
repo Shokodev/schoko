@@ -78,7 +78,8 @@ public class ObjectService extends DeviceEventAdapter {
      * @param oid          object identifier
      * @param poids        property identifier
      */
-    private void creatProperties(LinkedList<BACnetProperty> properties, RemoteDevice remoteDevice, ObjectIdentifier oid, List<PropertyTypeDefinition> poids) {
+    private void creatProperties(LinkedList<BACnetProperty> properties, RemoteDevice remoteDevice,
+                                 ObjectIdentifier oid, List<PropertyTypeDefinition> poids) {
         for (PropertyTypeDefinition op : poids) {
             try {
                 ConfirmedRequestService request = new ReadPropertyRequest(oid, op.getPropertyIdentifier());
@@ -184,7 +185,9 @@ public class ObjectService extends DeviceEventAdapter {
      * Listen at change of value at the given remote device
      */
     @Override
-    public void covNotificationReceived(UnsignedInteger subscriberProcessIdentifier, RemoteDevice remoteDevice, ObjectIdentifier oid, UnsignedInteger timeRemaining, SequenceOf<PropertyValue> listOfValues) {
+    public void covNotificationReceived(UnsignedInteger subscriberProcessIdentifier, RemoteDevice remoteDevice,
+                                        ObjectIdentifier oid, UnsignedInteger timeRemaining,
+                                        SequenceOf<PropertyValue> listOfValues) {
         for (PropertyValue pv : listOfValues) {
             for (BACnetProperty baCnetProperty : getProperties()) {
                 if (pv.getPropertyIdentifier().toString().equals(baCnetProperty.getPropertyIdentifier())) {

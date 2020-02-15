@@ -1,10 +1,7 @@
 package com.bacnetbrowser.schoko.model.datahandler;
 
-import com.bacnetbrowser.schoko.databaseConfig.EventRepository;
 import com.bacnetbrowser.schoko.model.models.BACnetEvent;
 import com.bacnetbrowser.schoko.model.services.EventService;
-import com.serotonin.bacnet4j.service.confirmed.AcknowledgeAlarmRequest;
-import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
@@ -21,9 +18,6 @@ import java.util.LinkedList;
 public class EventHandler {
 
     private SimpMessagingTemplate template;
-
-    @Autowired
-    private EventRepository eventRepository;
 
     @Autowired
     private EventService eventService;
@@ -45,16 +39,11 @@ public class EventHandler {
      */
     public void  updateStream(){
         events.clear();
-        events.addAll(eventRepository.findAll());
+        events.addAll(eventService.getActiveEvents().values());
         template.convertAndSend("/broker/eventSub", events);
         System.out.println("Send updated eventList");
     }
 
-    public void ackAll(){
-        for(BACnetEvent event : eventRepository.findAll()){
-        eventService.acknowledgeEvent(event);
-    }
-    }
 
 }
 

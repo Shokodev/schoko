@@ -85,10 +85,4 @@ public class WSController {
 
     }
 
-    @GetMapping("/ackAll")
-    public String ackAll (){
-        eventHandler.ackAll();
-        return "Done!";
-    }
-
 }

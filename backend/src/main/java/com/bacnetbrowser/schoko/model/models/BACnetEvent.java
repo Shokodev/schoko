@@ -16,7 +16,7 @@ public class BACnetEvent {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int ID;
-    private int eventID;
+    private String eventID;
 
     // Event Properties
     private String processIdentifier;
@@ -33,19 +33,44 @@ public class BACnetEvent {
     private String toState;
     private String eventValues;
 
+    //Event handel properties
+    private boolean ackState;
+    private boolean resetState;
+
     // Object Properties
     private String description;
     private String presentValue;
     private String objectName;
 
-
     public BACnetEvent() {
+    }
+
+    public BACnetEvent(BACnetEvent baCnetEvent) {
+        this.processIdentifier = baCnetEvent.processIdentifier;
+        this.remoteDeviceName = baCnetEvent.remoteDeviceName;
+        this.oid = baCnetEvent.oid;
+        this.timeStamp = baCnetEvent.timeStamp;
+        this.notificationClass = baCnetEvent.notificationClass;
+        this.priority = baCnetEvent.priority;
+        this.eventType = baCnetEvent.eventType;
+        this.messageText = baCnetEvent.messageText;
+        this.notifyType = baCnetEvent.notifyType;
+        this.ackRequired = baCnetEvent.ackRequired;
+        this.fromState = baCnetEvent.fromState;
+        this.toState = baCnetEvent.toState;
+        this.eventValues = baCnetEvent.eventValues;
+        this.description = baCnetEvent.description;
+        this.presentValue = baCnetEvent.presentValue;
+        this.objectName = baCnetEvent.objectName;
+        this.ackState = baCnetEvent.ackState;
+        this.resetState = baCnetEvent.resetState;
+        this.eventID = baCnetEvent.eventID;
     }
 
     public BACnetEvent(String processIdentifier, String remoteDeviceName, String oid, Timestamp timeStamp,
                        String notificationClass, String priority, String eventType, String messageText, String notifyType,
                        String ackRequired, String fromState, String toState, String eventValues, String description,
-                       String presentValue, String objectName) {
+                       String presentValue, String objectName, boolean ackState, boolean resetState, String eventID) {
         this.processIdentifier = processIdentifier;
         this.remoteDeviceName = remoteDeviceName;
         this.oid = oid;
@@ -62,15 +87,25 @@ public class BACnetEvent {
         this.description = description;
         this.presentValue = presentValue;
         this.objectName = objectName;
+        this.ackState = ackState;
+        this.resetState = resetState;
+        this.eventID = eventID;
     }
 
-    public int getEventID() {
+    public String getEventID() {
         return eventID;
     }
 
-    public void setEventID(int eventID) {
-
+    public void setEventID(String eventID) {
         this.eventID = eventID;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getProcessIdentifier() {
@@ -201,6 +236,21 @@ public class BACnetEvent {
         this.objectName = objectName;
     }
 
+    public boolean getAckState() {
+        return ackState;
+    }
+
+    public void setAckState(boolean ackState) {
+        this.ackState = ackState;
+    }
+
+    public boolean getResetState() {
+        return resetState;
+    }
+
+    public void setResetState(boolean resetState) {
+        this.resetState = resetState;
+    }
 }
 
 

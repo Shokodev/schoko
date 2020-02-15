@@ -7,11 +7,12 @@ import org.springframework.stereotype.Repository;
 import java.sql.Timestamp;
 
 
+
 @Repository
 public interface EventRepository extends JpaRepository<BACnetEvent,Integer> {
 
-    BACnetEvent findTopBACnetEventByRemoteDeviceNameAndOid(String remoteDevice, String oid);
-
     BACnetEvent findBACnetEventByRemoteDeviceNameAndOidAndAndTimeStamp(String remoteDevice, String oid, Timestamp timestamp);
+
+    BACnetEvent findTopBACnetEventSQLByObjectNameOrderByTimeStampDesc(String objectName);
 
 }

@@ -6,8 +6,12 @@ import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
 import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.npdu.ip.IpNetwork;
+import com.serotonin.bacnet4j.service.acknowledgement.GetAlarmSummaryAck;
+import com.serotonin.bacnet4j.service.acknowledgement.GetEventInformationAck;
 import com.serotonin.bacnet4j.service.acknowledgement.ReadPropertyAck;
 import com.serotonin.bacnet4j.service.confirmed.ConfirmedRequestService;
+import com.serotonin.bacnet4j.service.confirmed.GetAlarmSummaryRequest;
+import com.serotonin.bacnet4j.service.confirmed.GetEventInformation;
 import com.serotonin.bacnet4j.service.confirmed.ReadPropertyRequest;
 import com.serotonin.bacnet4j.service.unconfirmed.WhoIsRequest;
 import com.serotonin.bacnet4j.transport.Transport;
@@ -23,6 +27,7 @@ import com.serotonin.bacnet4j.util.RequestUtils;
 
 import java.beans.Encoder;
 import java.util.List;
+import java.util.Objects;
 
 
 public class EventPropertiesTest {
@@ -36,39 +41,31 @@ public class EventPropertiesTest {
         localDevice.sendGlobalBroadcast(new WhoIsRequest());
         // Wait a bit for responses to come in.
         Thread.sleep(2000);
-        System.out.println(localDevice.getRemoteDevices().get(0).getInstanceNumber());
-        RemoteDevice remoteDevice = localDevice.getRemoteDevices().get(0);
-        ObjectIdentifier oid = new ObjectIdentifier(ObjectType.analogInput, 2);
-        PropertyIdentifier[] properties = {PropertyIdentifier.priority, PropertyIdentifier.eventType,
-                PropertyIdentifier.actionText, PropertyIdentifier.notifyType, PropertyIdentifier.ackRequired,
-                PropertyIdentifier.eventParameters};
-        /*for (PropertyIdentifier propertyIdentifier : properties) {
-            ConfirmedRequestService request = new ReadPropertyRequest(oid, propertyIdentifier);
-            try {
-                ReadPropertyAck result = (ReadPropertyAck) localDevice.send(remoteDevice, request);
-                System.out.println(propertyIdentifier + " " + result.getValue());
-            } catch (BACnetException bac) {
-                System.err.println("Cant read property " + propertyIdentifier.toString() + " of Object: " + oid.toString());
-            }
-        }
-    }*/
+        RemoteDevice remoteDevice = localDevice.getRemoteDevices().get(1);
+        System.out.println(remoteDevice.getInstanceNumber());
         try {
-            ConfirmedRequestService request = new ReadPropertyRequest(oid, PropertyIdentifier.eventTimeStamps, new UnsignedInteger(1));
-            ReadPropertyAck result = (ReadPropertyAck) localDevice.send(remoteDevice, request);
-            System.out.println(result.getValue());
-
-                //Encodable a = ((ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, new ReadPropertyRequest(oid, PropertyIdentifier.eventTimeStamps))).getValue();
-                List<TimeStamp> stamps = ((SequenceOf<TimeStamp>) RequestUtils.sendReadPropertyAllowNull(
-                        localDevice, remoteDevice, oid,
-                        PropertyIdentifier.eventTimeStamps)).getValues();
-
-                System.out.println(stamps.get(0).getDateTime());
-                System.out.println(stamps.get(1).getDateTime());
-                System.out.println(stamps.get(2).getDateTime());
-
+            GetAlarmSummaryRequest request = new GetAlarmSummaryRequest();
+            GetAlarmSummaryAck events = (GetAlarmSummaryAck) localDevice.send(remoteDevice, request);
+            try {
+            for (GetAlarmSummaryAck.AlarmSummary event : events.getValues()){
+                System.err.println(event.getObjectIdentifier());
+                }}catch (NullPointerException ignored){}
         } catch (BACnetException bac) {
             System.err.println("Read Fail");
         }
+        System.out.println("---------------------------------");
+        try {
+            GetEventInformation request = new GetEventInformation(null);
+            GetEventInformationAck events = (GetEventInformationAck) localDevice.send(remoteDevice, request);
+            try {
+                for (GetEventInformationAck.EventSummary event : events.getListOfEventSummaries()){
+                    System.err.println(event.getObjectIdentifier());
+                }}catch (NullPointerException ignored){}
+        } catch (BACnetException bac) {
+            System.err.println("Read Fail");
+        }
+
+
     }
 
 
