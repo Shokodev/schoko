@@ -60,8 +60,8 @@ public class DeviceService  {
         getRemoteDeviceInformation();
         setLocalDeviceAsAlarmReceiver();
         scanAndAddAllObjects();
-        eventService.getEventInformation();
-
+        eventService.getEventInformation(true);
+        eventService.getEventInformation(false);
     }
 
     /**

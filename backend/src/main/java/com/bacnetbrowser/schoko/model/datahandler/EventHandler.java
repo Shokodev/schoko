@@ -44,6 +44,11 @@ public class EventHandler {
         System.out.println("Send updated eventList");
     }
 
+    public void ackAllEvents(){
+        for(BACnetEvent event : events){
+            eventService.acknowledgeEvent(event.getObjectName());
+        }
+    }
 
 }
 

@@ -7,12 +7,10 @@ import com.serotonin.bacnet4j.event.DeviceEventAdapter;
 import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.npdu.ip.IpNetwork;
 import com.serotonin.bacnet4j.service.acknowledgement.GetAlarmSummaryAck;
+import com.serotonin.bacnet4j.service.acknowledgement.GetEnrollmentSummaryAck;
 import com.serotonin.bacnet4j.service.acknowledgement.GetEventInformationAck;
 import com.serotonin.bacnet4j.service.acknowledgement.ReadPropertyAck;
-import com.serotonin.bacnet4j.service.confirmed.ConfirmedRequestService;
-import com.serotonin.bacnet4j.service.confirmed.GetAlarmSummaryRequest;
-import com.serotonin.bacnet4j.service.confirmed.GetEventInformation;
-import com.serotonin.bacnet4j.service.confirmed.ReadPropertyRequest;
+import com.serotonin.bacnet4j.service.confirmed.*;
 import com.serotonin.bacnet4j.service.unconfirmed.WhoIsRequest;
 import com.serotonin.bacnet4j.transport.Transport;
 import com.serotonin.bacnet4j.type.Encodable;
@@ -21,6 +19,7 @@ import com.serotonin.bacnet4j.type.constructed.SequenceOf;
 import com.serotonin.bacnet4j.type.constructed.TimeStamp;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
+import com.serotonin.bacnet4j.type.primitive.Enumerated;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
 import com.serotonin.bacnet4j.util.RequestUtils;
@@ -43,7 +42,7 @@ public class EventPropertiesTest {
         Thread.sleep(2000);
         RemoteDevice remoteDevice = localDevice.getRemoteDevices().get(1);
         System.out.println(remoteDevice.getInstanceNumber());
-        try {
+        /*try {
             GetAlarmSummaryRequest request = new GetAlarmSummaryRequest();
             GetAlarmSummaryAck events = (GetAlarmSummaryAck) localDevice.send(remoteDevice, request);
             try {
@@ -59,6 +58,16 @@ public class EventPropertiesTest {
             GetEventInformationAck events = (GetEventInformationAck) localDevice.send(remoteDevice, request);
             try {
                 for (GetEventInformationAck.EventSummary event : events.getListOfEventSummaries()){
+                    System.err.println(event.getObjectIdentifier());
+                }}catch (NullPointerException ignored){}
+        } catch (BACnetException bac) {
+            System.err.println("Read Fail");
+        }*/
+        try {
+            GetEnrollmentSummaryRequest request = new GetEnrollmentSummaryRequest(new Enumerated(0),null,null,null,null,null);
+            GetEnrollmentSummaryAck events = (GetEnrollmentSummaryAck) localDevice.send(remoteDevice, request);
+            try {
+                for (GetEnrollmentSummaryAck.EnrollmentSummary event : events.getValues()){
                     System.err.println(event.getObjectIdentifier());
                 }}catch (NullPointerException ignored){}
         } catch (BACnetException bac) {

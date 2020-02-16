@@ -15,4 +15,6 @@ public interface EventRepository extends JpaRepository<BACnetEvent,Integer> {
 
     BACnetEvent findTopBACnetEventSQLByObjectNameOrderByTimeStampDesc(String objectName);
 
+    BACnetEvent findTopByEventIDIs(String eventID);
+
 }

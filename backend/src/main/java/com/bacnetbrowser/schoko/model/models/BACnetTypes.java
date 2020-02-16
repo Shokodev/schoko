@@ -1,14 +1,17 @@
 package com.bacnetbrowser.schoko.model.models;
 
 import com.serotonin.bacnet4j.type.Encodable;
+import com.serotonin.bacnet4j.type.constructed.DateTime;
 import com.serotonin.bacnet4j.type.constructed.TimeStamp;
 import com.serotonin.bacnet4j.type.enumerated.BinaryPV;
+import com.serotonin.bacnet4j.type.enumerated.EventState;
 import com.serotonin.bacnet4j.type.enumerated.NotifyType;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.primitive.*;
 import java.lang.Double;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.Timestamp;
 import java.util.HashMap;
 
 
@@ -59,6 +62,18 @@ public class BACnetTypes {
     public static java.sql.Timestamp parseToSQLTimeStamp(TimeStamp timeStamp){
         return new java.sql.Timestamp(timeStamp.getDateTime().getTimeMillis());
     }
+
+    /**
+     * Parse the BACnet TimeStamp into SQL format
+     * @param timeStamp Date and Time property of BACnet
+     * @return SQL time stamp format
+     */
+    public static TimeStamp parseToBACnetTimeStamp(Timestamp timeStamp){
+        DateTime dateTime = new DateTime(timeStamp.getTime());
+        return new TimeStamp(dateTime);
+
+    }
+
 
     public static String getNotifyTypeAsText(NotifyType notifyType){
         if(notifyType.equals(NotifyType.alarm)){
