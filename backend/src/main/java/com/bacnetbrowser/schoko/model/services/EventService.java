@@ -105,12 +105,12 @@ public class EventService extends DeviceEventAdapter {
                 activeEvents.put(object.getObjectName(), bacnetEvent);
                 eventRepository.save(bacnetEvent);
             }
-            eventHandler.updateStream();
+
         } catch (NullPointerException e){
             System.err.println("Event from " + oid + " @ " + remoteDevice + " could not be processed");
         }
         System.out.println("Active events: " + activeEvents.size());
-
+        eventHandler.updateStream();
 
     }
 

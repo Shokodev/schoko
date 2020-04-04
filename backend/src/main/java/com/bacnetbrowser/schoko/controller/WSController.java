@@ -85,10 +85,16 @@ public class WSController {
 
     }
 
-    @GetMapping("/ack")
+    @GetMapping("/ackAll")
     public void ackEvents(){
         eventHandler.ackAllEvents();
         System.out.println("Ack all events");
+    }
+
+    @MessageMapping("/ack")
+    public void ackEvent (String objectName) {
+        System.out.println("Acknowledge object: " + objectName);
+        eventHandler.ackEvent(objectName);
     }
 
 }
