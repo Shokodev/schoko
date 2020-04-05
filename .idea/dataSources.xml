@@ -7,5 +7,11 @@
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mariadb://catecahi.mysql,db.hostpoint.ch:3306</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="schoko@localhost" uuid="8388d68c-e0ac-409a-9164-6982a940d16b">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/schoko</jdbc-url>
+    </data-source>
   </component>
 </project>

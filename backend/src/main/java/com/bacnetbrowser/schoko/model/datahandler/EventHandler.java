@@ -50,5 +50,8 @@ public class EventHandler {
         }
     }
 
+    public void ackEvent(String objectName) {
+        eventService.acknowledgeEvent(objectName);
+    }
 }
 
