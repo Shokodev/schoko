@@ -29,7 +29,7 @@ public class BACnetTypes {
      */
     public static Encodable getPropertyValuesByObjectType(ObjectType objectType, String value) {
         if ((objectType.equals(ObjectType.binaryOutput)) ||(objectType.equals(ObjectType.binaryValue))) {
-            return new BinaryPV(Integer.parseInt(value));
+            return BinaryPV.forId(Integer.parseInt(value));
         } else if ((objectType.equals(ObjectType.analogOutput)) ||(objectType.equals(ObjectType.analogValue))) {
             return new Real((float) Double.parseDouble(value));
         } else if ((objectType.equals(ObjectType.multiStateOutput)) ||(objectType.equals(ObjectType.multiStateValue))) {
@@ -60,7 +60,7 @@ public class BACnetTypes {
      * @return SQL time stamp format
      */
     public static java.sql.Timestamp parseToSQLTimeStamp(TimeStamp timeStamp){
-        return new java.sql.Timestamp(timeStamp.getDateTime().getTimeMillis());
+        return new java.sql.Timestamp(timeStamp.getDateTime().getGC().getTimeInMillis());
     }
 
     /**

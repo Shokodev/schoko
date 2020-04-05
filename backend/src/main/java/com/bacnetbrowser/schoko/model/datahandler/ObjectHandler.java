@@ -58,11 +58,9 @@ public class ObjectHandler {
      * @param newValue new value for property
      */
     public void setNewValue(String propertyIdentifier, String newValue){
-        for (PropertyIdentifier oid : PropertyIdentifier.ALL)
-            if (oid.toString().equals(propertyIdentifier)){
-                    objectService.writeValue(oid, BACnetTypes.getPropertyValuesByObjectType(objectService.getObjectIdentifier().getObjectType(), newValue));
-
-            }}
+        objectService.writeValue(PropertyIdentifier.forName(propertyIdentifier),
+                BACnetTypes.getPropertyValuesByObjectType(objectService.getObjectIdentifier().getObjectType(), newValue));
+    }
 
     /**
      * Use to release manual operation

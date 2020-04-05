@@ -46,7 +46,7 @@ public class EventHandler {
 
     public void ackAllEvents(){
         for(BACnetEvent event : events){
-            eventService.acknowledgeEvent(event.getObjectName());
+           // eventService.acknowledgeEvent(event.getObjectName());
         }
     }
 

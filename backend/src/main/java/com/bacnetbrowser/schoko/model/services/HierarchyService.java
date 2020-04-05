@@ -1,13 +1,11 @@
 package com.bacnetbrowser.schoko.model.services;
 
+import com.bacnetbrowser.schoko.model.models.BACnetDevice;
 import com.bacnetbrowser.schoko.model.models.BACnetNode;
+import com.bacnetbrowser.schoko.model.models.BACnetObject;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.RemoteObject;
-import com.serotonin.bacnet4j.exception.BACnetException;
-import com.serotonin.bacnet4j.service.acknowledgement.ReadPropertyAck;
-import com.serotonin.bacnet4j.service.confirmed.ReadPropertyRequest;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
-import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +24,7 @@ public class HierarchyService {
     //This lists have main information about structure an objects
     static HashMap<String, ObjectIdentifier> objectNamesToOids = new HashMap<>();
     static HashMap<String, String> objectNamesToDescription = new HashMap<>();
-    static HashMap<String, RemoteDevice> obejctNamesToRemoteDevice = new HashMap<>();
+    static HashMap<String, BACnetDevice> obejctNamesToBACnetDevice = new HashMap<>();
 
     private BACnetNode bacnetStructure;
     private BACnetNode deviceStructure;
@@ -57,20 +55,16 @@ public class HierarchyService {
      * Reads all BACnet Objects of all remote devises
      */
     private void createStaticRemoteObjectLists() {
-        for (RemoteDevice remoteDevice : DeviceService.localDevice.getRemoteDevices()) {
-            try {
-                for (RemoteObject remoteObject : remoteDevice.getObjects()) {
-                    if (checkIfNecessaryForStructure(remoteObject.getObjectIdentifier())) {
-                        String tempDescription = ((ReadPropertyAck) DeviceService.localDevice.send(remoteDevice, new ReadPropertyRequest(remoteObject.getObjectIdentifier(), PropertyIdentifier.description))).getValue().toString();
-                        objectNamesToOids.put(remoteObject.getObjectName(), remoteObject.getObjectIdentifier());
-                        objectNamesToDescription.put(remoteObject.getObjectName(), tempDescription);
-                        obejctNamesToRemoteDevice.put(remoteObject.getObjectName(), remoteDevice);
-                        getAllStructureElements(remoteObject.getObjectIdentifier(), remoteObject.getObjectName(), tempDescription);
+        for (BACnetDevice bacnetDevice : DeviceService.getBacnetDevices()) {
+
+                for (BACnetObject bacnetObject : bacnetDevice.getBacnetObjects()) {
+                    if (checkIfNecessaryForStructure(bacnetObject.getObjectIdentifier())) {
+                        objectNamesToOids.put(bacnetObject.getObjectName(), bacnetObject.getObjectIdentifier());
+                        objectNamesToDescription.put(bacnetObject.getObjectName(), bacnetObject.getDescription());
+                        obejctNamesToBACnetDevice.put(bacnetObject.getObjectName(), bacnetDevice);
+                        getAllStructureElements(bacnetObject.getObjectIdentifier(), bacnetObject.getObjectName(), bacnetObject.getDescription());
                     }
                 }
-            } catch (BACnetException | NullPointerException e) {
-                System.out.println("Failed to read objects");
-            }
         }
     }
 
@@ -78,7 +72,7 @@ public class HierarchyService {
         bacnetStructure = null;
         deviceStructure = null;
         objectNamesToOids.clear();
-        obejctNamesToRemoteDevice.clear();
+        obejctNamesToBACnetDevice.clear();
         objectNamesToDescription.clear();
 
     }
@@ -100,7 +94,7 @@ public class HierarchyService {
             String[] splittedObjectName = key.split(structureSeparator);
             for (int i = 0; i < splittedObjectName.length; i++) {
                 BACnetNode parent = getParentNode(bacnetStructure, i, splittedObjectName);
-                BACnetNode node = createNode(splittedObjectName[i], objectNamesToOids.get(key).getObjectType().toString(), objectNamesToDescription.get(key), obejctNamesToRemoteDevice.get(key).getInstanceNumber(), parent);
+                BACnetNode node = createNode(splittedObjectName[i], objectNamesToOids.get(key).getObjectType().toString(), objectNamesToDescription.get(key), obejctNamesToBACnetDevice.get(key).getInstanceNumber(), parent);
                 if (node != null) {
                     parent.addChild(node);
                     nodeCounter++;
@@ -188,11 +182,11 @@ public class HierarchyService {
     private BACnetNode buildDeviceStructure() {
         BACnetNode deviceStructure = new BACnetNode("Gerätesicht", "Top node devices", "Alle BACnet Geräte und ihre Objekte", null);
         int nodeCounter = 0;
-        for (RemoteDevice remoteDevice : DeviceService.localDevice.getRemoteDevices()) {
-            BACnetNode device = new BACnetNode(remoteDevice.getName(), remoteDevice.getObjectIdentifier().toString(), remoteDevice.getVendorName(), remoteDevice.getInstanceNumber());
+        for (BACnetDevice bacnetDevice : DeviceService.getBacnetDevices()) {
+            BACnetNode device = new BACnetNode(bacnetDevice.getName(), bacnetDevice.getObjectIdentifier().toString(), bacnetDevice.getVendorName(), bacnetDevice.getInstanceNumber());
             deviceStructure.addChild(device);
-            for (RemoteObject remoteObject : remoteDevice.getObjects()) {
-                addObjectToPropertyGroup(remoteObject, device);
+            for (BACnetObject bacnetObject : bacnetDevice.getBacnetObjects()) {
+                addObjectToPropertyGroup(bacnetObject, device);
                 nodeCounter++;
             }
         }

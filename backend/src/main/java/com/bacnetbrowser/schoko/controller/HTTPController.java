@@ -2,6 +2,8 @@ package com.bacnetbrowser.schoko.controller;
 
 import com.bacnetbrowser.schoko.model.datahandler.*;
 import com.bacnetbrowser.schoko.model.models.BACnetNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -25,6 +27,7 @@ public class HTTPController {
     private HierarchyHandler hierarchyHandler;
     private SettingsHandler settingsHandler;
     private DeviceHandler deviceHandler;
+    static final Logger LOG = LoggerFactory.getLogger(HTTPController.class);
 
 
     @Autowired
@@ -63,7 +66,7 @@ public class HTTPController {
         settingsHandler.setSiteDescription(settings.getSiteDescription());
         settingsHandler.setLocalDeviceID(settings.getLocalDeviceID());
         deviceHandler.createNetwork(Integer.parseInt(settingsHandler.getPort(), 16),Integer.parseInt(settingsHandler.getLocalDeviceID()));
-        System.out.println("Build structure with new settings.....");
+        LOG.debug("Build structure with new settings.....");
         hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
         return new ResponseEntity<SettingsHandler>(settings, HttpStatus.OK);
     }
