@@ -74,7 +74,6 @@ public class BACnetTypes {
 
     }
 
-
     public static String getNotifyTypeAsText(NotifyType notifyType){
         if(notifyType.equals(NotifyType.alarm)){
             return "Alarm";

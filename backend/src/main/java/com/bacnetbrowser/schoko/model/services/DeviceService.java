@@ -34,8 +34,8 @@ import java.util.List;
 @Component
 public class DeviceService extends DeviceEventAdapter {
     public static LocalDevice localDevice;
-    public static ArrayList<BACnetDevice> bacnetDevices = new ArrayList<>();
-    static final Logger LOG = LoggerFactory.getLogger(DeviceService.class);
+    private static ArrayList<BACnetDevice> bacnetDevices = new ArrayList<>();
+    private static final Logger LOG = LoggerFactory.getLogger(DeviceService.class);
 
     private ObjectService objectService;
     private EventService eventService;
@@ -75,7 +75,7 @@ public class DeviceService extends DeviceEventAdapter {
         try {
             localDevice.initialize();
         } catch(Exception e){
-            LOG.warn("LocalDevice initialize failed, restart the application may solve this problem");
+            LOG.error("LocalDevice initialize failed, restart the application may solve this problem");
         }
         LOG.info("Successfully created LocalDevice " + localDevice.getInstanceNumber());
         scanForRemoteDevices();
@@ -149,13 +149,13 @@ public class DeviceService extends DeviceEventAdapter {
                             try {
                             RequestUtils.addListElement(localDevice,bacnetDevice.getBacnetDeviceInfo(),oid,PropertyIdentifier.recipientList,creatAlarmDestination());
                             }catch(BACnetException bac){
-                                System.err.println("No notification classes found at remote " + bacnetDevice);
+                               LOG.warn("No notification classes found at remote " + bacnetDevice);
                             }
-                            System.out.println("LocalDevice " + localDevice.getInstanceNumber() + " as receiver registered to: " + oid.toString() + " @ " + bacnetDevice.getObjectIdentifier());
+                            LOG.info("LocalDevice " + localDevice.getInstanceNumber() + " as receiver registered to: " + oid.toString() + " @ " + bacnetDevice.getObjectIdentifier());
                         }}}
             }
         } else {
-            System.err.println("No destinations added");
+            LOG.warn("No destinations added");
         }
 
     }
@@ -182,7 +182,7 @@ public class DeviceService extends DeviceEventAdapter {
     private void rebaseLocalDeviceIfExists(){
         if(localDevice != null){
             localDevice.terminate();
-            System.out.println("*********************Reset*********************");
+            LOG.info("*********************Reset*********************");
 
         }
     }
@@ -202,16 +202,16 @@ public class DeviceService extends DeviceEventAdapter {
                     BACnetObject bacnetObject = new BACnetObject(oid,bacnetDevice);
                     bacnetDevice.getBacnetObjects().add(bacnetObject);
                     }} catch (BACnetException | NullPointerException e) {
-                System.out.println("Failed to read objects");
+                LOG.warn("Failed to read objects");
             }
         }
     }
 
-    public static ArrayList<BACnetDevice> getBacnetDevices() {
+    static ArrayList<BACnetDevice> getBacnetDevices() {
         return bacnetDevices;
     }
 
-    public static BACnetDevice getBacnetDevice(ObjectIdentifier oid){
+    static BACnetDevice getBacnetDevice(ObjectIdentifier oid){
         for(BACnetDevice dv : bacnetDevices){
             if(dv.getObjectIdentifier().equals(oid)){
                 return dv;

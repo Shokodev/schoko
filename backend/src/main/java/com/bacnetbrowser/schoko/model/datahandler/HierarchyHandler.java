@@ -3,6 +3,8 @@ package com.bacnetbrowser.schoko.model.datahandler;
 
 import com.bacnetbrowser.schoko.model.models.BACnetNode;
 import com.bacnetbrowser.schoko.model.services.HierarchyService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,7 @@ public class HierarchyHandler {
 
     private HierarchyService hierarchyService;
     private SettingsHandler settingsHandler;
+    private static final Logger LOG = LoggerFactory.getLogger(HierarchyService.class);
 
     @Autowired
     public HierarchyHandler(HierarchyService hierarchyService, SettingsHandler settingsHandler) {
@@ -45,6 +48,7 @@ public class HierarchyHandler {
                 return node;
             }
                 } catch (NullPointerException e){
+                    LOG.info("No structure yet, check settings!");
                     return new BACnetNode("Achtung!"," ","Bitte zuerst Einstellungen vornehmen",0);
                 }
         }

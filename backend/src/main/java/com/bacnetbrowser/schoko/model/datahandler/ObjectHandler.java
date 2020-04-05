@@ -4,6 +4,8 @@ package com.bacnetbrowser.schoko.model.datahandler;
 import com.bacnetbrowser.schoko.model.models.BACnetTypes;
 import com.bacnetbrowser.schoko.model.services.ObjectService;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,7 @@ public class ObjectHandler {
 
    private SimpMessagingTemplate template;
    private ObjectService objectService;
+    private static final Logger LOG = LoggerFactory.getLogger(ObjectHandler.class);
 
    @Autowired
     public ObjectHandler(SimpMessagingTemplate template, ObjectService objectService) {
@@ -30,10 +33,10 @@ public class ObjectHandler {
     /**
      * Is used to start a websocket stream for data point properties by their object names
      * it also triggers the subscription for this object on the remote device
-     * @param elementName object name
+     * @param objectName object name
      */
-    public void getNewPropertyStream(String elementName)  {
-        objectService.readDataPointProperties(elementName);
+    public void getNewPropertyStream(String objectName)  {
+        objectService.readDataPointProperties(objectName);
         objectService.subscribeToCovRequest();
     }
 
@@ -50,6 +53,7 @@ public class ObjectHandler {
      */
     public void  updateStream(){
         template.convertAndSend("/broker/objectSub", objectService.getProperties());
+        LOG.info("Send updated properties");
     }
 
     /**

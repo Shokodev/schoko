@@ -21,6 +21,9 @@ import com.serotonin.bacnet4j.type.primitive.Null;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
 import com.serotonin.bacnet4j.util.RequestUtils;
+import jdk.internal.joptsimple.internal.Strings;
+
+import java.util.stream.Stream;
 
 public class PriorityTest {
     public static void main(String[] args) throws Exception {
@@ -45,7 +48,6 @@ public class PriorityTest {
         ConfirmedRequestService request = new ReadPropertyRequest(new ObjectIdentifier(ObjectType.binaryValue, 39), PropertyIdentifier.priorityArray);
         ReadPropertyAck result = (ReadPropertyAck) localDevice.send(remoteDevice, request);
         System.out.println(result.getValue().toString());
-
 
 
 

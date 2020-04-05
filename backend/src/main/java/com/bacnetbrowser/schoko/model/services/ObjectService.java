@@ -28,6 +28,8 @@ import com.serotonin.bacnet4j.type.primitive.Null;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
 import com.serotonin.bacnet4j.util.RequestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -45,7 +47,7 @@ public class ObjectService extends DeviceEventAdapter {
 
     @Autowired
     private ObjectHandler objectHandler;
-
+    static final Logger LOG = LoggerFactory.getLogger(ObjectService.class);
     private final LinkedList<BACnetProperty> properties = new LinkedList<>();
     private BACnetDevice bacnetDevice;
     private BACnetObject bacnetObject;
@@ -64,14 +66,8 @@ public class ObjectService extends DeviceEventAdapter {
         this.objectIdentifier = oid;
         this.bacnetDevice = bacnetDevice;
         this.bacnetObject = bacnetDevice.getBACnetObject(oid);
-        this.properties.addAll(bacnetObject.readProperties());
+        bacnetObject.readProperties();
         }
-
-
-    private void updateProperties() {
-        properties.clear();
-        properties.addAll(bacnetObject.readProperties());
-    }
 
     public LinkedList<BACnetProperty> getProperties() {
         return properties;
@@ -81,16 +77,24 @@ public class ObjectService extends DeviceEventAdapter {
      * Start a subscription at remote device with the current object
      */
     public void subscribeToCovRequest() {
-        DeviceService.localDevice.send(bacnetDevice.getBacnetDeviceInfo(), new SubscribeCOVRequest(new UnsignedInteger(1), objectIdentifier, Boolean.TRUE, new UnsignedInteger(0)));
-        System.out.println("Subscription @: '" + objectIdentifier + "' on: " + bacnetDevice.getObjectIdentifier());
+        try {
+            DeviceService.localDevice.send(bacnetDevice.getBacnetDeviceInfo(), new SubscribeCOVRequest(new UnsignedInteger(1), objectIdentifier, Boolean.TRUE, new UnsignedInteger(0))).get();
+        } catch (BACnetException e) {
+            LOG.warn("Can't subscribe : '" + objectIdentifier + "' on: " + bacnetDevice.getObjectIdentifier());
+        }
+        LOG.info("Subscription @: '" + objectIdentifier + "' on: " + bacnetDevice.getObjectIdentifier());
     }
 
     /**
      * Unsubscribe the current subscription at remote device of current object
      */
     public void unsubscribeToCovRequest() {
-        DeviceService.localDevice.send(bacnetDevice.getBacnetDeviceInfo(), new SubscribeCOVRequest(new UnsignedInteger(1), objectIdentifier, null, null));
-        System.out.println("Unsubscription @: '" + objectIdentifier + "' on: " + bacnetDevice.getObjectIdentifier());
+        try {
+        DeviceService.localDevice.send(bacnetDevice.getBacnetDeviceInfo(), new SubscribeCOVRequest(new UnsignedInteger(1), objectIdentifier, null, null)).get();
+        } catch (BACnetException e) {
+        LOG.warn("Can't unsubscribe : '" + objectIdentifier + "' on: " + bacnetDevice.getObjectIdentifier());
+    }
+        LOG.info("Unsubscription @: '" + objectIdentifier + "' on: " + bacnetDevice.getObjectIdentifier());
     }
 
     public void clearPropertyList() {
@@ -105,11 +109,11 @@ public class ObjectService extends DeviceEventAdapter {
      */
     public void writeValue(PropertyIdentifier poid, Encodable value) {
         // 8 is default priority for manual operations
-        System.out.println("Write on :" + poid.toString() + " with: " + value.toString());
+        LOG.info("Write on :" + poid.toString() + " with: " + value.toString());
         try {
             RequestUtils.writeProperty(DeviceService.localDevice,bacnetDevice,objectIdentifier,poid,value);
         } catch (BACnetException bac) {
-            System.err.println("Cant write " + poid.toString() + " at " + objectIdentifier.toString());
+            LOG.warn("Cant write " + poid.toString() + " at " + objectIdentifier.toString());
         }
 
     }
@@ -118,11 +122,11 @@ public class ObjectService extends DeviceEventAdapter {
      * Release a manual written property of the priority 8
      */
     public void releaseManualCommand() {
-        System.out.println("Release :" + objectIdentifier);
+        LOG.info("Release :" + objectIdentifier);
         try {
             RequestUtils.writeProperty(DeviceService.localDevice,bacnetDevice,objectIdentifier,PropertyIdentifier.presentValue,null,new PriorityValue(new Null()),new UnsignedInteger(8));
         } catch (BACnetException bac) {
-            System.err.println("Cant release " + objectIdentifier.toString());
+            LOG.warn("Cant release " + objectIdentifier.toString());
         }
     }
 
@@ -145,13 +149,12 @@ public class ObjectService extends DeviceEventAdapter {
                     } else {
                         baCnetProperty.setValue(pv.getValue().toString());
                     }
-                    System.out.println("Device: " + bacnetDevice.getObjectIdentifier() + " has sent new " + baCnetProperty.getPropertyIdentifier() + ": " + baCnetProperty.getValue());
+                    LOG.info("Device: " + bacnetDevice.getObjectIdentifier() + " has sent new " + baCnetProperty.getPropertyIdentifier() + ": " + baCnetProperty.getValue());
                 }
 
             }
         }
         //TODO this method should replace the code above
-        updateProperties();
         objectHandler.updateStream();
     }
 

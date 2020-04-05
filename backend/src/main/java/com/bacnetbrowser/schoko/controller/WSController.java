@@ -5,6 +5,8 @@ import com.bacnetbrowser.schoko.model.datahandler.EventHandler;
 import com.bacnetbrowser.schoko.model.datahandler.ObjectHandler;
 import com.bacnetbrowser.schoko.model.models.BACnetNode;
 import com.bacnetbrowser.schoko.model.models.BACnetProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -28,6 +30,7 @@ public class WSController {
 
     private ObjectHandler objectHandler;
     private EventHandler eventHandler;
+    private static final Logger LOG = LoggerFactory.getLogger(WSController.class);
 
     @Autowired
     public WSController(ObjectHandler objectHandler, EventHandler eventHandler) {
@@ -42,7 +45,7 @@ public class WSController {
     @MessageMapping("/objectSub")
     @SendTo("/broker/objectSub")
     public void subscribeProperties (String objectName) {
-        System.out.println("Read object: " + objectName);
+        LOG.info("Read object: " + objectName);
         objectHandler.getNewPropertyStream(objectName);
     }
 
@@ -52,7 +55,7 @@ public class WSController {
      */
     @MessageMapping("/end")
     public void closed (String closed) {
-        System.out.println("Message from Client: " + closed);
+        LOG.info("Message from Client: " + closed);
         objectHandler.disconnectPropertyStream();
     }
 
@@ -81,19 +84,19 @@ public class WSController {
     @MessageMapping("/eventSub")
     @SendTo("/broker/eventSub")
     public void subscribeEvents (String message) {
-        System.out.println(message +" event channel");
+        LOG.info(message +" event channel");
 
     }
 
     @GetMapping("/ackAll")
     public void ackEvents(){
         eventHandler.ackAllEvents();
-        System.out.println("Ack all events");
+        LOG.info("Ack all events");
     }
 
     @MessageMapping("/ack")
     public void ackEvent (String objectName) {
-        System.out.println("Acknowledge object: " + objectName);
+        LOG.info("Acknowledge object: " + objectName);
         eventHandler.ackEvent(objectName);
     }
 

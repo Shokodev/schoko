@@ -2,6 +2,8 @@ package com.bacnetbrowser.schoko.model.datahandler;
 
 import com.bacnetbrowser.schoko.model.models.BACnetEvent;
 import com.bacnetbrowser.schoko.model.services.EventService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
@@ -24,6 +26,7 @@ public class EventHandler {
 
 
     final private LinkedList<BACnetEvent> events = new LinkedList<>();
+    private static final Logger LOG = LoggerFactory.getLogger(EventHandler.class);
 
     @Autowired
     public EventHandler(SimpMessagingTemplate template) {
@@ -41,7 +44,7 @@ public class EventHandler {
         events.clear();
         events.addAll(eventService.getActiveEvents().values());
         template.convertAndSend("/broker/eventSub", events);
-        System.out.println("Send updated eventList");
+        LOG.info("Send updated eventList");
     }
 
     public void ackAllEvents(){

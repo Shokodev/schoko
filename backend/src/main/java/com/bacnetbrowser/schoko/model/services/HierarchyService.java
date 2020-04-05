@@ -7,6 +7,8 @@ import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.RemoteObject;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -25,6 +27,7 @@ public class HierarchyService {
     static HashMap<String, ObjectIdentifier> objectNamesToOids = new HashMap<>();
     static HashMap<String, String> objectNamesToDescription = new HashMap<>();
     static HashMap<String, BACnetDevice> obejctNamesToBACnetDevice = new HashMap<>();
+    private static final Logger LOG = LoggerFactory.getLogger(HierarchyService.class);
 
     private BACnetNode bacnetStructure;
     private BACnetNode deviceStructure;
@@ -102,10 +105,10 @@ public class HierarchyService {
             }
         }
         if (bacnetStructure.getChildren().isEmpty()) {
-            System.err.println("No bacNet nodes were created, check settings!");
+            LOG.warn("No bacNet nodes were created, check settings!");
             return null;
         }
-        System.out.println("BacNet structure successfully created with " + nodeCounter + " nodes");
+        LOG.info("BacNet structure successfully created with " + nodeCounter + " nodes");
         return bacnetStructure;
     }
 
@@ -191,10 +194,10 @@ public class HierarchyService {
             }
         }
         if (deviceStructure.getChildren().isEmpty()) {
-            System.err.println("No device nodes were created, check settings!");
+            LOG.warn("No device nodes were created, check settings!");
             return null;
         }
-        System.out.println("Device structure successfully created with " + nodeCounter + " nodes");
+        LOG.info("Device structure successfully created with " + nodeCounter + " nodes");
         return deviceStructure;
     }
 

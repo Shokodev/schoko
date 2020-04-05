@@ -66,7 +66,7 @@ public class HTTPController {
         settingsHandler.setSiteDescription(settings.getSiteDescription());
         settingsHandler.setLocalDeviceID(settings.getLocalDeviceID());
         deviceHandler.createNetwork(Integer.parseInt(settingsHandler.getPort(), 16),Integer.parseInt(settingsHandler.getLocalDeviceID()));
-        LOG.debug("Build structure with new settings.....");
+        LOG.info("Build structure with new settings.....");
         hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
         return new ResponseEntity<SettingsHandler>(settings, HttpStatus.OK);
     }
@@ -88,7 +88,7 @@ public class HTTPController {
      */
     @GetMapping("/structure/{objectName}")
     public BACnetNode getBacnetStructure(@PathVariable String objectName){
-        System.out.println("Get node: " + objectName);
+        LOG.info("Get node: " + objectName);
         return hierarchyHandler.getNodeByObjectName(objectName);
         }
 

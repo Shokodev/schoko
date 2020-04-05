@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,14 +34,15 @@ public class BACnetObject extends RemoteObject implements ReadListener {
 
     private RemoteDevice bacnetDevice;
     private ObjectType objectType;
-    static final Logger LOG = LoggerFactory.getLogger(BACnetObject.class);
+    private List<ObjectPropertyReference> propertyReferences = new ArrayList<>();
+    private static final Logger LOG = LoggerFactory.getLogger(BACnetObject.class);
 
 
     public BACnetObject(ObjectIdentifier oid, BACnetDevice bacnetDevice) {
         super(DeviceService.localDevice,oid);
         this.bacnetDevice = bacnetDevice.getBacnetDeviceInfo();
         this.objectType = oid.getObjectType();
-
+        creatPropertyReferencList();
     }
 
     public ObjectType getObjectType() {
@@ -52,7 +54,7 @@ public class BACnetObject extends RemoteObject implements ReadListener {
         try {
             return RequestUtils.readProperty(DeviceService.localDevice, bacnetDevice, super.getObjectIdentifier(), PropertyIdentifier.objectName, null).toString();
         } catch (BACnetException e) {
-            System.err.println("Could not read objectName of:" + super.getObjectIdentifier());
+            LOG.warn("Could not read objectName of:" + super.getObjectIdentifier());
         }
         return "COM";
     }
@@ -69,13 +71,17 @@ public class BACnetObject extends RemoteObject implements ReadListener {
         try {
             return RequestUtils.readProperty(DeviceService.localDevice,bacnetDevice,super.getObjectIdentifier(), propertyIdentifier,null);
         } catch (BACnetException bac) {
-            System.err.println("Can't read " + propertyIdentifier + " of " + getObjectName());
+            LOG.warn("Can't read " + propertyIdentifier + " of " + getObjectName());
         }
         return new CharacterString("COM");
     }
 
-    public List<BACnetProperty> readProperties() {
-
+    public void readProperties() {
+        try {
+            RequestUtils.readProperties(DeviceService.localDevice, bacnetDevice, propertyReferences, true, this);
+        } catch (BACnetException bac) {
+            LOG.warn("Can't read properties of " + getObjectIdentifier());
+        }
     }
 
     public String getPresentValueAsText() {
@@ -97,7 +103,7 @@ public class BACnetObject extends RemoteObject implements ReadListener {
                 return texts.get(resultValue - 1).toString();
 
             } catch (BACnetException bac) {
-                System.out.println("Cant read present value of: " + super.getObjectIdentifier() + " @ " + bacnetDevice);
+                LOG.warn("Cant read present value of: " + super.getObjectIdentifier() + " @ " + bacnetDevice);
             }
         } else if ((objectType.equals(ObjectType.analogValue)) || (objectType.equals(ObjectType.analogOutput)) || (objectType.equals(ObjectType.analogInput))) {
                 String resultValue = readProperty(PropertyIdentifier.presentValue).toString();
@@ -120,7 +126,7 @@ public class BACnetObject extends RemoteObject implements ReadListener {
                 return priorities.get(0).toString();
             }
         } catch (BACnetException bac) {
-            System.err.println("Can't read " + PropertyIdentifier.priority  + " of " + getObjectName());
+            LOG.warn("Can't read " + PropertyIdentifier.priority  + " of " + getObjectName());
         }
         return "COM";
     }
@@ -138,7 +144,7 @@ public class BACnetObject extends RemoteObject implements ReadListener {
                 return String.valueOf(priorities.isToOffnormal());
             }
         } catch (BACnetException bac) {
-            System.err.println("Can't read " + PropertyIdentifier.priority  + " of " + getObjectName());
+            LOG.warn("Can't read " + PropertyIdentifier.priority  + " of " + getObjectName());
         }
         return "COM";
     }
@@ -149,7 +155,7 @@ public class BACnetObject extends RemoteObject implements ReadListener {
                     DeviceService.localDevice, bacnetDevice, super.getObjectIdentifier(),
                     PropertyIdentifier.ackRequired));
         } catch (BACnetException bac) {
-            System.err.println("Cant read time stamp of: " + super.getObjectIdentifier() + " from: " + bacnetDevice.getVendorName());
+            LOG.warn("Cant read time stamp of: " + super.getObjectIdentifier() + " from: " + bacnetDevice.getVendorName());
         }
         return null;
     }
@@ -160,13 +166,21 @@ public class BACnetObject extends RemoteObject implements ReadListener {
                     DeviceService.localDevice, bacnetDevice, super.getObjectIdentifier(),
                     PropertyIdentifier.eventTimeStamps)).getValues();
         } catch (BACnetException bac) {
-            System.err.println("Cant read time stamp of: " + super.getObjectIdentifier() + " from: " + bacnetDevice.getVendorName());
+            LOG.warn("Cant read time stamp of: " + super.getObjectIdentifier() + " from: " + bacnetDevice.getVendorName());
         }
         return null;
     }
 
+    private void creatPropertyReferencList (){
+        ObjectProperties.getRequiredObjectPropertyTypeDefinitions(objectType).forEach(definition -> {
+            propertyReferences.add(new ObjectPropertyReference(getObjectIdentifier(),
+                    definition.getPropertyTypeDefinition().getPropertyIdentifier()));
+        });
+    }
+
     @Override
     public boolean progress(double v, int i, ObjectIdentifier objectIdentifier, PropertyIdentifier propertyIdentifier, UnsignedInteger unsignedInteger, Encodable encodable) {
+        System.out.println("Message received");
         return false;
     }
 }
