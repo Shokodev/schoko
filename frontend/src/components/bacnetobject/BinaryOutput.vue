@@ -2,7 +2,7 @@
     <span>
         <div>
             <span  v-for="prop in node" :key="prop.propertyIdentifier" >
-            <span class="box" v-if="prop.propertyIdentifier==='Description'">
+            <span class="box" v-if="prop.propertyIdentifier==='description'">
                 <span class="has-text-weight-bold">Beschreibung:</span>
                 {{prop.value}}
             </span>
@@ -13,7 +13,7 @@
             <span class="level">
                 <span class="level-left">
                     <span v-for="prop in node" :key="prop.propertyIdentifier" >
-                    <span v-if="prop.propertyIdentifier==='Present value'">
+                    <span v-if="prop.propertyIdentifier==='present-value'">
                         <span  class="has-text-weight-bold">Aktueller Wert:</span>
                        {{getStateText[prop.value]}}
                     </span>
@@ -39,7 +39,7 @@
         <div>
                 <span>
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
-                <span class="box" v-if="prop.propertyIdentifier==='Polarity'">
+                <span class="box" v-if="prop.propertyIdentifier==='polarity'">
                     <span class="has-text-weight-bold">Polarität:</span>
                     {{getPolarityValue}}
                 </span>
@@ -49,7 +49,7 @@
         <div>
                 <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
-                <span class="box" v-if="prop.propertyIdentifier==='Out of service'">
+                <span class="box" v-if="prop.propertyIdentifier==='out-of-service'">
                     <span  class="has-text-weight-bold"> Ausser Betrieb:</span>
                    {{prop.value}}
                 </span>
@@ -59,7 +59,7 @@
         <div>
                 <span>
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div class="box" v-if="prop.propertyIdentifier==='Object name'">
+                <div class="box" v-if="prop.propertyIdentifier==='object-name'">
                     <span  class="has-text-weight-bold">Objekt Name: </span>
                    {{prop.value}}
                 </div>
@@ -108,7 +108,7 @@
         // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
         // @version 1.0
         isPolarityValue: function(){
-            if (this.searchPropertyIdentifierValue("Polarity")==="0"){
+            if (this.searchPropertyIdentifierValue("polarity")==="0"){
                 this.setPolarityValue("Normal")
             } else{
                 this.setPolarityValue("Invertiert")
@@ -118,8 +118,8 @@
         // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
         // @version 1.0
         dropdownValue: function () {
-            this.inactiveValue = this.searchPropertyIdentifierValue("Inactive text");
-            this.activeValue = this.searchPropertyIdentifierValue("Active text");
+            this.inactiveValue = this.searchPropertyIdentifierValue("inactive-text");
+            this.activeValue = this.searchPropertyIdentifierValue("active-text");
             let node= [this.inactiveValue, this.activeValue];
             this.setStateText(node);
             },
@@ -143,7 +143,7 @@
                 this.writeValue=0
             }
             let bacnetProperty = {
-                propertyIdentifier: "Present value",
+                propertyIdentifier: "present-value",
                 value: this.writeValue
             };
             this.SetBACnetProperty(bacnetProperty);

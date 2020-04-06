@@ -3,7 +3,7 @@
         <div>
                 <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
-                <span class="box" v-if="prop.propertyIdentifier==='Description'">
+                <span class="box" v-if="prop.propertyIdentifier==='description'">
                     <span class="has-text-weight-bold">Beschreibung: </span>
                    {{prop.value}}
                 </span>
@@ -14,7 +14,7 @@
         <span class="box1">
             <span class="level">
                 <span class="level-left" v-for="prop in node" :key="prop.propertyIdentifier" >
-                    <span class="text" v-if="prop.propertyIdentifier==='Present value'">
+                    <span class="text" v-if="prop.propertyIdentifier==='present-value'">
                         <span class="has-text-weight-bold">Aktueller Wert:</span>
 
                         {{prop.value}}{{getBACnetUnit}}
@@ -32,7 +32,7 @@
         <div>
                 <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
-                <span class="box" v-if="prop.propertyIdentifier==='Low limit'">
+                <span class="box" v-if="prop.propertyIdentifier==='low-limit'">
                     <span class="has-text-weight-bold">Minimaler Wert:</span>
                     {{prop.value}}{{getBACnetUnit}}
                 </span>
@@ -41,7 +41,7 @@
         </div><div>
                 <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
-                <span class="box" v-if="prop.propertyIdentifier==='High limit'">
+                <span class="box" v-if="prop.propertyIdentifier==='high-limit'">
                     <span class="has-text-weight-bold">Maximaler Wert:</span>
                     {{prop.value}}{{getBACnetUnit}}
                 </span>
@@ -51,7 +51,7 @@
         <div>
                 <span>
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
-                <span class="box" v-if="prop.propertyIdentifier==='Object name'">
+                <span class="box" v-if="prop.propertyIdentifier==='object-name'">
                     <span class="has-text-weight-bold">Objekt Name: </span>
                    {{prop.value}}
                 </span>
@@ -96,7 +96,7 @@
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             presentValueUnit: function () {
-                this.setBACnetUnit(this.searchPropertyIdentifierValue("Units"));
+                this.setBACnetUnit(this.searchPropertyIdentifierValue("units"));
             },
             // This Function searches the name and give the value back
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
@@ -113,7 +113,7 @@
             // @version 1.0
             setWriteValue: function () {
                 let bacnetProperty = {
-                    propertyIdentifier: "Present value",
+                    propertyIdentifier: "present-value",
                     value: this.writeValue
                 };
                 this.SetBACnetProperty(bacnetProperty);

@@ -25,9 +25,9 @@ public class ObjectHandler {
     private static final Logger LOG = LoggerFactory.getLogger(ObjectHandler.class);
 
    @Autowired
-    public ObjectHandler(SimpMessagingTemplate template, ObjectService objectService) {
+    public ObjectHandler(SimpMessagingTemplate template) {
         this.template = template;
-        this.objectService = objectService;
+
     }
 
     /**
@@ -36,15 +36,18 @@ public class ObjectHandler {
      * @param objectName object name
      */
     public void getNewPropertyStream(String objectName)  {
+        ObjectService objectService = new ObjectService(this);
+        this.objectService = objectService;
+        objectService.clearPropertyList();
         objectService.readDataPointProperties(objectName);
-        objectService.subscribeToCovRequest();
+        objectService.getBacnetObject().subscribeToCovRequest();
     }
 
     /**
      * After closing the websocket, the subscription at the remote device have to end as well and the propertyList have to be empty for next websocket stream
      */
     public void disconnectPropertyStream(){
-        objectService.unsubscribeToCovRequest();
+        objectService.getBacnetObject().unsubscribeToCovRequest();
         objectService.clearPropertyList();
     }
 
@@ -62,7 +65,7 @@ public class ObjectHandler {
      * @param newValue new value for property
      */
     public void setNewValue(String propertyIdentifier, String newValue){
-        objectService.writeValue(PropertyIdentifier.forName(propertyIdentifier),
+        objectService.getBacnetObject().writeValue(PropertyIdentifier.forName(propertyIdentifier),
                 BACnetTypes.getPropertyValuesByObjectType(objectService.getObjectIdentifier().getObjectType(), newValue));
     }
 
@@ -70,7 +73,7 @@ public class ObjectHandler {
      * Use to release manual operation
      */
     public void releaseValue(){
-        objectService.releaseManualCommand();
+        objectService.getBacnetObject().releaseManualCommand();
     }
 
     }

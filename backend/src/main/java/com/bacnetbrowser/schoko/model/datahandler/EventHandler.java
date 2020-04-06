@@ -24,8 +24,6 @@ public class EventHandler {
     @Autowired
     private EventService eventService;
 
-
-    final private LinkedList<BACnetEvent> events = new LinkedList<>();
     private static final Logger LOG = LoggerFactory.getLogger(EventHandler.class);
 
     @Autowired
@@ -33,23 +31,18 @@ public class EventHandler {
         this.template = template;
     }
 
-    public LinkedList<BACnetEvent> getEvents() {
-        return events;
-    }
 
     /**
      * by changes sent from the remote device the new list will be sent to the client
      */
     public void  updateStream(){
-        events.clear();
-        events.addAll(eventService.getActiveEvents().values());
-        template.convertAndSend("/broker/eventSub", events);
-        LOG.info("Send updated eventList");
+        template.convertAndSend("/broker/eventSub", eventService.getActiveEvents().values());
+        LOG.info("Send updated eventList with: " + eventService.getActiveEvents().size() + " events");
     }
 
     public void ackAllEvents(){
-        for(BACnetEvent event : events){
-           // eventService.acknowledgeEvent(event.getObjectName());
+        for(BACnetEvent event : eventService.getActiveEvents().values()){
+           eventService.acknowledgeEvent(event.getObjectName());
         }
     }
 

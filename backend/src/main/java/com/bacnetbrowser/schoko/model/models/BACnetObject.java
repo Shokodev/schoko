@@ -5,20 +5,15 @@ import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.RemoteObject;
 import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.obj.ObjectProperties;
-import com.serotonin.bacnet4j.obj.ObjectPropertyTypeDefinition;
-import com.serotonin.bacnet4j.obj.PropertyTypeDefinition;
-import com.serotonin.bacnet4j.transport.DefaultTransport;
+import com.serotonin.bacnet4j.service.confirmed.SubscribeCOVRequest;
 import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.*;
-import com.serotonin.bacnet4j.type.enumerated.BinaryPV;
-import com.serotonin.bacnet4j.type.enumerated.EventState;
-import com.serotonin.bacnet4j.type.enumerated.ObjectType;
-import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
+import com.serotonin.bacnet4j.type.enumerated.*;
+import com.serotonin.bacnet4j.type.primitive.Boolean;
 import com.serotonin.bacnet4j.type.primitive.CharacterString;
+import com.serotonin.bacnet4j.type.primitive.Null;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
-import com.serotonin.bacnet4j.util.PropertyReferences;
-import com.serotonin.bacnet4j.util.PropertyValues;
 import com.serotonin.bacnet4j.util.ReadListener;
 import com.serotonin.bacnet4j.util.RequestUtils;
 import org.slf4j.Logger;
@@ -30,7 +25,7 @@ import java.util.List;
 
 
 
-public class BACnetObject extends RemoteObject implements ReadListener {
+public class BACnetObject extends RemoteObject {
 
     private RemoteDevice bacnetDevice;
     private ObjectType objectType;
@@ -38,11 +33,11 @@ public class BACnetObject extends RemoteObject implements ReadListener {
     private static final Logger LOG = LoggerFactory.getLogger(BACnetObject.class);
 
 
+
     public BACnetObject(ObjectIdentifier oid, BACnetDevice bacnetDevice) {
         super(DeviceService.localDevice,oid);
         this.bacnetDevice = bacnetDevice.getBacnetDeviceInfo();
         this.objectType = oid.getObjectType();
-        creatPropertyReferencList();
     }
 
     public ObjectType getObjectType() {
@@ -59,29 +54,22 @@ public class BACnetObject extends RemoteObject implements ReadListener {
         return "COM";
     }
 
-    public String getDescription() {
-        try {
-            return RequestUtils.readProperty(DeviceService.localDevice,bacnetDevice,super.getObjectIdentifier(), PropertyIdentifier.description, null).toString();
-        } catch (BACnetException ignored) {
+    public String getDescription(){
+            try {
+                return RequestUtils.readProperty(DeviceService.localDevice,bacnetDevice,super.getObjectIdentifier(), PropertyIdentifier.description, null).toString();
+            } catch (BACnetException ignored) {
+            }
+            return null;
         }
-        return null;
-    }
 
     public Encodable readProperty(PropertyIdentifier propertyIdentifier) {
+
         try {
             return RequestUtils.readProperty(DeviceService.localDevice,bacnetDevice,super.getObjectIdentifier(), propertyIdentifier,null);
         } catch (BACnetException bac) {
             LOG.warn("Can't read " + propertyIdentifier + " of " + getObjectName());
         }
         return new CharacterString("COM");
-    }
-
-    public void readProperties() {
-        try {
-            RequestUtils.readProperties(DeviceService.localDevice, bacnetDevice, propertyReferences, true, this);
-        } catch (BACnetException bac) {
-            LOG.warn("Can't read properties of " + getObjectIdentifier());
-        }
     }
 
     public String getPresentValueAsText() {
@@ -149,7 +137,7 @@ public class BACnetObject extends RemoteObject implements ReadListener {
         return "COM";
     }
 
-    public EventTransitionBits getAckTransitBits() {
+    public EventTransitionBits getEventTransitionBits() {
         try {
             return  ((EventTransitionBits) RequestUtils.sendReadPropertyAllowNull(
                     DeviceService.localDevice, bacnetDevice, super.getObjectIdentifier(),
@@ -160,7 +148,7 @@ public class BACnetObject extends RemoteObject implements ReadListener {
         return null;
     }
 
-    public List<TimeStamp> getTimeStamps() {
+    public List<TimeStamp> readTimeStamps() {
         try {
             return ((SequenceOf<TimeStamp>) RequestUtils.sendReadPropertyAllowNull(
                     DeviceService.localDevice, bacnetDevice, super.getObjectIdentifier(),
@@ -171,16 +159,91 @@ public class BACnetObject extends RemoteObject implements ReadListener {
         return null;
     }
 
+    //Used for property stream
+
+    public void readProperties(ReadListener listener) {
+        creatPropertyReferencList();
+        try {
+            RequestUtils.readProperties(DeviceService.localDevice, bacnetDevice, propertyReferences, true, listener);
+        } catch (BACnetException bac) {
+            LOG.warn("Can't read properties of " + getObjectIdentifier());
+        }
+    }
+
     private void creatPropertyReferencList (){
+        propertyReferences.clear();
+        try{
+            ObjectProperties.getObjectPropertyTypeDefinitions(objectType).forEach(definition -> {
+                propertyReferences.add(new ObjectPropertyReference(getObjectIdentifier(),
+                        definition.getPropertyTypeDefinition().getPropertyIdentifier()));
+            });
+
+        }catch(NullPointerException e){
         ObjectProperties.getRequiredObjectPropertyTypeDefinitions(objectType).forEach(definition -> {
             propertyReferences.add(new ObjectPropertyReference(getObjectIdentifier(),
                     definition.getPropertyTypeDefinition().getPropertyIdentifier()));
-        });
+        });}
     }
 
-    @Override
-    public boolean progress(double v, int i, ObjectIdentifier objectIdentifier, PropertyIdentifier propertyIdentifier, UnsignedInteger unsignedInteger, Encodable encodable) {
-        System.out.println("Message received");
-        return false;
+    public List<ObjectPropertyReference> getPropertyReferences() {
+        return propertyReferences;
     }
+
+    /**
+     * Write new value for given object
+     *
+     * @param poid  witch property to write
+     * @param value new value for property
+     */
+    public void writeValue(PropertyIdentifier poid, Encodable value) {
+        // 8 is default priority for manual operations
+        LOG.info("Write on: " + poid.toString() + " @ " + getObjectName() +" with: " + value.toString());
+        try {
+          RequestUtils.writeProperty(DeviceService.localDevice,bacnetDevice,getObjectIdentifier(),poid,value,8);
+        } catch (BACnetException bac) {
+            LOG.warn("Cant write: " + poid.toString() + " at " + getObjectIdentifier().toString());
+        }
+
+    }
+
+    /**
+     * Release a manual written property of the priority 8
+     */
+    public void releaseManualCommand() {
+        try {
+            RequestUtils.writeProperty(DeviceService.localDevice,bacnetDevice,getObjectIdentifier(),
+                    PropertyIdentifier.presentValue,null,new PriorityValue(new Null()),
+                    new UnsignedInteger(8));
+            LOG.info("Release: " + getObjectIdentifier());
+        } catch (BACnetException bac) {
+            LOG.warn("Cant release: " + getObjectIdentifier().toString());
+        }
+    }
+
+    /**
+     * Start a subscription at remote device with the current object
+     */
+    public void subscribeToCovRequest() {
+        try {
+            DeviceService.localDevice.send(bacnetDevice, new SubscribeCOVRequest(new UnsignedInteger(1), getObjectIdentifier(), Boolean.TRUE, new UnsignedInteger(0))).get();
+            LOG.info("Subscription @: '" + getObjectIdentifier() + "' on: " + bacnetDevice.getObjectIdentifier());
+        } catch (BACnetException e) {
+            LOG.warn("Can't subscribe : '" + getObjectIdentifier() + "' on: " + bacnetDevice.getObjectIdentifier());
+        }
+
+    }
+
+    /**
+     * Unsubscribe the current subscription at remote device of current object
+     */
+    public void unsubscribeToCovRequest() {
+        try {
+            DeviceService.localDevice.send(bacnetDevice, new SubscribeCOVRequest(new UnsignedInteger(1), getObjectIdentifier(), null, null)).get();
+            LOG.info("Unsubscription @: '" + getObjectIdentifier() + "' on: " + bacnetDevice.getObjectIdentifier());
+        } catch (BACnetException e) {
+            LOG.warn("Can't unsubscribe : '" + getObjectIdentifier() + "' on: " + bacnetDevice.getObjectIdentifier());
+        }
+
+    }
+
 }

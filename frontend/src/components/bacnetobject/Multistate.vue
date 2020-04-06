@@ -3,7 +3,7 @@
         <div>
                 <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div class="box" v-if="prop.propertyIdentifier==='Description'" >
+                <div class="box" v-if="prop.propertyIdentifier==='description'" >
                     <span class="has-text-weight-bold">Beschreibung:</span>
                    {{prop.value}}
                 </div>
@@ -15,7 +15,7 @@
             <span class="level">
                 <span class="level-left">
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
-                <span v-if="prop.propertyIdentifier==='Present value'">
+                <span v-if="prop.propertyIdentifier==='present-value'">
                     <span class="has-text-weight-bold">Aktueller Wert:</span>
                   {{getStateText[prop.value -1]}}
                 </span>
@@ -38,7 +38,7 @@
         <div>
                 <span>
                 <span  v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div class="box" v-if="prop.propertyIdentifier==='Out of service'">
+                <div class="box" v-if="prop.propertyIdentifier==='out-of-service'">
                     <span class="has-text-weight-bold">Ausser Betrieb:</span>
                     {{prop.value}}
                 </div>
@@ -48,7 +48,7 @@
         <div>
                 <span>
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
-                <div class="box" v-if="prop.propertyIdentifier==='Object name'">
+                <div class="box" v-if="prop.propertyIdentifier==='object-name'">
                     <span class="has-text-weight-bold">Objekt Name:</span>
                     {{prop.value}}
                 </div>
@@ -118,7 +118,7 @@
             setWriteValue: function () {
                 let index= (this.getStateText.indexOf(this.writeValue))+1;
                 let bacnetProperty = {
-                    propertyIdentifier: "Present value",
+                    propertyIdentifier: "present-value",
                     value: index
                 };
                 this.SetBACnetProperty(bacnetProperty);

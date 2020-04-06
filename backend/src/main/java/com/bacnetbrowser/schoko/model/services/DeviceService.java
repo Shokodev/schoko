@@ -37,14 +37,12 @@ public class DeviceService extends DeviceEventAdapter {
     private static ArrayList<BACnetDevice> bacnetDevices = new ArrayList<>();
     private static final Logger LOG = LoggerFactory.getLogger(DeviceService.class);
 
-    private ObjectService objectService;
     private EventService eventService;
 
 
 
     @Autowired
-    public DeviceService(ObjectService objectService, EventService eventService) {
-        this.objectService = objectService;
+    public DeviceService(EventService eventService) {
         this.eventService = eventService;
     }
 
@@ -69,7 +67,6 @@ public class DeviceService extends DeviceEventAdapter {
         DefaultTransport transport = new DefaultTransport(ipNetworkBuilder.build());
         localDevice = new LocalDevice(localDevice_ID, transport);
         localDevice.getEventHandler().addListener(eventService);
-        localDevice.getEventHandler().addListener(objectService);
         localDevice.getEventHandler().addListener(this);
         LOG.info("Try to initialize localdevice " + localDevice_ID);
         try {
@@ -82,8 +79,7 @@ public class DeviceService extends DeviceEventAdapter {
         getRemoteDeviceInformation();
         setLocalDeviceAsAlarmReceiver();
         scanAndAddAllObjects();
-        eventService.getEventInformation(true);
-        eventService.getEventInformation(false);
+        eventService.getEventInformation();
     }
 
     /**

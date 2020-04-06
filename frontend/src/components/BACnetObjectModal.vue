@@ -109,20 +109,20 @@
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             isBinary: function () {
-                return ['Binary Output', 'Binary Value', 'Binary Input'].indexOf(this.getObjectType) >= 0;
+                return ['binary-output', 'binary-value', 'binary-input'].indexOf(this.getObjectType) >= 0;
 
             },
             // This computed method if the bacnet object type is from type Analog
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             isAnalog: function () {
-                return ['Analog Output', 'Analog Value', 'Analog Input'].indexOf(this.getObjectType) >= 0;
+                return ['analog-output', 'analog-value', 'analog-input'].indexOf(this.getObjectType) >= 0;
                 // This computed method if the bacnet object type is from type Multi-state
             // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
             // @version 1.0
             },
             isMultiState: function () {
-                return ['Multi-state Value', 'Multi-state Output', 'Multi-state Input'].indexOf(this.getObjectType) >= 0;
+                return ['multi-state-value', 'multi-state-output', 'multi-state-input'].indexOf(this.getObjectType) >= 0;
 
             },
 

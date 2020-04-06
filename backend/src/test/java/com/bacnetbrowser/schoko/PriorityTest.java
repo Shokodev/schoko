@@ -20,10 +20,7 @@ import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import com.serotonin.bacnet4j.type.primitive.Null;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
-import com.serotonin.bacnet4j.util.RequestUtils;
-import jdk.internal.joptsimple.internal.Strings;
 
-import java.util.stream.Stream;
 
 public class PriorityTest {
     public static void main(String[] args) throws Exception {
