@@ -31,20 +31,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Component
+
 public class DeviceService extends DeviceEventAdapter {
     public static LocalDevice localDevice;
     private static ArrayList<BACnetDevice> bacnetDevices = new ArrayList<>();
     private static final Logger LOG = LoggerFactory.getLogger(DeviceService.class);
 
-    private EventService eventService;
-
-
-
-    @Autowired
-    public DeviceService(EventService eventService) {
-        this.eventService = eventService;
-    }
 
     @Override
     public void iAmReceived(RemoteDevice d) {
@@ -66,7 +58,6 @@ public class DeviceService extends DeviceEventAdapter {
         ipNetworkBuilder.withPort(port);
         DefaultTransport transport = new DefaultTransport(ipNetworkBuilder.build());
         localDevice = new LocalDevice(localDevice_ID, transport);
-        localDevice.getEventHandler().addListener(eventService);
         localDevice.getEventHandler().addListener(this);
         LOG.info("Try to initialize localdevice " + localDevice_ID);
         try {
@@ -79,7 +70,6 @@ public class DeviceService extends DeviceEventAdapter {
         getRemoteDeviceInformation();
         setLocalDeviceAsAlarmReceiver();
         scanAndAddAllObjects();
-        eventService.getEventInformation();
     }
 
     /**

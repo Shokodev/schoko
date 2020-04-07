@@ -22,8 +22,8 @@ public class HierarchyHandler {
     private static final Logger LOG = LoggerFactory.getLogger(HierarchyService.class);
 
     @Autowired
-    public HierarchyHandler(HierarchyService hierarchyService, SettingsHandler settingsHandler) {
-        this.hierarchyService = hierarchyService;
+    public HierarchyHandler(SettingsHandler settingsHandler) {
+        this.hierarchyService = new HierarchyService();
         this.settingsHandler = settingsHandler;
     }
 

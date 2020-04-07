@@ -21,7 +21,7 @@ import java.util.HashMap;
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */
-@Component
+
 public class HierarchyService {
     //This lists have main information about structure an objects
     static HashMap<String, ObjectIdentifier> objectNamesToOids = new HashMap<>();

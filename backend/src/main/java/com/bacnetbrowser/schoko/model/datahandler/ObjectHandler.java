@@ -47,6 +47,7 @@ public class ObjectHandler {
      * After closing the websocket, the subscription at the remote device have to end as well and the propertyList have to be empty for next websocket stream
      */
     public void disconnectPropertyStream(){
+        objectService.removeFromLocalDevice();
         objectService.getBacnetObject().unsubscribeToCovRequest();
         objectService.clearPropertyList();
     }

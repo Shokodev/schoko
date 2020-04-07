@@ -9,6 +9,7 @@ import com.serotonin.bacnet4j.service.confirmed.SubscribeCOVRequest;
 import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.*;
 import com.serotonin.bacnet4j.type.enumerated.*;
+import com.serotonin.bacnet4j.type.enumerated.EngineeringUnits;
 import com.serotonin.bacnet4j.type.primitive.Boolean;
 import com.serotonin.bacnet4j.type.primitive.CharacterString;
 import com.serotonin.bacnet4j.type.primitive.Null;
@@ -18,26 +19,23 @@ import com.serotonin.bacnet4j.util.ReadListener;
 import com.serotonin.bacnet4j.util.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 public class BACnetObject extends RemoteObject {
 
     private RemoteDevice bacnetDevice;
     private ObjectType objectType;
+    private String objectName;
     private List<ObjectPropertyReference> propertyReferences = new ArrayList<>();
     private static final Logger LOG = LoggerFactory.getLogger(BACnetObject.class);
-
-
 
     public BACnetObject(ObjectIdentifier oid, BACnetDevice bacnetDevice) {
         super(DeviceService.localDevice,oid);
         this.bacnetDevice = bacnetDevice.getBacnetDeviceInfo();
         this.objectType = oid.getObjectType();
+        readObjectName();
     }
 
     public ObjectType getObjectType() {
@@ -46,12 +44,15 @@ public class BACnetObject extends RemoteObject {
 
     @Override
     public String getObjectName() {
-        try {
-            return RequestUtils.readProperty(DeviceService.localDevice, bacnetDevice, super.getObjectIdentifier(), PropertyIdentifier.objectName, null).toString();
-        } catch (BACnetException e) {
-            LOG.warn("Could not read objectName of:" + super.getObjectIdentifier());
-        }
-        return "COM";
+        return this.objectName;
+    }
+
+    public void readObjectName() {
+            try {
+               this.objectName = RequestUtils.readProperty(DeviceService.localDevice, bacnetDevice, super.getObjectIdentifier(), PropertyIdentifier.objectName, null).toString();
+            } catch (BACnetException e) {
+                LOG.warn("Could not read objectName of:" + super.getObjectIdentifier());
+            }
     }
 
     public String getDescription(){
@@ -95,10 +96,10 @@ public class BACnetObject extends RemoteObject {
             }
         } else if ((objectType.equals(ObjectType.analogValue)) || (objectType.equals(ObjectType.analogOutput)) || (objectType.equals(ObjectType.analogInput))) {
                 String resultValue = readProperty(PropertyIdentifier.presentValue).toString();
-                String resultUnit =  readProperty(PropertyIdentifier.units).toString();
-                return resultValue + " " + resultUnit;
+                EngineeringUnits resultUnit = (com.serotonin.bacnet4j.type.enumerated.EngineeringUnits) readProperty(PropertyIdentifier.units);
+                return resultValue + " " + EngineeringUnitsParser.toString(resultUnit.intValue());
         }
-        return "#";
+        return " ";
     }
 
     public String getPriorityByStatus(EventState eventState){
@@ -139,11 +140,12 @@ public class BACnetObject extends RemoteObject {
 
     public EventTransitionBits getEventTransitionBits() {
         try {
-            return  ((EventTransitionBits) RequestUtils.sendReadPropertyAllowNull(
-                    DeviceService.localDevice, bacnetDevice, super.getObjectIdentifier(),
-                    PropertyIdentifier.ackRequired));
+            return  (EventTransitionBits) RequestUtils.sendReadPropertyAllowNull(
+                    DeviceService.localDevice, bacnetDevice, getObjectIdentifier(),
+                    PropertyIdentifier.ackRequired);
         } catch (BACnetException bac) {
-            LOG.warn("Cant read time stamp of: " + super.getObjectIdentifier() + " from: " + bacnetDevice.getVendorName());
+
+            LOG.warn("Cant read time stamp of: " + getObjectIdentifier() + " from: " + bacnetDevice.getName());
         }
         return null;
     }
@@ -247,3 +249,6 @@ public class BACnetObject extends RemoteObject {
     }
 
 }
+
+
+

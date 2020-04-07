@@ -27,14 +27,16 @@ public class HTTPController {
     private HierarchyHandler hierarchyHandler;
     private SettingsHandler settingsHandler;
     private DeviceHandler deviceHandler;
+    private EventHandler eventHandler;
     static final Logger LOG = LoggerFactory.getLogger(HTTPController.class);
 
 
     @Autowired
-    public HTTPController(HierarchyHandler hierarchyHandler, SettingsHandler settingsHandler, DeviceHandler deviceHandler) {
+    public HTTPController(HierarchyHandler hierarchyHandler, SettingsHandler settingsHandler, DeviceHandler deviceHandler, EventHandler eventHandler) {
         this.hierarchyHandler = hierarchyHandler;
         this.settingsHandler = settingsHandler;
         this.deviceHandler = deviceHandler;
+        this.eventHandler = eventHandler;
     }
 
     /**
@@ -68,6 +70,7 @@ public class HTTPController {
         deviceHandler.createNetwork(Integer.parseInt(settingsHandler.getPort(), 16),Integer.parseInt(settingsHandler.getLocalDeviceID()));
         LOG.info("Build structure with new settings.....");
         hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
+        eventHandler.createEventStream();
         return new ResponseEntity<SettingsHandler>(settings, HttpStatus.OK);
     }
 

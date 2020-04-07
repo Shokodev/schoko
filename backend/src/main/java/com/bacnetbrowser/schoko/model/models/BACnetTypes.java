@@ -43,13 +43,13 @@ public class BACnetTypes {
      * @param eventState event state as string english
      * @return event state as string german
      */
-    public static String getGermanEventStateText(String eventState){
-        HashMap<String,String> germanEventStates = new HashMap<>();
-        germanEventStates.put("fault","Störung");
-        germanEventStates.put("off normal","Nicht Normal");
-        germanEventStates.put("high limit","Obere Grenze");
-        germanEventStates.put("low limit","Untere Grenze");
-        germanEventStates.put("normal","Normal");
+    public static String getGermanEventStateText(EventState eventState){
+        HashMap<EventState,String> germanEventStates = new HashMap<>();
+        germanEventStates.put(EventState.fault,"Störung");
+        germanEventStates.put(EventState.offnormal,"Nicht Normal");
+        germanEventStates.put(EventState.highLimit,"Obere Grenze");
+        germanEventStates.put(EventState.lowLimit,"Untere Grenze");
+        germanEventStates.put(EventState.normal,"Normal");
         return germanEventStates.get(eventState);
 
     }
@@ -94,6 +94,9 @@ public class BACnetTypes {
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.toString();
     }
+
+
+
 
 }
 

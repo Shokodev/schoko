@@ -85,7 +85,6 @@ public class WSController {
     @SendTo("/broker/eventSub")
     public void subscribeEvents (String message) {
         LOG.info(message +" event channel");
-
     }
 
     @GetMapping("/ackAll")

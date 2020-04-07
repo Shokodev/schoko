@@ -17,8 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DeviceHandler {
 
-    @Autowired
-    private DeviceService deviceService;
+
 
     /**
      * Start build process
@@ -26,6 +25,7 @@ public class DeviceHandler {
      * @param bacNetID BACnet_ID for local device from settings
      */
     public void createNetwork(Integer port, Integer bacNetID){
+        DeviceService deviceService = new DeviceService();
         deviceService.createLocalDevice(port,bacNetID);
     }
 

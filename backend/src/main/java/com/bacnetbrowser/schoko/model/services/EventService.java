@@ -7,22 +7,23 @@ import com.bacnetbrowser.schoko.model.models.BACnetEvent;
 import com.bacnetbrowser.schoko.model.models.BACnetObject;
 import com.bacnetbrowser.schoko.model.models.BACnetTypes;
 import com.serotonin.bacnet4j.RemoteDevice;
+import com.serotonin.bacnet4j.apdu.UnconfirmedRequest;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
 import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.service.acknowledgement.GetEnrollmentSummaryAck;
+import com.serotonin.bacnet4j.service.acknowledgement.ReadPropertyAck;
 import com.serotonin.bacnet4j.service.confirmed.*;
+import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.*;
 import com.serotonin.bacnet4j.type.enumerated.*;
 import com.serotonin.bacnet4j.type.notificationParameters.NotificationParameters;
 import com.serotonin.bacnet4j.type.primitive.*;
 import com.serotonin.bacnet4j.type.primitive.Boolean;
-import com.serotonin.bacnet4j.util.ReadListener;
 import com.serotonin.bacnet4j.util.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import java.util.*;
+
 
 
 /**
@@ -33,16 +34,20 @@ import java.util.*;
  * @version 1.0
  */
 
-@Component
-public class EventService extends DeviceEventAdapter {
 
-    @Autowired
-    private EventHandler eventHandler;
-    @Autowired
-    private EventRepository eventRepository;
+public class EventService extends DeviceEventAdapter  {
 
+    static EventHandler eventHandler;
+    static EventRepository eventRepository;
     private final HashMap<String, BACnetEvent> activeEvents = new HashMap<>();
     static final Logger LOG = LoggerFactory.getLogger(EventService.class);
+
+    public EventService(EventHandler eventHandler, EventRepository eventRepository) {
+        this.eventHandler = eventHandler;
+        this.eventRepository = eventRepository;
+        DeviceService.localDevice.getEventHandler().addListener(this);
+    }
+
 
     @Override
     public void eventNotificationReceived(UnsignedInteger processIdentifier, ObjectIdentifier initiatingDeviceIdentifier,
@@ -52,76 +57,32 @@ public class EventService extends DeviceEventAdapter {
                                           Boolean ackRequired, EventState fromState, EventState toState,
                                           NotificationParameters eventValues) {
         LOG.info("Event message received");
-        // Events with type "Event" will be ignored
 
-        try {
-            BACnetDevice bacnetDevice = DeviceService.getBacnetDevice(initiatingDeviceIdentifier);
-            BACnetObject object = bacnetDevice.getBACnetObject(eventObjectIdentifier);
-            BACnetObject notiClass = bacnetDevice.getBACnetObject(new ObjectIdentifier
-                            (ObjectType.notificationClass,notificationClass.intValue()));
-            EventTransitionBits eventTransitionBits = notiClass.getEventTransitionBits();
-            BACnetEvent bacnetEvent;
-
-            // Edit ack notification
-            if (notifyType.equals(NotifyType.ackNotification)) {
-                BACnetEvent existingEvent = activeEvents.get(object.getObjectName());
-                String actualEventState = object.readProperty(PropertyIdentifier.eventState).toString();
-                if (!existingEvent.getAckState()) {
-                    existingEvent.setAckState(true);
-                } else if (!existingEvent.getResetState()) {
-                    existingEvent.setResetState(true);
-                }
-                existingEvent.setNotifyType(BACnetTypes.getNotifyTypeAsText(notifyType));
-                existingEvent.setTimeStamp(BACnetTypes.parseToSQLTimeStamp(timeStamp));
-                existingEvent.setPresentValue(object.getPresentValueAsText());
-                existingEvent.setFromState(BACnetTypes.getGermanEventStateText(actualEventState));
-                existingEvent.setToState(BACnetTypes.getGermanEventStateText(actualEventState));
-                eventRepository.save(new BACnetEvent(existingEvent));
-                closeEventIfPossible(existingEvent);
-            }
-            // Edit back to normal
-            else if (toState.equals(EventState.normal)) {
-                BACnetEvent existingEvent = activeEvents.get(object.getObjectName());
-                existingEvent.setPresentValue(object.getPresentValueAsText());
-                existingEvent.setNotifyType(BACnetTypes.getNotifyTypeAsText(notifyType));
-                existingEvent.setTimeStamp(BACnetTypes.parseToSQLTimeStamp(timeStamp));
-                existingEvent.setFromState(BACnetTypes.getGermanEventStateText(fromState.toString()));
-                existingEvent.setToState(BACnetTypes.getGermanEventStateText(toState.toString()));
-                eventRepository.save(new BACnetEvent(existingEvent));
-                closeEventIfPossible(existingEvent);
-            }
-            // New Event
-            else {
-                bacnetEvent = new BACnetEvent(processIdentifier.toString(), bacnetDevice.getVendorName(), eventObjectIdentifier.toString(),
-                        BACnetTypes.parseToSQLTimeStamp(timeStamp), notificationClass.toString(), priority.toString(), eventType.toString(),
-                        messageText.toString(), BACnetTypes.getNotifyTypeAsText(notifyType), eventTransitionBits.toString(),
-                        BACnetTypes.getGermanEventStateText(fromState.toString()),
-                        BACnetTypes.getGermanEventStateText(toState.toString()), eventValues.toString(),
-                        object.getDescription(), object.getPresentValueAsText(),
-                        object.getObjectName(), isAckNeeded(eventTransitionBits), isResetNeeded(eventTransitionBits), UUID.randomUUID().toString());
-                activeEvents.put(object.getObjectName(), bacnetEvent);
-                eventRepository.save(bacnetEvent);
-            }
-            eventHandler.updateStream();
-        } catch (NullPointerException e){
-             LOG.error("Event from " + eventObjectIdentifier + " @ " + initiatingDeviceIdentifier + " could not be processed");
-        }
-
+        EventProcessing eventProcessing = new EventProcessing(processIdentifier, initiatingDeviceIdentifier,
+                eventObjectIdentifier, timeStamp,
+               notificationClass, priority,
+                eventType, messageText, notifyType,
+                ackRequired, fromState, toState,
+                eventValues,this);
+        Thread thread = new Thread(eventProcessing);
+        thread.start();
     }
+
+
 
     /**
      * Catchs all event changes on the network and update the db and event list
      */
 
-    private boolean isAckNeeded(EventTransitionBits bits){
+    boolean isAckNeeded(EventTransitionBits bits){
         return !bits.isToFault() || !bits.isToOffnormal();
     }
 
-    private boolean isResetNeeded(EventTransitionBits bits){
+    boolean isResetNeeded(EventTransitionBits bits){
         return !bits.isToNormal();
     }
 
-    private void closeEventIfPossible(BACnetEvent existingEvent){
+    void closeEventIfPossible(BACnetEvent existingEvent){
         if(existingEvent.getAckState() && existingEvent.getResetState() && existingEvent.getToState().equals("Normal")) {
             activeEvents.remove(existingEvent.getObjectName());
         }
@@ -194,8 +155,8 @@ public class EventService extends DeviceEventAdapter {
     /**
      * Get all not acked active events
      */
-    void getEventInformation()  {
-        LOG.info("Ask for events information");
+    public void getEventInformation()  {
+        LOG.info("Ask for event information");
         for (BACnetDevice bacnetDevice : DeviceService.getBacnetDevices()) {
             GetEnrollmentSummaryRequest request = new GetEnrollmentSummaryRequest(
                     GetEnrollmentSummaryRequest.AcknowledgmentFilter.all,null,
@@ -206,15 +167,11 @@ public class EventService extends DeviceEventAdapter {
             } catch (BACnetException e) {
                 LOG.warn("Can't get event information");
             }
-
+                LOG.info("Received event information: {}  -> from device: {} ", events , bacnetDevice.getBacnetDeviceInfo().getName());
             for (GetEnrollmentSummaryAck.EnrollmentSummary event : events.getValues()){
-                try {
-                    if(!event.getObjectIdentifier().toString().startsWith("Vendor") && !event.getObjectIdentifier().equals(ObjectType.trendLog)) {
-                        eventRepository.save(Objects.requireNonNull(createSQLEvent(event, bacnetDevice.getBacnetDeviceInfo())));
+                    if(!Character.isDigit(event.getObjectIdentifier().toString().charAt(0)) || !event.getObjectIdentifier().equals(ObjectType.trendLog)) {
+                        createSQLEvent(event, bacnetDevice);
                     }
-                } catch (NullPointerException ignored){
-
-                }
             }
             eventHandler.updateStream();
         }
@@ -224,38 +181,36 @@ public class EventService extends DeviceEventAdapter {
     /**
      * Used to create SQL Entries by getEventInformation
      * @param event alarm summary objects
-     * @param remoteDevice remote device of this objects
-     * @return event entry
+     * @param bacnetDevice remote device of this objects
      */
-    private BACnetEvent createSQLEvent(GetEnrollmentSummaryAck.EnrollmentSummary event, RemoteDevice remoteDevice) {
-        TimeStamp timeStamp = getTimeStampofObject(event.getObjectIdentifier(),remoteDevice, event.getEventState().toString());
+    private void createSQLEvent(GetEnrollmentSummaryAck.EnrollmentSummary event, BACnetDevice bacnetDevice) {
+        TimeStamp timeStamp = getTimeStampofObject(event.getObjectIdentifier(),bacnetDevice.getBacnetDeviceInfo(), event.getEventState().toString());
         try {
            BACnetEvent eventSQL = eventRepository.findBACnetEventByRemoteDeviceNameAndOidAndAndTimeStamp(
-                   remoteDevice.getVendorName(),event.getObjectIdentifier().toString(),
+                   bacnetDevice.getBacnetDeviceInfo().getName(),event.getObjectIdentifier().toString(),
                    BACnetTypes.parseToSQLTimeStamp(timeStamp));
             LOG.info("Event already exists in database: " + eventSQL.getObjectName() + " ID: " + eventSQL.getEventID());
             activeEvents.put(eventSQL.getObjectName(),eventSQL);
-           return null;
         }catch (NullPointerException n) {
-            BACnetObject object = (BACnetObject) remoteDevice.getObject(event.getObjectIdentifier());
-            BACnetObject notiClass = (BACnetObject) remoteDevice.getObject(new ObjectIdentifier(
+            BACnetObject object = bacnetDevice.getBACnetObject(event.getObjectIdentifier());
+            BACnetObject notiClass = bacnetDevice.getBACnetObject(new ObjectIdentifier(
                     ObjectType.notificationClass, Integer.parseInt(object.readProperty(
                             PropertyIdentifier.notificationClass).toString())));
             EventTransitionBits eventTransitionBits = notiClass.getEventTransitionBits();
             boolean isAckNeeded = isAckNeeded(eventTransitionBits);
-            BACnetEvent bacnetEvent = new BACnetEvent("1", remoteDevice.getVendorName(),
+            BACnetEvent bacnetEvent = new BACnetEvent("1", bacnetDevice.getBacnetDeviceInfo().getName(),
                     object.getObjectIdentifier().toString()
                     , BACnetTypes.parseToSQLTimeStamp(timeStamp),
                     object.readProperty(PropertyIdentifier.notificationClass).toString(),
                     notiClass.getPriorityByStatus(event.getEventState())
                     , event.getEventType().toString(), " ", "Alarm",
-                    eventTransitionBits.toString(), BACnetTypes.getGermanEventStateText(EventState.normal.toString()),
-                    BACnetTypes.getGermanEventStateText(event.getEventState().toString()),
+                    eventTransitionBits.toString(), BACnetTypes.getGermanEventStateText(EventState.normal),
+                    BACnetTypes.getGermanEventStateText(event.getEventState()),
                     "EventSummaryLogEntry", object.getDescription(),
                     object.getPresentValueAsText(), object.getObjectName(),isAckNeeded,
                     isResetNeeded(eventTransitionBits),UUID.randomUUID().toString());
             activeEvents.put(object.getObjectName(), bacnetEvent);
-            return bacnetEvent;
+            eventRepository.save(bacnetEvent);
         }
     }
 
