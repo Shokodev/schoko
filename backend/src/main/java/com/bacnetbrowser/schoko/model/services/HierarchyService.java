@@ -3,13 +3,11 @@ package com.bacnetbrowser.schoko.model.services;
 import com.bacnetbrowser.schoko.model.models.BACnetDevice;
 import com.bacnetbrowser.schoko.model.models.BACnetNode;
 import com.bacnetbrowser.schoko.model.models.BACnetObject;
-import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.RemoteObject;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 
@@ -35,7 +33,7 @@ public class HierarchyService {
     private String siteName;
     private String siteDescription;
     private String structureSeparator;
-
+    private String structureElement = "Structure Element";
 
     /**
      * Initialize the needed properties
@@ -48,27 +46,53 @@ public class HierarchyService {
         this.siteName = siteName;
         this.siteDescription = siteDescription;
         this.structureSeparator = structureSeparator;
-        createStaticRemoteObjectLists();
+        createStaticBACnetObjectLists();
         this.bacnetStructure = buildBacNetStructure();
         this.deviceStructure = buildDeviceStructure();
-
     }
 
     /**
      * Reads all BACnet Objects of all remote devises
      */
-    private void createStaticRemoteObjectLists() {
+    private void createStaticBACnetObjectLists() {
         for (BACnetDevice bacnetDevice : DeviceService.getBacnetDevices()) {
-
                 for (BACnetObject bacnetObject : bacnetDevice.getBacnetObjects()) {
-                    if (checkIfNecessaryForStructure(bacnetObject.getObjectIdentifier())) {
+                    if (checkIfNecessaryForStructure(bacnetObject.getObjectIdentifier().getObjectType())) {
                         objectNamesToOids.put(bacnetObject.getObjectName(), bacnetObject.getObjectIdentifier());
                         objectNamesToDescription.put(bacnetObject.getObjectName(), bacnetObject.getDescription());
                         obejctNamesToBACnetDevice.put(bacnetObject.getObjectName(), bacnetDevice);
                         getAllStructureElements(bacnetObject.getObjectIdentifier(), bacnetObject.getObjectName(), bacnetObject.getDescription());
                     }
                 }
+            if(structureElements.isEmpty()){
+                LOG.info("No structure-view elements found -> try to build structure with object names");
+            }
         }
+    }
+
+    /**
+     * Add all structured view objects in list with their description
+     */
+    private void getAllStructureElements(ObjectIdentifier oid, String objectName, String description) {
+        if (oid.getObjectType().equals(ObjectType.structuredView)) {
+            String[] splitted = objectName.split(structureSeparator);
+            String name = splitted[splitted.length - 1];
+            structureElements.put(name, description);
+        }
+    }
+
+    /**
+     * Checks if the given object identifier is necessary for building the structure
+     * @return true or false
+     */
+    private Boolean checkIfNecessaryForStructure(ObjectType objectType) {
+        if (objectType.equals(ObjectType.file)){
+            return false;
+        } else if (objectType.equals(ObjectType.device)){
+            return false;
+        } else if (objectType.equals(ObjectType.program)){
+            return false;
+        } else return !Character.isDigit(objectType.toString().charAt(0));
     }
 
     public void deleteStructure() {
@@ -80,8 +104,7 @@ public class HierarchyService {
 
     }
 
-
-    // Methods for BACnet structure
+    // Methods for BACnet structure with structure elements
 
     /**
      * Create a BACnet Structure with object names
@@ -97,7 +120,9 @@ public class HierarchyService {
             String[] splittedObjectName = key.split(structureSeparator);
             for (int i = 0; i < splittedObjectName.length; i++) {
                 BACnetNode parent = getParentNode(bacnetStructure, i, splittedObjectName);
-                BACnetNode node = createNode(splittedObjectName[i], objectNamesToOids.get(key).getObjectType().toString(), objectNamesToDescription.get(key), obejctNamesToBACnetDevice.get(key).getInstanceNumber(), parent);
+                BACnetNode node = createNode((i == (splittedObjectName.length -1)),splittedObjectName[i],
+                        objectNamesToOids.get(key).getObjectType().toString(), objectNamesToDescription.get(key),
+                        obejctNamesToBACnetDevice.get(key).getInstanceNumber(), parent);
                 if (node != null) {
                     parent.addChild(node);
                     nodeCounter++;
@@ -135,47 +160,25 @@ public class HierarchyService {
      * Creates a new node on dependent of its type
      * Check if its is structure node and if node exists else dont create node
      *
-     * @param name   current name of object name
+     * @param splittedObjectName   current splittedObjectName of object splittedObjectName
      * @param type   current object identifier
      * @param parent parent node of current object
      * @return new BACnetStructure<>
      */
-    private BACnetNode createNode(String name, String type, String description, Integer deviceID, BACnetNode parent) {
-        if (structureElements.containsKey(name) && (parent.checkIfNodeExists(parent, name))) {
-            return new BACnetNode(name, "Structure Element", structureElements.get(name), null);
-        } else if (parent.checkIfNodeExists(parent, name) && (!type.startsWith("Structure"))) {
-            return new BACnetNode(name, type, description, deviceID);
+    private BACnetNode createNode(boolean lastInLoop,String splittedObjectName, String type, String description, Integer deviceID, BACnetNode parent) {
+        if (structureElements.containsKey(splittedObjectName) && (parent.checkIfChildNodeAlreadyExists(splittedObjectName))) {
+            return new BACnetNode(splittedObjectName, structureElement, structureElements.get(splittedObjectName), null);
+        } else if (parent.checkIfChildNodeAlreadyExists(splittedObjectName) && (!type.equals(structureElement) && lastInLoop)) {
+            return new BACnetNode(splittedObjectName, type, description, deviceID);
+        } else if(parent.checkIfChildNodeAlreadyExists(splittedObjectName)) {
+            return new BACnetNode(splittedObjectName, structureElement, "No structure view objects found", deviceID);
         }
         return null;
-    }
-
-    /**
-     * Add all structured view objects in list with their description
-     */
-    private void getAllStructureElements(ObjectIdentifier oid, String objectName, String description) {
-        if (oid.getObjectType().equals(ObjectType.structuredView)) {
-            String[] splitted = objectName.split(structureSeparator);
-            String name = splitted[splitted.length - 1];
-            structureElements.put(name, description);
-        }
-
-    }
-
-    /**
-     * Checks if the given object identifier is necessary for building the structure
-     *
-     * @param oid object identifier
-     * @return true or false
-     */
-    private Boolean checkIfNecessaryForStructure(ObjectIdentifier oid) {
-        ObjectType type = oid.getObjectType();
-        return !type.equals(ObjectType.file) && !type.equals(ObjectType.device) && !type.equals(ObjectType.program) && !oid.toString().startsWith("Vendor");
     }
 
     public BACnetNode getBacnetStructure() {
         return bacnetStructure;
     }
-
 
     // Methods for device structure
 
@@ -183,13 +186,15 @@ public class HierarchyService {
      * This method creates a structure with all remote devices and their objects
      */
     private BACnetNode buildDeviceStructure() {
-        BACnetNode deviceStructure = new BACnetNode("Gerätesicht", "Top node devices", "Alle BACnet Geräte und ihre Objekte", null);
+        BACnetNode deviceStructure = new BACnetNode(siteName, "Top node devices", "Alle BACnet Geräte und ihre Objekte", null);
         int nodeCounter = 0;
         for (BACnetDevice bacnetDevice : DeviceService.getBacnetDevices()) {
-            BACnetNode device = new BACnetNode(bacnetDevice.getName(), bacnetDevice.getObjectIdentifier().toString(), bacnetDevice.getVendorName(), bacnetDevice.getInstanceNumber());
+            BACnetNode device = new BACnetNode(bacnetDevice.getName().replace(structureSeparator,"-"), structureElement, "Device", bacnetDevice.getInstanceNumber());
             deviceStructure.addChild(device);
             for (BACnetObject bacnetObject : bacnetDevice.getBacnetObjects()) {
+                if(checkIfNecessaryForStructure(bacnetObject.getObjectType())){
                 addObjectToPropertyGroup(bacnetObject, device);
+                }
                 nodeCounter++;
             }
         }
@@ -209,8 +214,8 @@ public class HierarchyService {
      */
     private void addObjectToPropertyGroup(RemoteObject remoteObject, BACnetNode device) {
         ObjectType pid = remoteObject.getObjectIdentifier().getObjectType();
-        BACnetNode object = new BACnetNode(remoteObject.getObjectName(), remoteObject.getObjectIdentifier().toString(), objectNamesToDescription.get(remoteObject.getObjectName()), device.getDeviceInstanceNumber());
-        BACnetNode propertyGroup = new BACnetNode(pid.toString(), pid.bigIntegerValue().toString(), pid.toString(), device.getDeviceInstanceNumber());
+        BACnetNode object = new BACnetNode(remoteObject.getObjectName(),remoteObject.getObjectIdentifier().toString(), objectNamesToDescription.get(remoteObject.getObjectName()), device.getDeviceInstanceNumber());
+        BACnetNode propertyGroup = new BACnetNode(pid.toString(), structureElement, pid.toString(), device.getDeviceInstanceNumber());
         if (device.getChildByObjectName(propertyGroup.getObjectName()) == null) {
             device.addChild(propertyGroup);
             propertyGroup.addChild(object);
@@ -223,7 +228,5 @@ public class HierarchyService {
     public BACnetNode getDeviceStructure() {
         return deviceStructure;
     }
-
-
 }
 

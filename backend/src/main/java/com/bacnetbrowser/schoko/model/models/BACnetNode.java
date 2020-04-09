@@ -51,13 +51,12 @@ public class BACnetNode {
     }
 
     /**
-     * Check if parent has specific child by a string equals element name of the child
-     * @param parent current parent
+     * Check if parent has specific child by a string equals object name of the child
      * @param objectName element name to check
      * @return boolean
      */
-    public boolean checkIfNodeExists(BACnetNode parent, String objectName){
-        List<BACnetNode> children = parent.getChildren();
+    public boolean checkIfChildNodeAlreadyExists(String objectName){
+        List<BACnetNode> children = getChildren();
         for (BACnetNode child : children) {
             if (child.getObjectName().equals(objectName)) {
                 return false;

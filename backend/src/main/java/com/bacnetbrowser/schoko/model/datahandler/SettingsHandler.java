@@ -17,6 +17,7 @@ public class SettingsHandler {
     private String siteDescription;
     private String bacnetSeparator;
     private String localDeviceID;
+    public static Integer precisionRealValue;
 
 
     public String getPort() {
@@ -58,4 +59,13 @@ public class SettingsHandler {
     public void setLocalDeviceID(String localDeviceID) {
         this.localDeviceID = localDeviceID;
     }
+
+    public Integer getPrecisionRealValue() {
+        return precisionRealValue;
+    }
+
+    public void setPrecisionRealValue(Integer precisionRealValue) {
+        SettingsHandler.precisionRealValue = precisionRealValue;
+    }
+
 }

@@ -150,7 +150,6 @@ public class DeviceService extends DeviceEventAdapter {
      * Reads and save more information about each remote device
      */
     private void getRemoteDeviceInformation() {
-
         for (BACnetDevice bacnetDevice : bacnetDevices) {
             bacnetDevice.setDeviceProperty(PropertyIdentifier.objectName, bacnetDevice.readProperty(PropertyIdentifier.objectName));
             bacnetDevice.setDeviceProperty(PropertyIdentifier.vendorName, bacnetDevice.readProperty(PropertyIdentifier.vendorName));

@@ -10,7 +10,7 @@ public class EngineeringUnitsParser extends EngineeringUnits {
         super(queue);
     }
 
-        public static String toString(int type) {
+        public static String UnitToString(int type) {
             if (type == metersPerSecondPerSecond.intValue())
                 return "m/s/s";
             if (type == squareMeters.intValue())

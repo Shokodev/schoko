@@ -95,6 +95,12 @@ public class BACnetTypes {
         return bd.toString();
     }
 
+    public static boolean checkIfTypeIsAnalog(ObjectType objectType){
+        return objectType.equals((ObjectType.analogInput)) ||
+                (objectType.equals(ObjectType.analogOutput)) ||
+                (objectType.equals(ObjectType.analogValue));
+    }
+
 
 
 

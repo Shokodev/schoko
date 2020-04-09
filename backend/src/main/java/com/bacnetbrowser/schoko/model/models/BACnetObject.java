@@ -97,7 +97,7 @@ public class BACnetObject extends RemoteObject {
         } else if ((objectType.equals(ObjectType.analogValue)) || (objectType.equals(ObjectType.analogOutput)) || (objectType.equals(ObjectType.analogInput))) {
                 String resultValue = readProperty(PropertyIdentifier.presentValue).toString();
                 EngineeringUnits resultUnit = (com.serotonin.bacnet4j.type.enumerated.EngineeringUnits) readProperty(PropertyIdentifier.units);
-                return resultValue + " " + EngineeringUnitsParser.toString(resultUnit.intValue());
+                return resultValue + " " + EngineeringUnitsParser.UnitToString(resultUnit.intValue());
         }
         return " ";
     }
@@ -162,9 +162,8 @@ public class BACnetObject extends RemoteObject {
     }
 
     //Used for property stream
-
     public void readProperties(ReadListener listener) {
-        creatPropertyReferencList();
+        creatPropertyReferenceList();
         try {
             RequestUtils.readProperties(DeviceService.localDevice, bacnetDevice, propertyReferences, true, listener);
         } catch (BACnetException bac) {
@@ -172,7 +171,7 @@ public class BACnetObject extends RemoteObject {
         }
     }
 
-    private void creatPropertyReferencList (){
+    private void creatPropertyReferenceList(){
         propertyReferences.clear();
         try{
             ObjectProperties.getObjectPropertyTypeDefinitions(objectType).forEach(definition -> {

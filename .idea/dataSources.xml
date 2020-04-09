@@ -13,5 +13,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/schoko</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="test" uuid="f08cd1c6-eaec-4944-a6d2-bf034a84c115">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\admin\IdeaProjects\schoko\test.db</jdbc-url>
+    </data-source>
   </component>
 </project>

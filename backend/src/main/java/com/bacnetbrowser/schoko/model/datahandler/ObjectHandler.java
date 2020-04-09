@@ -22,12 +22,11 @@ public class ObjectHandler {
 
    private SimpMessagingTemplate template;
    private ObjectService objectService;
-    private static final Logger LOG = LoggerFactory.getLogger(ObjectHandler.class);
+   private static final Logger LOG = LoggerFactory.getLogger(ObjectHandler.class);
 
    @Autowired
     public ObjectHandler(SimpMessagingTemplate template) {
         this.template = template;
-
     }
 
     /**
