@@ -1,9 +1,9 @@
-package com.bacnetbrowser.schoko.model.services;
+package com.bacnetbrowser.schoko.bacnetutils.services;
 
-import com.bacnetbrowser.schoko.model.models.BACnetDevice;
-import com.bacnetbrowser.schoko.model.models.BACnetEvent;
-import com.bacnetbrowser.schoko.model.models.BACnetObject;
-import com.bacnetbrowser.schoko.model.models.BACnetTypes;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetEvent;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetTypes;
 import com.serotonin.bacnet4j.type.constructed.EventTransitionBits;
 import com.serotonin.bacnet4j.type.constructed.TimeStamp;
 import com.serotonin.bacnet4j.type.enumerated.*;
@@ -14,7 +14,6 @@ import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.UUID;
 
 public class EventProcessing implements Runnable {
@@ -112,7 +111,7 @@ public class EventProcessing implements Runnable {
             }
             EventService.eventHandler.updateStream();
         } catch (NullPointerException e){
-            LOG.error("Event from " + eventObjectIdentifier + " @ " + initiatingDeviceIdentifier + " could not be processed");
+            LOG.warn("Event from " + eventObjectIdentifier + " @ " + initiatingDeviceIdentifier + " could not be processed or will be ignored");
         }
 
     }

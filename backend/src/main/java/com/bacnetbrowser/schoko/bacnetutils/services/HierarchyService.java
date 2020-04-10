@@ -1,8 +1,8 @@
-package com.bacnetbrowser.schoko.model.services;
+package com.bacnetbrowser.schoko.bacnetutils.services;
 
-import com.bacnetbrowser.schoko.model.models.BACnetDevice;
-import com.bacnetbrowser.schoko.model.models.BACnetNode;
-import com.bacnetbrowser.schoko.model.models.BACnetObject;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetNode;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;
 import com.serotonin.bacnet4j.RemoteObject;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;

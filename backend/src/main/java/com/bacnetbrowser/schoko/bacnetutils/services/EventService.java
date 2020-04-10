@@ -1,19 +1,16 @@
-package com.bacnetbrowser.schoko.model.services;
+package com.bacnetbrowser.schoko.bacnetutils.services;
 
-import com.bacnetbrowser.schoko.databaseConfig.EventRepository;
-import com.bacnetbrowser.schoko.model.datahandler.EventHandler;
-import com.bacnetbrowser.schoko.model.models.BACnetDevice;
-import com.bacnetbrowser.schoko.model.models.BACnetEvent;
-import com.bacnetbrowser.schoko.model.models.BACnetObject;
-import com.bacnetbrowser.schoko.model.models.BACnetTypes;
+import com.bacnetbrowser.schoko.databaseconfig.EventRepository;
+import com.bacnetbrowser.schoko.bacnetutils.datahandler.EventHandler;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetEvent;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetTypes;
 import com.serotonin.bacnet4j.RemoteDevice;
-import com.serotonin.bacnet4j.apdu.UnconfirmedRequest;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
 import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.service.acknowledgement.GetEnrollmentSummaryAck;
-import com.serotonin.bacnet4j.service.acknowledgement.ReadPropertyAck;
 import com.serotonin.bacnet4j.service.confirmed.*;
-import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.*;
 import com.serotonin.bacnet4j.type.enumerated.*;
 import com.serotonin.bacnet4j.type.notificationParameters.NotificationParameters;

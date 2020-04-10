@@ -1,7 +1,7 @@
-package com.bacnetbrowser.schoko.controller;
+package com.bacnetbrowser.schoko.webcontroller;
 
-import com.bacnetbrowser.schoko.model.datahandler.*;
-import com.bacnetbrowser.schoko.model.models.BACnetNode;
+import com.bacnetbrowser.schoko.bacnetutils.datahandler.*;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

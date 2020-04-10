@@ -1,6 +1,6 @@
-package com.bacnetbrowser.schoko.model.models;
+package com.bacnetbrowser.schoko.bacnetutils.models;
 
-import com.bacnetbrowser.schoko.model.services.DeviceService;
+import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.RemoteObject;
 import com.serotonin.bacnet4j.exception.BACnetException;

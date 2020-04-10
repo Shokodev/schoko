@@ -1,6 +1,6 @@
 package com.bacnetbrowser.schoko;
 
-import com.bacnetbrowser.schoko.model.datahandler.SettingsHandler;
+import com.bacnetbrowser.schoko.bacnetutils.datahandler.SettingsHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

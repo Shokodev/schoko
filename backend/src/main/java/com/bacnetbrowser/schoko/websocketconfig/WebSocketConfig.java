@@ -1,4 +1,4 @@
-package com.bacnetbrowser.schoko.webSocketConfig;
+package com.bacnetbrowser.schoko.websocketconfig;
 
         import org.springframework.context.annotation.Configuration;
         import org.springframework.messaging.simp.config.MessageBrokerRegistry;

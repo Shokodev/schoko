@@ -1,4 +1,4 @@
-package com.bacnetbrowser.schoko.model.models;
+package com.bacnetbrowser.schoko.bacnetutils.models;
 
 import com.serotonin.bacnet4j.exception.BACnetErrorException;
 import com.serotonin.bacnet4j.type.enumerated.EngineeringUnits;

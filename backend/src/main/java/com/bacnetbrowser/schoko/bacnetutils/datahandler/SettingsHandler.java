@@ -1,4 +1,4 @@
-package com.bacnetbrowser.schoko.model.datahandler;
+package com.bacnetbrowser.schoko.bacnetutils.datahandler;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

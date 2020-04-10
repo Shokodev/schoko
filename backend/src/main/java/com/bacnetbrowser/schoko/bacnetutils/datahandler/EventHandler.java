@@ -1,8 +1,8 @@
-package com.bacnetbrowser.schoko.model.datahandler;
+package com.bacnetbrowser.schoko.bacnetutils.datahandler;
 
-import com.bacnetbrowser.schoko.databaseConfig.EventRepository;
-import com.bacnetbrowser.schoko.model.models.BACnetEvent;
-import com.bacnetbrowser.schoko.model.services.EventService;
+import com.bacnetbrowser.schoko.databaseconfig.EventRepository;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetEvent;
+import com.bacnetbrowser.schoko.bacnetutils.services.EventService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

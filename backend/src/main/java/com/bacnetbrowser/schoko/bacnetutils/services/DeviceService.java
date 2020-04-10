@@ -1,20 +1,15 @@
-package com.bacnetbrowser.schoko.model.services;
+package com.bacnetbrowser.schoko.bacnetutils.services;
 
-import com.bacnetbrowser.schoko.model.models.BACnetDevice;
-import com.bacnetbrowser.schoko.model.models.BACnetObject;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;
 import com.serotonin.bacnet4j.LocalDevice;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
-import com.serotonin.bacnet4j.exception.BACnetErrorException;
 import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.npdu.ip.IpNetwork;
 import com.serotonin.bacnet4j.npdu.ip.IpNetworkBuilder;
-import com.serotonin.bacnet4j.service.acknowledgement.ReadPropertyAck;
-import com.serotonin.bacnet4j.service.confirmed.ReadPropertyRequest;
-import com.serotonin.bacnet4j.service.confirmed.WritePropertyRequest;
 import com.serotonin.bacnet4j.service.unconfirmed.WhoIsRequest;
 import com.serotonin.bacnet4j.transport.DefaultTransport;
-import com.serotonin.bacnet4j.transport.Transport;
 import com.serotonin.bacnet4j.type.constructed.*;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
@@ -24,25 +19,24 @@ import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
 import com.serotonin.bacnet4j.util.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class DeviceService extends DeviceEventAdapter {
     public static LocalDevice localDevice;
-    private static ArrayList<BACnetDevice> bacnetDevices = new ArrayList<>();
+    private static final ArrayList<BACnetDevice> bacnetDevices = new ArrayList<>();
+    private static final ArrayList<BACnetDevice> waitingRoomBacnetDevices = new ArrayList<>();
     private static final Logger LOG = LoggerFactory.getLogger(DeviceService.class);
 
 
     @Override
     public void iAmReceived(RemoteDevice d) {
         BACnetDevice bacnetDevice = new BACnetDevice(localDevice, d.getInstanceNumber(), d.getAddress(),d);
-        bacnetDevices.add(bacnetDevice);
-        LOG.info("Remote device " + d.getInstanceNumber() + " registered at LocalDevice");
+        waitingRoomBacnetDevices.add(bacnetDevice);
+        LOG.warn("Remote device " + d.getInstanceNumber() + " registered in waiting room of LocalDevice");
     }
 
     /**
@@ -82,25 +76,16 @@ public class DeviceService extends DeviceEventAdapter {
             localDevice.sendGlobalBroadcast(request);
             Thread.sleep(1000 * 5);
             //End scan after 5s if no device is found
-            if(!alertNoDeviceFound()){
+            if(waitingRoomBacnetDevices.isEmpty()){
                 localDevice.terminate();
+                LOG.warn("No remote devices found");
+            } else {
+                bacnetDevices.addAll(waitingRoomBacnetDevices);
+                LOG.info("{} BACnet devices finally registered at local device", bacnetDevices.size());
             }
-
         }catch(InterruptedException bac){
             LOG.info("Network scan failure, restart the application may solve this problem");
         }
-    }
-
-    /**
-     * Checks list for remote devices at LocalDevice after network scan
-     * @return massage and boolean
-     */
-    private boolean alertNoDeviceFound(){
-        if (bacnetDevices.isEmpty()){
-            LOG.warn("No remote devices found");
-            return false;
-        }
-        return true;
     }
 
     /**

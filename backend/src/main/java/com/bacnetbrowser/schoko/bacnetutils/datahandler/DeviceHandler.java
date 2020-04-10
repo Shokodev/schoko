@@ -1,10 +1,8 @@
-package com.bacnetbrowser.schoko.model.datahandler;
+package com.bacnetbrowser.schoko.bacnetutils.datahandler;
 
 
 
-import com.bacnetbrowser.schoko.model.services.DeviceService;
-import com.serotonin.bacnet4j.RemoteDevice;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
 import org.springframework.stereotype.Component;
 
 

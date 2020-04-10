@@ -1,8 +1,8 @@
-package com.bacnetbrowser.schoko.model.datahandler;
+package com.bacnetbrowser.schoko.bacnetutils.datahandler;
 
 
-import com.bacnetbrowser.schoko.model.models.BACnetTypes;
-import com.bacnetbrowser.schoko.model.services.ObjectService;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetTypes;
+import com.bacnetbrowser.schoko.bacnetutils.services.ObjectService;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

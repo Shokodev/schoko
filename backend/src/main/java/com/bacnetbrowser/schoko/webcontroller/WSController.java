@@ -1,10 +1,9 @@
-package com.bacnetbrowser.schoko.controller;
+package com.bacnetbrowser.schoko.webcontroller;
 
 
-import com.bacnetbrowser.schoko.model.datahandler.EventHandler;
-import com.bacnetbrowser.schoko.model.datahandler.ObjectHandler;
-import com.bacnetbrowser.schoko.model.models.BACnetNode;
-import com.bacnetbrowser.schoko.model.models.BACnetProperty;
+import com.bacnetbrowser.schoko.bacnetutils.datahandler.EventHandler;
+import com.bacnetbrowser.schoko.bacnetutils.datahandler.ObjectHandler;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
