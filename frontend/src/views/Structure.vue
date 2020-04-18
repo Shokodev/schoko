@@ -27,6 +27,8 @@
             components: {
                 StructureView
         },
+
+
     }
 
 </script>

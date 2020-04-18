@@ -15,7 +15,7 @@
                     <span v-for="prop in node" :key="prop.propertyIdentifier" >
                     <span v-if="prop.propertyIdentifier==='present-value'">
                         <span  class="has-text-weight-bold">Aktueller Wert:</span>
-                       {{getStateText[prop.value]}}
+                        {{prop.value}}
                     </span>
                     </span>
                 </span>
@@ -41,7 +41,7 @@
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
                 <span class="box" v-if="prop.propertyIdentifier==='polarity'">
                     <span class="has-text-weight-bold">Polarität:</span>
-                    {{getPolarityValue}}
+                    {{prop.value}}
                 </span>
                 </span>
                 </span>
@@ -61,6 +61,16 @@
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
                 <div class="box" v-if="prop.propertyIdentifier==='object-name'">
                     <span  class="has-text-weight-bold">Objekt Name: </span>
+                   {{prop.value}}
+                </div>
+                </span>
+                </span>
+        </div>
+        <div>
+                <span>
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
+                <div class="box" v-if="prop.propertyIdentifier==='priority-array'">
+                    <span  class="has-text-weight-bold">Priorität: </span>
                    {{prop.value}}
                 </div>
                 </span>
@@ -93,35 +103,23 @@
         mounted(){
                 this.myObject = this.getBACnetObject;
                 this.dropdownValue();
-                this.isPolarityValue()
+
         },
         computed:{
             ...mapGetters([
-                'getBACnetObject','getStateText','getPolarityValue'
+                'getBACnetObject',
             ]),
         },
         methods:{
         ...mapMutations([
-            'SetBACnetProperty','setStateText','setPolarityValue'
+            'SetBACnetProperty',
         ]),
-        // This Function translates the priorityvalue to german
-        // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
-        // @version 1.0
-        isPolarityValue: function(){
-            if (this.searchPropertyIdentifierValue("polarity")==="0"){
-                this.setPolarityValue("Normal")
-            } else{
-                this.setPolarityValue("Invertiert")
-            }
-        },
         // This Function removes all special charackters and saves it in a array for the dropdown menu
         // @author Vogt Andreas,Daniel Reiter, Rafael Grimm
         // @version 1.0
         dropdownValue: function () {
             this.inactiveValue = this.searchPropertyIdentifierValue("inactive-text");
             this.activeValue = this.searchPropertyIdentifierValue("active-text");
-            let node= [this.inactiveValue, this.activeValue];
-            this.setStateText(node);
             },
         // This Function searches the name and gives the value back
         // @author Vogt Andreas,Daniel Reiter, Rafael Grimm

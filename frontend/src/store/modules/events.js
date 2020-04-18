@@ -1,4 +1,5 @@
 const state={
+    ackObjectName: String,
     events:[],
     connected: false,
     stompClient: null,
@@ -6,6 +7,7 @@ const state={
 };
 
 const getters={
+    getAckObjectName: state => state.ackObjectName,
     getEvents: state => state.events,
     getIsConnectedEvents: state => state.connected,
     getStompClient: state => state.stompClient,
@@ -20,6 +22,7 @@ export const actions = {
     }
 };
 const mutations={
+    setAckObjectName: (state, ackOjectName) => (state.ackObjectName = ackOjectName),
     newEventList: (state, eventList) => (state.events=eventList),
     isConnectedEvents: (state, connected) => (state.connected=connected),
     newStompClient: (state, stompClient) => (state.stompClient=stompClient),

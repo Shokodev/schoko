@@ -58,6 +58,16 @@
                 </span>
                 </span>
         </div>
+        <div>
+                <span>
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
+                <span class="box" v-if="prop.propertyIdentifier==='priority-array'">
+                    <span class="has-text-weight-bold">Priorität: </span>
+                   {{prop.value}}
+                </span>
+                </span>
+                </span>
+        </div>
     </span>
 </template>
 
