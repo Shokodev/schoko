@@ -36,7 +36,7 @@ public class DeviceService extends DeviceEventAdapter {
     public void iAmReceived(RemoteDevice d) {
         BACnetDevice bacnetDevice = new BACnetDevice(localDevice, d.getInstanceNumber(), d.getAddress(),d);
         waitingRoomBacnetDevices.add(bacnetDevice);
-        LOG.warn("Remote device " + d.getInstanceNumber() + " registered in waiting room of LocalDevice");
+        LOG.info("Remote device " + d.getInstanceNumber() + " registered in waiting room of LocalDevice");
     }
 
     /**
@@ -80,6 +80,7 @@ public class DeviceService extends DeviceEventAdapter {
                 localDevice.terminate();
                 LOG.warn("No remote devices found");
             } else {
+                localDevice.getEventHandler().removeListener(this);
                 bacnetDevices.addAll(waitingRoomBacnetDevices);
                 LOG.info("{} BACnet devices finally registered at local device", bacnetDevices.size());
             }

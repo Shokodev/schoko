@@ -29,11 +29,11 @@ public class HierarchyService {
 
     private BACnetNode bacnetStructure;
     private BACnetNode deviceStructure;
-    private HashMap<String, String> structureElements = new HashMap<>();
+    private final HashMap<String, String> structureElements = new HashMap<>();
     private String siteName;
     private String siteDescription;
     private String structureSeparator;
-    private String structureElement = "Structure Element";
+    private final String structureElement = "Structure Element";
 
     /**
      * Initialize the needed properties
@@ -64,9 +64,9 @@ public class HierarchyService {
                         getAllStructureElements(bacnetObject.getObjectIdentifier(), bacnetObject.getObjectName(), bacnetObject.getDescription());
                     }
                 }
-            if(structureElements.isEmpty()){
-                LOG.info("No structure-view elements found -> try to build structure with object names");
-            }
+        }
+        if(structureElements.isEmpty()){
+            LOG.info("No structure-view elements found -> try to build structure with object names");
         }
     }
 
