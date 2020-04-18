@@ -3,11 +3,10 @@ package com.bacnetbrowser.schoko.bacnetutils.models;
 import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
 import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.type.Encodable;
-import com.serotonin.bacnet4j.type.constructed.DateTime;
-import com.serotonin.bacnet4j.type.constructed.SequenceOf;
-import com.serotonin.bacnet4j.type.constructed.TimeStamp;
+import com.serotonin.bacnet4j.type.constructed.*;
 import com.serotonin.bacnet4j.type.enumerated.*;
 import com.serotonin.bacnet4j.type.primitive.*;
+import com.serotonin.bacnet4j.type.primitive.Boolean;
 import com.serotonin.bacnet4j.util.RequestUtils;
 
 import java.lang.Double;
@@ -104,5 +103,27 @@ public class BACnetTypes {
                 (objectType.equals(ObjectType.analogValue));
     }
 
+    public static String getOutOfServiceAsText(Encodable encodable){
+        if(encodable.equals(Boolean.TRUE)) {
+            return "Ein";
+        }
+        return "Aus";
+    }
+
+    public static String getPolarityAsText(Encodable encodable){
+        if(encodable.equals(Polarity.normal)) {
+            return "Normal";
+        }
+        return "Invertiert";
+    }
+
+    /*public static HashMap<String,String> getPriorityArrayAsText(Encodable encodable){
+        HashMap<String, String> result = new HashMap<>();
+        PriorityArray priorityArray = (PriorityArray) encodable;
+        priorityArray.forEach(priorityValue -> {
+            if(!priorityValue.getNullValue().equals(Null.instance))
+             //result.put(priorityValue.)
+        });
+    }*/
 }
 

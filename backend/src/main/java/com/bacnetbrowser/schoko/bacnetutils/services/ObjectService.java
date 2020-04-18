@@ -9,6 +9,7 @@ import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.PropertyValue;
 import com.serotonin.bacnet4j.type.constructed.SequenceOf;
 import com.serotonin.bacnet4j.type.enumerated.EngineeringUnits;
+import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
@@ -16,6 +17,7 @@ import com.serotonin.bacnet4j.util.ReadListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 
@@ -30,12 +32,13 @@ import java.util.LinkedList;
 public class ObjectService extends DeviceEventAdapter implements ReadListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(ObjectService.class);
-    private ObjectHandler objectHandler;
+    private final ObjectHandler objectHandler;
     private final LinkedList<BACnetProperty> properties = new LinkedList<>();
+    private final HashMap<PropertyIdentifier,Encodable> propertiesRaw = new HashMap<>();
     private BACnetDevice bacnetDevice;
     private BACnetObject bacnetObject;
     private ObjectIdentifier objectIdentifier;
-    private Integer precisionRealValue;
+    private final Integer precisionRealValue;
 
     public ObjectService(ObjectHandler objectHandler){
         this.objectHandler = objectHandler;
@@ -69,6 +72,7 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
 
     public void clearPropertyList() {
         properties.clear();
+        propertiesRaw.clear();
     }
 
     public ObjectIdentifier getObjectIdentifier() {
@@ -86,40 +90,39 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
     public void covNotificationReceived(UnsignedInteger subscriberProcessIdentifier, ObjectIdentifier initiatingDeviceIdentifier,
                                         ObjectIdentifier monitoredObjectIdentifier, UnsignedInteger timeRemaining,
                                         SequenceOf<PropertyValue> listOfValues) {
-        LOG.info("COV message received from: " + initiatingDeviceIdentifier + " of: " +monitoredObjectIdentifier);
+        LOG.info("COV message received from: " + initiatingDeviceIdentifier + " of: " + monitoredObjectIdentifier);
         for (PropertyValue pv : listOfValues) {
-            for (BACnetProperty baCnetProperty : getProperties()) {
-                if (pv.getPropertyIdentifier().toString().equals(baCnetProperty.getPropertyIdentifier())) {
-                    if ((pv.getPropertyIdentifier().equals(PropertyIdentifier.presentValue)) && (BACnetTypes.checkIfTypeIsAnalog(monitoredObjectIdentifier.getObjectType()))) {
-                        baCnetProperty.setValue(BACnetTypes.round(pv.getValue(), precisionRealValue));
-                    } else {
-                        baCnetProperty.setValue(pv.getValue().toString());
-                    }
-                    LOG.info("Device: " + bacnetDevice.getObjectIdentifier() + " has sent new " + baCnetProperty.getPropertyIdentifier() + ": " + baCnetProperty.getValue());
-                }
-
-            }
+            propertiesRaw.replace(pv.getPropertyIdentifier(),pv.getValue());
+            LOG.info("Device: " + bacnetDevice.getObjectIdentifier() + " has sent new " +
+                    pv.getPropertyIdentifier() + ": " + pv.getValue());
         }
-
+        parseProperties();
         objectHandler.updateStream();
-
     }
 
     @Override
     public boolean progress(double v, int i, ObjectIdentifier objectIdentifier, PropertyIdentifier propertyIdentifier, UnsignedInteger unsignedInteger, Encodable encodable) {
-        if(propertyIdentifier.equals(PropertyIdentifier.units)){
-            EngineeringUnits unit = (EngineeringUnits) encodable;
-            properties.add(new BACnetProperty(EngineeringUnitsParser.UnitToString(unit.intValue()),propertyIdentifier.toString()));
-        } else {
-            properties.add(new BACnetProperty(encodable.toString(), propertyIdentifier.toString()));
-        }
-        if(properties.size() == bacnetObject.getPropertyReferences().size()){
-            LOG.info("Property list for: " + objectIdentifier + " ready with: " +properties.size() + " properties" );
+        propertiesRaw.put(propertyIdentifier,encodable);
+        if(propertiesRaw.size() == bacnetObject.getPropertyReferences().size()){
+            LOG.info("Property list of: " + objectIdentifier + " ready with: " +propertiesRaw.size() + " properties for parsing" );
+            parseProperties();
+            LOG.info("Final property list of: " + objectIdentifier + " ready with: " +properties.size() + " properties" );
             objectHandler.updateStream();
         }
-        bacnetObject.readObjectName();
         return false;
     }
 
+    public void parseProperties() {
+        //Ignore if one property does not exist
+        properties.clear();
+        try {
+            properties.add(new BACnetProperty(bacnetObject.getPresentValueAsText(propertiesRaw, precisionRealValue), PropertyIdentifier.presentValue.toString()));
+            properties.add(new BACnetProperty(objectIdentifier.toString(), PropertyIdentifier.objectIdentifier.toString()));
+            properties.add(new BACnetProperty(propertiesRaw.get(PropertyIdentifier.objectName).toString(), PropertyIdentifier.objectName.toString()));
+            properties.add(new BACnetProperty(propertiesRaw.get(PropertyIdentifier.description).toString(), PropertyIdentifier.description.toString()));
+            properties.add(new BACnetProperty(BACnetTypes.getOutOfServiceAsText(propertiesRaw.get(PropertyIdentifier.outOfService)), PropertyIdentifier.outOfService.toString()));
+            properties.add(new BACnetProperty(BACnetTypes.getPolarityAsText(propertiesRaw.get(PropertyIdentifier.polarity)), PropertyIdentifier.polarity.toString()));
+        } catch (NullPointerException ignored){}
+    }
 }
 
