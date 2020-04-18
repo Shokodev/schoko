@@ -29,7 +29,7 @@ import java.util.LinkedList;
 
 public class ObjectService extends DeviceEventAdapter implements ReadListener {
 
-    static final Logger LOG = LoggerFactory.getLogger(ObjectService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ObjectService.class);
     private ObjectHandler objectHandler;
     private final LinkedList<BACnetProperty> properties = new LinkedList<>();
     private BACnetDevice bacnetDevice;
@@ -120,5 +120,6 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
         bacnetObject.readObjectName();
         return false;
     }
+
 }
 

@@ -18,28 +18,28 @@ import java.util.UUID;
 
 public class EventProcessing implements Runnable {
 
-    static final Logger LOG = LoggerFactory.getLogger(EventProcessing.class);
-    UnsignedInteger processIdentifier;
-    ObjectIdentifier initiatingDeviceIdentifier;
-    ObjectIdentifier eventObjectIdentifier;
-    TimeStamp timeStamp;
-    UnsignedInteger notificationClass;
-    UnsignedInteger priority;
-    EventType eventType;
-    CharacterString messageText;
-    NotifyType notifyType;
-    Boolean ackRequired;
-    EventState fromState;
-    EventState toState;
-    NotificationParameters eventValues;
-    EventService eventService;
+    private static final Logger LOG = LoggerFactory.getLogger(EventProcessing.class);
+    private UnsignedInteger processIdentifier;
+    private ObjectIdentifier initiatingDeviceIdentifier;
+    private ObjectIdentifier eventObjectIdentifier;
+    private TimeStamp timeStamp;
+    private UnsignedInteger notificationClass;
+    private UnsignedInteger priority;
+    private EventType eventType;
+    private CharacterString messageText;
+    private NotifyType notifyType;
+    private Boolean ackRequired;
+    private EventState fromState;
+    private EventState toState;
+    private NotificationParameters eventValues;
+    private EventService eventService;
 
-    public EventProcessing(UnsignedInteger processIdentifier, ObjectIdentifier initiatingDeviceIdentifier,
-                           ObjectIdentifier eventObjectIdentifier, TimeStamp timeStamp,
-                           UnsignedInteger notificationClass, UnsignedInteger priority,
-                           EventType eventType, CharacterString messageText,
-                           NotifyType notifyType, Boolean ackRequired, EventState fromState,
-                           EventState toState, NotificationParameters eventValues ,EventService eventService) {
+    EventProcessing(UnsignedInteger processIdentifier, ObjectIdentifier initiatingDeviceIdentifier,
+                    ObjectIdentifier eventObjectIdentifier, TimeStamp timeStamp,
+                    UnsignedInteger notificationClass, UnsignedInteger priority,
+                    EventType eventType, CharacterString messageText,
+                    NotifyType notifyType, Boolean ackRequired, EventState fromState,
+                    EventState toState, NotificationParameters eventValues, EventService eventService) {
 
         this.processIdentifier = processIdentifier;
         this.initiatingDeviceIdentifier = initiatingDeviceIdentifier;
