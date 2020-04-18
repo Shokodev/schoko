@@ -1,18 +1,21 @@
 package com.bacnetbrowser.schoko.bacnetutils.models;
 
+import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
+import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.DateTime;
+import com.serotonin.bacnet4j.type.constructed.SequenceOf;
 import com.serotonin.bacnet4j.type.constructed.TimeStamp;
-import com.serotonin.bacnet4j.type.enumerated.BinaryPV;
-import com.serotonin.bacnet4j.type.enumerated.EventState;
-import com.serotonin.bacnet4j.type.enumerated.NotifyType;
-import com.serotonin.bacnet4j.type.enumerated.ObjectType;
+import com.serotonin.bacnet4j.type.enumerated.*;
 import com.serotonin.bacnet4j.type.primitive.*;
+import com.serotonin.bacnet4j.util.RequestUtils;
+
 import java.lang.Double;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -100,9 +103,6 @@ public class BACnetTypes {
                 (objectType.equals(ObjectType.analogOutput)) ||
                 (objectType.equals(ObjectType.analogValue));
     }
-
-
-
 
 }
 
