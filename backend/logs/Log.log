@@ -1,0 +1,346 @@
+2020-04-18 13:12:46.865  INFO 33984 --- [main] c.b.schoko.SchokoApplication             : Starting SchokoApplication on DESKTOP-ANDREAS with PID 33984 (C:\Users\admin\IdeaProjects\schoko\backend\target\classes started by admin in C:\Users\admin\IdeaProjects\schoko\backend)
+2020-04-18 13:12:46.870  INFO 33984 --- [main] c.b.schoko.SchokoApplication             : No active profile set, falling back to default profiles: default
+2020-04-18 13:12:47.397  INFO 33984 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-04-18 13:12:47.459  INFO 33984 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44ms. Found 1 repository interfaces.
+2020-04-18 13:12:47.657  INFO 33984 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-18 13:12:48.079  INFO 33984 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8098 (http)
+2020-04-18 13:12:48.086  INFO 33984 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-18 13:12:48.086  INFO 33984 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-04-18 13:12:48.180  INFO 33984 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-18 13:12:48.180  INFO 33984 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1283 ms
+2020-04-18 13:12:48.353  INFO 33984 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-04-18 13:12:48.416  INFO 33984 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
+2020-04-18 13:12:48.546  INFO 33984 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-04-18 13:12:48.609  INFO 33984 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-04-18 13:12:48.633  INFO 33984 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-04-18 13:12:48.688  INFO 33984 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-04-18 13:12:48.700  INFO 33984 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-04-18 13:12:49.137  INFO 33984 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-04-18 13:12:49.142  INFO 33984 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-04-18 13:12:49.181  INFO 33984 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-04-18 13:12:49.183  INFO 33984 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-04-18 13:12:49.395  INFO 33984 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-04-18 13:12:49.413  INFO 33984 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-04-18 13:12:49.545  INFO 33984 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
+2020-04-18 13:12:49.636  INFO 33984 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-04-18 13:12:49.648  INFO 33984 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-04-18 13:12:49.649  INFO 33984 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-04-18 13:12:49.649  INFO 33984 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-04-18 13:12:49.901  INFO 33984 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8098 (http) with context path ''
+2020-04-18 13:12:49.903  INFO 33984 --- [main] c.b.schoko.SchokoApplication             : Started SchokoApplication in 3.3 seconds (JVM running for 3.566)
+2020-04-18 13:12:59.820  INFO 33984 --- [http-nio-8098-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-18 13:12:59.821  INFO 33984 --- [http-nio-8098-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-04-18 13:12:59.826  INFO 33984 --- [http-nio-8098-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2020-04-18 13:12:59.854  INFO 33984 --- [http-nio-8098-exec-3] c.b.schoko.webcontroller.HTTPController  : Get node: undefined
+2020-04-18 13:12:59.891  INFO 33984 --- [clientInboundChannel-7] c.b.schoko.webcontroller.WSController    : init event channel
+2020-04-18 13:13:05.100  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : Try to initialize localdevice 1001
+2020-04-18 13:13:05.116  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : Successfully created LocalDevice 1001
+2020-04-18 13:13:05.116  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : Scan for remote devices.........
+2020-04-18 13:13:06.347  INFO 33984 --- [pool-2-thread-1] c.b.s.b.services.DeviceService           : Remote device 2098177 registered in waiting room of LocalDevice
+2020-04-18 13:13:10.117  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : 1 BACnet devices finally registered at local device
+2020-04-18 13:13:10.171  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 11 @ device 2098177
+2020-04-18 13:13:10.189  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 12 @ device 2098177
+2020-04-18 13:13:10.204  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 13 @ device 2098177
+2020-04-18 13:13:10.216  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 21 @ device 2098177
+2020-04-18 13:13:10.229  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 22 @ device 2098177
+2020-04-18 13:13:10.242  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 23 @ device 2098177
+2020-04-18 13:13:10.255  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 31 @ device 2098177
+2020-04-18 13:13:10.268  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 32 @ device 2098177
+2020-04-18 13:13:10.281  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 33 @ device 2098177
+2020-04-18 13:13:10.295  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 41 @ device 2098177
+2020-04-18 13:13:10.378  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 42 @ device 2098177
+2020-04-18 13:13:10.387  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 43 @ device 2098177
+2020-04-18 13:13:10.396  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 51 @ device 2098177
+2020-04-18 13:13:10.404  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 52 @ device 2098177
+2020-04-18 13:13:10.413  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 53 @ device 2098177
+2020-04-18 13:13:10.421  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 61 @ device 2098177
+2020-04-18 13:13:10.440  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 62 @ device 2098177
+2020-04-18 13:13:10.455  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 63 @ device 2098177
+2020-04-18 13:13:12.458  INFO 33984 --- [http-nio-8098-exec-4] c.b.schoko.webcontroller.HTTPController  : Build structure with new settings.....
+2020-04-18 13:13:15.369  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.HierarchyService        : BacNet structure successfully created with 169 nodes
+2020-04-18 13:13:15.369  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.services.HierarchyService        : Device structure successfully created with 230 nodes
+2020-04-18 13:13:15.370  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.bacnetutils.services.EventService  : Ask for event information
+2020-04-18 13:13:15.394  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.bacnetutils.services.EventService  : Received event information: Encodable(com.serotonin.bacnet4j.service.acknowledgement.GetEnrollmentSummaryAck)  -> from device: Site01'AS01 
+2020-04-18 13:13:18.438  INFO 33984 --- [http-nio-8098-exec-4] c.b.s.b.datahandler.EventHandler         : Send updated eventList with: 64 events
+2020-04-18 13:13:24.329  INFO 33984 --- [http-nio-8098-exec-7] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage
+2020-04-18 13:13:25.033  INFO 33984 --- [http-nio-8098-exec-8] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage'B
+2020-04-18 13:13:25.413  INFO 33984 --- [http-nio-8098-exec-9] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage'B'C
+2020-04-18 13:13:25.740  INFO 33984 --- [http-nio-8098-exec-10] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage'B'C'CGrp
+2020-04-18 13:13:26.226  INFO 33984 --- [http-nio-8098-exec-3] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage'B'C'CGrp'MxCrt
+2020-04-18 13:13:26.857  INFO 33984 --- [clientInboundChannel-16] c.b.schoko.webcontroller.WSController    : Read object: B'C'CGrp'MxCrt'Vlv
+2020-04-18 13:13:26.883  INFO 33984 --- [clientInboundChannel-16] c.b.s.b.services.ObjectService           : Property list of: analog-output 1 ready with: 44 properties for parsing
+2020-04-18 13:13:26.886 ERROR 33984 --- [clientInboundChannel-16] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.bacnetbrowser.schoko.bacnetutils.services.ObjectService.parseProperties(ObjectService.java:130) ~[classes/:na]
+	at com.bacnetbrowser.schoko.bacnetutils.services.ObjectService.progress(ObjectService.java:118) ~[classes/:na]
+	at com.serotonin.bacnet4j.util.ReadListenerUpdater.increment(ReadListenerUpdater.java:55) ~[bacnet4j-5.0.2.jar:na]
+	at com.serotonin.bacnet4j.util.RequestUtils.readProperties(RequestUtils.java:321) ~[bacnet4j-5.0.2.jar:na]
+	at com.serotonin.bacnet4j.util.RequestUtils.readProperties(RequestUtils.java:257) ~[bacnet4j-5.0.2.jar:na]
+	at com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject.readProperties(BACnetObject.java:192) ~[classes/:na]
+	at com.bacnetbrowser.schoko.bacnetutils.services.ObjectService.readDataPointProperties(ObjectService.java:62) ~[classes/:na]
+	at com.bacnetbrowser.schoko.bacnetutils.datahandler.ObjectHandler.getNewPropertyStream(ObjectHandler.java:41) ~[classes/:na]
+	at com.bacnetbrowser.schoko.webcontroller.WSController.subscribeProperties(WSController.java:47) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-04-18 13:13:28.746  INFO 33984 --- [clientInboundChannel-19] c.b.schoko.webcontroller.WSController    : Message from Client: WebSocket Closed
+2020-04-18 13:13:28.797  INFO 33984 --- [clientInboundChannel-19] c.b.s.bacnetutils.models.BACnetObject    : Unsubscription @: 'analog-output 1' on: device 2098177
+2020-04-18 13:13:29.307  INFO 33984 --- [http-nio-8098-exec-4] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage'B'C'CGrp'MxCrt'Pu
+2020-04-18 13:13:30.255  INFO 33984 --- [clientInboundChannel-2] c.b.schoko.webcontroller.WSController    : Read object: B'C'CGrp'MxCrt'Pu'Cmd
+2020-04-18 13:13:30.319  INFO 33984 --- [clientInboundChannel-2] c.b.s.b.services.ObjectService           : Property list of: binary-output 5 ready with: 46 properties for parsing
+2020-04-18 13:13:30.320 ERROR 33984 --- [clientInboundChannel-2] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.bacnetbrowser.schoko.bacnetutils.services.ObjectService.parseProperties(ObjectService.java:130) ~[classes/:na]
+	at com.bacnetbrowser.schoko.bacnetutils.services.ObjectService.progress(ObjectService.java:118) ~[classes/:na]
+	at com.serotonin.bacnet4j.util.ReadListenerUpdater.increment(ReadListenerUpdater.java:55) ~[bacnet4j-5.0.2.jar:na]
+	at com.serotonin.bacnet4j.util.RequestUtils.readProperties(RequestUtils.java:321) ~[bacnet4j-5.0.2.jar:na]
+	at com.serotonin.bacnet4j.util.RequestUtils.readProperties(RequestUtils.java:257) ~[bacnet4j-5.0.2.jar:na]
+	at com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject.readProperties(BACnetObject.java:192) ~[classes/:na]
+	at com.bacnetbrowser.schoko.bacnetutils.services.ObjectService.readDataPointProperties(ObjectService.java:62) ~[classes/:na]
+	at com.bacnetbrowser.schoko.bacnetutils.datahandler.ObjectHandler.getNewPropertyStream(ObjectHandler.java:41) ~[classes/:na]
+	at com.bacnetbrowser.schoko.webcontroller.WSController.subscribeProperties(WSController.java:47) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-04-18 13:13:31.546  INFO 33984 --- [clientInboundChannel-5] c.b.schoko.webcontroller.WSController    : Message from Client: WebSocket Closed
+2020-04-18 13:13:31.553  INFO 33984 --- [clientInboundChannel-5] c.b.s.bacnetutils.models.BACnetObject    : Unsubscription @: 'binary-output 5' on: device 2098177
+2020-04-18 13:13:32.162  INFO 33984 --- [clientInboundChannel-26] c.b.schoko.webcontroller.WSController    : Read object: B'C'CGrp'MxCrt'Pu'KickFnct.Out
+2020-04-18 13:13:32.178  INFO 33984 --- [clientInboundChannel-26] c.b.s.b.services.ObjectService           : Property list of: binary-value 17 ready with: 43 properties for parsing
+2020-04-18 13:13:32.178 ERROR 33984 --- [clientInboundChannel-26] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.bacnetbrowser.schoko.bacnetutils.services.ObjectService.parseProperties(ObjectService.java:130) ~[classes/:na]
+	at com.bacnetbrowser.schoko.bacnetutils.services.ObjectService.progress(ObjectService.java:118) ~[classes/:na]
+	at com.serotonin.bacnet4j.util.ReadListenerUpdater.increment(ReadListenerUpdater.java:55) ~[bacnet4j-5.0.2.jar:na]
+	at com.serotonin.bacnet4j.util.RequestUtils.readProperties(RequestUtils.java:321) ~[bacnet4j-5.0.2.jar:na]
+	at com.serotonin.bacnet4j.util.RequestUtils.readProperties(RequestUtils.java:257) ~[bacnet4j-5.0.2.jar:na]
+	at com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject.readProperties(BACnetObject.java:192) ~[classes/:na]
+	at com.bacnetbrowser.schoko.bacnetutils.services.ObjectService.readDataPointProperties(ObjectService.java:62) ~[classes/:na]
+	at com.bacnetbrowser.schoko.bacnetutils.datahandler.ObjectHandler.getNewPropertyStream(ObjectHandler.java:41) ~[classes/:na]
+	at com.bacnetbrowser.schoko.webcontroller.WSController.subscribeProperties(WSController.java:47) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-04-18 13:13:32.943  INFO 33984 --- [clientInboundChannel-29] c.b.schoko.webcontroller.WSController    : Message from Client: WebSocket Closed
+2020-04-18 13:13:32.951  INFO 33984 --- [clientInboundChannel-29] c.b.s.bacnetutils.models.BACnetObject    : Unsubscription @: 'binary-value 17' on: device 2098177
+2020-04-18 13:13:49.414  INFO 33984 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 4 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(4)-CONNECTED(4)-DISCONNECT(3)], stompBrokerRelay[null], inboundChannel[pool size = 32, active threads = 0, queued tasks = 0, completed tasks = 72], outboundChannel[pool size = 11, active threads = 0, queued tasks = 0, completed tasks = 11], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-04-18 13:14:43.491  INFO 37100 --- [main] c.b.schoko.SchokoApplication             : Starting SchokoApplication on DESKTOP-ANDREAS with PID 37100 (C:\Users\admin\IdeaProjects\schoko\backend\target\classes started by admin in C:\Users\admin\IdeaProjects\schoko\backend)
+2020-04-18 13:14:43.493  INFO 37100 --- [main] c.b.schoko.SchokoApplication             : No active profile set, falling back to default profiles: default
+2020-04-18 13:14:43.967  INFO 37100 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-04-18 13:14:44.025  INFO 37100 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40ms. Found 1 repository interfaces.
+2020-04-18 13:14:44.215  INFO 37100 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-18 13:14:44.625  INFO 37100 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8098 (http)
+2020-04-18 13:14:44.632  INFO 37100 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-18 13:14:44.632  INFO 37100 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-04-18 13:14:44.717  INFO 37100 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-18 13:14:44.717  INFO 37100 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1198 ms
+2020-04-18 13:14:44.875  INFO 37100 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-04-18 13:14:44.922  INFO 37100 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
+2020-04-18 13:14:45.010  INFO 37100 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-04-18 13:14:45.062  INFO 37100 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-04-18 13:14:45.081  INFO 37100 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-04-18 13:14:45.138  INFO 37100 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-04-18 13:14:45.143  INFO 37100 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-04-18 13:14:45.530  INFO 37100 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-04-18 13:14:45.534  INFO 37100 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-04-18 13:14:45.571  INFO 37100 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-04-18 13:14:45.574  INFO 37100 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-04-18 13:14:45.757  INFO 37100 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-04-18 13:14:45.771  INFO 37100 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-04-18 13:14:45.883  INFO 37100 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
+2020-04-18 13:14:45.960  INFO 37100 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-04-18 13:14:45.973  INFO 37100 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-04-18 13:14:45.973  INFO 37100 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-04-18 13:14:45.974  INFO 37100 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-04-18 13:14:46.225  INFO 37100 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8098 (http) with context path ''
+2020-04-18 13:14:46.227  INFO 37100 --- [main] c.b.schoko.SchokoApplication             : Started SchokoApplication in 2.963 seconds (JVM running for 3.197)
+2020-04-18 13:15:45.771  INFO 37100 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-04-18 13:15:51.323  INFO 37100 --- [http-nio-8098-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-18 13:15:51.323  INFO 37100 --- [http-nio-8098-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-04-18 13:15:51.328  INFO 37100 --- [http-nio-8098-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2020-04-18 13:15:51.419  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : Try to initialize localdevice 1001
+2020-04-18 13:15:51.433  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : Successfully created LocalDevice 1001
+2020-04-18 13:15:51.433  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : Scan for remote devices.........
+2020-04-18 13:15:52.927  INFO 37100 --- [pool-1-thread-1] c.b.s.b.services.DeviceService           : Remote device 2098177 registered in waiting room of LocalDevice
+2020-04-18 13:15:56.433  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : 1 BACnet devices finally registered at local device
+2020-04-18 13:15:56.502  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 11 @ device 2098177
+2020-04-18 13:15:56.521  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 12 @ device 2098177
+2020-04-18 13:15:56.535  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 13 @ device 2098177
+2020-04-18 13:15:56.550  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 21 @ device 2098177
+2020-04-18 13:15:56.564  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 22 @ device 2098177
+2020-04-18 13:15:56.578  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 23 @ device 2098177
+2020-04-18 13:15:56.593  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 31 @ device 2098177
+2020-04-18 13:15:56.607  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 32 @ device 2098177
+2020-04-18 13:15:56.627  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 33 @ device 2098177
+2020-04-18 13:15:56.701  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 41 @ device 2098177
+2020-04-18 13:15:56.711  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 42 @ device 2098177
+2020-04-18 13:15:56.725  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 43 @ device 2098177
+2020-04-18 13:15:56.740  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 51 @ device 2098177
+2020-04-18 13:15:56.754  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 52 @ device 2098177
+2020-04-18 13:15:56.768  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 53 @ device 2098177
+2020-04-18 13:15:56.783  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 61 @ device 2098177
+2020-04-18 13:15:56.797  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 62 @ device 2098177
+2020-04-18 13:15:56.811  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 63 @ device 2098177
+2020-04-18 13:15:58.922  INFO 37100 --- [http-nio-8098-exec-1] c.b.schoko.webcontroller.HTTPController  : Build structure with new settings.....
+2020-04-18 13:16:02.179  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.HierarchyService        : BacNet structure successfully created with 169 nodes
+2020-04-18 13:16:02.179  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.services.HierarchyService        : Device structure successfully created with 230 nodes
+2020-04-18 13:16:02.180  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.bacnetutils.services.EventService  : Ask for event information
+2020-04-18 13:16:02.204  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.bacnetutils.services.EventService  : Received event information: Encodable(com.serotonin.bacnet4j.service.acknowledgement.GetEnrollmentSummaryAck)  -> from device: Site01'AS01 
+2020-04-18 13:16:05.291  INFO 37100 --- [http-nio-8098-exec-1] c.b.s.b.datahandler.EventHandler         : Send updated eventList with: 64 events
+2020-04-18 13:16:12.294  INFO 37100 --- [http-nio-8098-exec-2] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage
+2020-04-18 13:16:13.360  INFO 37100 --- [http-nio-8098-exec-4] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage'B
+2020-04-18 13:16:13.924  INFO 37100 --- [http-nio-8098-exec-3] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage'B'C
+2020-04-18 13:16:14.588  INFO 37100 --- [http-nio-8098-exec-7] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage'B'C'CGrp
+2020-04-18 13:16:15.592  INFO 37100 --- [http-nio-8098-exec-10] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage'B'C'CGrp'MxCrt
+2020-04-18 13:16:16.424  INFO 37100 --- [clientInboundChannel-7] c.b.schoko.webcontroller.WSController    : Read object: B'C'CGrp'MxCrt'Vlv
+2020-04-18 13:16:16.450  INFO 37100 --- [clientInboundChannel-7] c.b.s.b.services.ObjectService           : Property list of: analog-output 1 ready with: 44 properties for parsing
+2020-04-18 13:16:16.451  INFO 37100 --- [clientInboundChannel-7] c.b.s.b.services.ObjectService           : Final property list of: analog-output 1 ready with: 4 -> send to frontend
+2020-04-18 13:16:16.452  INFO 37100 --- [clientInboundChannel-7] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:16:16.455  INFO 37100 --- [clientInboundChannel-7] c.b.s.bacnetutils.models.BACnetObject    : Subscription @: 'analog-output 1' on: device 2098177
+2020-04-18 13:16:16.474  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : COV message received from: device 2098177 of: analog-output 1
+2020-04-18 13:16:16.474  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : Device: device 2098177 has sent new present-value: 0.00
+2020-04-18 13:16:16.475  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:16:38.506  INFO 37100 --- [clientInboundChannel-10] c.b.schoko.webcontroller.WSController    : Message from Client: WebSocket Closed
+2020-04-18 13:16:38.512  INFO 37100 --- [clientInboundChannel-10] c.b.s.bacnetutils.models.BACnetObject    : Unsubscription @: 'analog-output 1' on: device 2098177
+2020-04-18 13:16:39.237  INFO 37100 --- [clientInboundChannel-28] c.b.schoko.webcontroller.WSController    : Read object: B'C'CGrp'MxCrt'TrndTFl
+2020-04-18 13:16:39.260  INFO 37100 --- [clientInboundChannel-28] c.b.s.b.services.ObjectService           : Property list of: trend-log 3 ready with: 41 properties for parsing
+2020-04-18 13:16:39.261  INFO 37100 --- [clientInboundChannel-28] c.b.s.b.services.ObjectService           : Final property list of: trend-log 3 ready with: 4 -> send to frontend
+2020-04-18 13:16:39.261  INFO 37100 --- [clientInboundChannel-28] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:16:39.268  WARN 37100 --- [clientInboundChannel-28] c.b.s.bacnetutils.models.BACnetObject    : Can't subscribe : 'trend-log 3' on: device 2098177
+2020-04-18 13:17:26.381  INFO 37100 --- [clientInboundChannel-31] c.b.schoko.webcontroller.WSController    : Message from Client: WebSocket Closed
+2020-04-18 13:17:26.383  WARN 37100 --- [clientInboundChannel-31] c.b.s.bacnetutils.models.BACnetObject    : Can't unsubscribe : 'trend-log 3' on: device 2098177
+2020-04-18 13:17:27.396  INFO 37100 --- [http-nio-8098-exec-7] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage'B'C'CGrp
+2020-04-18 13:17:30.456  INFO 37100 --- [http-nio-8098-exec-10] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage'B'C
+2020-04-18 13:17:31.879  INFO 37100 --- [http-nio-8098-exec-5] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage'B
+2020-04-18 13:17:32.218  INFO 37100 --- [http-nio-8098-exec-8] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage
+2020-04-18 13:17:33.431  INFO 37100 --- [http-nio-8098-exec-9] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage
+2020-04-18 13:17:34.419  INFO 37100 --- [http-nio-8098-exec-6] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage'B
+2020-04-18 13:17:35.105  INFO 37100 --- [http-nio-8098-exec-1] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage'B'A
+2020-04-18 13:17:36.156  INFO 37100 --- [clientInboundChannel-18] c.b.schoko.webcontroller.WSController    : Read object: B'A'AlmFnct2
+2020-04-18 13:17:36.178  INFO 37100 --- [clientInboundChannel-18] c.b.s.b.services.ObjectService           : Property list of: binary-value 39 ready with: 43 properties for parsing
+2020-04-18 13:17:36.178  INFO 37100 --- [clientInboundChannel-18] c.b.s.b.services.ObjectService           : Final property list of: binary-value 39 ready with: 4 -> send to frontend
+2020-04-18 13:17:36.179  INFO 37100 --- [clientInboundChannel-18] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:17:36.183  INFO 37100 --- [clientInboundChannel-18] c.b.s.bacnetutils.models.BACnetObject    : Subscription @: 'binary-value 39' on: device 2098177
+2020-04-18 13:17:36.243  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : COV message received from: device 2098177 of: binary-value 39
+2020-04-18 13:17:36.243  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : Device: device 2098177 has sent new present-value: inactive
+2020-04-18 13:17:36.244  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:17:44.159  INFO 37100 --- [clientInboundChannel-42] c.b.s.bacnetutils.models.BACnetObject    : Write on: present-value @ B'A'AlmFnct2 with: inactive
+2020-04-18 13:17:59.478  INFO 37100 --- [clientInboundChannel-45] c.b.s.bacnetutils.models.BACnetObject    : Write on: present-value @ B'A'AlmFnct2 with: inactive
+2020-04-18 13:18:01.748  INFO 37100 --- [clientInboundChannel-48] c.b.s.bacnetutils.models.BACnetObject    : Write on: present-value @ B'A'AlmFnct2 with: inactive
+2020-04-18 13:18:04.367  INFO 37100 --- [clientInboundChannel-51] c.b.s.bacnetutils.models.BACnetObject    : Release: binary-value 39
+2020-04-18 13:18:13.623  INFO 37100 --- [clientInboundChannel-54] c.b.schoko.webcontroller.WSController    : Message from Client: WebSocket Closed
+2020-04-18 13:18:13.624  INFO 37100 --- [clientInboundChannel-54] c.b.s.bacnetutils.models.BACnetObject    : Unsubscription @: 'binary-value 39' on: device 2098177
+2020-04-18 13:18:14.671  INFO 37100 --- [clientInboundChannel-17] c.b.schoko.webcontroller.WSController    : Read object: B'A'AlmFnct6
+2020-04-18 13:18:14.693  INFO 37100 --- [clientInboundChannel-17] c.b.s.b.services.ObjectService           : Property list of: binary-value 42 ready with: 43 properties for parsing
+2020-04-18 13:18:14.693  INFO 37100 --- [clientInboundChannel-17] c.b.s.b.services.ObjectService           : Final property list of: binary-value 42 ready with: 4 -> send to frontend
+2020-04-18 13:18:14.693  INFO 37100 --- [clientInboundChannel-17] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:18:14.697  INFO 37100 --- [clientInboundChannel-17] c.b.s.bacnetutils.models.BACnetObject    : Subscription @: 'binary-value 42' on: device 2098177
+2020-04-18 13:18:14.752  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : COV message received from: device 2098177 of: binary-value 42
+2020-04-18 13:18:14.752  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : Device: device 2098177 has sent new present-value: inactive
+2020-04-18 13:18:14.753  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:18:16.909  INFO 37100 --- [clientInboundChannel-44] c.b.s.bacnetutils.models.BACnetObject    : Write on: present-value @ B'A'AlmFnct6 with: inactive
+2020-04-18 13:18:18.194  INFO 37100 --- [clientInboundChannel-46] c.b.schoko.webcontroller.WSController    : Message from Client: WebSocket Closed
+2020-04-18 13:18:18.197  INFO 37100 --- [clientInboundChannel-46] c.b.s.bacnetutils.models.BACnetObject    : Unsubscription @: 'binary-value 42' on: device 2098177
+2020-04-18 13:18:44.400  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-04-18 13:18:44.403  INFO 37100 --- [Thread-6] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp'TrndPlt
+2020-04-18 13:18:44.414  INFO 37100 --- [Thread-6] c.b.s.b.datahandler.EventHandler         : Send updated eventList with: 63 events
+2020-04-18 13:18:44.635  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-04-18 13:18:44.637  INFO 37100 --- [Thread-7] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp'TrndRsnP
+2020-04-18 13:18:44.648  INFO 37100 --- [Thread-7] c.b.s.b.datahandler.EventHandler         : Send updated eventList with: 62 events
+2020-04-18 13:18:44.877  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-04-18 13:18:44.880  INFO 37100 --- [Thread-8] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp'TrndPlt
+2020-04-18 13:18:44.890  INFO 37100 --- [Thread-8] c.b.s.b.datahandler.EventHandler         : Send updated eventList with: 61 events
+2020-04-18 13:18:45.133  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-04-18 13:18:45.136  INFO 37100 --- [Thread-9] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp'TrndRsnP
+2020-04-18 13:18:45.147  INFO 37100 --- [Thread-9] c.b.s.b.datahandler.EventHandler         : Send updated eventList with: 60 events
+2020-04-18 13:18:45.378  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-04-18 13:18:45.381  INFO 37100 --- [Thread-10] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu'TrndPlt
+2020-04-18 13:18:45.391  INFO 37100 --- [Thread-10] c.b.s.b.datahandler.EventHandler         : Send updated eventList with: 59 events
+2020-04-18 13:18:45.634  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-04-18 13:18:45.637  INFO 37100 --- [Thread-11] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu'TrndRsnP
+2020-04-18 13:18:45.647  INFO 37100 --- [Thread-11] c.b.s.b.datahandler.EventHandler         : Send updated eventList with: 58 events
+2020-04-18 13:18:45.878  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-04-18 13:18:45.881  INFO 37100 --- [Thread-12] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp'MxCrt'TrndTFl
+2020-04-18 13:18:45.892  INFO 37100 --- [Thread-12] c.b.s.b.datahandler.EventHandler         : Send updated eventList with: 57 events
+2020-04-18 13:18:46.133  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-04-18 13:18:46.136  INFO 37100 --- [Thread-13] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp'MxCrt'TrndTFl
+2020-04-18 13:18:46.147  INFO 37100 --- [Thread-13] c.b.s.b.datahandler.EventHandler         : Send updated eventList with: 56 events
+2020-04-18 13:19:05.941  INFO 37100 --- [clientInboundChannel-63] c.b.schoko.webcontroller.WSController    : Read object: B'A'AlmFnct2
+2020-04-18 13:19:05.963  INFO 37100 --- [clientInboundChannel-63] c.b.s.b.services.ObjectService           : Property list of: binary-value 39 ready with: 43 properties for parsing
+2020-04-18 13:19:05.964  INFO 37100 --- [clientInboundChannel-63] c.b.s.b.services.ObjectService           : Final property list of: binary-value 39 ready with: 4 -> send to frontend
+2020-04-18 13:19:05.964  INFO 37100 --- [clientInboundChannel-63] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:19:05.968  INFO 37100 --- [clientInboundChannel-63] c.b.s.bacnetutils.models.BACnetObject    : Subscription @: 'binary-value 39' on: device 2098177
+2020-04-18 13:19:06.014  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : COV message received from: device 2098177 of: binary-value 39
+2020-04-18 13:19:06.015  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : Device: device 2098177 has sent new present-value: inactive
+2020-04-18 13:19:06.015  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:19:06.967  INFO 37100 --- [clientInboundChannel-66] c.b.schoko.webcontroller.WSController    : Message from Client: WebSocket Closed
+2020-04-18 13:19:06.969  INFO 37100 --- [clientInboundChannel-66] c.b.s.bacnetutils.models.BACnetObject    : Unsubscription @: 'binary-value 39' on: device 2098177
+2020-04-18 13:19:09.631  INFO 37100 --- [clientInboundChannel-55] c.b.schoko.webcontroller.WSController    : Read object: B'A'1
+2020-04-18 13:19:09.655  INFO 37100 --- [clientInboundChannel-55] c.b.s.b.services.ObjectService           : Property list of: multi-state-value 12 ready with: 37 properties for parsing
+2020-04-18 13:19:09.655  INFO 37100 --- [clientInboundChannel-55] c.b.s.b.services.ObjectService           : Final property list of: multi-state-value 12 ready with: 4 -> send to frontend
+2020-04-18 13:19:09.656  INFO 37100 --- [clientInboundChannel-55] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:19:09.660  INFO 37100 --- [clientInboundChannel-55] c.b.s.bacnetutils.models.BACnetObject    : Subscription @: 'multi-state-value 12' on: device 2098177
+2020-04-18 13:19:09.765  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : COV message received from: device 2098177 of: multi-state-value 12
+2020-04-18 13:19:09.765  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : Device: device 2098177 has sent new present-value: 1
+2020-04-18 13:19:09.766  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:19:10.832  INFO 37100 --- [clientInboundChannel-32] c.b.schoko.webcontroller.WSController    : Message from Client: WebSocket Closed
+2020-04-18 13:19:10.881  INFO 37100 --- [clientInboundChannel-32] c.b.s.bacnetutils.models.BACnetObject    : Unsubscription @: 'multi-state-value 12' on: device 2098177
+2020-04-18 13:19:11.305  INFO 37100 --- [clientInboundChannel-39] c.b.schoko.webcontroller.WSController    : Read object: B'A'2
+2020-04-18 13:19:11.337  INFO 37100 --- [clientInboundChannel-39] c.b.s.b.services.ObjectService           : Property list of: analog-value 35 ready with: 44 properties for parsing
+2020-04-18 13:19:11.337  INFO 37100 --- [clientInboundChannel-39] c.b.s.b.services.ObjectService           : Final property list of: analog-value 35 ready with: 4 -> send to frontend
+2020-04-18 13:19:11.337  INFO 37100 --- [clientInboundChannel-39] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:19:11.407  INFO 37100 --- [clientInboundChannel-39] c.b.s.bacnetutils.models.BACnetObject    : Subscription @: 'analog-value 35' on: device 2098177
+2020-04-18 13:19:11.516  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : COV message received from: device 2098177 of: analog-value 35
+2020-04-18 13:19:11.516  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : Device: device 2098177 has sent new present-value: 20.00
+2020-04-18 13:19:11.516  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:19:15.489  INFO 37100 --- [clientInboundChannel-68] c.b.s.bacnetutils.models.BACnetObject    : Write on: present-value @ B'A'2 with: 22.0
+2020-04-18 13:19:15.766  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : COV message received from: device 2098177 of: analog-value 35
+2020-04-18 13:19:15.767  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : Device: device 2098177 has sent new present-value: 22.00
+2020-04-18 13:19:15.767  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:19:25.907  INFO 37100 --- [clientInboundChannel-71] c.b.s.bacnetutils.models.BACnetObject    : Write on: present-value @ B'A'2 with: 28.5555
+2020-04-18 13:19:26.269  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : COV message received from: device 2098177 of: analog-value 35
+2020-04-18 13:19:26.270  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.services.ObjectService           : Device: device 2098177 has sent new present-value: 28.56
+2020-04-18 13:19:26.270  INFO 37100 --- [BACnet4J transport for device 1001] c.b.s.b.datahandler.ObjectHandler        : Send updated properties
+2020-04-18 13:19:36.080  INFO 37100 --- [clientInboundChannel-74] c.b.schoko.webcontroller.WSController    : Message from Client: WebSocket Closed
+2020-04-18 13:19:36.142  INFO 37100 --- [clientInboundChannel-74] c.b.s.bacnetutils.models.BACnetObject    : Unsubscription @: 'analog-value 35' on: device 2098177
