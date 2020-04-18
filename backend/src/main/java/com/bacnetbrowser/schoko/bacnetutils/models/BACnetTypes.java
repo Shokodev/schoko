@@ -13,6 +13,7 @@ import java.lang.Double;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -117,13 +118,17 @@ public class BACnetTypes {
         return "Invertiert";
     }
 
-    /*public static HashMap<String,String> getPriorityArrayAsText(Encodable encodable){
+    public static String  getPriorityArrayAsText(BACnetObject bacnetObject, HashMap<PropertyIdentifier,Encodable> propertiesRaw,
+                                                 int precisionRealValue){
         HashMap<String, String> result = new HashMap<>();
-        PriorityArray priorityArray = (PriorityArray) encodable;
-        priorityArray.forEach(priorityValue -> {
-            if(!priorityValue.getNullValue().equals(Null.instance))
-             //result.put(priorityValue.)
-        });
-    }*/
+        PriorityArray priorityArray = (PriorityArray) propertiesRaw.get(PropertyIdentifier.priorityArray);
+        for (int i = 0; i < priorityArray.size(); i++) {
+            if(!priorityArray.get(i).getConstructedValue().equals(Null.instance)){
+                result.put(String.valueOf(i + 1), bacnetObject.getPresentValueAsText(propertiesRaw,
+                        precisionRealValue,priorityArray.get(i).getValue()));
+            }
+        }
+        return result.toString();
+    }
 }
 

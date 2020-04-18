@@ -108,7 +108,7 @@
             // @version 1.0
             dropdownValue: function () {
                 this.numberOfStatesValue= this.searchPropertyIdentifierValue("Number of states");
-                var node= this.searchPropertyIdentifierValue("State text");
+                var node= this.searchPropertyIdentifierValue("state-text");
                 var nodeReplaced=node.replace(/\[|\]|\s/g,"");
                 this.setStateText(nodeReplaced.split(','))
             },

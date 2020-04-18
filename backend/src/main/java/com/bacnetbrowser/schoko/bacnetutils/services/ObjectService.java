@@ -6,6 +6,7 @@ import com.bacnetbrowser.schoko.bacnetutils.datahandler.SettingsHandler;
 import com.bacnetbrowser.schoko.bacnetutils.models.*;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
 import com.serotonin.bacnet4j.type.Encodable;
+import com.serotonin.bacnet4j.type.constructed.PriorityArray;
 import com.serotonin.bacnet4j.type.constructed.PropertyValue;
 import com.serotonin.bacnet4j.type.constructed.SequenceOf;
 import com.serotonin.bacnet4j.type.enumerated.EngineeringUnits;
@@ -96,8 +97,13 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
             LOG.info("Device: " + bacnetDevice.getObjectIdentifier() + " has sent new " +
                     pv.getPropertyIdentifier() + ": " + pv.getValue());
         }
-        parseProperties();
-        objectHandler.updateStream();
+        Runnable runnable = () -> {
+            propertiesRaw.replace(PropertyIdentifier.priorityArray,bacnetObject.readProperty(PropertyIdentifier.priorityArray));
+            parseProperties();
+            objectHandler.updateStream();
+        };
+        Thread newThread = new Thread(runnable);
+        newThread.start();
     }
 
     @Override
@@ -120,9 +126,35 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
             properties.add(new BACnetProperty(objectIdentifier.toString(), PropertyIdentifier.objectIdentifier.toString()));
             properties.add(new BACnetProperty(propertiesRaw.get(PropertyIdentifier.objectName).toString(), PropertyIdentifier.objectName.toString()));
             properties.add(new BACnetProperty(propertiesRaw.get(PropertyIdentifier.description).toString(), PropertyIdentifier.description.toString()));
+        } catch (NullPointerException ignored){}
+        try{
+            properties.add(new BACnetProperty(propertiesRaw.get(PropertyIdentifier.stateText).toString(), PropertyIdentifier.stateText.toString()));
+        } catch (NullPointerException ignored){}
+        try{
+            properties.add(new BACnetProperty(propertiesRaw.get(PropertyIdentifier.activeText).toString(), PropertyIdentifier.activeText.toString()));
+            properties.add(new BACnetProperty(propertiesRaw.get(PropertyIdentifier.inactiveText).toString(), PropertyIdentifier.inactiveText.toString()));
+        } catch (NullPointerException ignored){}
+        try{
             properties.add(new BACnetProperty(BACnetTypes.getOutOfServiceAsText(propertiesRaw.get(PropertyIdentifier.outOfService)), PropertyIdentifier.outOfService.toString()));
+        } catch (NullPointerException ignored){}
+        try{
             properties.add(new BACnetProperty(BACnetTypes.getPolarityAsText(propertiesRaw.get(PropertyIdentifier.polarity)), PropertyIdentifier.polarity.toString()));
         } catch (NullPointerException ignored){}
+        try{
+            properties.add(new BACnetProperty(BACnetTypes.getPriorityArrayAsText(bacnetObject,propertiesRaw,precisionRealValue),PropertyIdentifier.priorityArray.toString()));
+        } catch (NullPointerException ignored){}
+
+    }
+
+    public void updatePropertyRelease() {
+        Runnable runnable = () -> {
+            propertiesRaw.replace(PropertyIdentifier.priorityArray,bacnetObject.readProperty(PropertyIdentifier.priorityArray));
+            parseProperties();
+            objectHandler.updateStream();
+        };
+        Thread newThread = new Thread(runnable);
+        newThread.start();
+
     }
 }
 

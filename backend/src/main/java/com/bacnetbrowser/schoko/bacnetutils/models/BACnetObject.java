@@ -10,11 +10,8 @@ import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.*;
 import com.serotonin.bacnet4j.type.enumerated.*;
 import com.serotonin.bacnet4j.type.enumerated.EngineeringUnits;
+import com.serotonin.bacnet4j.type.primitive.*;
 import com.serotonin.bacnet4j.type.primitive.Boolean;
-import com.serotonin.bacnet4j.type.primitive.CharacterString;
-import com.serotonin.bacnet4j.type.primitive.Null;
-import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
-import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
 import com.serotonin.bacnet4j.util.ReadListener;
 import com.serotonin.bacnet4j.util.RequestUtils;
 import org.slf4j.Logger;
@@ -105,10 +102,10 @@ public class BACnetObject extends RemoteObject {
 
     public String getPresentValueAsText(HashMap<PropertyIdentifier,Encodable> propertiesRaw, int precisionRealValue) {
         if ((objectType.equals(ObjectType.binaryValue)) || (objectType.equals(ObjectType.binaryOutput)) || (objectType.equals(ObjectType.binaryInput))) {
-            BinaryPV resultValue = (BinaryPV) propertiesRaw.get(PropertyIdentifier.presentValue);
+            Enumerated resultValue = (Enumerated) propertiesRaw.get(PropertyIdentifier.presentValue);
             String resultActive = propertiesRaw.get(PropertyIdentifier.activeText).toString();
             String resultInactive = propertiesRaw.get(PropertyIdentifier.inactiveText).toString();
-            if (resultValue.equals(BinaryPV.active)) {
+            if (resultValue.intValue() == 1) {
                 return resultActive;
             } else {
                 return resultInactive;
@@ -116,10 +113,33 @@ public class BACnetObject extends RemoteObject {
         } else if ((objectType.equals(ObjectType.multiStateValue)) || (objectType.equals(ObjectType.multiStateOutput)) || (objectType.equals(ObjectType.multiStateInput))) {
                 int resultValue = Integer.parseInt(propertiesRaw.get(PropertyIdentifier.presentValue).toString());
                 List<CharacterString> texts = ((SequenceOf<CharacterString>) propertiesRaw.get(PropertyIdentifier.stateText)).getValues();
-                return texts.get(resultValue).getValue();
+                return texts.get(resultValue -1).getValue();
 
         } else if ((objectType.equals(ObjectType.analogValue)) || (objectType.equals(ObjectType.analogOutput)) || (objectType.equals(ObjectType.analogInput))) {
             String resultValue = BACnetTypes.round(propertiesRaw.get(PropertyIdentifier.presentValue),precisionRealValue);
+            EngineeringUnits resultUnit = (EngineeringUnits) propertiesRaw.get(PropertyIdentifier.units);
+            return resultValue + " " + EngineeringUnitsParser.UnitToString(resultUnit.intValue());
+        }
+        return " ";
+    }
+
+    public String getPresentValueAsText(HashMap<PropertyIdentifier,Encodable> propertiesRaw, int precisionRealValue, Encodable newPresentValue) {
+        if ((objectType.equals(ObjectType.binaryValue)) || (objectType.equals(ObjectType.binaryOutput)) || (objectType.equals(ObjectType.binaryInput))) {
+            Enumerated resultValue = (Enumerated) newPresentValue;
+            String resultActive = propertiesRaw.get(PropertyIdentifier.activeText).toString();
+            String resultInactive = propertiesRaw.get(PropertyIdentifier.inactiveText).toString();
+            if (resultValue.intValue() == 1) {
+                return resultActive;
+            } else {
+                return resultInactive;
+            }
+        } else if ((objectType.equals(ObjectType.multiStateValue)) || (objectType.equals(ObjectType.multiStateOutput)) || (objectType.equals(ObjectType.multiStateInput))) {
+            int resultValue = Integer.parseInt(newPresentValue.toString());
+            List<CharacterString> texts = ((SequenceOf<CharacterString>) propertiesRaw.get(PropertyIdentifier.stateText)).getValues();
+            return texts.get(resultValue -1).getValue();
+
+        } else if ((objectType.equals(ObjectType.analogValue)) || (objectType.equals(ObjectType.analogOutput)) || (objectType.equals(ObjectType.analogInput))) {
+            String resultValue = BACnetTypes.round(newPresentValue,precisionRealValue);
             EngineeringUnits resultUnit = (EngineeringUnits) propertiesRaw.get(PropertyIdentifier.units);
             return resultValue + " " + EngineeringUnitsParser.UnitToString(resultUnit.intValue());
         }

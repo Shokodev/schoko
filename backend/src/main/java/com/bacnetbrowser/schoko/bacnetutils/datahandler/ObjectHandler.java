@@ -74,6 +74,7 @@ public class ObjectHandler {
      */
     public void releaseValue(){
         objectService.getBacnetObject().releaseManualCommand();
+        objectService.updatePropertyRelease();
     }
 
     }
