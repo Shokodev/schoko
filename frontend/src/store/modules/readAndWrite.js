@@ -7,7 +7,7 @@ const state = {
             propertyIdentifier: String,
             value: Number
         },
-        stateTextValue: [],
+        stateTextValue: "",
         bacnetUnit: String,
         connected: false,
         polarityValue: String,

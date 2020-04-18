@@ -37,7 +37,7 @@
     },
       methods: {
       ...mapActions(["readSettings", "newEvent"]),
-      ...mapMutations(['isConnectedEvents', 'newStompClient','newEventList', 'getIsConnectedEvents']),
+      ...mapMutations(['isConnectedEvents', 'newStompClient','newEventList', 'getIsConnectedEvents','getAckObjectName']),
 
         // This Function creates the websocket with stomp on startup
         // The stompclient gets passed in the store for it being available in other components and views like the alarmview
@@ -55,7 +55,7 @@
           if (frame.command === "CONNECTED") {
             this.getStompClient.subscribe('/broker/eventSub', this.callback, {});
           }
-          this.getStompClient.send("/app/eventSub", {}, "init")
+          this.getStompClient.send("/app/eventSub", {}, "init");
         },
         // This Function gets called by the stompclient and the message body gets passed in the store as a JSON
         // If new events have been created the alarm bell will light up
@@ -82,7 +82,7 @@
     },
     computed: {
       ...mapGetters([
-        'getStompClient','getEvents','getHasNewAlarm'
+        'getStompClient','getEvents','getHasNewAlarm',
       ]),
     }
   }

@@ -23,7 +23,7 @@
                 <td>{{child.description}}</td>
                 <td>{{child.presentValue}}</td>
                 <td>{{child.toState}}</td>
-                <td><button class="button" v-if="!child.ackState">
+                <td><button class="button" v-if="!child.ackState" v-on:click="ackState(child.objectName)">
                     <span class="icon is-small">
                     <i class="fas fa-check"></i>
                     </span>
@@ -56,11 +56,20 @@
                     this.newEvent(false)
             },
             methods: {
-                ...mapActions(["newEvent"])
+                ...mapActions(["newEvent","setAckObjectName"]),
+
+            ackState: function (objectName){
+                this.setAckObjectName(objectName);
+                this.$emit('event',this.getAckObjectName);
+
             },
-            computed:{
-            ...mapGetters(["getEvents"])
-            }
+
+
+
+            },
+            computed: {
+                ...mapGetters(["getEvents","getAckObjectName"]),
+            },
     };
 </script>
 

@@ -17,7 +17,7 @@
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
                 <span v-if="prop.propertyIdentifier==='present-value'">
                     <span class="has-text-weight-bold">Aktueller Wert:</span>
-                  {{getStateText[prop.value -1]}}
+                  {{prop.value}}
                 </span>
                 </span>
                 </span>
@@ -50,6 +50,16 @@
                 <span v-for="prop in node" :key="prop.propertyIdentifier" >
                 <div class="box" v-if="prop.propertyIdentifier==='object-name'">
                     <span class="has-text-weight-bold">Objekt Name:</span>
+                    {{prop.value}}
+                </div>
+                </span>
+                </span>
+        </div>
+        <div>
+             <span>
+                <span v-for="prop in node" :key="prop.propertyIdentifier" >
+                <div class="box" v-if="prop.propertyIdentifier==='priority-array'">
+                    <span class="has-text-weight-bold">Priorität:</span>
                     {{prop.value}}
                 </div>
                 </span>
