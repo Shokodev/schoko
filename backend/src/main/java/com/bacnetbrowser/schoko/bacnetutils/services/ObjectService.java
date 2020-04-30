@@ -6,11 +6,8 @@ import com.bacnetbrowser.schoko.bacnetutils.datahandler.SettingsHandler;
 import com.bacnetbrowser.schoko.bacnetutils.models.*;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
 import com.serotonin.bacnet4j.type.Encodable;
-import com.serotonin.bacnet4j.type.constructed.PriorityArray;
 import com.serotonin.bacnet4j.type.constructed.PropertyValue;
 import com.serotonin.bacnet4j.type.constructed.SequenceOf;
-import com.serotonin.bacnet4j.type.enumerated.EngineeringUnits;
-import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
@@ -29,7 +26,6 @@ import java.util.LinkedList;
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */
-
 public class ObjectService extends DeviceEventAdapter implements ReadListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(ObjectService.class);
