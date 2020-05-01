@@ -10,8 +10,12 @@ import com.serotonin.bacnet4j.npdu.ip.IpNetworkBuilder;
 import com.serotonin.bacnet4j.transport.DefaultTransport;
 import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.Address;
+import com.serotonin.bacnet4j.type.constructed.SequenceOf;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
+import com.serotonin.bacnet4j.type.enumerated.Segmentation;
+import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.util.RequestUtils;
+
 import java.util.Map;
 
 
@@ -34,15 +38,12 @@ public class DeviceTest {
     static class Listener extends DeviceEventAdapter {
         @Override
         public void iAmReceived(RemoteDevice d) {
-            System.out.println("I am received" + d);
-            System.out.println("1" + d.getSegmentationSupported());
-            Device device = new Device(localDevice, d.getInstanceNumber(), d.getAddress());
-            device.setUserData(d.getSegmentationSupported());
+            Device device = new Device(localDevice, d.getInstanceNumber(), d.getAddress(), d.getSegmentationSupported());
             try {
-                Map<PropertyIdentifier, Encodable> values = RequestUtils.getProperties(
-                        localDevice, device, device.getObjectIdentifier(),null,
-                        PropertyIdentifier.objectList);
-                System.out.println(values);
+                SequenceOf<ObjectIdentifier> oids = RequestUtils.getObjectList(localDevice,device);
+                for(ObjectIdentifier oid : oids.getValues()){
+                    System.out.println(oid);
+                }
             } catch (BACnetException e) {
                 e.printStackTrace();
             }
@@ -50,11 +51,24 @@ public class DeviceTest {
     }
 
     static class Device extends RemoteDevice{
-        public Device(LocalDevice localDevice, int instanceNumber, Address address) {
+        Segmentation segmentation;
+        int maxAPDULengthAccepted = 1476;
+
+        public Device(LocalDevice localDevice, int instanceNumber, Address address, Segmentation segmentation) {
             super(localDevice, instanceNumber, address);
+            this.segmentation = segmentation;
+        }
+
+        @Override
+        public Segmentation getSegmentationSupported() {
+            return this.segmentation;
+        }
+
+        @Override
+        public int getMaxAPDULengthAccepted() {
+            return maxAPDULengthAccepted;
         }
     }
-
 }
 
 

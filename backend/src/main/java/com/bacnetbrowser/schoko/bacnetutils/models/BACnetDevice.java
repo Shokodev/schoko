@@ -8,6 +8,7 @@ import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.Address;
 import com.serotonin.bacnet4j.type.constructed.ServicesSupported;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
+import com.serotonin.bacnet4j.type.enumerated.Segmentation;
 import com.serotonin.bacnet4j.type.primitive.CharacterString;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.util.RequestUtils;
@@ -18,32 +19,29 @@ import java.util.ArrayList;
 
 
 public class BACnetDevice extends RemoteDevice {
-
+    //Default Max APDU length accepted
+    int maxAPDULengthAccepted = 1476;
     private ArrayList<BACnetObject> bacnetObjects = new ArrayList<>();
-    private RemoteDevice remoteDevice;
+    private final Segmentation segmentation;
     private static final Logger LOG = LoggerFactory.getLogger(BACnetDevice.class);
 
-    public BACnetDevice(LocalDevice localDevice, int instanceNumber, Address address,RemoteDevice remoteDevice) {
+    public BACnetDevice(LocalDevice localDevice, int instanceNumber, Address address,Segmentation segmentation) {
         super(localDevice, instanceNumber, address);
-        this.remoteDevice = remoteDevice;
+        this.segmentation = segmentation;
     }
 
     @Override
-    public ServicesSupported getServicesSupported() {
-        return super.getServicesSupported();
+    public Segmentation getSegmentationSupported() {
+        return this.segmentation;
+    }
+
+    @Override
+    public int getMaxAPDULengthAccepted() {
+        return maxAPDULengthAccepted;
     }
 
     public ArrayList<BACnetObject> getBacnetObjects() {
         return bacnetObjects;
-    }
-
-    public Encodable readProperty(PropertyIdentifier propertyIdentifier) {
-        try {
-            return RequestUtils.readProperty(DeviceService.localDevice,remoteDevice,remoteDevice.getObjectIdentifier(), propertyIdentifier,null);
-        } catch (BACnetException bac) {
-            LOG.warn("Can't read " + propertyIdentifier + " of " + this.getName());
-        }
-        return new CharacterString("COM");
     }
 
     public BACnetObject getBACnetObject(ObjectIdentifier oid){
@@ -55,22 +53,5 @@ public class BACnetDevice extends RemoteDevice {
         return null;
     }
 
-    @Override
-    public int getInstanceNumber() {
-        return remoteDevice.getInstanceNumber();
-    }
 
-    @Override
-    public ObjectIdentifier getObjectIdentifier() {
-        return remoteDevice.getObjectIdentifier();
-    }
-
-    @Override
-    public String getVendorName() {
-        return remoteDevice.getVendorName();
-    }
-
-    public RemoteDevice getBacnetDeviceInfo(){
-        return this.remoteDevice;
-    }
 }

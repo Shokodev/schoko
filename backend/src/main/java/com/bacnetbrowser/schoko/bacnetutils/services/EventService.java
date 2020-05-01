@@ -160,11 +160,11 @@ public class EventService extends DeviceEventAdapter  {
                         null,null,null,null);
             GetEnrollmentSummaryAck events = null;
             try {
-                events = DeviceService.localDevice.send(bacnetDevice.getBacnetDeviceInfo(), request).get();
+                events = DeviceService.localDevice.send(bacnetDevice, request).get();
             } catch (BACnetException e) {
                 LOG.warn("Can't get event information");
             }
-                LOG.info("Received event information: {}  -> from device: {} ", events , bacnetDevice.getBacnetDeviceInfo().getName());
+                LOG.info("Received event information: {}  -> from device: {} ", events , bacnetDevice.getName());
             for (GetEnrollmentSummaryAck.EnrollmentSummary event : events.getValues()){
                     if(!Character.isDigit(event.getObjectIdentifier().toString().charAt(0)) || !event.getObjectIdentifier().equals(ObjectType.trendLog)) {
                         createSQLEvent(event, bacnetDevice);
@@ -181,10 +181,10 @@ public class EventService extends DeviceEventAdapter  {
      * @param bacnetDevice remote device of this objects
      */
     private void createSQLEvent(GetEnrollmentSummaryAck.EnrollmentSummary event, BACnetDevice bacnetDevice) {
-        TimeStamp timeStamp = getTimeStampofObject(event.getObjectIdentifier(),bacnetDevice.getBacnetDeviceInfo(), event.getEventState().toString());
+        TimeStamp timeStamp = getTimeStampofObject(event.getObjectIdentifier(),bacnetDevice, event.getEventState().toString());
         try {
            BACnetEvent eventSQL = eventRepository.findBACnetEventByRemoteDeviceNameAndOidAndAndTimeStamp(
-                   bacnetDevice.getBacnetDeviceInfo().getName(),event.getObjectIdentifier().toString(),
+                   bacnetDevice.getName(),event.getObjectIdentifier().toString(),
                    BACnetTypes.parseToSQLTimeStamp(timeStamp));
             LOG.info("Event already exists in database: " + eventSQL.getObjectName() + " ID: " + eventSQL.getEventID());
             activeEvents.put(eventSQL.getObjectName(),eventSQL);
@@ -195,7 +195,7 @@ public class EventService extends DeviceEventAdapter  {
                             PropertyIdentifier.notificationClass).toString())));
             EventTransitionBits eventTransitionBits = notiClass.getEventTransitionBits();
             boolean isAckNeeded = isAckNeeded(eventTransitionBits);
-            BACnetEvent bacnetEvent = new BACnetEvent("1", bacnetDevice.getBacnetDeviceInfo().getName(),
+            BACnetEvent bacnetEvent = new BACnetEvent("1", bacnetDevice.getName(),
                     object.getObjectIdentifier().toString()
                     , BACnetTypes.parseToSQLTimeStamp(timeStamp),
                     object.readProperty(PropertyIdentifier.notificationClass).toString(),

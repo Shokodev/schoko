@@ -65,8 +65,12 @@ public class ObjectHandler {
      * @param newValue new value for property
      */
     public void setNewValue(String propertyIdentifier, String newValue){
-        objectService.getBacnetObject().writeValue(PropertyIdentifier.forName(propertyIdentifier),
-                BACnetTypes.getPropertyValuesByObjectType(objectService.getObjectIdentifier().getObjectType(), newValue));
+        try {
+            objectService.getBacnetObject().writeValue(PropertyIdentifier.forName(propertyIdentifier),
+                    BACnetTypes.getPropertyValuesByObjectType(objectService.getObjectIdentifier().getObjectType(), newValue));
+        } catch (Exception e){
+            LOG.warn("Can't send value: {}   -> to {}", e.getLocalizedMessage(), objectService.getObjectIdentifier());
+        }
     }
 
     /**

@@ -31,7 +31,7 @@ public class BACnetObject extends RemoteObject {
 
     public BACnetObject(ObjectIdentifier oid, BACnetDevice bacnetDevice) {
         super(DeviceService.localDevice,oid);
-        this.bacnetDevice = bacnetDevice.getBacnetDeviceInfo();
+        this.bacnetDevice = bacnetDevice;
         this.objectType = oid.getObjectType();
         readObjectName();
     }

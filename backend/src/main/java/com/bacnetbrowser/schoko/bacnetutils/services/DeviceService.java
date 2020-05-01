@@ -16,6 +16,7 @@ import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import com.serotonin.bacnet4j.type.primitive.Boolean;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
+import com.serotonin.bacnet4j.util.DiscoveryUtils;
 import com.serotonin.bacnet4j.util.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +35,7 @@ public class DeviceService extends DeviceEventAdapter {
 
     @Override
     public void iAmReceived(RemoteDevice d) {
-        BACnetDevice bacnetDevice = new BACnetDevice(localDevice, d.getInstanceNumber(), d.getAddress(),d);
+        BACnetDevice bacnetDevice = new BACnetDevice(localDevice, d.getInstanceNumber(), d.getAddress(),d.getSegmentationSupported());
         waitingRoomBacnetDevices.add(bacnetDevice);
         LOG.info("Remote device " + d.getInstanceNumber() + " registered in waiting room of LocalDevice");
     }
@@ -60,6 +61,7 @@ public class DeviceService extends DeviceEventAdapter {
             LOG.error("LocalDevice initialize failed, restart the application may solve this problem");
         }
         LOG.info("Successfully created LocalDevice " + localDevice.getInstanceNumber());
+        localDevice.startRemoteDeviceDiscovery();
         scanForRemoteDevices();
         getRemoteDeviceInformation();
         setLocalDeviceAsAlarmReceiver();
@@ -106,12 +108,9 @@ public class DeviceService extends DeviceEventAdapter {
     private void setLocalDeviceAsAlarmReceiver() {
         if (bacnetDevices.size() > 0){
             for (BACnetDevice bacnetDevice : bacnetDevices) {
-                List<ObjectIdentifier> oids = null;
+                SequenceOf<ObjectIdentifier> oids = null;
                 try {
-                    oids = ((SequenceOf<ObjectIdentifier>)
-                            RequestUtils.sendReadPropertyAllowNull(
-                                    localDevice, bacnetDevice.getBacnetDeviceInfo(), bacnetDevice.getObjectIdentifier(),
-                                    PropertyIdentifier.objectList)).getValues();
+                    oids = RequestUtils.getObjectList(localDevice,bacnetDevice);
                 } catch (BACnetException bac1){
                     System.err.println("No objects in " + bacnetDevice + "found");
                 }
@@ -119,7 +118,7 @@ public class DeviceService extends DeviceEventAdapter {
                     for (ObjectIdentifier oid : oids) {
                         if (oid.getObjectType().equals(ObjectType.notificationClass)){
                             try {
-                            RequestUtils.addListElement(localDevice,bacnetDevice.getBacnetDeviceInfo(),oid,PropertyIdentifier.recipientList,creatAlarmDestination());
+                            RequestUtils.addListElement(localDevice,bacnetDevice,oid,PropertyIdentifier.recipientList,creatAlarmDestination());
                             }catch(BACnetException bac){
                                LOG.warn("No notification classes found at remote " + bacnetDevice);
                             }
@@ -137,13 +136,11 @@ public class DeviceService extends DeviceEventAdapter {
      */
     private void getRemoteDeviceInformation() {
         for (BACnetDevice bacnetDevice : bacnetDevices) {
-            bacnetDevice.setDeviceProperty(PropertyIdentifier.objectName, bacnetDevice.readProperty(PropertyIdentifier.objectName));
-            bacnetDevice.setDeviceProperty(PropertyIdentifier.vendorName, bacnetDevice.readProperty(PropertyIdentifier.vendorName));
-            bacnetDevice.setDeviceProperty(PropertyIdentifier.protocolServicesSupported, bacnetDevice.readProperty(PropertyIdentifier.protocolServicesSupported));
-            bacnetDevice.setDeviceProperty(PropertyIdentifier.protocolVersion, bacnetDevice.readProperty(PropertyIdentifier.protocolVersion));
-            bacnetDevice.setDeviceProperty(PropertyIdentifier.protocolRevision, bacnetDevice.readProperty(PropertyIdentifier.protocolRevision));
-            bacnetDevice.setDeviceProperty(PropertyIdentifier.description, bacnetDevice.readProperty(PropertyIdentifier.description));
-            bacnetDevice.setDeviceProperty(PropertyIdentifier.applicationSoftwareVersion, bacnetDevice.readProperty(PropertyIdentifier.applicationSoftwareVersion));
+            try {
+                DiscoveryUtils.getExtendedDeviceInformation(localDevice, bacnetDevice);
+            } catch (BACnetException e) {
+                LOG.error("Can't read further information from device {}", bacnetDevice);
+            }
         }
     }
 
@@ -165,10 +162,7 @@ public class DeviceService extends DeviceEventAdapter {
 
         for (BACnetDevice bacnetDevice: bacnetDevices) {
             try {
-                List<ObjectIdentifier> oids = ((SequenceOf<ObjectIdentifier>)
-                        RequestUtils.sendReadPropertyAllowNull(
-                                DeviceService.localDevice, bacnetDevice.getBacnetDeviceInfo(), bacnetDevice.getObjectIdentifier(),
-                                PropertyIdentifier.objectList)).getValues();
+                SequenceOf<ObjectIdentifier> oids = RequestUtils.getObjectList(localDevice,bacnetDevice);
                 for (ObjectIdentifier oid : oids) {
                     BACnetObject bacnetObject = new BACnetObject(oid,bacnetDevice);
                     bacnetDevice.getBacnetObjects().add(bacnetObject);
