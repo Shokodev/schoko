@@ -1,4 +1,4 @@
-package com.bacnetbrowser.schoko.bacnetutils.datahandler;
+package com.bacnetbrowser.schoko.datahandler;
 
 
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetNode;
@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class HierarchyHandler {
 
-    private HierarchyService hierarchyService;
-    private SettingsHandler settingsHandler;
+    private final HierarchyService hierarchyService;
+    private final SettingsHandler settingsHandler;
     private static final Logger LOG = LoggerFactory.getLogger(HierarchyService.class);
 
     @Autowired

@@ -1,8 +1,8 @@
 package com.bacnetbrowser.schoko.webcontroller;
 
 
-import com.bacnetbrowser.schoko.bacnetutils.datahandler.EventHandler;
-import com.bacnetbrowser.schoko.bacnetutils.datahandler.ObjectHandler;
+import com.bacnetbrowser.schoko.datahandler.EventHandler;
+import com.bacnetbrowser.schoko.datahandler.ObjectHandler;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

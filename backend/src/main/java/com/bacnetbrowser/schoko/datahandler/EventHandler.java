@@ -1,4 +1,4 @@
-package com.bacnetbrowser.schoko.bacnetutils.datahandler;
+package com.bacnetbrowser.schoko.datahandler;
 
 import com.bacnetbrowser.schoko.databaseconfig.EventRepository;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetEvent;
@@ -19,8 +19,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class EventHandler {
 
-    private SimpMessagingTemplate template;
-    private EventRepository eventRepository;
+    private final SimpMessagingTemplate template;
+    private final EventRepository eventRepository;
     private EventService eventService;
     private static final Logger LOG = LoggerFactory.getLogger(EventHandler.class);
 

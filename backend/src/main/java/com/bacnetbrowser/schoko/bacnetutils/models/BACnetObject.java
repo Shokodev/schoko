@@ -23,10 +23,10 @@ import java.util.List;
 
 public class BACnetObject extends RemoteObject {
 
-    private RemoteDevice bacnetDevice;
-    private ObjectType objectType;
+    private final RemoteDevice bacnetDevice;
+    private final ObjectType objectType;
     private String objectName;
-    private List<ObjectPropertyReference> propertyReferences = new ArrayList<>();
+    private final List<ObjectPropertyReference> propertyReferences = new ArrayList<>();
     private static final Logger LOG = LoggerFactory.getLogger(BACnetObject.class);
 
     public BACnetObject(ObjectIdentifier oid, BACnetDevice bacnetDevice) {
@@ -62,7 +62,6 @@ public class BACnetObject extends RemoteObject {
         }
 
     public Encodable readProperty(PropertyIdentifier propertyIdentifier) {
-
         try {
             return RequestUtils.readProperty(DeviceService.localDevice,bacnetDevice,super.getObjectIdentifier(), propertyIdentifier,null);
         } catch (BACnetException bac) {

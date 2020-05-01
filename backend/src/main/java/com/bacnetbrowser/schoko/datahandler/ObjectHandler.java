@@ -1,4 +1,4 @@
-package com.bacnetbrowser.schoko.bacnetutils.datahandler;
+package com.bacnetbrowser.schoko.datahandler;
 
 
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetTypes;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class ObjectHandler {
 
 
-   private SimpMessagingTemplate template;
+   private final SimpMessagingTemplate template;
    private ObjectService objectService;
    private static final Logger LOG = LoggerFactory.getLogger(ObjectHandler.class);
 

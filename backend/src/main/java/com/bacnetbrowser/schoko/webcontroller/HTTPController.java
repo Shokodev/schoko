@@ -1,6 +1,9 @@
 package com.bacnetbrowser.schoko.webcontroller;
 
-import com.bacnetbrowser.schoko.bacnetutils.datahandler.*;
+import com.bacnetbrowser.schoko.datahandler.DeviceHandler;
+import com.bacnetbrowser.schoko.datahandler.EventHandler;
+import com.bacnetbrowser.schoko.datahandler.HierarchyHandler;
+import com.bacnetbrowser.schoko.datahandler.SettingsHandler;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +27,10 @@ import org.springframework.web.bind.annotation.*;
 @Configuration
 public class HTTPController {
 
-    private HierarchyHandler hierarchyHandler;
-    private SettingsHandler settingsHandler;
-    private DeviceHandler deviceHandler;
-    private EventHandler eventHandler;
+    private final HierarchyHandler hierarchyHandler;
+    private final SettingsHandler settingsHandler;
+    private final DeviceHandler deviceHandler;
+    private final EventHandler eventHandler;
     static final Logger LOG = LoggerFactory.getLogger(HTTPController.class);
 
 

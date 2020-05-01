@@ -1,7 +1,7 @@
 package com.bacnetbrowser.schoko.bacnetutils.services;
 
 import com.bacnetbrowser.schoko.databaseconfig.EventRepository;
-import com.bacnetbrowser.schoko.bacnetutils.datahandler.EventHandler;
+import com.bacnetbrowser.schoko.datahandler.EventHandler;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetEvent;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;

@@ -11,11 +11,11 @@ import java.util.List;
  */
 public class BACnetNode {
 
-    private String objectName;
-    private String objectIdentifier;
-    private String description;
-    private Integer deviceInstanceNumber;
-    private List<BACnetNode> children = new ArrayList<>();
+    private final String objectName;
+    private final String objectIdentifier;
+    private final String description;
+    private final Integer deviceInstanceNumber;
+    private final List<BACnetNode> children = new ArrayList<>();
 
 
     public BACnetNode(String ObjectName, String objectIdentifier, String description, Integer deviceInstanceNumber) {

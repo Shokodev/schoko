@@ -1,8 +1,8 @@
 package com.bacnetbrowser.schoko.bacnetutils.services;
 
 
-import com.bacnetbrowser.schoko.bacnetutils.datahandler.ObjectHandler;
-import com.bacnetbrowser.schoko.bacnetutils.datahandler.SettingsHandler;
+import com.bacnetbrowser.schoko.datahandler.ObjectHandler;
+import com.bacnetbrowser.schoko.datahandler.SettingsHandler;
 import com.bacnetbrowser.schoko.bacnetutils.models.*;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
 import com.serotonin.bacnet4j.type.Encodable;

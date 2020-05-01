@@ -118,8 +118,8 @@ public class BACnetTypes {
         return "Invertiert";
     }
 
-    public static String  getPriorityArrayAsText(BACnetObject bacnetObject, HashMap<PropertyIdentifier,Encodable> propertiesRaw,
-                                                 int precisionRealValue){
+    public static String  getPriorityArrayAsText(BACnetObject bacnetObject, HashMap<PropertyIdentifier,Encodable>
+            propertiesRaw, int precisionRealValue){
         HashMap<String, String> result = new HashMap<>();
         PriorityArray priorityArray = (PriorityArray) propertiesRaw.get(PropertyIdentifier.priorityArray);
         for (int i = 0; i < priorityArray.size(); i++) {

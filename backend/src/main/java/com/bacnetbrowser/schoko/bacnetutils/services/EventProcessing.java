@@ -19,20 +19,20 @@ import java.util.UUID;
 public class EventProcessing implements Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(EventProcessing.class);
-    private UnsignedInteger processIdentifier;
-    private ObjectIdentifier initiatingDeviceIdentifier;
-    private ObjectIdentifier eventObjectIdentifier;
-    private TimeStamp timeStamp;
-    private UnsignedInteger notificationClass;
-    private UnsignedInteger priority;
-    private EventType eventType;
-    private CharacterString messageText;
-    private NotifyType notifyType;
-    private Boolean ackRequired;
-    private EventState fromState;
-    private EventState toState;
-    private NotificationParameters eventValues;
-    private EventService eventService;
+    private final UnsignedInteger processIdentifier;
+    private final ObjectIdentifier initiatingDeviceIdentifier;
+    private final ObjectIdentifier eventObjectIdentifier;
+    private final TimeStamp timeStamp;
+    private final UnsignedInteger notificationClass;
+    private final UnsignedInteger priority;
+    private final EventType eventType;
+    private final CharacterString messageText;
+    private final NotifyType notifyType;
+    private final Boolean ackRequired;
+    private final EventState fromState;
+    private final EventState toState;
+    private final NotificationParameters eventValues;
+    private final EventService eventService;
 
     EventProcessing(UnsignedInteger processIdentifier, ObjectIdentifier initiatingDeviceIdentifier,
                     ObjectIdentifier eventObjectIdentifier, TimeStamp timeStamp,

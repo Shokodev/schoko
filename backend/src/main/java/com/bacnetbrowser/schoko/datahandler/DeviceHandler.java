@@ -1,4 +1,4 @@
-package com.bacnetbrowser.schoko.bacnetutils.datahandler;
+package com.bacnetbrowser.schoko.datahandler;
 
 
 
@@ -14,8 +14,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class DeviceHandler {
-
-
 
     /**
      * Start build process

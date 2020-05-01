@@ -13,8 +13,6 @@ public interface EventRepository extends JpaRepository<BACnetEvent,Integer> {
 
     BACnetEvent findBACnetEventByRemoteDeviceNameAndOidAndAndTimeStamp(String remoteDevice, String oid, Timestamp timestamp);
 
-    BACnetEvent findTopBACnetEventSQLByObjectNameOrderByTimeStampDesc(String objectName);
-
     BACnetEvent findTopByEventIDIs(String eventID);
 
 }
