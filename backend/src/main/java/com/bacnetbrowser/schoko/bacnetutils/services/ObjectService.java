@@ -135,7 +135,9 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
         } catch (NullPointerException ignored){}
         try{
             properties.add(new BACnetProperty(BACnetTypes.getPolarityAsText(propertiesRaw.get(PropertyIdentifier.polarity)), PropertyIdentifier.polarity.toString()));
-        } catch (NullPointerException ignored){}
+        } catch (Exception e){
+            LOG.warn("Object: {} does not have {}",objectIdentifier,PropertyIdentifier.polarity.toString());
+        }
         try{
             properties.add(new BACnetProperty(BACnetTypes.getPriorityArrayAsText(bacnetObject,propertiesRaw,precisionRealValue),PropertyIdentifier.priorityArray.toString()));
         } catch (Exception e){

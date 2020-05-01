@@ -76,15 +76,6 @@ public class WSController {
         objectHandler.releaseValue();
     }
 
-    /**
-     * Used to get the existing events in the BACnet network by opening of the websocket
-     */
-    @MessageMapping("/eventSub")
-    @SendTo("/broker/eventSub")
-    public void subscribeEvents (String message) {
-        LOG.info(message +" event channel");
-    }
-
     @GetMapping("/ackAll")
     public void ackEvents(){
         eventHandler.ackAllEvents();
