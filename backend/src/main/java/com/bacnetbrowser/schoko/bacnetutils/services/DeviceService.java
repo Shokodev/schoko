@@ -1,5 +1,6 @@
 package com.bacnetbrowser.schoko.bacnetutils.services;
 
+
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;
 import com.serotonin.bacnet4j.LocalDevice;
@@ -20,11 +21,7 @@ import com.serotonin.bacnet4j.util.DiscoveryUtils;
 import com.serotonin.bacnet4j.util.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class DeviceService extends DeviceEventAdapter {
     public static LocalDevice localDevice;

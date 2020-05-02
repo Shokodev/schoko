@@ -1,8 +1,9 @@
 package com.bacnetbrowser.schoko.bacnetutils.services;
 
+
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
 import com.bacnetbrowser.schoko.databaseconfig.EventRepository;
 import com.bacnetbrowser.schoko.datahandler.EventHandler;
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetEvent;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetTypes;
@@ -30,7 +31,6 @@ import java.util.*;
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */
-
 
 public class EventService extends DeviceEventAdapter  {
 
@@ -94,17 +94,17 @@ public class EventService extends DeviceEventAdapter  {
         BACnetEvent editEvent = activeEvents.get(objectName);
         BACnetEvent firstEvent = eventRepository.findTopByEventIDIs(editEvent.getEventID());
         ObjectIdentifier oid = HierarchyService.objectNamesToOids.get(objectName);
-        RemoteDevice remoteDevice = HierarchyService.obejctNamesToBACnetDevice.get(objectName);
-        BACnetObject object = (BACnetObject) remoteDevice.getObject(oid);
+        BACnetDevice bacnetDevice = HierarchyService.obejctNamesToBACnetDevice.get(objectName);
+        BACnetObject object = (BACnetObject) bacnetDevice.getObject(oid);
         TimeStamp timeStamp = BACnetTypes.parseToBACnetTimeStamp(firstEvent.getTimeStamp());
         TimeStamp timeStampOfAck = new TimeStamp(new DateTime(DeviceService.localDevice));
         CharacterString ack = new CharacterString("1");
         AcknowledgeAlarmRequest request = new AcknowledgeAlarmRequest(new UnsignedInteger(1),oid,
                 (EventState) object.readProperty(PropertyIdentifier.eventState),timeStamp,ack,timeStampOfAck);
         try{
-           DeviceService.localDevice.send(remoteDevice,request).get();
+           DeviceService.localDevice.send(bacnetDevice,request).get();
         } catch (BACnetException bac){
-           LOG.warn("Cant ack " + oid.toString() + " on " + remoteDevice.getVendorName());
+           LOG.warn("Cant ack " + oid.toString() + " on " + bacnetDevice.getVendorName());
         }
     }
 

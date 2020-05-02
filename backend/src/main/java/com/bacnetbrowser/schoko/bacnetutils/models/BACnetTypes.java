@@ -1,21 +1,16 @@
 package com.bacnetbrowser.schoko.bacnetutils.models;
 
-import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
-import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.*;
 import com.serotonin.bacnet4j.type.enumerated.*;
 import com.serotonin.bacnet4j.type.primitive.*;
 import com.serotonin.bacnet4j.type.primitive.Boolean;
-import com.serotonin.bacnet4j.util.RequestUtils;
 
 import java.lang.Double;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 
 /**

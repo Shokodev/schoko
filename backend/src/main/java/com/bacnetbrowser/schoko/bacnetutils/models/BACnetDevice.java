@@ -7,7 +7,6 @@ import com.serotonin.bacnet4j.type.enumerated.Segmentation;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 
 
@@ -39,11 +38,11 @@ public class BACnetDevice extends RemoteDevice {
 
     public BACnetObject getBACnetObject(ObjectIdentifier oid){
         try{
-        for(BACnetObject ob : bacnetObjects){
-            if(ob.getObjectIdentifier().equals(oid)){
-                return ob;
+            for(BACnetObject ob : bacnetObjects){
+                if(ob.getObjectIdentifier().equals(oid)){
+                    return ob;
+                }
             }
-        }
         }catch (NullPointerException e){
             LOG.info("Object: {} does not exist on {}",this.getName(),oid);
         }
@@ -52,3 +51,4 @@ public class BACnetDevice extends RemoteDevice {
 
 
 }
+
