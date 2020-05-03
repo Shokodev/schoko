@@ -40,10 +40,10 @@ public class WSController {
      * Gets a List of all properties of a data point
      * @param objectName get object properties by objectName
      */
-    @MessageMapping("/objectSub")
-    @SendTo("/broker/objectSub")
+    @MessageMapping("/{objectName}")
+    @SendTo("/broker/{objectName}")
     public void subscribeProperties (String objectName) {
-        LOG.info("Read object: " + objectName);
+        LOG.info("Subscribe object: " + objectName);
         objectHandler.getNewPropertyStream(objectName);
     }
 

@@ -791,3 +791,324 @@
 2020-05-03 17:33:51.828  INFO 10000 --- [http-nio-8098-exec-1] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 64 events
 2020-05-03 17:34:20.635  INFO 10000 --- [http-nio-8098-exec-4] c.b.schoko.webcontroller.HTTPController  : Get node: Anlage
 2020-05-03 17:34:29.542  INFO 10000 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-05-03 18:33:03.355  INFO 28904 --- [main] c.b.schoko.SchokoApplication             : Starting SchokoApplication on DESKTOP-ANDREAS with PID 28904 (C:\Users\admin\IdeaProjects\schoko\backend\target\classes started by admin in C:\Users\admin\IdeaProjects\schoko)
+2020-05-03 18:33:03.358  INFO 28904 --- [main] c.b.schoko.SchokoApplication             : No active profile set, falling back to default profiles: default
+2020-05-03 18:33:03.920  INFO 28904 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-05-03 18:33:03.964  INFO 28904 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39ms. Found 1 repository interfaces.
+2020-05-03 18:33:04.120  INFO 28904 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-03 18:33:04.255  INFO 28904 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8098 (http)
+2020-05-03 18:33:04.260  INFO 28904 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-03 18:33:04.260  INFO 28904 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-05-03 18:33:04.350  INFO 28904 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-03 18:33:04.350  INFO 28904 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 949 ms
+2020-05-03 18:33:04.545  INFO 28904 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-03 18:33:04.583  INFO 28904 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
+2020-05-03 18:33:04.655  INFO 28904 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-03 18:33:04.697  INFO 28904 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-05-03 18:33:04.714  INFO 28904 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-03 18:33:04.760  INFO 28904 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-03 18:33:04.766  INFO 28904 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-05-03 18:33:05.128  INFO 28904 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-03 18:33:05.132  INFO 28904 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-03 18:33:05.183  INFO 28904 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-05-03 18:33:05.185  INFO 28904 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-05-03 18:33:05.353  INFO 28904 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-05-03 18:33:05.366  INFO 28904 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-05-03 18:33:05.479  INFO 28904 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
+2020-05-03 18:33:05.592  INFO 28904 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-05-03 18:33:05.610  INFO 28904 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-05-03 18:33:05.610  INFO 28904 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-05-03 18:33:05.610  INFO 28904 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-05-03 18:33:05.838  INFO 28904 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8098 (http) with context path ''
+2020-05-03 18:33:05.840  INFO 28904 --- [main] c.b.schoko.SchokoApplication             : Started SchokoApplication in 2.734 seconds (JVM running for 3.356)
+2020-05-03 18:33:06.337  INFO 28904 --- [RMI TCP Connection(1)-192.168.1.65] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-03 18:33:06.337  INFO 28904 --- [RMI TCP Connection(1)-192.168.1.65] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-03 18:33:06.343  INFO 28904 --- [RMI TCP Connection(1)-192.168.1.65] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2020-05-03 18:34:05.364  INFO 28904 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-05-03 18:36:52.022  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : Try to initialize localdevice 1001
+2020-05-03 18:36:52.033  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : Successfully created LocalDevice 1001
+2020-05-03 18:36:52.034  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : Scan for remote devices.........
+2020-05-03 18:36:52.304  INFO 28904 --- [pool-2-thread-1] c.b.s.b.services.DeviceService           : Remote device 2098177 registered in waiting room of LocalDevice
+2020-05-03 18:36:57.035  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : 1 BACnet devices finally registered at local device
+2020-05-03 18:36:57.100  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 11 @ device 2098177
+2020-05-03 18:36:57.118  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 12 @ device 2098177
+2020-05-03 18:36:57.132  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 13 @ device 2098177
+2020-05-03 18:36:57.147  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 21 @ device 2098177
+2020-05-03 18:36:57.161  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 22 @ device 2098177
+2020-05-03 18:36:57.176  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 23 @ device 2098177
+2020-05-03 18:36:57.191  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 31 @ device 2098177
+2020-05-03 18:36:57.205  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 32 @ device 2098177
+2020-05-03 18:36:57.224  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 33 @ device 2098177
+2020-05-03 18:36:57.298  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 41 @ device 2098177
+2020-05-03 18:36:57.308  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 42 @ device 2098177
+2020-05-03 18:36:57.318  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 43 @ device 2098177
+2020-05-03 18:36:57.336  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 51 @ device 2098177
+2020-05-03 18:36:57.351  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 52 @ device 2098177
+2020-05-03 18:36:57.365  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 53 @ device 2098177
+2020-05-03 18:36:57.379  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 61 @ device 2098177
+2020-05-03 18:36:57.393  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 62 @ device 2098177
+2020-05-03 18:36:57.408  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 63 @ device 2098177
+2020-05-03 18:36:59.287  INFO 28904 --- [http-nio-8098-exec-2] c.b.schoko.webcontroller.HTTPController  : Build structure with new settings.....
+2020-05-03 18:37:02.306  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.HierarchyService        : BacNet structure successfully created with 169 nodes
+2020-05-03 18:37:02.306  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.b.services.HierarchyService        : Device structure successfully created with 230 nodes
+2020-05-03 18:37:02.306  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Ask for event information
+2020-05-03 18:37:02.334  INFO 28904 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Received event information: Encodable(com.serotonin.bacnet4j.service.acknowledgement.GetEnrollmentSummaryAck)  -> from device: Site01'AS01 
+2020-05-03 18:37:05.529  INFO 28904 --- [http-nio-8098-exec-2] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 64 events
+2020-05-03 18:37:14.867  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : *********************Reset*********************
+2020-05-03 18:37:14.868  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : Try to initialize localdevice 1001
+2020-05-03 18:37:14.869  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : Successfully created LocalDevice 1001
+2020-05-03 18:37:14.870  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : Scan for remote devices.........
+2020-05-03 18:37:16.363  INFO 28904 --- [pool-3-thread-1] c.b.s.b.services.DeviceService           : Remote device 2098177 registered in waiting room of LocalDevice
+2020-05-03 18:37:19.871  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : 3 BACnet devices finally registered at local device
+2020-05-03 18:37:19.988  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 11 @ device 2098177
+2020-05-03 18:37:20.002  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 12 @ device 2098177
+2020-05-03 18:37:20.012  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 13 @ device 2098177
+2020-05-03 18:37:20.022  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 21 @ device 2098177
+2020-05-03 18:37:20.032  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 22 @ device 2098177
+2020-05-03 18:37:20.042  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 23 @ device 2098177
+2020-05-03 18:37:20.052  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 31 @ device 2098177
+2020-05-03 18:37:20.062  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 32 @ device 2098177
+2020-05-03 18:37:20.073  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 33 @ device 2098177
+2020-05-03 18:37:20.087  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 41 @ device 2098177
+2020-05-03 18:37:20.105  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 42 @ device 2098177
+2020-05-03 18:37:20.118  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 43 @ device 2098177
+2020-05-03 18:37:20.132  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 51 @ device 2098177
+2020-05-03 18:37:20.147  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 52 @ device 2098177
+2020-05-03 18:37:20.162  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 53 @ device 2098177
+2020-05-03 18:37:20.176  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 61 @ device 2098177
+2020-05-03 18:37:20.191  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 62 @ device 2098177
+2020-05-03 18:37:20.205  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 63 @ device 2098177
+2020-05-03 18:37:20.319  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 11 @ device 2098177
+2020-05-03 18:37:20.334  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 12 @ device 2098177
+2020-05-03 18:37:20.349  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 13 @ device 2098177
+2020-05-03 18:37:20.361  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 21 @ device 2098177
+2020-05-03 18:37:20.373  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 22 @ device 2098177
+2020-05-03 18:37:20.387  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 23 @ device 2098177
+2020-05-03 18:37:20.399  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 31 @ device 2098177
+2020-05-03 18:37:20.412  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 32 @ device 2098177
+2020-05-03 18:37:20.426  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 33 @ device 2098177
+2020-05-03 18:37:20.439  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 41 @ device 2098177
+2020-05-03 18:37:20.457  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 42 @ device 2098177
+2020-05-03 18:37:20.527  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 43 @ device 2098177
+2020-05-03 18:37:20.535  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 51 @ device 2098177
+2020-05-03 18:37:20.543  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 52 @ device 2098177
+2020-05-03 18:37:20.551  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 53 @ device 2098177
+2020-05-03 18:37:20.561  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 61 @ device 2098177
+2020-05-03 18:37:20.570  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 62 @ device 2098177
+2020-05-03 18:37:20.584  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 63 @ device 2098177
+2020-05-03 18:37:20.637  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 11 @ device 2098177
+2020-05-03 18:37:20.653  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 12 @ device 2098177
+2020-05-03 18:37:20.668  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 13 @ device 2098177
+2020-05-03 18:37:20.679  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 21 @ device 2098177
+2020-05-03 18:37:20.692  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 22 @ device 2098177
+2020-05-03 18:37:20.707  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 23 @ device 2098177
+2020-05-03 18:37:20.719  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 31 @ device 2098177
+2020-05-03 18:37:20.736  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 32 @ device 2098177
+2020-05-03 18:37:20.810  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 33 @ device 2098177
+2020-05-03 18:37:20.818  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 41 @ device 2098177
+2020-05-03 18:37:20.830  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 42 @ device 2098177
+2020-05-03 18:37:20.844  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 43 @ device 2098177
+2020-05-03 18:37:20.857  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 51 @ device 2098177
+2020-05-03 18:37:20.869  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 52 @ device 2098177
+2020-05-03 18:37:20.883  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 53 @ device 2098177
+2020-05-03 18:37:20.897  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 61 @ device 2098177
+2020-05-03 18:37:20.910  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 62 @ device 2098177
+2020-05-03 18:37:20.923  INFO 28904 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 63 @ device 2098177
+2020-05-03 18:37:26.490  INFO 28904 --- [http-nio-8098-exec-3] c.b.schoko.webcontroller.HTTPController  : Build structure with new settings.....
+2020-05-03 18:40:10.459  INFO 8392 --- [main] c.b.schoko.SchokoApplication             : Starting SchokoApplication on DESKTOP-ANDREAS with PID 8392 (C:\Users\admin\IdeaProjects\schoko\backend\target\classes started by admin in C:\Users\admin\IdeaProjects\schoko)
+2020-05-03 18:40:10.462  INFO 8392 --- [main] c.b.schoko.SchokoApplication             : No active profile set, falling back to default profiles: default
+2020-05-03 18:40:11.126  INFO 8392 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-05-03 18:40:11.172  INFO 8392 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41ms. Found 1 repository interfaces.
+2020-05-03 18:40:11.324  INFO 8392 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-03 18:40:11.453  INFO 8392 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8098 (http)
+2020-05-03 18:40:11.457  INFO 8392 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-03 18:40:11.457  INFO 8392 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-05-03 18:40:11.543  INFO 8392 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-03 18:40:11.543  INFO 8392 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1036 ms
+2020-05-03 18:40:11.743  INFO 8392 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-03 18:40:11.781  INFO 8392 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
+2020-05-03 18:40:11.851  INFO 8392 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-03 18:40:11.896  INFO 8392 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-05-03 18:40:11.915  INFO 8392 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-03 18:40:11.962  INFO 8392 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-03 18:40:11.967  INFO 8392 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-05-03 18:40:12.346  INFO 8392 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-03 18:40:12.350  INFO 8392 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-03 18:40:12.404  INFO 8392 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-05-03 18:40:12.407  INFO 8392 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-05-03 18:40:12.582  INFO 8392 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-05-03 18:40:12.596  INFO 8392 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-05-03 18:40:12.713  INFO 8392 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
+2020-05-03 18:40:12.818  INFO 8392 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-05-03 18:40:12.835  INFO 8392 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-05-03 18:40:12.835  INFO 8392 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-05-03 18:40:12.835  INFO 8392 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-05-03 18:40:13.109  INFO 8392 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8098 (http) with context path ''
+2020-05-03 18:40:13.111  INFO 8392 --- [main] c.b.schoko.SchokoApplication             : Started SchokoApplication in 2.867 seconds (JVM running for 3.516)
+2020-05-03 18:40:13.840  INFO 8392 --- [RMI TCP Connection(4)-192.168.1.65] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-03 18:40:13.841  INFO 8392 --- [RMI TCP Connection(4)-192.168.1.65] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-03 18:40:13.846  INFO 8392 --- [RMI TCP Connection(4)-192.168.1.65] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2020-05-03 18:40:24.911  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : Try to initialize localdevice 1001
+2020-05-03 18:40:24.920  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : Successfully created LocalDevice 1001
+2020-05-03 18:40:24.920  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : Scan for remote devices.........
+2020-05-03 18:40:26.672  INFO 8392 --- [pool-2-thread-1] c.b.s.b.services.DeviceService           : Remote device 2098177 registered in waiting room of LocalDevice
+2020-05-03 18:40:29.923  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : 1 BACnet devices finally registered at local device
+2020-05-03 18:40:30.042  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 11 @ device 2098177
+2020-05-03 18:40:30.056  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 12 @ device 2098177
+2020-05-03 18:40:30.066  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 13 @ device 2098177
+2020-05-03 18:40:30.077  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 21 @ device 2098177
+2020-05-03 18:40:30.087  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 22 @ device 2098177
+2020-05-03 18:40:30.097  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 23 @ device 2098177
+2020-05-03 18:40:30.107  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 31 @ device 2098177
+2020-05-03 18:40:30.118  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 32 @ device 2098177
+2020-05-03 18:40:30.132  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 33 @ device 2098177
+2020-05-03 18:40:30.150  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 41 @ device 2098177
+2020-05-03 18:40:30.167  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 42 @ device 2098177
+2020-05-03 18:40:30.181  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 43 @ device 2098177
+2020-05-03 18:40:30.196  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 51 @ device 2098177
+2020-05-03 18:40:30.210  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 52 @ device 2098177
+2020-05-03 18:40:30.227  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 53 @ device 2098177
+2020-05-03 18:40:30.255  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 61 @ device 2098177
+2020-05-03 18:40:30.272  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 62 @ device 2098177
+2020-05-03 18:40:30.694  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 63 @ device 2098177
+2020-05-03 18:40:32.843  INFO 8392 --- [http-nio-8098-exec-1] c.b.schoko.webcontroller.HTTPController  : Build structure with new settings.....
+2020-05-03 18:40:35.605  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.HierarchyService        : BacNet structure successfully created with 169 nodes
+2020-05-03 18:40:35.606  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.b.services.HierarchyService        : Device structure successfully created with 230 nodes
+2020-05-03 18:40:35.606  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.bacnetutils.services.EventService  : Ask for event information
+2020-05-03 18:40:35.634  INFO 8392 --- [http-nio-8098-exec-1] c.b.s.bacnetutils.services.EventService  : Received event information: Encodable(com.serotonin.bacnet4j.service.acknowledgement.GetEnrollmentSummaryAck)  -> from device: Site01'AS01 
+2020-05-03 18:40:38.800  INFO 8392 --- [http-nio-8098-exec-1] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 64 events
+2020-05-03 18:40:40.270  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : *********************Reset*********************
+2020-05-03 18:40:40.271  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : Try to initialize localdevice 1001
+2020-05-03 18:40:40.272  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : Successfully created LocalDevice 1001
+2020-05-03 18:40:40.272  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : Scan for remote devices.........
+2020-05-03 18:40:41.517  INFO 8392 --- [pool-3-thread-1] c.b.s.b.services.DeviceService           : Remote device 2098177 registered in waiting room of LocalDevice
+2020-05-03 18:40:45.273  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : 1 BACnet devices finally registered at local device
+2020-05-03 18:40:45.321  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 11 @ device 2098177
+2020-05-03 18:40:45.335  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 12 @ device 2098177
+2020-05-03 18:40:45.345  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 13 @ device 2098177
+2020-05-03 18:40:45.354  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 21 @ device 2098177
+2020-05-03 18:40:45.364  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 22 @ device 2098177
+2020-05-03 18:40:45.374  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 23 @ device 2098177
+2020-05-03 18:40:45.384  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 31 @ device 2098177
+2020-05-03 18:40:45.393  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 32 @ device 2098177
+2020-05-03 18:40:45.403  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 33 @ device 2098177
+2020-05-03 18:40:45.416  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 41 @ device 2098177
+2020-05-03 18:40:45.432  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 42 @ device 2098177
+2020-05-03 18:40:45.445  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 43 @ device 2098177
+2020-05-03 18:40:45.459  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 51 @ device 2098177
+2020-05-03 18:40:45.474  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 52 @ device 2098177
+2020-05-03 18:40:45.488  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 53 @ device 2098177
+2020-05-03 18:40:45.502  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 61 @ device 2098177
+2020-05-03 18:40:45.517  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 62 @ device 2098177
+2020-05-03 18:40:45.531  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 63 @ device 2098177
+2020-05-03 18:40:47.362  INFO 8392 --- [http-nio-8098-exec-2] c.b.schoko.webcontroller.HTTPController  : Build structure with new settings.....
+2020-05-03 18:40:50.120  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.HierarchyService        : BacNet structure successfully created with 169 nodes
+2020-05-03 18:40:50.120  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.b.services.HierarchyService        : Device structure successfully created with 230 nodes
+2020-05-03 18:40:50.120  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Ask for event information
+2020-05-03 18:40:50.146  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Received event information: Encodable(com.serotonin.bacnet4j.service.acknowledgement.GetEnrollmentSummaryAck)  -> from device: Site01'AS01 
+2020-05-03 18:40:50.154  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'MxCrt'TFl ID: 31a07726-e809-4335-a975-d85d81ac16fd
+2020-05-03 18:40:50.158  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'MxCrt'TFl ID: 584a248e-9abd-4099-98b2-8480bdf7bc78
+2020-05-03 18:40:50.161  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'MxCrt'Vlv ID: 3318328f-d0fb-4b20-825f-9a41d2e7061f
+2020-05-03 18:40:50.173  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'MxCrt'Vlv ID: 39e7305e-0ad1-492c-bb6e-abf5e8cdfec7
+2020-05-03 18:40:50.180  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'MxCrt'SpDtr ID: fb912a03-b56c-427a-86b1-f6deea1f109b
+2020-05-03 18:40:50.188  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'MxCrt'SpDtr ID: ca130966-374b-4341-88db-01b64fc2d165
+2020-05-03 18:40:50.196  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'2 ID: c8558922-6ee3-4f7c-adda-bfcf4cb7e290
+2020-05-03 18:40:50.204  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'FanEh'DPMon ID: f6951130-041d-41f4-b83c-e70020521d24
+2020-05-03 18:40:50.211  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'FanEh'MntnSwi ID: a207e870-00c5-4028-b7ce-db362f71bc19
+2020-05-03 18:40:50.219  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'FanEh'ThOvrld ID: a9d99491-4c70-4d2d-8bee-c415beef6564
+2020-05-03 18:40:50.230  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'FanSu'DPMon ID: 4c556846-0f36-4b81-b7d3-cd50f1217705
+2020-05-03 18:40:50.289  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'FanSu'MntnSwi ID: 6124d14e-c107-43ee-b422-cce35e18af3c
+2020-05-03 18:40:50.292  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'FanSu'ThOvrld ID: 911ebb6f-458e-40cb-a7ef-5f952accb9cc
+2020-05-03 18:40:50.296  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'FireDet ID: 241eb5db-7aed-4fe0-80a5-33cf77c600b5
+2020-05-03 18:40:50.300  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'MxCrt'Pu'ThOvrld ID: e3376b43-3441-4f34-a0e7-57995217e6a2
+2020-05-03 18:40:50.303  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'MxCrt'Pu'ThOvrld ID: d2e9ba5d-f921-425f-b3fa-3781c8c7aa19
+2020-05-03 18:40:50.306  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'DmpSfEh'Cmd ID: ca43905e-0750-44e8-bdc8-641749dcd185
+2020-05-03 18:40:50.310  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'DmpSfOa'Cmd ID: b1ec2125-e64c-4927-b70b-c625e0632e0f
+2020-05-03 18:40:50.314  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'FanEh'Cmd ID: f6c19913-1e04-41ca-b67e-6299e1fac5a0
+2020-05-03 18:40:50.317  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'FanSu'Cmd ID: 08f1adcf-38a3-4a13-8f37-8398594719ac
+2020-05-03 18:40:50.321  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'MxCrt'Pu'Cmd ID: 63d3d175-5a93-4ac2-a38b-7f090c8b2e0b
+2020-05-03 18:40:50.324  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'MxCrt'Pu'Cmd ID: 42549ef4-6454-432b-ab01-15d63a14021e
+2020-05-03 18:40:50.328  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'AlmDisL ID: ff948263-8104-4fab-845f-cf5417bc8e4a
+2020-05-03 18:40:50.333  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'EmO ID: a475a06a-231c-4c93-b150-b3a4bfe65f7d
+2020-05-03 18:40:50.338  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'DmpSfEh'CmdVal ID: 8bd024d7-7a19-4c91-8dae-660c3148a152
+2020-05-03 18:40:50.342  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'DmpSfEh'FbMon'AlmNc ID: d13dfa89-e66b-43ab-9600-3fe93c515c61
+2020-05-03 18:40:50.345  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'DmpSfEh'FbMon'AlmNo ID: 3c4df751-af1d-4af5-a07a-d59fdc249ab7
+2020-05-03 18:40:50.349  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'DmpSfOa'CmdVal ID: e2b3cbc5-310a-4894-a88f-4f93370df1ce
+2020-05-03 18:40:50.353  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'DmpSfOa'FbMon'AlmNc ID: dbbcc53d-7dda-4758-bfd4-3ccc07b55604
+2020-05-03 18:40:50.358  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'DmpSfOa'FbMon'AlmNo ID: 23152a87-51c6-4fc0-b8c3-74342d78a2b3
+2020-05-03 18:40:50.361  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'AlmDisL ID: b9f9a396-1a1e-47ca-963f-6067b6b40a87
+2020-05-03 18:40:50.365  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'EmO ID: f9d30edd-5692-499e-95d9-482e8c50b9d2
+2020-05-03 18:40:50.369  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'MxCrt'CmdVal ID: a69dd58b-9300-4603-9b70-0344cf61c8d0
+2020-05-03 18:40:50.373  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'SupvMon'SupvPlt ID: 4255c091-4c79-48e8-9bf2-2c5566ab1580
+2020-05-03 18:40:50.378  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'AlmDisL ID: 1bde424b-e157-4109-8b02-3e300e959be4
+2020-05-03 18:40:50.381  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'EmO ID: cd44d7b8-4cf9-4a04-a65b-8cfa5c6c9bc4
+2020-05-03 18:40:50.385  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'MxCrt'CmdVal ID: 812984db-6b46-4cfc-aabd-35c51d9aa64e
+2020-05-03 18:40:50.389  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'SupvMon'SupvPlt ID: ff70c361-daa8-492b-b27a-74825b1a8600
+2020-05-03 18:40:50.393  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'AlmFnct2 ID: d90377ca-6034-4f4b-8607-0e99b3b000b3
+2020-05-03 18:40:50.396  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'AlmFnct4 ID: e4dcefb5-7366-4794-93d5-605046bfed0a
+2020-05-03 18:40:50.399  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'AlmFnct5 ID: 17987995-a2cf-4920-b3a3-4110f860770a
+2020-05-03 18:40:50.403  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'AlmFnct6 ID: fe8b629d-b05b-4085-afaa-db9dbe3376c5
+2020-05-03 18:40:50.406  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'AlmFnct7 ID: 6b8c8a04-a34d-431b-880e-1158f9a03ce2
+2020-05-03 18:40:50.410  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'AlmFnct8 ID: 5a1bca64-8f89-4aa6-b250-790dae19630d
+2020-05-03 18:40:50.416  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'MxCrt'TFlCtr ID: 18b21a45-f34d-4d50-90d6-15dccb8e74b5
+2020-05-03 18:40:50.426  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'MxCrt'TFlCtr ID: e3fd0456-da7d-4bc0-a5c9-31383a9e2ca2
+2020-05-03 18:40:50.433  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'DmpSfEh'FbMon'FbPos ID: 61eee539-fd87-44fb-838c-de452fa97ccf
+2020-05-03 18:40:50.442  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'DmpSfOa'FbMon'FbPos ID: d755ee58-fd5f-4080-b132-dceb8c404b3e
+2020-05-03 18:40:50.449  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'1 ID: 587d8da3-7b90-4e05-9fab-d201d944efa1
+2020-05-03 18:40:50.457  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'TrndPlt ID: 30a5b2b5-664e-4c45-b17b-169bb87b6423
+2020-05-03 18:40:50.465  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'TrndRsnP ID: 4c9f2d47-5b4a-4ca1-8f3a-f11329440431
+2020-05-03 18:40:50.473  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'MxCrt'TrndTFl ID: b2996468-970f-48ec-892b-6452c2c4f6bc
+2020-05-03 18:40:50.481  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'TrndPlt ID: b9897280-b8ff-4ad8-a7b1-1464cf14abe8
+2020-05-03 18:40:50.541  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'TrndRsnP ID: 5b494728-ee7a-4229-8002-55a3994fedb2
+2020-05-03 18:40:50.544  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'MxCrt'TrndTFl ID: 4a183674-ee8a-4f17-915f-cd4408571088
+2020-05-03 18:40:50.548  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'TrndPlt ID: 98543283-e49a-424d-bba1-207f476e06cd
+2020-05-03 18:40:50.551  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'TrndRsnP ID: 08ade9bc-1907-41d0-bb27-e5a458d9cedc
+2020-05-03 18:40:50.555  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'CmnAlm ID: 902d2c1b-1b2e-4ffc-9ed6-c4b468979180
+2020-05-03 18:40:50.558  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'CmnAlm ID: 6d55b363-11ce-4b16-b8ba-fe597ceff0bc
+2020-05-03 18:40:50.561  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'CmnAlm ID: c4d10d7c-45cb-48e8-8fa6-81772268fb88
+2020-05-03 18:40:50.564  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu'PltCtl ID: 0b665766-5ae2-4b3c-89f2-ed8e65b94485
+2020-05-03 18:40:50.568  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp'PltCtl ID: 2e7a5bc9-e58a-463d-a466-50f7d57ece08
+2020-05-03 18:40:50.572  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp'PltCtl ID: 3b8489cb-f335-475a-8188-530174448131
+2020-05-03 18:40:50.575  INFO 8392 --- [http-nio-8098-exec-2] c.b.s.bacnetutils.services.EventService  : Event already exists in database: Site01'AS01xI ID: 51356dcc-5686-4671-baa5-a1060f8974c4
+2020-05-03 18:40:50.576  INFO 8392 --- [http-nio-8098-exec-2] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 64 events
+2020-05-03 19:02:43.284  INFO 33728 --- [main] c.b.schoko.SchokoApplication             : Starting SchokoApplication on DESKTOP-ANDREAS with PID 33728 (C:\Users\admin\IdeaProjects\schoko\backend\target\classes started by admin in C:\Users\admin\IdeaProjects\schoko)
+2020-05-03 19:02:43.287  INFO 33728 --- [main] c.b.schoko.SchokoApplication             : No active profile set, falling back to default profiles: default
+2020-05-03 19:02:43.918  INFO 33728 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-05-03 19:02:43.966  INFO 33728 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42ms. Found 1 repository interfaces.
+2020-05-03 19:02:44.145  INFO 33728 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-03 19:02:44.291  INFO 33728 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8098 (http)
+2020-05-03 19:02:44.296  INFO 33728 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-03 19:02:44.297  INFO 33728 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-05-03 19:02:44.390  INFO 33728 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-03 19:02:44.390  INFO 33728 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1063 ms
+2020-05-03 19:02:44.587  INFO 33728 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-03 19:02:44.627  INFO 33728 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
+2020-05-03 19:02:44.703  INFO 33728 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-03 19:02:44.749  INFO 33728 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-05-03 19:02:44.770  INFO 33728 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-03 19:02:44.820  INFO 33728 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-03 19:02:44.854  INFO 33728 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-05-03 19:02:45.246  INFO 33728 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-03 19:02:45.250  INFO 33728 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-03 19:02:45.307  INFO 33728 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-05-03 19:02:45.310  INFO 33728 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-05-03 19:02:45.509  INFO 33728 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-05-03 19:02:45.525  INFO 33728 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-05-03 19:02:45.669  INFO 33728 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
+2020-05-03 19:02:45.804  INFO 33728 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-05-03 19:02:45.825  INFO 33728 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-05-03 19:02:45.826  INFO 33728 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-05-03 19:02:45.826  INFO 33728 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-05-03 19:02:46.057  INFO 33728 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8098 (http) with context path ''
+2020-05-03 19:02:46.059  INFO 33728 --- [main] c.b.schoko.SchokoApplication             : Started SchokoApplication in 3.069 seconds (JVM running for 3.88)
+2020-05-03 19:02:46.323  INFO 33728 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2020-05-03 19:02:46.324  INFO 33728 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-05-03 19:02:46.325  INFO 33728 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2020-05-03 19:02:46.326  INFO 33728 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2020-05-03 19:02:46.326  INFO 33728 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-05-03 19:02:46.327  INFO 33728 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-05-03 19:02:46.327  INFO 33728 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-05-03 19:02:46.327  INFO 33728 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-05-03 19:02:46.327  INFO 33728 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2020-05-03 19:02:46.339  INFO 33728 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-05-03 19:02:46.342  INFO 33728 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

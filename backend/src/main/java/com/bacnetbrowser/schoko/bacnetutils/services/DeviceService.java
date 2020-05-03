@@ -145,6 +145,8 @@ public class DeviceService extends DeviceEventAdapter {
     private void rebaseLocalDeviceIfExists(){
         if(localDevice != null){
             localDevice.terminate();
+            getBacnetDevices().clear();
+            getWaitingRoomBacnetDevices().clear();
             LOG.info("*********************Reset*********************");
 
         }
@@ -180,4 +182,7 @@ public class DeviceService extends DeviceEventAdapter {
         return null;
     }
 
+    public static ArrayList<BACnetDevice> getWaitingRoomBacnetDevices() {
+        return waitingRoomBacnetDevices;
+    }
 }
