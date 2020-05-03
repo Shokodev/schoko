@@ -7,10 +7,13 @@ import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.npdu.ip.IpNetwork;
 import com.serotonin.bacnet4j.npdu.ip.IpNetworkBuilder;
 import com.serotonin.bacnet4j.obj.ObjectProperties;
+import com.serotonin.bacnet4j.obj.logBuffer.LogBuffer;
 import com.serotonin.bacnet4j.transport.DefaultTransport;
+import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.Address;
 import com.serotonin.bacnet4j.type.constructed.SequenceOf;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
+import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import com.serotonin.bacnet4j.type.enumerated.Segmentation;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.util.RequestUtils;
@@ -39,13 +42,14 @@ public class TrendObjectTest {
                 SequenceOf<ObjectIdentifier> oids = RequestUtils.getObjectList(localDevice, device);
                 oids.forEach(val -> {
                     if(val.getObjectType().equals(ObjectType.trendLog)){
-                    ObjectProperties.getRequiredObjectPropertyTypeDefinitions(val.getObjectType()).forEach(definition -> {
+                        System.out.println(ObjectProperties.getRequiredObjectPropertyTypeDefinitions(ObjectType.trendLog));
                         try {
-                            System.out.println(RequestUtils.readProperty(localDevice, d, val, definition.getPropertyTypeDefinition().getPropertyIdentifier(), null).toString());
+                           Encodable encodable = RequestUtils.readProperty(localDevice, d, val, PropertyIdentifier.logBuffer, null);
+                           LogBuffer buffer = (LogBuffer) encodable;
+                           buffer.get(1);
                         } catch (BACnetException e) {
                             e.printStackTrace();
                         }
-                    });
                 }
                 });
 
