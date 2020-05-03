@@ -3898,3 +3898,1063 @@ java.lang.ClassCastException: class com.serotonin.bacnet4j.type.error.ErrorClass
 2020-05-01 14:00:45.640  INFO 34320 --- [clientInboundChannel-19] c.b.schoko.webcontroller.WSController    : Message from Client: WebSocket Closed
 2020-05-01 14:00:45.640  INFO 34320 --- [http-nio-8098-exec-6] c.b.s.w.WebSocketEventListener           : Websocket message: CONNECT
 2020-05-01 14:00:45.658  INFO 34320 --- [clientInboundChannel-19] c.b.s.bacnetutils.models.BACnetObject    : Unsubscription @: 'analog-output 1' on: device 2098177
+2020-05-03 17:53:09.020  INFO 10452 --- [main] c.b.schoko.SchokoApplication             : Starting SchokoApplication on DESKTOP-9GPU53V with PID 10452 (C:\Users\rafae\IdeaProjects\schoko\backend\target\classes started by rafae in C:\Users\rafae\IdeaProjects\schoko)
+2020-05-03 17:53:09.025  INFO 10452 --- [main] c.b.schoko.SchokoApplication             : No active profile set, falling back to default profiles: default
+2020-05-03 17:53:10.118  INFO 10452 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-05-03 17:53:10.216  INFO 10452 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 88ms. Found 1 repository interfaces.
+2020-05-03 17:53:10.480  INFO 10452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-03 17:53:10.717  INFO 10452 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8098 (http)
+2020-05-03 17:53:10.729  INFO 10452 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-03 17:53:10.730  INFO 10452 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-05-03 17:53:10.912  INFO 10452 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-03 17:53:10.912  INFO 10452 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1835 ms
+2020-05-03 17:53:11.213  INFO 10452 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-03 17:53:11.279  INFO 10452 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
+2020-05-03 17:53:11.404  INFO 10452 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-03 17:53:11.468  INFO 10452 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-05-03 17:53:11.494  INFO 10452 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-03 17:53:11.559  INFO 10452 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-03 17:53:11.567  INFO 10452 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-05-03 17:53:12.151  INFO 10452 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-03 17:53:12.159  INFO 10452 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-03 17:53:12.292  INFO 10452 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-05-03 17:53:12.298  INFO 10452 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-05-03 17:53:12.571  INFO 10452 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-05-03 17:53:12.589  INFO 10452 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-05-03 17:53:12.805  INFO 10452 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
+2020-05-03 17:53:12.961  INFO 10452 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-05-03 17:53:12.993  INFO 10452 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-05-03 17:53:12.993  INFO 10452 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-05-03 17:53:12.994  INFO 10452 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-05-03 17:53:13.247  INFO 10452 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8098 (http) with context path ''
+2020-05-03 17:53:13.254  INFO 10452 --- [main] c.b.schoko.SchokoApplication             : Started SchokoApplication in 4.556 seconds (JVM running for 5.883)
+2020-05-03 17:53:47.633  INFO 10452 --- [http-nio-8098-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-03 17:53:47.635  INFO 10452 --- [http-nio-8098-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-03 17:53:47.648  INFO 10452 --- [http-nio-8098-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2020-05-03 17:53:54.437  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : Try to initialize localdevice 1001
+2020-05-03 17:53:54.450  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : Successfully created LocalDevice 1001
+2020-05-03 17:53:54.451  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : Scan for remote devices.........
+2020-05-03 17:53:54.678  INFO 10452 --- [pool-2-thread-1] c.b.s.b.services.DeviceService           : Remote device 2098177 registered in waiting room of LocalDevice
+2020-05-03 17:53:59.453  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : 1 BACnet devices finally registered at local device
+2020-05-03 17:53:59.587  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 11 @ device 2098177
+2020-05-03 17:53:59.609  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 12 @ device 2098177
+2020-05-03 17:53:59.628  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 13 @ device 2098177
+2020-05-03 17:53:59.647  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 21 @ device 2098177
+2020-05-03 17:53:59.665  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 22 @ device 2098177
+2020-05-03 17:53:59.684  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 23 @ device 2098177
+2020-05-03 17:53:59.704  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 31 @ device 2098177
+2020-05-03 17:53:59.724  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 32 @ device 2098177
+2020-05-03 17:53:59.742  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 33 @ device 2098177
+2020-05-03 17:53:59.761  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 41 @ device 2098177
+2020-05-03 17:53:59.780  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 42 @ device 2098177
+2020-05-03 17:53:59.800  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 43 @ device 2098177
+2020-05-03 17:53:59.820  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 51 @ device 2098177
+2020-05-03 17:53:59.841  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 52 @ device 2098177
+2020-05-03 17:53:59.860  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 53 @ device 2098177
+2020-05-03 17:53:59.876  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 61 @ device 2098177
+2020-05-03 17:53:59.893  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 62 @ device 2098177
+2020-05-03 17:53:59.911  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 63 @ device 2098177
+2020-05-03 17:54:03.982  INFO 10452 --- [http-nio-8098-exec-3] c.b.schoko.webcontroller.HTTPController  : Build structure with new settings.....
+2020-05-03 17:54:10.341  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.HierarchyService        : BacNet structure successfully created with 499 nodes
+2020-05-03 17:54:10.343  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.b.services.HierarchyService        : Device structure successfully created with 640 nodes
+2020-05-03 17:54:10.343  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.bacnetutils.services.EventService  : Ask for event information
+2020-05-03 17:54:10.417  INFO 10452 --- [http-nio-8098-exec-3] c.b.s.bacnetutils.services.EventService  : Received event information: Encodable(com.serotonin.bacnet4j.service.acknowledgement.GetEnrollmentSummaryAck)  -> from device: Site01'AS01 
+2020-05-03 17:54:10.589  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:10.594  INFO 10452 --- [Thread-2] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndPlt
+2020-05-03 17:54:10.595  WARN 10452 --- [Thread-2] c.b.s.b.services.EventProcessing         : Event from trend-log 1 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:10.839  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:10.845  INFO 10452 --- [Thread-3] c.b.s.b.services.EventProcessing         : Back to normal massage from: Site01'AS01xI
+2020-05-03 17:54:10.845  WARN 10452 --- [Thread-3] c.b.s.b.services.EventProcessing         : Event from 217 2098177 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:12.586  INFO 10452 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-05-03 17:54:12.740  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:12.748  INFO 10452 --- [Thread-4] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndRsnP
+2020-05-03 17:54:12.749  WARN 10452 --- [Thread-4] c.b.s.b.services.EventProcessing         : Event from trend-log 2 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:12.804  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:12.810  INFO 10452 --- [Thread-5] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndPlt
+2020-05-03 17:54:12.810  WARN 10452 --- [Thread-5] c.b.s.b.services.EventProcessing         : Event from trend-log 9 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:13.060  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:13.064  INFO 10452 --- [Thread-6] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndRsnP
+2020-05-03 17:54:13.064  WARN 10452 --- [Thread-6] c.b.s.b.services.EventProcessing         : Event from trend-log 10 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:21.880  INFO 10452 --- [http-nio-8098-exec-3] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 190 events
+2020-05-03 17:54:21.992  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:22.005  INFO 10452 --- [Thread-7] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'LglDmd
+2020-05-03 17:54:22.027  INFO 10452 --- [Thread-7] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 189 events
+2020-05-03 17:54:22.062  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:22.064  INFO 10452 --- [Thread-8] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'PrSpTSto
+2020-05-03 17:54:22.082  INFO 10452 --- [Thread-8] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 188 events
+2020-05-03 17:54:22.305  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:22.307  INFO 10452 --- [Thread-9] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndPlt
+2020-05-03 17:54:22.325  INFO 10452 --- [Thread-9] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 187 events
+2020-05-03 17:54:22.554  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:22.557  INFO 10452 --- [Thread-10] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndRsnP
+2020-05-03 17:54:22.574  INFO 10452 --- [Thread-10] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 186 events
+2020-05-03 17:54:22.804  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:22.807  INFO 10452 --- [Thread-11] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndPlt
+2020-05-03 17:54:22.821  INFO 10452 --- [Thread-11] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 185 events
+2020-05-03 17:54:23.053  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:23.056  INFO 10452 --- [Thread-12] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndRsnP
+2020-05-03 17:54:23.070  INFO 10452 --- [Thread-12] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 184 events
+2020-05-03 17:54:23.304  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:23.307  INFO 10452 --- [Thread-13] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'TrndPlt
+2020-05-03 17:54:23.330  INFO 10452 --- [Thread-13] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 183 events
+2020-05-03 17:54:23.554  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:23.556  INFO 10452 --- [Thread-14] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'TrndRsnP
+2020-05-03 17:54:23.572  INFO 10452 --- [Thread-14] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 182 events
+2020-05-03 17:54:23.804  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:23.806  INFO 10452 --- [Thread-15] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'MxCrt'TrndTFl
+2020-05-03 17:54:23.849  INFO 10452 --- [Thread-15] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 181 events
+2020-05-03 17:54:24.054  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:24.057  INFO 10452 --- [Thread-16] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndPlt
+2020-05-03 17:54:24.068  INFO 10452 --- [Thread-16] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 180 events
+2020-05-03 17:54:24.304  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:24.307  INFO 10452 --- [Thread-17] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndRsnP
+2020-05-03 17:54:24.318  INFO 10452 --- [Thread-17] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 179 events
+2020-05-03 17:54:24.554  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:24.557  INFO 10452 --- [Thread-18] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'Cds'TrndTIn
+2020-05-03 17:54:24.568  INFO 10452 --- [Thread-18] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 178 events
+2020-05-03 17:54:24.804  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:24.806  INFO 10452 --- [Thread-19] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'Cds'TrndTOut
+2020-05-03 17:54:24.817  INFO 10452 --- [Thread-19] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 177 events
+2020-05-03 17:54:25.059  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:25.062  INFO 10452 --- [Thread-20] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'Evp'TrndTIn
+2020-05-03 17:54:25.073  INFO 10452 --- [Thread-20] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 176 events
+2020-05-03 17:54:25.303  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:25.306  INFO 10452 --- [Thread-21] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'Evp'TrndTOut
+2020-05-03 17:54:25.317  INFO 10452 --- [Thread-21] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 175 events
+2020-05-03 17:54:25.554  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:25.556  INFO 10452 --- [Thread-22] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'CirPu
+2020-05-03 17:54:25.568  INFO 10452 --- [Thread-22] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 174 events
+2020-05-03 17:54:25.804  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:25.806  INFO 10452 --- [Thread-23] c.b.s.b.services.EventProcessing         : Back to normal massage from: Site01'AS01xI
+2020-05-03 17:54:25.819  INFO 10452 --- [Thread-23] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 174 events
+2020-05-03 17:54:26.053  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:26.056  INFO 10452 --- [Thread-24] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'DhwCrg
+2020-05-03 17:54:26.069  INFO 10452 --- [Thread-24] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 173 events
+2020-05-03 17:54:26.219  INFO 10452 --- [clientOutboundChannel-1] c.b.s.w.WebSocketEventListener           : Websocket message: CONNECT
+2020-05-03 17:54:26.303  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:26.305  INFO 10452 --- [Thread-26] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'HDmd
+2020-05-03 17:54:26.319  INFO 10452 --- [Thread-26] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 172 events
+2020-05-03 17:54:26.554  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:26.556  INFO 10452 --- [Thread-27] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'LglPrev
+2020-05-03 17:54:26.568  INFO 10452 --- [Thread-27] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 171 events
+2020-05-03 17:54:26.804  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:26.807  INFO 10452 --- [Thread-28] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'PrOpMod
+2020-05-03 17:54:26.819  INFO 10452 --- [Thread-28] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 170 events
+2020-05-03 17:54:27.053  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:27.056  INFO 10452 --- [Thread-29] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'Pu
+2020-05-03 17:54:27.068  INFO 10452 --- [Thread-29] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 169 events
+2020-05-03 17:54:27.303  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:27.306  INFO 10452 --- [Thread-30] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'SpHDmd
+2020-05-03 17:54:27.323  INFO 10452 --- [Thread-30] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 168 events
+2020-05-03 17:54:27.553  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:27.556  INFO 10452 --- [Thread-31] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndPlt
+2020-05-03 17:54:27.556  WARN 10452 --- [Thread-31] c.b.s.b.services.EventProcessing         : Event from trend-log 15 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:27.803  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:27.806  INFO 10452 --- [Thread-32] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndRsnP
+2020-05-03 17:54:27.806  WARN 10452 --- [Thread-32] c.b.s.b.services.EventProcessing         : Event from trend-log 16 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:28.058  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:28.061  INFO 10452 --- [Thread-33] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'MxCrt'TrndTFl
+2020-05-03 17:54:28.073  INFO 10452 --- [Thread-33] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 167 events
+2020-05-03 17:54:28.303  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:28.306  INFO 10452 --- [Thread-34] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndPlt
+2020-05-03 17:54:28.306  WARN 10452 --- [Thread-34] c.b.s.b.services.EventProcessing         : Event from trend-log 1 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:28.553  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:28.556  INFO 10452 --- [Thread-35] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndRsnP
+2020-05-03 17:54:28.556  WARN 10452 --- [Thread-35] c.b.s.b.services.EventProcessing         : Event from trend-log 2 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:28.803  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:28.806  INFO 10452 --- [Thread-36] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndPlt
+2020-05-03 17:54:28.806  WARN 10452 --- [Thread-36] c.b.s.b.services.EventProcessing         : Event from trend-log 9 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:29.053  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:29.056  INFO 10452 --- [Thread-37] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndRsnP
+2020-05-03 17:54:29.056  WARN 10452 --- [Thread-37] c.b.s.b.services.EventProcessing         : Event from trend-log 10 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:29.303  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:29.305  INFO 10452 --- [Thread-38] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndPlt
+2020-05-03 17:54:29.305  WARN 10452 --- [Thread-38] c.b.s.b.services.EventProcessing         : Event from trend-log 15 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:29.554  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:29.556  INFO 10452 --- [Thread-39] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndRsnP
+2020-05-03 17:54:29.556  WARN 10452 --- [Thread-39] c.b.s.b.services.EventProcessing         : Event from trend-log 16 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:29.803  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:29.805  INFO 10452 --- [Thread-40] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndPlt
+2020-05-03 17:54:29.806  WARN 10452 --- [Thread-40] c.b.s.b.services.EventProcessing         : Event from trend-log 1 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:30.053  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:30.055  INFO 10452 --- [Thread-41] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndRsnP
+2020-05-03 17:54:30.056  WARN 10452 --- [Thread-41] c.b.s.b.services.EventProcessing         : Event from trend-log 2 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:30.304  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:30.306  INFO 10452 --- [Thread-42] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'TrndPlt
+2020-05-03 17:54:30.306  WARN 10452 --- [Thread-42] c.b.s.b.services.EventProcessing         : Event from trend-log 12 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:30.553  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:30.555  INFO 10452 --- [Thread-43] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'TrndRsnP
+2020-05-03 17:54:30.555  WARN 10452 --- [Thread-43] c.b.s.b.services.EventProcessing         : Event from trend-log 13 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:30.804  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:30.806  INFO 10452 --- [Thread-44] c.b.s.b.services.EventProcessing         : Back to normal massage from: Site01'AS01xI
+2020-05-03 17:54:30.819  INFO 10452 --- [Thread-44] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 167 events
+2020-05-03 17:54:31.058  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:31.061  INFO 10452 --- [Thread-45] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'MxCrt'TrndTFl
+2020-05-03 17:54:31.061  WARN 10452 --- [Thread-45] c.b.s.b.services.EventProcessing         : Event from trend-log 11 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:31.303  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:31.305  INFO 10452 --- [Thread-46] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndPlt
+2020-05-03 17:54:31.306  WARN 10452 --- [Thread-46] c.b.s.b.services.EventProcessing         : Event from trend-log 9 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:31.553  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:31.556  INFO 10452 --- [Thread-47] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndRsnP
+2020-05-03 17:54:31.556  WARN 10452 --- [Thread-47] c.b.s.b.services.EventProcessing         : Event from trend-log 10 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:31.803  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:31.806  INFO 10452 --- [Thread-48] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'RsnPrOpM
+2020-05-03 17:54:31.826  INFO 10452 --- [Thread-48] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 166 events
+2020-05-03 17:54:32.053  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:32.055  INFO 10452 --- [Thread-49] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndPlt
+2020-05-03 17:54:32.055  WARN 10452 --- [Thread-49] c.b.s.b.services.EventProcessing         : Event from trend-log 15 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:32.303  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:32.306  INFO 10452 --- [Thread-50] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndRsnP
+2020-05-03 17:54:32.306  WARN 10452 --- [Thread-50] c.b.s.b.services.EventProcessing         : Event from trend-log 16 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:32.554  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:32.558  INFO 10452 --- [Thread-51] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'MxCrt'TrndTFl
+2020-05-03 17:54:32.558  WARN 10452 --- [Thread-51] c.b.s.b.services.EventProcessing         : Event from trend-log 14 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:32.803  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:32.805  INFO 10452 --- [Thread-52] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndPlt
+2020-05-03 17:54:32.805  WARN 10452 --- [Thread-52] c.b.s.b.services.EventProcessing         : Event from trend-log 1 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:33.052  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:33.055  INFO 10452 --- [Thread-53] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndRsnP
+2020-05-03 17:54:33.056  WARN 10452 --- [Thread-53] c.b.s.b.services.EventProcessing         : Event from trend-log 2 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:33.302  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:33.305  INFO 10452 --- [Thread-54] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndPlt
+2020-05-03 17:54:33.305  WARN 10452 --- [Thread-54] c.b.s.b.services.EventProcessing         : Event from trend-log 9 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:33.553  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:33.556  INFO 10452 --- [Thread-55] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndRsnP
+2020-05-03 17:54:33.556  WARN 10452 --- [Thread-55] c.b.s.b.services.EventProcessing         : Event from trend-log 10 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:33.803  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:33.805  INFO 10452 --- [Thread-56] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndPlt
+2020-05-03 17:54:33.805  WARN 10452 --- [Thread-56] c.b.s.b.services.EventProcessing         : Event from trend-log 15 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:34.054  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:34.056  INFO 10452 --- [Thread-57] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndRsnP
+2020-05-03 17:54:34.056  WARN 10452 --- [Thread-57] c.b.s.b.services.EventProcessing         : Event from trend-log 16 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:34.302  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:34.306  INFO 10452 --- [Thread-58] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndPlt
+2020-05-03 17:54:34.306  WARN 10452 --- [Thread-58] c.b.s.b.services.EventProcessing         : Event from trend-log 1 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:34.553  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:34.555  INFO 10452 --- [Thread-59] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndRsnP
+2020-05-03 17:54:34.555  WARN 10452 --- [Thread-59] c.b.s.b.services.EventProcessing         : Event from trend-log 2 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:34.803  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:34.805  INFO 10452 --- [Thread-60] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'TrndPlt
+2020-05-03 17:54:34.805  WARN 10452 --- [Thread-60] c.b.s.b.services.EventProcessing         : Event from trend-log 12 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:35.053  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:35.055  INFO 10452 --- [Thread-61] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'TrndRsnP
+2020-05-03 17:54:35.056  WARN 10452 --- [Thread-61] c.b.s.b.services.EventProcessing         : Event from trend-log 13 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:35.303  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:35.306  INFO 10452 --- [Thread-62] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'MxCrt'TrndTFl
+2020-05-03 17:54:35.306  WARN 10452 --- [Thread-62] c.b.s.b.services.EventProcessing         : Event from trend-log 11 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:35.553  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:35.555  INFO 10452 --- [Thread-63] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndPlt
+2020-05-03 17:54:35.556  WARN 10452 --- [Thread-63] c.b.s.b.services.EventProcessing         : Event from trend-log 9 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:35.803  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:35.806  INFO 10452 --- [Thread-64] c.b.s.b.services.EventProcessing         : Back to normal massage from: Site01'AS01xI
+2020-05-03 17:54:35.820  INFO 10452 --- [Thread-64] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 166 events
+2020-05-03 17:54:36.052  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:36.055  INFO 10452 --- [Thread-65] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndRsnP
+2020-05-03 17:54:36.055  WARN 10452 --- [Thread-65] c.b.s.b.services.EventProcessing         : Event from trend-log 10 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:36.303  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:36.305  INFO 10452 --- [Thread-66] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'LglDmd
+2020-05-03 17:54:36.305  WARN 10452 --- [Thread-66] c.b.s.b.services.EventProcessing         : Event from trend-log 20 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:36.553  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:36.555  INFO 10452 --- [Thread-67] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'PrSpTSto
+2020-05-03 17:54:36.555  WARN 10452 --- [Thread-67] c.b.s.b.services.EventProcessing         : Event from trend-log 24 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:36.803  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:36.824  INFO 10452 --- [Thread-68] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndPlt
+2020-05-03 17:54:36.825  WARN 10452 --- [Thread-68] c.b.s.b.services.EventProcessing         : Event from trend-log 15 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:37.052  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:37.055  INFO 10452 --- [Thread-69] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndRsnP
+2020-05-03 17:54:37.055  WARN 10452 --- [Thread-69] c.b.s.b.services.EventProcessing         : Event from trend-log 16 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:37.303  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:37.305  INFO 10452 --- [Thread-70] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'MxCrt'TrndTFl
+2020-05-03 17:54:37.305  WARN 10452 --- [Thread-70] c.b.s.b.services.EventProcessing         : Event from trend-log 14 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:37.553  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:37.556  INFO 10452 --- [Thread-71] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndPlt
+2020-05-03 17:54:37.556  WARN 10452 --- [Thread-71] c.b.s.b.services.EventProcessing         : Event from trend-log 1 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:37.804  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:37.806  INFO 10452 --- [Thread-72] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndRsnP
+2020-05-03 17:54:37.806  WARN 10452 --- [Thread-72] c.b.s.b.services.EventProcessing         : Event from trend-log 2 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:38.053  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:38.056  INFO 10452 --- [Thread-73] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndPlt
+2020-05-03 17:54:38.056  WARN 10452 --- [Thread-73] c.b.s.b.services.EventProcessing         : Event from trend-log 9 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:38.302  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:38.305  INFO 10452 --- [Thread-74] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndRsnP
+2020-05-03 17:54:38.305  WARN 10452 --- [Thread-74] c.b.s.b.services.EventProcessing         : Event from trend-log 10 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:38.553  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:38.556  INFO 10452 --- [Thread-75] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'CirPu
+2020-05-03 17:54:38.556  WARN 10452 --- [Thread-75] c.b.s.b.services.EventProcessing         : Event from trend-log 17 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:38.803  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:38.806  INFO 10452 --- [Thread-76] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'DhwCrg
+2020-05-03 17:54:38.807  WARN 10452 --- [Thread-76] c.b.s.b.services.EventProcessing         : Event from trend-log 18 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:39.053  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:39.056  INFO 10452 --- [Thread-77] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'HDmd
+2020-05-03 17:54:39.057  WARN 10452 --- [Thread-77] c.b.s.b.services.EventProcessing         : Event from trend-log 19 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:39.303  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:39.306  INFO 10452 --- [Thread-78] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'LglPrev
+2020-05-03 17:54:39.306  WARN 10452 --- [Thread-78] c.b.s.b.services.EventProcessing         : Event from trend-log 21 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:39.553  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:39.556  INFO 10452 --- [Thread-79] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'PrOpMod
+2020-05-03 17:54:39.556  WARN 10452 --- [Thread-79] c.b.s.b.services.EventProcessing         : Event from trend-log 23 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:39.803  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:39.806  INFO 10452 --- [Thread-80] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'Pu
+2020-05-03 17:54:39.806  WARN 10452 --- [Thread-80] c.b.s.b.services.EventProcessing         : Event from trend-log 25 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:40.052  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:40.055  INFO 10452 --- [Thread-81] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'SpHDmd
+2020-05-03 17:54:40.056  WARN 10452 --- [Thread-81] c.b.s.b.services.EventProcessing         : Event from trend-log 29 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:40.303  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:40.306  INFO 10452 --- [Thread-82] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndPlt
+2020-05-03 17:54:40.306  WARN 10452 --- [Thread-82] c.b.s.b.services.EventProcessing         : Event from trend-log 15 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:40.554  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:40.556  INFO 10452 --- [Thread-83] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndRsnP
+2020-05-03 17:54:40.557  WARN 10452 --- [Thread-83] c.b.s.b.services.EventProcessing         : Event from trend-log 16 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:40.804  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:40.808  INFO 10452 --- [Thread-84] c.b.s.b.services.EventProcessing         : Back to normal massage from: Site01'AS01xI
+2020-05-03 17:54:40.830  INFO 10452 --- [Thread-84] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 166 events
+2020-05-03 17:54:41.052  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:41.055  INFO 10452 --- [Thread-85] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'TDhw
+2020-05-03 17:54:41.069  INFO 10452 --- [Thread-85] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 165 events
+2020-05-03 17:54:41.296  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:41.297  INFO 10452 --- [Thread-86] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'TStg
+2020-05-03 17:54:41.310  INFO 10452 --- [Thread-86] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 164 events
+2020-05-03 17:54:41.537  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:41.539  INFO 10452 --- [Thread-87] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'TTnkBtm
+2020-05-03 17:54:41.554  INFO 10452 --- [Thread-87] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 163 events
+2020-05-03 17:54:41.787  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:41.789  INFO 10452 --- [Thread-88] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'TTnkTop
+2020-05-03 17:54:41.802  INFO 10452 --- [Thread-88] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 162 events
+2020-05-03 17:54:42.036  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:42.038  INFO 10452 --- [Thread-89] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'Vlv
+2020-05-03 17:54:42.050  INFO 10452 --- [Thread-89] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 161 events
+2020-05-03 17:54:42.286  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:42.288  INFO 10452 --- [Thread-90] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'LmMax
+2020-05-03 17:54:42.300  INFO 10452 --- [Thread-90] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 160 events
+2020-05-03 17:54:42.537  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:42.540  INFO 10452 --- [Thread-91] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndPlt
+2020-05-03 17:54:42.540  WARN 10452 --- [Thread-91] c.b.s.b.services.EventProcessing         : Event from trend-log 1 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:42.786  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:42.788  INFO 10452 --- [Thread-92] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndRsnP
+2020-05-03 17:54:42.789  WARN 10452 --- [Thread-92] c.b.s.b.services.EventProcessing         : Event from trend-log 2 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:43.036  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:43.038  INFO 10452 --- [Thread-93] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'TrndPlt
+2020-05-03 17:54:43.039  WARN 10452 --- [Thread-93] c.b.s.b.services.EventProcessing         : Event from trend-log 12 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:43.286  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:43.288  INFO 10452 --- [Thread-94] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'TrndRsnP
+2020-05-03 17:54:43.289  WARN 10452 --- [Thread-94] c.b.s.b.services.EventProcessing         : Event from trend-log 13 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:43.536  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:43.538  INFO 10452 --- [Thread-95] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndPlt
+2020-05-03 17:54:43.539  WARN 10452 --- [Thread-95] c.b.s.b.services.EventProcessing         : Event from trend-log 9 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:43.786  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:43.788  INFO 10452 --- [Thread-96] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndRsnP
+2020-05-03 17:54:43.789  WARN 10452 --- [Thread-96] c.b.s.b.services.EventProcessing         : Event from trend-log 10 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:44.058  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:44.060  INFO 10452 --- [Thread-97] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndPlt
+2020-05-03 17:54:44.060  WARN 10452 --- [Thread-97] c.b.s.b.services.EventProcessing         : Event from trend-log 15 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:44.286  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:44.289  INFO 10452 --- [Thread-98] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndRsnP
+2020-05-03 17:54:44.289  WARN 10452 --- [Thread-98] c.b.s.b.services.EventProcessing         : Event from trend-log 16 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:44.537  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:44.539  INFO 10452 --- [Thread-99] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'MxCrt'TrndTFl
+2020-05-03 17:54:44.539  WARN 10452 --- [Thread-99] c.b.s.b.services.EventProcessing         : Event from trend-log 11 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:44.787  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:44.790  INFO 10452 --- [Thread-100] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'MxCrt'TrndTFl
+2020-05-03 17:54:44.790  WARN 10452 --- [Thread-100] c.b.s.b.services.EventProcessing         : Event from trend-log 14 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:45.037  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:45.040  INFO 10452 --- [Thread-101] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndPlt
+2020-05-03 17:54:45.041  WARN 10452 --- [Thread-101] c.b.s.b.services.EventProcessing         : Event from trend-log 1 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:45.293  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:45.296  INFO 10452 --- [Thread-102] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndRsnP
+2020-05-03 17:54:45.296  WARN 10452 --- [Thread-102] c.b.s.b.services.EventProcessing         : Event from trend-log 2 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:45.553  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:45.557  INFO 10452 --- [Thread-103] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndPlt
+2020-05-03 17:54:45.557  WARN 10452 --- [Thread-103] c.b.s.b.services.EventProcessing         : Event from trend-log 9 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:45.803  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:45.806  INFO 10452 --- [Thread-104] c.b.s.b.services.EventProcessing         : Back to normal massage from: Site01'AS01xI
+2020-05-03 17:54:45.818  INFO 10452 --- [Thread-104] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 160 events
+2020-05-03 17:54:46.053  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:46.055  INFO 10452 --- [Thread-105] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndRsnP
+2020-05-03 17:54:46.055  WARN 10452 --- [Thread-105] c.b.s.b.services.EventProcessing         : Event from trend-log 10 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:46.302  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:46.305  INFO 10452 --- [Thread-106] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'S'DhwHyd10'Trnd'RsnPrOpM
+2020-05-03 17:54:46.305  WARN 10452 --- [Thread-106] c.b.s.b.services.EventProcessing         : Event from trend-log 28 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:46.553  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:46.557  INFO 10452 --- [Thread-107] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndPlt
+2020-05-03 17:54:46.557  WARN 10452 --- [Thread-107] c.b.s.b.services.EventProcessing         : Event from trend-log 15 @ device 2098177 could not be processed or will be ignored
+2020-05-03 17:54:46.803  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 17:54:46.805  INFO 10452 --- [Thread-108] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndRsnP
+2020-05-03 17:54:46.805  WARN 10452 --- [Thread-108] c.b.s.b.services.EventProcessing         : Event from trend-log 16 @ device 2098177 could not be processed or will be ignored
+2020-05-03 18:00:52.613  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : *********************Reset*********************
+2020-05-03 18:00:52.613  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : Try to initialize localdevice 1001
+2020-05-03 18:00:52.615  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : Successfully created LocalDevice 1001
+2020-05-03 18:00:52.615  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : Scan for remote devices.........
+2020-05-03 18:00:54.505  INFO 10452 --- [pool-3-thread-1] c.b.s.b.services.DeviceService           : Remote device 2098177 registered in waiting room of LocalDevice
+2020-05-03 18:00:57.615  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : 3 BACnet devices finally registered at local device
+2020-05-03 18:00:57.723  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 11 @ device 2098177
+2020-05-03 18:00:57.743  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 12 @ device 2098177
+2020-05-03 18:00:57.765  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 13 @ device 2098177
+2020-05-03 18:00:57.784  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 21 @ device 2098177
+2020-05-03 18:00:57.802  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 22 @ device 2098177
+2020-05-03 18:00:57.821  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 23 @ device 2098177
+2020-05-03 18:00:57.840  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 31 @ device 2098177
+2020-05-03 18:00:57.860  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 32 @ device 2098177
+2020-05-03 18:00:57.880  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 33 @ device 2098177
+2020-05-03 18:00:57.898  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 41 @ device 2098177
+2020-05-03 18:00:57.917  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 42 @ device 2098177
+2020-05-03 18:00:57.935  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 43 @ device 2098177
+2020-05-03 18:00:57.955  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 51 @ device 2098177
+2020-05-03 18:00:57.974  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 52 @ device 2098177
+2020-05-03 18:00:57.995  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 53 @ device 2098177
+2020-05-03 18:00:58.014  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 61 @ device 2098177
+2020-05-03 18:00:58.030  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 62 @ device 2098177
+2020-05-03 18:00:58.074  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 63 @ device 2098177
+2020-05-03 18:00:58.167  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 11 @ device 2098177
+2020-05-03 18:00:58.183  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 12 @ device 2098177
+2020-05-03 18:00:58.198  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 13 @ device 2098177
+2020-05-03 18:00:58.216  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 21 @ device 2098177
+2020-05-03 18:00:58.237  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 22 @ device 2098177
+2020-05-03 18:00:58.255  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 23 @ device 2098177
+2020-05-03 18:00:58.271  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 31 @ device 2098177
+2020-05-03 18:00:58.289  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 32 @ device 2098177
+2020-05-03 18:00:58.306  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 33 @ device 2098177
+2020-05-03 18:00:58.342  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 41 @ device 2098177
+2020-05-03 18:00:58.361  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 42 @ device 2098177
+2020-05-03 18:00:58.381  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 43 @ device 2098177
+2020-05-03 18:00:58.398  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 51 @ device 2098177
+2020-05-03 18:00:58.415  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 52 @ device 2098177
+2020-05-03 18:00:58.432  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 53 @ device 2098177
+2020-05-03 18:00:58.450  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 61 @ device 2098177
+2020-05-03 18:00:58.467  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 62 @ device 2098177
+2020-05-03 18:00:58.486  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 63 @ device 2098177
+2020-05-03 18:00:58.579  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 11 @ device 2098177
+2020-05-03 18:00:58.597  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 12 @ device 2098177
+2020-05-03 18:00:58.615  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 13 @ device 2098177
+2020-05-03 18:00:58.633  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 21 @ device 2098177
+2020-05-03 18:00:58.652  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 22 @ device 2098177
+2020-05-03 18:00:58.667  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 23 @ device 2098177
+2020-05-03 18:00:58.682  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 31 @ device 2098177
+2020-05-03 18:00:58.698  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 32 @ device 2098177
+2020-05-03 18:00:58.713  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 33 @ device 2098177
+2020-05-03 18:00:58.730  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 41 @ device 2098177
+2020-05-03 18:00:58.748  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 42 @ device 2098177
+2020-05-03 18:00:58.762  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 43 @ device 2098177
+2020-05-03 18:00:58.780  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 51 @ device 2098177
+2020-05-03 18:00:58.801  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 52 @ device 2098177
+2020-05-03 18:00:58.818  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 53 @ device 2098177
+2020-05-03 18:00:58.836  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 61 @ device 2098177
+2020-05-03 18:00:58.852  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 62 @ device 2098177
+2020-05-03 18:00:58.870  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 63 @ device 2098177
+2020-05-03 18:01:10.092  INFO 10452 --- [http-nio-8098-exec-8] c.b.schoko.webcontroller.HTTPController  : Build structure with new settings.....
+2020-05-03 18:02:12.253  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.HierarchyService        : BacNet structure successfully created with 499 nodes
+2020-05-03 18:02:12.256  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.b.services.HierarchyService        : Device structure successfully created with 4480 nodes
+2020-05-03 18:02:12.256  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Ask for event information
+2020-05-03 18:02:12.327  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Received event information: Encodable(com.serotonin.bacnet4j.service.acknowledgement.GetEnrollmentSummaryAck)  -> from device: Site01'AS01 
+2020-05-03 18:02:12.348  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TEx ID: 41892c81-a164-4d9f-9f49-f5c6b936a4b8
+2020-05-03 18:02:12.354  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TSu ID: 2f1bdaa3-2665-4cdd-8339-279d9a034efb
+2020-05-03 18:02:12.363  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TIn ID: 1bec8054-d53c-4e4a-a742-9a588d997908
+2020-05-03 18:02:12.373  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TOut ID: ab00915f-c302-4eec-b3bd-cb0c64e21264
+2020-05-03 18:02:12.381  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TIn ID: b1ecdf1e-a28e-44df-b070-45a9ead45e1a
+2020-05-03 18:02:12.388  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TOut ID: 0e63a99b-4261-4f28-832a-bf5a38638cd6
+2020-05-03 18:02:12.396  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'TFl ID: 846640fb-cc2c-4d0e-9129-5426b7819497
+2020-05-03 18:02:12.404  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'CooHw10'SpHReq1 ID: 40831ec7-ef1e-4f99-b302-6d1d74e2a436
+2020-05-03 18:02:12.413  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'TFl ID: 62df1905-e600-48e0-94a7-5cc78f6ef5a3
+2020-05-03 18:02:12.423  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn1 ID: 2c37fdfa-7256-41f7-992b-13b65503bc96
+2020-05-03 18:02:12.432  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn2 ID: 6f82a264-b235-403e-a4b1-97dd63aa858f
+2020-05-03 18:02:12.436  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn3 ID: e6866fc6-6e09-45fc-b335-3a2277581329
+2020-05-03 18:02:12.442  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn4 ID: 7e078e13-8dc9-45d4-bcee-d3e65b7467bd
+2020-05-03 18:02:12.448  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn5 ID: c4fb31eb-757f-432e-b547-de033e1153d4
+2020-05-03 18:02:12.456  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn6 ID: 5bd799ba-88fa-48b7-8f8c-1fbddfba22b2
+2020-05-03 18:02:12.463  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn7 ID: 52ac9092-98dc-4a51-b06f-ed61831a51aa
+2020-05-03 18:02:12.468  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn8 ID: 0a61944e-f6a3-46fb-a0c4-102cfa891949
+2020-05-03 18:02:12.476  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'RstItfIn ID: a06442c4-ca3a-4cc2-bbc7-2c4598b73f37
+2020-05-03 18:02:12.483  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'TStg ID: c0e3f0e1-b7e0-4af5-b79d-ab61d1c7c283
+2020-05-03 18:02:12.495  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'TDhw ID: c7c8aac1-9975-4888-8830-a0d6dee09e5b
+2020-05-03 18:02:12.502  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'TTnkBtm ID: ac4a8e3c-1c28-4985-a3a2-e51d1f7c0c86
+2020-05-03 18:02:12.509  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'TTnkTop ID: 48aa16ad-5673-43b9-9ec6-66bca62e8c56
+2020-05-03 18:02:12.518  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Ccl'Vlv ID: 282b230d-3ea7-4522-9314-2ed85ba7edd4
+2020-05-03 18:02:12.541  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'Mot'Mdlt ID: df283ca7-9ec4-4ad9-8521-f7732f7a9bdf
+2020-05-03 18:02:12.544  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'Vlv ID: 90879675-291a-4994-8643-b4b38b21faf0
+2020-05-03 18:02:12.548  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'VlvMx ID: bdae42e0-df77-40a0-bba7-6fb78b0f135c
+2020-05-03 18:02:12.552  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'VlvMx ID: b75b2180-23f1-4007-af0e-f7c9e275a007
+2020-05-03 18:02:12.556  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'SpChw ID: 8cafdce8-834b-4f1f-b82a-cf371fad6b79
+2020-05-03 18:02:12.569  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'Vlv ID: 79e29d85-17bc-4e66-8ce1-81da8bbd06a9
+2020-05-03 18:02:12.578  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'Vlv ID: a010a438-ab23-4830-9c71-7ddb4dd7f606
+2020-05-03 18:02:12.585  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'SpDtr ID: c14a8058-e553-4e0f-9b09-799e58309f11
+2020-05-03 18:02:12.592  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'SpDtr ID: e564492c-c616-498c-bbbb-27abc1d3a280
+2020-05-03 18:02:12.600  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'SpDtr ID: fe9a8fd9-8ce1-4973-a904-9221fb4e47a4
+2020-05-03 18:02:12.609  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'SpDtr ID: 516c9360-1e50-442a-a50c-ee35d7c17cfc
+2020-05-03 18:02:12.618  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'SpDtr ID: 8cbec438-821b-428d-97e5-d3d0319a2350
+2020-05-03 18:02:12.626  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'Mot'Er ID: 6458f3c3-a8d6-4367-bb32-db94463f75ee
+2020-05-03 18:02:12.634  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanEx'DPMon ID: d76d9b9a-75bb-44ea-8ed6-16a4091524ef
+2020-05-03 18:02:12.645  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanEx'MntnSwi ID: cc5fe896-8f3b-4c20-b6c4-d0a50a38a9a2
+2020-05-03 18:02:12.653  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanEx'ThOvrld ID: c9a2aa52-4384-47f7-a066-7d98a2a80dae
+2020-05-03 18:02:12.662  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanSu'DPMon ID: 0e0a19f6-17be-4c02-a90b-ab4833aaa0a0
+2020-05-03 18:02:12.670  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanSu'MntnSwi ID: c9b2d4d0-7eb4-42ba-943f-2fce5605e3e1
+2020-05-03 18:02:12.675  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanSu'ThOvrld ID: da0b69fa-23c5-4cf0-961b-29b9d852e756
+2020-05-03 18:02:12.681  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FireDet ID: 79a534e7-c326-4b9b-80ff-8628c385b3c1
+2020-05-03 18:02:12.689  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'FrPrtMon ID: c9f6dd6c-f112-49c9-8587-9f02fa98f662
+2020-05-03 18:02:12.698  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'Pu'ThOvrld ID: efccf93f-8b6c-4560-a1ad-f16dd4cb60a4
+2020-05-03 18:02:12.706  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'Pu'ThOvrld ID: 24856c45-c1d6-4749-9c54-a18f9387cf43
+2020-05-03 18:02:12.716  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'Pu'ThOvrld ID: f469de1e-6f9f-4272-a181-02c80012a9f9
+2020-05-03 18:02:12.729  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'FireDet ID: 24cdd22b-2450-4466-9107-1d13aa267080
+2020-05-03 18:02:12.738  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'CprFlt ID: c69d00f7-f92b-4917-ba0e-9611f0c00587
+2020-05-03 18:02:12.749  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'FltInd ID: c9da093f-7718-4ec1-aa67-c0e9fb942309
+2020-05-03 18:02:12.771  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'HiPFlt ID: e4bd5581-6650-4ace-a3f7-4fd35268f030
+2020-05-03 18:02:12.776  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'LoPFlt ID: 21c97120-5452-45ec-b402-b42b99e14956
+2020-05-03 18:02:12.779  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'OpStaCpr ID: 00d60a3d-5a76-4b5d-a88b-67aefbabb68b
+2020-05-03 18:02:12.784  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMon ID: 5f0ca33e-2b1c-4684-b259-d38dd2f58241
+2020-05-03 18:02:12.788  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'Pu'ThOvrld ID: a6e68bbd-32ea-40b2-a39f-f64c435c04b4
+2020-05-03 18:02:12.791  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'ResetBtn ID: 0d13534a-10da-4728-bcfa-c96ce662f184
+2020-05-03 18:02:12.796  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'ResetG ID: 8e187016-7892-44bd-b9f6-c9a305d3c562
+2020-05-03 18:02:12.799  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'CooHw10'HReq1 ID: ba1bec2a-c3ca-4b2a-b848-3b81270eb21a
+2020-05-03 18:02:12.803  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'Pu'ThOvrld ID: 69c8a03a-77cb-44bb-aac6-89968d75bbbf
+2020-05-03 18:02:12.812  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'RstAlmBtn ID: fe62ec3f-9288-4670-b461-d774bae1e035
+2020-05-03 18:02:12.823  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'RstHrnBtn ID: 954bd406-bf4e-44cd-869d-0b96dcfacc4a
+2020-05-03 18:02:12.831  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'FlDet ID: f7db6bc4-1f6c-49e9-965e-c62147b9030f
+2020-05-03 18:02:12.839  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'MntnSwi ID: c96b7340-7a31-4de7-920f-106d5bb3e500
+2020-05-03 18:02:12.848  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'ThOvrld ID: 5cb9c293-e224-4a73-9a8b-c54eaddebc27
+2020-05-03 18:02:12.858  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CrgBtn ID: 8084e80a-9688-478b-83bf-a71b7e018afb
+2020-05-03 18:02:12.867  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'Pu'ThOvrld ID: ad7182eb-36cb-460e-b553-4273912c6f8f
+2020-05-03 18:02:12.873  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'MntnSwi ID: 6ff34c07-5a7d-4408-8c1c-575a5c25dd04
+2020-05-03 18:02:12.881  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'OvrTDet ID: 2df0792d-9170-4ea0-9a11-5af285ef3b87
+2020-05-03 18:02:12.890  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'Cmd ID: 7a5590de-44fc-4e4f-a2f3-e3919f6700cb
+2020-05-03 18:02:12.898  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'Cmd ID: a526754d-8402-49a2-a829-ad6354a0018f
+2020-05-03 18:02:12.909  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'Mot'Cmd ID: 01182151-b51e-4100-892f-29cd61604bb0
+2020-05-03 18:02:12.917  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanEx'Cmd ID: 687ec666-a295-4c76-9cf3-81830b2011a7
+2020-05-03 18:02:12.923  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanSu'Cmd ID: 64629f84-e92b-4ea4-8366-08403c37f098
+2020-05-03 18:02:12.929  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'Pu'Cmd ID: 993c9f7a-4869-4d67-ab07-3767407335fe
+2020-05-03 18:02:12.936  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'Pu'Cmd ID: 7a739224-14c6-4ff1-90f3-647497b21688
+2020-05-03 18:02:12.943  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'Pu'Cmd ID: f0d65e8a-2feb-4da0-8468-43d601bbc2e0
+2020-05-03 18:02:12.950  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'Pu'Cmd ID: e59b964f-7be4-4b1a-80cc-94fcb0f3afd8
+2020-05-03 18:02:12.959  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'LmpA11 ID: 476ae644-c51d-4168-a8d3-951c37473ee7
+2020-05-03 18:02:12.967  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'AlmP1e ID: 510eb741-ca1f-48c7-a8d0-a8f600f2c960
+2020-05-03 18:02:12.979  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'AlmP2e ID: 20b57500-b34f-4742-8649-f8ac99d69a68
+2020-05-03 18:02:12.985  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'Pu'Cmd ID: a37ef8f4-60f5-499e-a330-d9b3e3197e82
+2020-05-03 18:02:12.992  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmHorn ID: 105b0cde-1301-4dcf-ac5b-10292c9ae019
+2020-05-03 18:02:13.000  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmLmp1 ID: 82e9db8c-abe2-4290-9289-dff52bf6d89a
+2020-05-03 18:02:13.024  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmLmp2 ID: dfe1352b-7f1f-49e0-bddb-50feb525e5dd
+2020-05-03 18:02:13.027  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'OvrrLmp ID: e4864ae9-e3ea-4682-9f3b-27334a205b17
+2020-05-03 18:02:13.030  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'ResetCmd ID: 592e5a6e-076f-469d-96f2-5fc5bd4282a4
+2020-05-03 18:02:13.033  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'Cmd ID: f71369f6-b174-4c3d-9ec8-ef49eac350fc
+2020-05-03 18:02:13.037  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'Pu'Cmd ID: 9adb77b4-275a-4210-bd20-3d9c34f53966
+2020-05-03 18:02:13.040  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'Vlv ID: ffed28eb-a605-4a23-89e0-74c68a712aea
+2020-05-03 18:02:13.043  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'AlmDisL ID: 698eb622-7d72-4a93-a4a2-874fa6cb2fd2
+2020-05-03 18:02:13.047  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'EmO ID: 1e12f594-14e9-42f1-a891-72cb78d4baab
+2020-05-03 18:02:13.050  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Ccl'CmdVal ID: 122e2899-0a0a-4366-b169-a29ae5b4f862
+2020-05-03 18:02:13.052  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'CmdVal ID: 19a1af21-c7c0-4841-837a-47a6e43763a3
+2020-05-03 18:02:13.055  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'FbMon'AlmNc ID: 6b530038-ad7a-4b63-9655-4801c6cf7a9a
+2020-05-03 18:02:13.069  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'FbMon'AlmNo ID: 884eff15-4e8a-4cd0-8ebb-58c4697cd87f
+2020-05-03 18:02:13.078  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'CmdVal ID: fa03769e-2327-483f-89d8-a3af10cca4a0
+2020-05-03 18:02:13.085  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'FbMon'AlmNc ID: f4025cf8-731f-42ac-a5be-948d81ccbd9e
+2020-05-03 18:02:13.092  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'FbMon'AlmNo ID: ae030e0c-1b16-486e-98e1-a6ab8ab84c93
+2020-05-03 18:02:13.100  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'CmdVal ID: e7e74a65-f658-49e8-8256-25ab4002a1a7
+2020-05-03 18:02:13.109  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'CmdVal ID: 9c6775d6-d29d-4d57-a3f9-07facf008a77
+2020-05-03 18:02:13.117  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'SttUpMod'CmdVal ID: b7b8cd50-c509-4630-a572-12c2fb120d8f
+2020-05-03 18:02:13.124  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'SupvMon'SupvPlt ID: fda3f0e2-38fb-4820-96db-91575f8d8b10
+2020-05-03 18:02:13.132  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TCtl'CmdVal ID: f3a72022-d3a0-4667-936f-5407610a2c43
+2020-05-03 18:02:13.139  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'AlmDisL ID: 92ac1cff-c282-4c06-b6c4-4129a2fa7dbd
+2020-05-03 18:02:13.147  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'EmO ID: 4b939b2b-02f9-424f-b00f-7a626e8d7356
+2020-05-03 18:02:13.156  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'AlmSh ID: e13a7342-61d8-4094-8622-13f42e4443c7
+2020-05-03 18:02:13.164  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'CmdVal ID: ace82ed1-3ba1-4fab-8b73-e882111597ab
+2020-05-03 18:02:13.171  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'CmdVal ID: de39b32f-0557-4177-b77b-48719e9c323e
+2020-05-03 18:02:13.177  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'SupvMon'SupvPlt ID: 0bf5fef2-f9e0-4ee5-ba7f-40aa996ba30e
+2020-05-03 18:02:13.184  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'AlmDisL ID: 0d08a04a-0336-4250-87f3-e73a886d912d
+2020-05-03 18:02:13.190  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'EmO ID: c2bb916d-a8a0-4063-bf69-f58224ae305c
+2020-05-03 18:02:13.199  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'CmdVal ID: 38254f70-dc76-457d-86e9-bdf0268d42af
+2020-05-03 18:02:13.204  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'SupvMon'SupvPlt ID: 24af6699-3cbe-40cd-ab28-c5df51580e3e
+2020-05-03 18:02:13.212  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'AlmDisL ID: 02cee3b9-fb24-44c7-af60-774703e0bb35
+2020-05-03 18:02:13.220  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'AlmRBtn ID: 8a9a2931-6d02-4549-885d-c9d2d7f585ab
+2020-05-03 18:02:13.231  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'EmO ID: e3d729d9-5e6a-4786-abcf-9507caf409eb
+2020-05-03 18:02:13.239  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'ErAs ID: cf577ac8-5e1d-4c8f-954c-3a43d2b3c156
+2020-05-03 18:02:13.245  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'AlmDisL ID: ccd90441-d2d1-4cb5-972d-979731dd1005
+2020-05-03 18:02:13.255  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'EmO ID: 50ef4935-8920-4dfd-b488-d94a80c5d468
+2020-05-03 18:02:13.278  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'CmdVal ID: d6300b11-925c-4546-9e5d-36931694576e
+2020-05-03 18:02:13.281  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'SupvMon'SupvPlt ID: 7b143f95-9e2e-46fd-9e66-313acf076203
+2020-05-03 18:02:13.285  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'ErrAsSta ID: 75003a4e-7705-47b6-839b-edbcc077e316
+2020-05-03 18:02:13.289  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Ovrr ID: 26051fac-c51c-4bae-b5e9-8bf0d856181d
+2020-05-03 18:02:13.292  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'ResetAlm ID: b8236fd3-3db1-4b10-b0a0-ddcd913f0bc9
+2020-05-03 18:02:13.295  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'ResetHorn ID: 48792bf2-64f6-4658-b627-720a7781f8d4
+2020-05-03 18:02:13.299  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CrgMan ID: 3dd3c726-7d1b-445f-a217-3102626c7bd4
+2020-05-03 18:02:13.302  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'CmdVal ID: 4b1507f4-ab3e-41af-bc1a-db7ee4ba2efc
+2020-05-03 18:02:13.313  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Ccl'TCtr ID: 96b1d38a-7fc7-4cd6-8aae-7ab1a32b33e6
+2020-05-03 18:02:13.324  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'TCtr ID: 66fed2f1-3d40-4ebd-b9ee-b2d94cdbef20
+2020-05-03 18:02:13.333  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'TCtr ID: 69475107-a93f-4f48-b431-e0dd87e6e985
+2020-05-03 18:02:13.340  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TCtr ID: be79c575-b57d-4821-a529-e96787daa9a8
+2020-05-03 18:02:13.350  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TCtr ID: 492823c0-f612-44a4-bb7d-04dd8fcafe13
+2020-05-03 18:02:13.358  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'TFlCtr ID: c64764f6-8714-44b2-8656-1a1827595e01
+2020-05-03 18:02:13.368  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'TFlCtr ID: 16fc7409-9f51-4b0d-bf9a-f48d598c3552
+2020-05-03 18:02:13.377  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'FbMon'FbPos ID: 26377196-56ee-4d12-b9df-3d3fa78a46f6
+2020-05-03 18:02:13.382  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'FbMon'FbPos ID: ba49dee8-d38c-42c8-86de-31e504c72f3f
+2020-05-03 18:02:13.392  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'ManSwi ID: 5c68cf5a-4058-4e9d-9ec7-afcee8c054f0
+2020-05-03 18:02:13.399  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'OpModSwi ID: 8370d3c9-bbc2-4626-a634-4991bfd151b3
+2020-05-03 18:02:13.408  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'Cmd ID: 996c4593-41df-44d3-84b2-9395fb580118
+2020-05-03 18:02:13.417  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'CmdCMan ID: 484bcd86-e450-4efd-9c73-76d13dc3b4af
+2020-05-03 18:02:13.422  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'LglPrev'LglPrev ID: cd948dea-5ba7-4042-bd91-390bf3aa88c7
+2020-05-03 18:02:13.428  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TrndPlt ID: 184e1e44-992a-4da9-b823-f78d2bf68e6d
+2020-05-03 18:02:13.437  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TrndRsnP ID: 6368e8d0-727b-4e26-8254-2132a93704cd
+2020-05-03 18:02:13.445  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TrndTEx ID: 6d08ce61-a928-4b88-8562-81b686a8069d
+2020-05-03 18:02:13.450  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TrndTSu ID: 6cc1e2b3-cb76-45a9-b1a9-280cd47d684a
+2020-05-03 18:02:13.459  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TrndTIn ID: 5524b99b-b6bd-45f9-a56e-87784585ef34
+2020-05-03 18:02:13.466  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TrndTOut ID: 3f4ceebe-0cb2-4df6-a8fe-3a7b601f0a09
+2020-05-03 18:02:13.478  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TrndTIn ID: 01b8752a-f47a-40e3-96e8-d0f9eb5dcbed
+2020-05-03 18:02:13.484  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TrndTOut ID: b5ec0dd5-4f16-48a5-acfe-828ab61baae2
+2020-05-03 18:02:13.491  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'TrndPlt ID: 5261e5b3-e8c8-4117-a483-c4294c581035
+2020-05-03 18:02:13.500  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'TrndRsnP ID: 9c657b8e-3984-4ac9-b8c2-75f44a408db8
+2020-05-03 18:02:13.524  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'TrndTFl ID: dc379ffd-1e93-48a2-b391-c192aff03415
+2020-05-03 18:02:13.528  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'TrndPlt ID: 7e7196ba-60f9-443e-b58e-deee82796982
+2020-05-03 18:02:13.531  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'TrndRsnP ID: 118dcce9-8304-4848-aaee-9d7c80930af1
+2020-05-03 18:02:13.535  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'TrndTFl ID: 1b2ce656-ca7f-42d4-92aa-35d75b0bba5d
+2020-05-03 18:02:13.539  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'TrndPlt ID: 5efcb657-285b-4b9c-a69b-c560d31ba12a
+2020-05-03 18:02:13.543  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'TrndRsnP ID: fc1dd9bd-25f2-4dc9-af0b-5a0ebbe3e5c6
+2020-05-03 18:02:13.547  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'CirPu ID: a89315c2-309a-45b0-838d-12080c1386cb
+2020-05-03 18:02:13.552  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'DhwCrg ID: 14ba4490-0071-44d5-9fea-dcb8a7d07d8c
+2020-05-03 18:02:13.556  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'HDmd ID: 73d46745-7a01-4f59-a38f-05d1a59fffb4
+2020-05-03 18:02:13.569  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'LglDmd ID: dbbe72dd-a583-4ba1-8ecd-b09f68634f89
+2020-05-03 18:02:13.578  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'LglPrev ID: fb88267b-b5c0-4322-a169-2397df2d949c
+2020-05-03 18:02:13.585  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'LmMax ID: b82a218d-8592-4e34-a80a-01f74cdfb04e
+2020-05-03 18:02:13.591  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'PrOpMod ID: e7232151-0c5e-453b-8046-ee45ce912e47
+2020-05-03 18:02:13.599  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'PrSpTSto ID: e8b6d46a-e11e-4b00-8add-6973ddb16096
+2020-05-03 18:02:13.608  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'Pu ID: a43afd4e-dc88-4924-ba99-433d4918bb07
+2020-05-03 18:02:13.618  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'PuPrim ID: bf189042-59a6-4af1-8f58-48948e16d86b
+2020-05-03 18:02:13.624  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'PuSec ID: a9f28dfd-ac19-46d5-b1b1-dac98a05689a
+2020-05-03 18:02:13.631  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'RsnPrOpM ID: 9d808f87-7508-4311-bb4b-e29c2c64e8e6
+2020-05-03 18:02:13.638  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'SpHDmd ID: 2f7db36f-24e9-477d-a4c8-3ecadb0f8e5a
+2020-05-03 18:02:13.647  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TDhw ID: 4269ce30-7f6d-4acd-8458-9b469a28f3fd
+2020-05-03 18:02:13.654  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TOut ID: 5135a5bf-2129-4924-8d78-d15635e15574
+2020-05-03 18:02:13.663  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TRtLgl ID: baf2bd34-156f-4f21-9051-5024dd218d62
+2020-05-03 18:02:13.671  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TStg ID: c4a59e75-3a88-418f-a0c0-8e5c17d6eb35
+2020-05-03 18:02:13.677  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TTnkBtm ID: d038394b-a48f-45f8-8e2f-e53b763af16a
+2020-05-03 18:02:13.682  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TTnkTop ID: c445426b-87c1-421c-be42-37fdaa12bb6d
+2020-05-03 18:02:13.689  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'Vlv ID: 9d2aa2b8-d6a4-44fe-b72f-f9b8d90f0087
+2020-05-03 18:02:13.697  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'VlvPrim ID: 206c6a6d-a1f7-4d94-b721-30f264dd544e
+2020-05-03 18:02:13.702  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'VlvSec ID: 6d469eaf-341f-4a3e-861f-42e6525b6405
+2020-05-03 18:02:13.710  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'CmnAlm ID: 43ce1579-28fb-4939-95bc-8b428f15b906
+2020-05-03 18:02:13.718  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'CmnAlm ID: 06db75a7-8202-4c05-b3e3-ed3609b64965
+2020-05-03 18:02:13.731  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'CmnAlm ID: 7947dc0b-e6d5-41b7-b25c-9ed7e51dbf8a
+2020-05-03 18:02:13.738  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'CmnAlm ID: 947edac6-8879-4efe-b490-9e70a85ff7c0
+2020-05-03 18:02:13.745  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'CmnAlm ID: 9f9b8727-e950-4e1e-9ce2-2a817f24726b
+2020-05-03 18:02:13.755  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CmnAlm ID: 433f9a4c-41d0-4ecd-abb9-4b6941398882
+2020-05-03 18:02:13.777  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PltCtl ID: ddd22287-bd95-4fb1-b291-8fb7a607420e
+2020-05-03 18:02:13.781  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'PltCtl ID: 75ce03bf-4a94-4a06-8353-ac5cb8897630
+2020-05-03 18:02:13.785  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'PltCtl ID: c5b92721-82cd-4df8-9c94-956b4f151512
+2020-05-03 18:02:13.789  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'PltCtl ID: e3072e18-6180-481a-99c5-ca426c33fd19
+2020-05-03 18:02:13.792  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: Site01'AS01xI ID: 7b6dec07-f36f-4587-b034-cea55a13e035
+2020-05-03 18:02:13.793  INFO 10452 --- [http-nio-8098-exec-8] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 190 events
+2020-05-03 18:02:13.864  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Received event information: Encodable(com.serotonin.bacnet4j.service.acknowledgement.GetEnrollmentSummaryAck)  -> from device: Site01'AS01 
+2020-05-03 18:02:13.879  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TEx ID: 41892c81-a164-4d9f-9f49-f5c6b936a4b8
+2020-05-03 18:02:13.887  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TSu ID: 2f1bdaa3-2665-4cdd-8339-279d9a034efb
+2020-05-03 18:02:13.894  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TIn ID: 1bec8054-d53c-4e4a-a742-9a588d997908
+2020-05-03 18:02:13.904  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TOut ID: ab00915f-c302-4eec-b3bd-cb0c64e21264
+2020-05-03 18:02:13.913  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TIn ID: b1ecdf1e-a28e-44df-b070-45a9ead45e1a
+2020-05-03 18:02:13.922  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TOut ID: 0e63a99b-4261-4f28-832a-bf5a38638cd6
+2020-05-03 18:02:13.929  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'TFl ID: 846640fb-cc2c-4d0e-9129-5426b7819497
+2020-05-03 18:02:13.936  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'CooHw10'SpHReq1 ID: 40831ec7-ef1e-4f99-b302-6d1d74e2a436
+2020-05-03 18:02:13.945  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'TFl ID: 62df1905-e600-48e0-94a7-5cc78f6ef5a3
+2020-05-03 18:02:13.953  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn1 ID: 2c37fdfa-7256-41f7-992b-13b65503bc96
+2020-05-03 18:02:13.964  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn2 ID: 6f82a264-b235-403e-a4b1-97dd63aa858f
+2020-05-03 18:02:13.974  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn3 ID: e6866fc6-6e09-45fc-b335-3a2277581329
+2020-05-03 18:02:13.979  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn4 ID: 7e078e13-8dc9-45d4-bcee-d3e65b7467bd
+2020-05-03 18:02:13.985  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn5 ID: c4fb31eb-757f-432e-b547-de033e1153d4
+2020-05-03 18:02:13.991  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn6 ID: 5bd799ba-88fa-48b7-8f8c-1fbddfba22b2
+2020-05-03 18:02:13.999  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn7 ID: 52ac9092-98dc-4a51-b06f-ed61831a51aa
+2020-05-03 18:02:14.005  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn8 ID: 0a61944e-f6a3-46fb-a0c4-102cfa891949
+2020-05-03 18:02:14.012  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'RstItfIn ID: a06442c4-ca3a-4cc2-bbc7-2c4598b73f37
+2020-05-03 18:02:14.020  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'TStg ID: c0e3f0e1-b7e0-4af5-b79d-ab61d1c7c283
+2020-05-03 18:02:14.032  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'TDhw ID: c7c8aac1-9975-4888-8830-a0d6dee09e5b
+2020-05-03 18:02:14.039  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'TTnkBtm ID: ac4a8e3c-1c28-4985-a3a2-e51d1f7c0c86
+2020-05-03 18:02:14.045  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'TTnkTop ID: 48aa16ad-5673-43b9-9ec6-66bca62e8c56
+2020-05-03 18:02:14.054  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Ccl'Vlv ID: 282b230d-3ea7-4522-9314-2ed85ba7edd4
+2020-05-03 18:02:14.060  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'Mot'Mdlt ID: df283ca7-9ec4-4ad9-8521-f7732f7a9bdf
+2020-05-03 18:02:14.082  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'Vlv ID: 90879675-291a-4994-8643-b4b38b21faf0
+2020-05-03 18:02:14.085  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'VlvMx ID: bdae42e0-df77-40a0-bba7-6fb78b0f135c
+2020-05-03 18:02:14.088  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'VlvMx ID: b75b2180-23f1-4007-af0e-f7c9e275a007
+2020-05-03 18:02:14.091  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'SpChw ID: 8cafdce8-834b-4f1f-b82a-cf371fad6b79
+2020-05-03 18:02:14.094  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'Vlv ID: 79e29d85-17bc-4e66-8ce1-81da8bbd06a9
+2020-05-03 18:02:14.106  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'Vlv ID: a010a438-ab23-4830-9c71-7ddb4dd7f606
+2020-05-03 18:02:14.116  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'SpDtr ID: c14a8058-e553-4e0f-9b09-799e58309f11
+2020-05-03 18:02:14.123  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'SpDtr ID: e564492c-c616-498c-bbbb-27abc1d3a280
+2020-05-03 18:02:14.130  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'SpDtr ID: fe9a8fd9-8ce1-4973-a904-9221fb4e47a4
+2020-05-03 18:02:14.139  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'SpDtr ID: 516c9360-1e50-442a-a50c-ee35d7c17cfc
+2020-05-03 18:02:14.149  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'SpDtr ID: 8cbec438-821b-428d-97e5-d3d0319a2350
+2020-05-03 18:02:14.158  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'Mot'Er ID: 6458f3c3-a8d6-4367-bb32-db94463f75ee
+2020-05-03 18:02:14.164  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanEx'DPMon ID: d76d9b9a-75bb-44ea-8ed6-16a4091524ef
+2020-05-03 18:02:14.172  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanEx'MntnSwi ID: cc5fe896-8f3b-4c20-b6c4-d0a50a38a9a2
+2020-05-03 18:02:14.180  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanEx'ThOvrld ID: c9a2aa52-4384-47f7-a066-7d98a2a80dae
+2020-05-03 18:02:14.189  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanSu'DPMon ID: 0e0a19f6-17be-4c02-a90b-ab4833aaa0a0
+2020-05-03 18:02:14.200  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanSu'MntnSwi ID: c9b2d4d0-7eb4-42ba-943f-2fce5605e3e1
+2020-05-03 18:02:14.208  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanSu'ThOvrld ID: da0b69fa-23c5-4cf0-961b-29b9d852e756
+2020-05-03 18:02:14.214  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FireDet ID: 79a534e7-c326-4b9b-80ff-8628c385b3c1
+2020-05-03 18:02:14.220  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'FrPrtMon ID: c9f6dd6c-f112-49c9-8587-9f02fa98f662
+2020-05-03 18:02:14.226  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'Pu'ThOvrld ID: efccf93f-8b6c-4560-a1ad-f16dd4cb60a4
+2020-05-03 18:02:14.234  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'Pu'ThOvrld ID: 24856c45-c1d6-4749-9c54-a18f9387cf43
+2020-05-03 18:02:14.240  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'Pu'ThOvrld ID: f469de1e-6f9f-4272-a181-02c80012a9f9
+2020-05-03 18:02:14.248  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'FireDet ID: 24cdd22b-2450-4466-9107-1d13aa267080
+2020-05-03 18:02:14.255  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'CprFlt ID: c69d00f7-f92b-4917-ba0e-9611f0c00587
+2020-05-03 18:02:14.268  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'FltInd ID: c9da093f-7718-4ec1-aa67-c0e9fb942309
+2020-05-03 18:02:14.274  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'HiPFlt ID: e4bd5581-6650-4ace-a3f7-4fd35268f030
+2020-05-03 18:02:14.282  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'LoPFlt ID: 21c97120-5452-45ec-b402-b42b99e14956
+2020-05-03 18:02:14.291  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'OpStaCpr ID: 00d60a3d-5a76-4b5d-a88b-67aefbabb68b
+2020-05-03 18:02:14.315  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMon ID: 5f0ca33e-2b1c-4684-b259-d38dd2f58241
+2020-05-03 18:02:14.318  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'Pu'ThOvrld ID: a6e68bbd-32ea-40b2-a39f-f64c435c04b4
+2020-05-03 18:02:14.321  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'ResetBtn ID: 0d13534a-10da-4728-bcfa-c96ce662f184
+2020-05-03 18:02:14.324  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'ResetG ID: 8e187016-7892-44bd-b9f6-c9a305d3c562
+2020-05-03 18:02:14.328  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'CooHw10'HReq1 ID: ba1bec2a-c3ca-4b2a-b848-3b81270eb21a
+2020-05-03 18:02:14.331  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'Pu'ThOvrld ID: 69c8a03a-77cb-44bb-aac6-89968d75bbbf
+2020-05-03 18:02:14.335  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'RstAlmBtn ID: fe62ec3f-9288-4670-b461-d774bae1e035
+2020-05-03 18:02:14.338  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'RstHrnBtn ID: 954bd406-bf4e-44cd-869d-0b96dcfacc4a
+2020-05-03 18:02:14.341  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'FlDet ID: f7db6bc4-1f6c-49e9-965e-c62147b9030f
+2020-05-03 18:02:14.344  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'MntnSwi ID: c96b7340-7a31-4de7-920f-106d5bb3e500
+2020-05-03 18:02:14.359  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'ThOvrld ID: 5cb9c293-e224-4a73-9a8b-c54eaddebc27
+2020-05-03 18:02:14.368  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CrgBtn ID: 8084e80a-9688-478b-83bf-a71b7e018afb
+2020-05-03 18:02:14.375  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'Pu'ThOvrld ID: ad7182eb-36cb-460e-b553-4273912c6f8f
+2020-05-03 18:02:14.382  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'MntnSwi ID: 6ff34c07-5a7d-4408-8c1c-575a5c25dd04
+2020-05-03 18:02:14.390  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'OvrTDet ID: 2df0792d-9170-4ea0-9a11-5af285ef3b87
+2020-05-03 18:02:14.400  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'Cmd ID: 7a5590de-44fc-4e4f-a2f3-e3919f6700cb
+2020-05-03 18:02:14.408  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'Cmd ID: a526754d-8402-49a2-a829-ad6354a0018f
+2020-05-03 18:02:14.414  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'Mot'Cmd ID: 01182151-b51e-4100-892f-29cd61604bb0
+2020-05-03 18:02:14.421  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanEx'Cmd ID: 687ec666-a295-4c76-9cf3-81830b2011a7
+2020-05-03 18:02:14.429  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanSu'Cmd ID: 64629f84-e92b-4ea4-8366-08403c37f098
+2020-05-03 18:02:14.438  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'Pu'Cmd ID: 993c9f7a-4869-4d67-ab07-3767407335fe
+2020-05-03 18:02:14.445  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'Pu'Cmd ID: 7a739224-14c6-4ff1-90f3-647497b21688
+2020-05-03 18:02:14.455  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'Pu'Cmd ID: f0d65e8a-2feb-4da0-8468-43d601bbc2e0
+2020-05-03 18:02:14.462  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'Pu'Cmd ID: e59b964f-7be4-4b1a-80cc-94fcb0f3afd8
+2020-05-03 18:02:14.468  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'LmpA11 ID: 476ae644-c51d-4168-a8d3-951c37473ee7
+2020-05-03 18:02:14.473  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'AlmP1e ID: 510eb741-ca1f-48c7-a8d0-a8f600f2c960
+2020-05-03 18:02:14.480  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'AlmP2e ID: 20b57500-b34f-4742-8649-f8ac99d69a68
+2020-05-03 18:02:14.487  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'Pu'Cmd ID: a37ef8f4-60f5-499e-a330-d9b3e3197e82
+2020-05-03 18:02:14.494  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmHorn ID: 105b0cde-1301-4dcf-ac5b-10292c9ae019
+2020-05-03 18:02:14.500  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmLmp1 ID: 82e9db8c-abe2-4290-9289-dff52bf6d89a
+2020-05-03 18:02:14.508  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmLmp2 ID: dfe1352b-7f1f-49e0-bddb-50feb525e5dd
+2020-05-03 18:02:14.521  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'OvrrLmp ID: e4864ae9-e3ea-4682-9f3b-27334a205b17
+2020-05-03 18:02:14.528  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'ResetCmd ID: 592e5a6e-076f-469d-96f2-5fc5bd4282a4
+2020-05-03 18:02:14.535  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'Cmd ID: f71369f6-b174-4c3d-9ec8-ef49eac350fc
+2020-05-03 18:02:14.542  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'Pu'Cmd ID: 9adb77b4-275a-4210-bd20-3d9c34f53966
+2020-05-03 18:02:14.549  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'Vlv ID: ffed28eb-a605-4a23-89e0-74c68a712aea
+2020-05-03 18:02:14.571  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'AlmDisL ID: 698eb622-7d72-4a93-a4a2-874fa6cb2fd2
+2020-05-03 18:02:14.574  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'EmO ID: 1e12f594-14e9-42f1-a891-72cb78d4baab
+2020-05-03 18:02:14.578  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Ccl'CmdVal ID: 122e2899-0a0a-4366-b169-a29ae5b4f862
+2020-05-03 18:02:14.581  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'CmdVal ID: 19a1af21-c7c0-4841-837a-47a6e43763a3
+2020-05-03 18:02:14.584  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'FbMon'AlmNc ID: 6b530038-ad7a-4b63-9655-4801c6cf7a9a
+2020-05-03 18:02:14.588  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'FbMon'AlmNo ID: 884eff15-4e8a-4cd0-8ebb-58c4697cd87f
+2020-05-03 18:02:14.591  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'CmdVal ID: fa03769e-2327-483f-89d8-a3af10cca4a0
+2020-05-03 18:02:14.594  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'FbMon'AlmNc ID: f4025cf8-731f-42ac-a5be-948d81ccbd9e
+2020-05-03 18:02:14.605  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'FbMon'AlmNo ID: ae030e0c-1b16-486e-98e1-a6ab8ab84c93
+2020-05-03 18:02:14.615  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'CmdVal ID: e7e74a65-f658-49e8-8256-25ab4002a1a7
+2020-05-03 18:02:14.623  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'CmdVal ID: 9c6775d6-d29d-4d57-a3f9-07facf008a77
+2020-05-03 18:02:14.631  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'SttUpMod'CmdVal ID: b7b8cd50-c509-4630-a572-12c2fb120d8f
+2020-05-03 18:02:14.639  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'SupvMon'SupvPlt ID: fda3f0e2-38fb-4820-96db-91575f8d8b10
+2020-05-03 18:02:14.646  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TCtl'CmdVal ID: f3a72022-d3a0-4667-936f-5407610a2c43
+2020-05-03 18:02:14.654  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'AlmDisL ID: 92ac1cff-c282-4c06-b6c4-4129a2fa7dbd
+2020-05-03 18:02:14.662  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'EmO ID: 4b939b2b-02f9-424f-b00f-7a626e8d7356
+2020-05-03 18:02:14.668  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'AlmSh ID: e13a7342-61d8-4094-8622-13f42e4443c7
+2020-05-03 18:02:14.675  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'CmdVal ID: ace82ed1-3ba1-4fab-8b73-e882111597ab
+2020-05-03 18:02:14.685  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'CmdVal ID: de39b32f-0557-4177-b77b-48719e9c323e
+2020-05-03 18:02:14.692  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'SupvMon'SupvPlt ID: 0bf5fef2-f9e0-4ee5-ba7f-40aa996ba30e
+2020-05-03 18:02:14.701  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'AlmDisL ID: 0d08a04a-0336-4250-87f3-e73a886d912d
+2020-05-03 18:02:14.710  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'EmO ID: c2bb916d-a8a0-4063-bf69-f58224ae305c
+2020-05-03 18:02:14.716  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'CmdVal ID: 38254f70-dc76-457d-86e9-bdf0268d42af
+2020-05-03 18:02:14.721  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'SupvMon'SupvPlt ID: 24af6699-3cbe-40cd-ab28-c5df51580e3e
+2020-05-03 18:02:14.728  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'AlmDisL ID: 02cee3b9-fb24-44c7-af60-774703e0bb35
+2020-05-03 18:02:14.736  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'AlmRBtn ID: 8a9a2931-6d02-4549-885d-c9d2d7f585ab
+2020-05-03 18:02:14.742  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'EmO ID: e3d729d9-5e6a-4786-abcf-9507caf409eb
+2020-05-03 18:02:14.751  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'ErAs ID: cf577ac8-5e1d-4c8f-954c-3a43d2b3c156
+2020-05-03 18:02:14.758  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'AlmDisL ID: ccd90441-d2d1-4cb5-972d-979731dd1005
+2020-05-03 18:02:14.771  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'EmO ID: 50ef4935-8920-4dfd-b488-d94a80c5d468
+2020-05-03 18:02:14.777  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'CmdVal ID: d6300b11-925c-4546-9e5d-36931694576e
+2020-05-03 18:02:14.783  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'SupvMon'SupvPlt ID: 7b143f95-9e2e-46fd-9e66-313acf076203
+2020-05-03 18:02:14.793  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'ErrAsSta ID: 75003a4e-7705-47b6-839b-edbcc077e316
+2020-05-03 18:02:14.818  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Ovrr ID: 26051fac-c51c-4bae-b5e9-8bf0d856181d
+2020-05-03 18:02:14.821  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'ResetAlm ID: b8236fd3-3db1-4b10-b0a0-ddcd913f0bc9
+2020-05-03 18:02:14.824  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'ResetHorn ID: 48792bf2-64f6-4658-b627-720a7781f8d4
+2020-05-03 18:02:14.828  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CrgMan ID: 3dd3c726-7d1b-445f-a217-3102626c7bd4
+2020-05-03 18:02:14.831  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'CmdVal ID: 4b1507f4-ab3e-41af-bc1a-db7ee4ba2efc
+2020-05-03 18:02:14.834  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Ccl'TCtr ID: 96b1d38a-7fc7-4cd6-8aae-7ab1a32b33e6
+2020-05-03 18:02:14.838  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'TCtr ID: 66fed2f1-3d40-4ebd-b9ee-b2d94cdbef20
+2020-05-03 18:02:14.841  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'TCtr ID: 69475107-a93f-4f48-b431-e0dd87e6e985
+2020-05-03 18:02:14.844  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TCtr ID: be79c575-b57d-4821-a529-e96787daa9a8
+2020-05-03 18:02:14.854  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TCtr ID: 492823c0-f612-44a4-bb7d-04dd8fcafe13
+2020-05-03 18:02:14.864  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'TFlCtr ID: c64764f6-8714-44b2-8656-1a1827595e01
+2020-05-03 18:02:14.871  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'TFlCtr ID: 16fc7409-9f51-4b0d-bf9a-f48d598c3552
+2020-05-03 18:02:14.878  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'FbMon'FbPos ID: 26377196-56ee-4d12-b9df-3d3fa78a46f6
+2020-05-03 18:02:14.884  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'FbMon'FbPos ID: ba49dee8-d38c-42c8-86de-31e504c72f3f
+2020-05-03 18:02:14.892  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'ManSwi ID: 5c68cf5a-4058-4e9d-9ec7-afcee8c054f0
+2020-05-03 18:02:14.901  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'OpModSwi ID: 8370d3c9-bbc2-4626-a634-4991bfd151b3
+2020-05-03 18:02:14.909  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'Cmd ID: 996c4593-41df-44d3-84b2-9395fb580118
+2020-05-03 18:02:14.916  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'CmdCMan ID: 484bcd86-e450-4efd-9c73-76d13dc3b4af
+2020-05-03 18:02:14.923  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'LglPrev'LglPrev ID: cd948dea-5ba7-4042-bd91-390bf3aa88c7
+2020-05-03 18:02:14.931  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TrndPlt ID: 184e1e44-992a-4da9-b823-f78d2bf68e6d
+2020-05-03 18:02:14.940  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TrndRsnP ID: 6368e8d0-727b-4e26-8254-2132a93704cd
+2020-05-03 18:02:14.948  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TrndTEx ID: 6d08ce61-a928-4b88-8562-81b686a8069d
+2020-05-03 18:02:14.957  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TrndTSu ID: 6cc1e2b3-cb76-45a9-b1a9-280cd47d684a
+2020-05-03 18:02:14.964  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TrndTIn ID: 5524b99b-b6bd-45f9-a56e-87784585ef34
+2020-05-03 18:02:14.969  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TrndTOut ID: 3f4ceebe-0cb2-4df6-a8fe-3a7b601f0a09
+2020-05-03 18:02:14.975  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TrndTIn ID: 01b8752a-f47a-40e3-96e8-d0f9eb5dcbed
+2020-05-03 18:02:14.981  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TrndTOut ID: b5ec0dd5-4f16-48a5-acfe-828ab61baae2
+2020-05-03 18:02:14.989  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'TrndPlt ID: 5261e5b3-e8c8-4117-a483-c4294c581035
+2020-05-03 18:02:14.996  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'TrndRsnP ID: 9c657b8e-3984-4ac9-b8c2-75f44a408db8
+2020-05-03 18:02:15.001  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'TrndTFl ID: dc379ffd-1e93-48a2-b391-c192aff03415
+2020-05-03 18:02:15.008  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'TrndPlt ID: 7e7196ba-60f9-443e-b58e-deee82796982
+2020-05-03 18:02:15.019  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'TrndRsnP ID: 118dcce9-8304-4848-aaee-9d7c80930af1
+2020-05-03 18:02:15.028  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'TrndTFl ID: 1b2ce656-ca7f-42d4-92aa-35d75b0bba5d
+2020-05-03 18:02:15.036  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'TrndPlt ID: 5efcb657-285b-4b9c-a69b-c560d31ba12a
+2020-05-03 18:02:15.044  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'TrndRsnP ID: fc1dd9bd-25f2-4dc9-af0b-5a0ebbe3e5c6
+2020-05-03 18:02:15.050  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'CirPu ID: a89315c2-309a-45b0-838d-12080c1386cb
+2020-05-03 18:02:15.072  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'DhwCrg ID: 14ba4490-0071-44d5-9fea-dcb8a7d07d8c
+2020-05-03 18:02:15.075  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'HDmd ID: 73d46745-7a01-4f59-a38f-05d1a59fffb4
+2020-05-03 18:02:15.078  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'LglDmd ID: dbbe72dd-a583-4ba1-8ecd-b09f68634f89
+2020-05-03 18:02:15.081  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'LglPrev ID: fb88267b-b5c0-4322-a169-2397df2d949c
+2020-05-03 18:02:15.084  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'LmMax ID: b82a218d-8592-4e34-a80a-01f74cdfb04e
+2020-05-03 18:02:15.087  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'PrOpMod ID: e7232151-0c5e-453b-8046-ee45ce912e47
+2020-05-03 18:02:15.090  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'PrSpTSto ID: e8b6d46a-e11e-4b00-8add-6973ddb16096
+2020-05-03 18:02:15.094  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'Pu ID: a43afd4e-dc88-4924-ba99-433d4918bb07
+2020-05-03 18:02:15.103  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'PuPrim ID: bf189042-59a6-4af1-8f58-48948e16d86b
+2020-05-03 18:02:15.113  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'PuSec ID: a9f28dfd-ac19-46d5-b1b1-dac98a05689a
+2020-05-03 18:02:15.121  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'RsnPrOpM ID: 9d808f87-7508-4311-bb4b-e29c2c64e8e6
+2020-05-03 18:02:15.128  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'SpHDmd ID: 2f7db36f-24e9-477d-a4c8-3ecadb0f8e5a
+2020-05-03 18:02:15.135  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TDhw ID: 4269ce30-7f6d-4acd-8458-9b469a28f3fd
+2020-05-03 18:02:15.142  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TOut ID: 5135a5bf-2129-4924-8d78-d15635e15574
+2020-05-03 18:02:15.151  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TRtLgl ID: baf2bd34-156f-4f21-9051-5024dd218d62
+2020-05-03 18:02:15.159  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TStg ID: c4a59e75-3a88-418f-a0c0-8e5c17d6eb35
+2020-05-03 18:02:15.167  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TTnkBtm ID: d038394b-a48f-45f8-8e2f-e53b763af16a
+2020-05-03 18:02:15.174  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TTnkTop ID: c445426b-87c1-421c-be42-37fdaa12bb6d
+2020-05-03 18:02:15.183  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'Vlv ID: 9d2aa2b8-d6a4-44fe-b72f-f9b8d90f0087
+2020-05-03 18:02:15.191  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'VlvPrim ID: 206c6a6d-a1f7-4d94-b721-30f264dd544e
+2020-05-03 18:02:15.201  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'VlvSec ID: 6d469eaf-341f-4a3e-861f-42e6525b6405
+2020-05-03 18:02:15.210  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'CmnAlm ID: 43ce1579-28fb-4939-95bc-8b428f15b906
+2020-05-03 18:02:15.216  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'CmnAlm ID: 06db75a7-8202-4c05-b3e3-ed3609b64965
+2020-05-03 18:02:15.222  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'CmnAlm ID: 7947dc0b-e6d5-41b7-b25c-9ed7e51dbf8a
+2020-05-03 18:02:15.228  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'CmnAlm ID: 947edac6-8879-4efe-b490-9e70a85ff7c0
+2020-05-03 18:02:15.236  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'CmnAlm ID: 9f9b8727-e950-4e1e-9ce2-2a817f24726b
+2020-05-03 18:02:15.242  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CmnAlm ID: 433f9a4c-41d0-4ecd-abb9-4b6941398882
+2020-05-03 18:02:15.250  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PltCtl ID: ddd22287-bd95-4fb1-b291-8fb7a607420e
+2020-05-03 18:02:15.257  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'PltCtl ID: 75ce03bf-4a94-4a06-8353-ac5cb8897630
+2020-05-03 18:02:15.269  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'PltCtl ID: c5b92721-82cd-4df8-9c94-956b4f151512
+2020-05-03 18:02:15.275  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'PltCtl ID: e3072e18-6180-481a-99c5-ca426c33fd19
+2020-05-03 18:02:15.283  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: Site01'AS01xI ID: 7b6dec07-f36f-4587-b034-cea55a13e035
+2020-05-03 18:02:15.284  INFO 10452 --- [http-nio-8098-exec-8] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 190 events
+2020-05-03 18:02:15.355  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Received event information: Encodable(com.serotonin.bacnet4j.service.acknowledgement.GetEnrollmentSummaryAck)  -> from device: Site01'AS01 
+2020-05-03 18:02:15.381  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TEx ID: 41892c81-a164-4d9f-9f49-f5c6b936a4b8
+2020-05-03 18:02:15.385  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TSu ID: 2f1bdaa3-2665-4cdd-8339-279d9a034efb
+2020-05-03 18:02:15.399  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TIn ID: 1bec8054-d53c-4e4a-a742-9a588d997908
+2020-05-03 18:02:15.408  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TOut ID: ab00915f-c302-4eec-b3bd-cb0c64e21264
+2020-05-03 18:02:15.415  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TIn ID: b1ecdf1e-a28e-44df-b070-45a9ead45e1a
+2020-05-03 18:02:15.422  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TOut ID: 0e63a99b-4261-4f28-832a-bf5a38638cd6
+2020-05-03 18:02:15.431  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'TFl ID: 846640fb-cc2c-4d0e-9129-5426b7819497
+2020-05-03 18:02:15.439  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'CooHw10'SpHReq1 ID: 40831ec7-ef1e-4f99-b302-6d1d74e2a436
+2020-05-03 18:02:15.448  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'TFl ID: 62df1905-e600-48e0-94a7-5cc78f6ef5a3
+2020-05-03 18:02:15.454  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn1 ID: 2c37fdfa-7256-41f7-992b-13b65503bc96
+2020-05-03 18:02:15.461  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn2 ID: 6f82a264-b235-403e-a4b1-97dd63aa858f
+2020-05-03 18:02:15.469  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn3 ID: e6866fc6-6e09-45fc-b335-3a2277581329
+2020-05-03 18:02:15.478  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn4 ID: 7e078e13-8dc9-45d4-bcee-d3e65b7467bd
+2020-05-03 18:02:15.484  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn5 ID: c4fb31eb-757f-432e-b547-de033e1153d4
+2020-05-03 18:02:15.495  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn6 ID: 5bd799ba-88fa-48b7-8f8c-1fbddfba22b2
+2020-05-03 18:02:15.502  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn7 ID: 52ac9092-98dc-4a51-b06f-ed61831a51aa
+2020-05-03 18:02:15.507  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmBdl'AlmItfIn8 ID: 0a61944e-f6a3-46fb-a0c4-102cfa891949
+2020-05-03 18:02:15.513  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'RstItfIn ID: a06442c4-ca3a-4cc2-bbc7-2c4598b73f37
+2020-05-03 18:02:15.519  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'TStg ID: c0e3f0e1-b7e0-4af5-b79d-ab61d1c7c283
+2020-05-03 18:02:15.527  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'TDhw ID: c7c8aac1-9975-4888-8830-a0d6dee09e5b
+2020-05-03 18:02:15.534  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'TTnkBtm ID: ac4a8e3c-1c28-4985-a3a2-e51d1f7c0c86
+2020-05-03 18:02:15.543  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'TTnkTop ID: 48aa16ad-5673-43b9-9ec6-66bca62e8c56
+2020-05-03 18:02:15.550  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Ccl'Vlv ID: 282b230d-3ea7-4522-9314-2ed85ba7edd4
+2020-05-03 18:02:15.562  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'Mot'Mdlt ID: df283ca7-9ec4-4ad9-8521-f7732f7a9bdf
+2020-05-03 18:02:15.569  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'Vlv ID: 90879675-291a-4994-8643-b4b38b21faf0
+2020-05-03 18:02:15.575  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'VlvMx ID: bdae42e0-df77-40a0-bba7-6fb78b0f135c
+2020-05-03 18:02:15.584  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'VlvMx ID: b75b2180-23f1-4007-af0e-f7c9e275a007
+2020-05-03 18:02:15.608  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'SpChw ID: 8cafdce8-834b-4f1f-b82a-cf371fad6b79
+2020-05-03 18:02:15.612  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'Vlv ID: 79e29d85-17bc-4e66-8ce1-81da8bbd06a9
+2020-05-03 18:02:15.615  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'Vlv ID: a010a438-ab23-4830-9c71-7ddb4dd7f606
+2020-05-03 18:02:15.619  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'SpDtr ID: c14a8058-e553-4e0f-9b09-799e58309f11
+2020-05-03 18:02:15.622  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'SpDtr ID: e564492c-c616-498c-bbbb-27abc1d3a280
+2020-05-03 18:02:15.625  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'SpDtr ID: fe9a8fd9-8ce1-4973-a904-9221fb4e47a4
+2020-05-03 18:02:15.630  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'SpDtr ID: 516c9360-1e50-442a-a50c-ee35d7c17cfc
+2020-05-03 18:02:15.634  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'SpDtr ID: 8cbec438-821b-428d-97e5-d3d0319a2350
+2020-05-03 18:02:15.643  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'Mot'Er ID: 6458f3c3-a8d6-4367-bb32-db94463f75ee
+2020-05-03 18:02:15.653  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanEx'DPMon ID: d76d9b9a-75bb-44ea-8ed6-16a4091524ef
+2020-05-03 18:02:15.661  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanEx'MntnSwi ID: cc5fe896-8f3b-4c20-b6c4-d0a50a38a9a2
+2020-05-03 18:02:15.669  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanEx'ThOvrld ID: c9a2aa52-4384-47f7-a066-7d98a2a80dae
+2020-05-03 18:02:15.675  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanSu'DPMon ID: 0e0a19f6-17be-4c02-a90b-ab4833aaa0a0
+2020-05-03 18:02:15.681  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanSu'MntnSwi ID: c9b2d4d0-7eb4-42ba-943f-2fce5605e3e1
+2020-05-03 18:02:15.690  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanSu'ThOvrld ID: da0b69fa-23c5-4cf0-961b-29b9d852e756
+2020-05-03 18:02:15.699  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FireDet ID: 79a534e7-c326-4b9b-80ff-8628c385b3c1
+2020-05-03 18:02:15.706  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'FrPrtMon ID: c9f6dd6c-f112-49c9-8587-9f02fa98f662
+2020-05-03 18:02:15.713  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'Pu'ThOvrld ID: efccf93f-8b6c-4560-a1ad-f16dd4cb60a4
+2020-05-03 18:02:15.720  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'Pu'ThOvrld ID: 24856c45-c1d6-4749-9c54-a18f9387cf43
+2020-05-03 18:02:15.729  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'Pu'ThOvrld ID: f469de1e-6f9f-4272-a181-02c80012a9f9
+2020-05-03 18:02:15.737  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'FireDet ID: 24cdd22b-2450-4466-9107-1d13aa267080
+2020-05-03 18:02:15.746  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'CprFlt ID: c69d00f7-f92b-4917-ba0e-9611f0c00587
+2020-05-03 18:02:15.753  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'FltInd ID: c9da093f-7718-4ec1-aa67-c0e9fb942309
+2020-05-03 18:02:15.759  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'HiPFlt ID: e4bd5581-6650-4ace-a3f7-4fd35268f030
+2020-05-03 18:02:15.766  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'LoPFlt ID: 21c97120-5452-45ec-b402-b42b99e14956
+2020-05-03 18:02:15.775  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'OpStaCpr ID: 00d60a3d-5a76-4b5d-a88b-67aefbabb68b
+2020-05-03 18:02:15.784  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMon ID: 5f0ca33e-2b1c-4684-b259-d38dd2f58241
+2020-05-03 18:02:15.792  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'Pu'ThOvrld ID: a6e68bbd-32ea-40b2-a39f-f64c435c04b4
+2020-05-03 18:02:15.799  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'ResetBtn ID: 0d13534a-10da-4728-bcfa-c96ce662f184
+2020-05-03 18:02:15.813  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'ResetG ID: 8e187016-7892-44bd-b9f6-c9a305d3c562
+2020-05-03 18:02:15.821  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'CooHw10'HReq1 ID: ba1bec2a-c3ca-4b2a-b848-3b81270eb21a
+2020-05-03 18:02:15.832  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'Pu'ThOvrld ID: 69c8a03a-77cb-44bb-aac6-89968d75bbbf
+2020-05-03 18:02:15.855  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'RstAlmBtn ID: fe62ec3f-9288-4670-b461-d774bae1e035
+2020-05-03 18:02:15.858  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'RstHrnBtn ID: 954bd406-bf4e-44cd-869d-0b96dcfacc4a
+2020-05-03 18:02:15.864  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'FlDet ID: f7db6bc4-1f6c-49e9-965e-c62147b9030f
+2020-05-03 18:02:15.869  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'MntnSwi ID: c96b7340-7a31-4de7-920f-106d5bb3e500
+2020-05-03 18:02:15.873  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'ThOvrld ID: 5cb9c293-e224-4a73-9a8b-c54eaddebc27
+2020-05-03 18:02:15.876  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CrgBtn ID: 8084e80a-9688-478b-83bf-a71b7e018afb
+2020-05-03 18:02:15.881  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'Pu'ThOvrld ID: ad7182eb-36cb-460e-b553-4273912c6f8f
+2020-05-03 18:02:15.885  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'MntnSwi ID: 6ff34c07-5a7d-4408-8c1c-575a5c25dd04
+2020-05-03 18:02:15.900  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'OvrTDet ID: 2df0792d-9170-4ea0-9a11-5af285ef3b87
+2020-05-03 18:02:15.908  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'Cmd ID: 7a5590de-44fc-4e4f-a2f3-e3919f6700cb
+2020-05-03 18:02:15.917  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'Cmd ID: a526754d-8402-49a2-a829-ad6354a0018f
+2020-05-03 18:02:15.923  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'Mot'Cmd ID: 01182151-b51e-4100-892f-29cd61604bb0
+2020-05-03 18:02:15.932  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanEx'Cmd ID: 687ec666-a295-4c76-9cf3-81830b2011a7
+2020-05-03 18:02:15.940  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'FanSu'Cmd ID: 64629f84-e92b-4ea4-8366-08403c37f098
+2020-05-03 18:02:15.949  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'Pu'Cmd ID: 993c9f7a-4869-4d67-ab07-3767407335fe
+2020-05-03 18:02:15.955  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'Pu'Cmd ID: 7a739224-14c6-4ff1-90f3-647497b21688
+2020-05-03 18:02:15.964  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'Pu'Cmd ID: f0d65e8a-2feb-4da0-8468-43d601bbc2e0
+2020-05-03 18:02:15.971  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'Pu'Cmd ID: e59b964f-7be4-4b1a-80cc-94fcb0f3afd8
+2020-05-03 18:02:15.981  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'LmpA11 ID: 476ae644-c51d-4168-a8d3-951c37473ee7
+2020-05-03 18:02:15.991  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'AlmP1e ID: 510eb741-ca1f-48c7-a8d0-a8f600f2c960
+2020-05-03 18:02:16.000  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'AlmP2e ID: 20b57500-b34f-4742-8649-f8ac99d69a68
+2020-05-03 18:02:16.006  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'Pu'Cmd ID: a37ef8f4-60f5-499e-a330-d9b3e3197e82
+2020-05-03 18:02:16.011  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmHorn ID: 105b0cde-1301-4dcf-ac5b-10292c9ae019
+2020-05-03 18:02:16.020  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmLmp1 ID: 82e9db8c-abe2-4290-9289-dff52bf6d89a
+2020-05-03 18:02:16.027  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'AlmLmp2 ID: dfe1352b-7f1f-49e0-bddb-50feb525e5dd
+2020-05-03 18:02:16.033  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'OvrrLmp ID: e4864ae9-e3ea-4682-9f3b-27334a205b17
+2020-05-03 18:02:16.041  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'ResetCmd ID: 592e5a6e-076f-469d-96f2-5fc5bd4282a4
+2020-05-03 18:02:16.050  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'Cmd ID: f71369f6-b174-4c3d-9ec8-ef49eac350fc
+2020-05-03 18:02:16.060  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'Pu'Cmd ID: 9adb77b4-275a-4210-bd20-3d9c34f53966
+2020-05-03 18:02:16.067  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'Vlv ID: ffed28eb-a605-4a23-89e0-74c68a712aea
+2020-05-03 18:02:16.074  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'AlmDisL ID: 698eb622-7d72-4a93-a4a2-874fa6cb2fd2
+2020-05-03 18:02:16.082  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'EmO ID: 1e12f594-14e9-42f1-a891-72cb78d4baab
+2020-05-03 18:02:16.107  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Ccl'CmdVal ID: 122e2899-0a0a-4366-b169-a29ae5b4f862
+2020-05-03 18:02:16.110  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'CmdVal ID: 19a1af21-c7c0-4841-837a-47a6e43763a3
+2020-05-03 18:02:16.113  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'FbMon'AlmNc ID: 6b530038-ad7a-4b63-9655-4801c6cf7a9a
+2020-05-03 18:02:16.115  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'FbMon'AlmNo ID: 884eff15-4e8a-4cd0-8ebb-58c4697cd87f
+2020-05-03 18:02:16.118  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'CmdVal ID: fa03769e-2327-483f-89d8-a3af10cca4a0
+2020-05-03 18:02:16.121  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'FbMon'AlmNc ID: f4025cf8-731f-42ac-a5be-948d81ccbd9e
+2020-05-03 18:02:16.124  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'FbMon'AlmNo ID: ae030e0c-1b16-486e-98e1-a6ab8ab84c93
+2020-05-03 18:02:16.128  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'CmdVal ID: e7e74a65-f658-49e8-8256-25ab4002a1a7
+2020-05-03 18:02:16.131  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'CmdVal ID: 9c6775d6-d29d-4d57-a3f9-07facf008a77
+2020-05-03 18:02:16.134  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'SttUpMod'CmdVal ID: b7b8cd50-c509-4630-a572-12c2fb120d8f
+2020-05-03 18:02:16.143  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'SupvMon'SupvPlt ID: fda3f0e2-38fb-4820-96db-91575f8d8b10
+2020-05-03 18:02:16.153  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TCtl'CmdVal ID: f3a72022-d3a0-4667-936f-5407610a2c43
+2020-05-03 18:02:16.161  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'AlmDisL ID: 92ac1cff-c282-4c06-b6c4-4129a2fa7dbd
+2020-05-03 18:02:16.169  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'EmO ID: 4b939b2b-02f9-424f-b00f-7a626e8d7356
+2020-05-03 18:02:16.175  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'AlmSh ID: e13a7342-61d8-4094-8622-13f42e4443c7
+2020-05-03 18:02:16.182  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'CmdVal ID: ace82ed1-3ba1-4fab-8b73-e882111597ab
+2020-05-03 18:02:16.191  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'CmdVal ID: de39b32f-0557-4177-b77b-48719e9c323e
+2020-05-03 18:02:16.200  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'SupvMon'SupvPlt ID: 0bf5fef2-f9e0-4ee5-ba7f-40aa996ba30e
+2020-05-03 18:02:16.206  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'AlmDisL ID: 0d08a04a-0336-4250-87f3-e73a886d912d
+2020-05-03 18:02:16.213  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'EmO ID: c2bb916d-a8a0-4063-bf69-f58224ae305c
+2020-05-03 18:02:16.221  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'CmdVal ID: 38254f70-dc76-457d-86e9-bdf0268d42af
+2020-05-03 18:02:16.230  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'SupvMon'SupvPlt ID: 24af6699-3cbe-40cd-ab28-c5df51580e3e
+2020-05-03 18:02:16.237  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'AlmDisL ID: 02cee3b9-fb24-44c7-af60-774703e0bb35
+2020-05-03 18:02:16.247  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'AlmRBtn ID: 8a9a2931-6d02-4549-885d-c9d2d7f585ab
+2020-05-03 18:02:16.253  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'EmO ID: e3d729d9-5e6a-4786-abcf-9507caf409eb
+2020-05-03 18:02:16.259  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'ErAs ID: cf577ac8-5e1d-4c8f-954c-3a43d2b3c156
+2020-05-03 18:02:16.265  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'AlmDisL ID: ccd90441-d2d1-4cb5-972d-979731dd1005
+2020-05-03 18:02:16.271  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'EmO ID: 50ef4935-8920-4dfd-b488-d94a80c5d468
+2020-05-03 18:02:16.279  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'CmdVal ID: d6300b11-925c-4546-9e5d-36931694576e
+2020-05-03 18:02:16.286  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'SupvMon'SupvPlt ID: 7b143f95-9e2e-46fd-9e66-313acf076203
+2020-05-03 18:02:16.293  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'ErrAsSta ID: 75003a4e-7705-47b6-839b-edbcc077e316
+2020-05-03 18:02:16.300  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Ovrr ID: 26051fac-c51c-4bae-b5e9-8bf0d856181d
+2020-05-03 18:02:16.312  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'ResetAlm ID: b8236fd3-3db1-4b10-b0a0-ddcd913f0bc9
+2020-05-03 18:02:16.320  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'ResetHorn ID: 48792bf2-64f6-4658-b627-720a7781f8d4
+2020-05-03 18:02:16.326  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CrgMan ID: 3dd3c726-7d1b-445f-a217-3102626c7bd4
+2020-05-03 18:02:16.335  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'DhwCrg'CmdVal ID: 4b1507f4-ab3e-41af-bc1a-db7ee4ba2efc
+2020-05-03 18:02:16.341  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Ccl'TCtr ID: 96b1d38a-7fc7-4cd6-8aae-7ab1a32b33e6
+2020-05-03 18:02:16.362  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'Erc'TCtr ID: 66fed2f1-3d40-4ebd-b9ee-b2d94cdbef20
+2020-05-03 18:02:16.365  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PreHcl'TCtr ID: 69475107-a93f-4f48-b431-e0dd87e6e985
+2020-05-03 18:02:16.369  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TCtr ID: be79c575-b57d-4821-a529-e96787daa9a8
+2020-05-03 18:02:16.372  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TCtr ID: 492823c0-f612-44a4-bb7d-04dd8fcafe13
+2020-05-03 18:02:16.376  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'TFlCtr ID: c64764f6-8714-44b2-8656-1a1827595e01
+2020-05-03 18:02:16.379  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'TFlCtr ID: 16fc7409-9f51-4b0d-bf9a-f48d598c3552
+2020-05-03 18:02:16.383  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfEh'FbMon'FbPos ID: 26377196-56ee-4d12-b9df-3d3fa78a46f6
+2020-05-03 18:02:16.386  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'DmpSfOa'FbMon'FbPos ID: ba49dee8-d38c-42c8-86de-31e504c72f3f
+2020-05-03 18:02:16.400  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CirPu'ManSwi ID: 5c68cf5a-4058-4e9d-9ec7-afcee8c054f0
+2020-05-03 18:02:16.409  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'OpModSwi ID: 8370d3c9-bbc2-4626-a634-4991bfd151b3
+2020-05-03 18:02:16.417  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'RfMch'Cmd ID: 996c4593-41df-44d3-84b2-9395fb580118
+2020-05-03 18:02:16.423  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'CmdCMan ID: 484bcd86-e450-4efd-9c73-76d13dc3b4af
+2020-05-03 18:02:16.431  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'LglPrev'LglPrev ID: cd948dea-5ba7-4042-bd91-390bf3aa88c7
+2020-05-03 18:02:16.439  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TrndPlt ID: 184e1e44-992a-4da9-b823-f78d2bf68e6d
+2020-05-03 18:02:16.448  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TrndRsnP ID: 6368e8d0-727b-4e26-8254-2132a93704cd
+2020-05-03 18:02:16.454  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TrndTEx ID: 6d08ce61-a928-4b88-8562-81b686a8069d
+2020-05-03 18:02:16.462  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'TrndTSu ID: 6cc1e2b3-cb76-45a9-b1a9-280cd47d684a
+2020-05-03 18:02:16.470  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TrndTIn ID: 5524b99b-b6bd-45f9-a56e-87784585ef34
+2020-05-03 18:02:16.478  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Cds'TrndTOut ID: 3f4ceebe-0cb2-4df6-a8fe-3a7b601f0a09
+2020-05-03 18:02:16.486  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TrndTIn ID: 01b8752a-f47a-40e3-96e8-d0f9eb5dcbed
+2020-05-03 18:02:16.495  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'Evp'TrndTOut ID: b5ec0dd5-4f16-48a5-acfe-828ab61baae2
+2020-05-03 18:02:16.501  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'TrndPlt ID: 5261e5b3-e8c8-4117-a483-c4294c581035
+2020-05-03 18:02:16.507  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'TrndRsnP ID: 9c657b8e-3984-4ac9-b8c2-75f44a408db8
+2020-05-03 18:02:16.512  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'MxCrt'TrndTFl ID: dc379ffd-1e93-48a2-b391-c192aff03415
+2020-05-03 18:02:16.518  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'TrndPlt ID: 7e7196ba-60f9-443e-b58e-deee82796982
+2020-05-03 18:02:16.526  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'TrndRsnP ID: 118dcce9-8304-4848-aaee-9d7c80930af1
+2020-05-03 18:02:16.533  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'MxCrt'TrndTFl ID: 1b2ce656-ca7f-42d4-92aa-35d75b0bba5d
+2020-05-03 18:02:16.537  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'TrndPlt ID: 5efcb657-285b-4b9c-a69b-c560d31ba12a
+2020-05-03 18:02:16.545  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'TrndRsnP ID: fc1dd9bd-25f2-4dc9-af0b-5a0ebbe3e5c6
+2020-05-03 18:02:16.553  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'CirPu ID: a89315c2-309a-45b0-838d-12080c1386cb
+2020-05-03 18:02:16.564  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'DhwCrg ID: 14ba4490-0071-44d5-9fea-dcb8a7d07d8c
+2020-05-03 18:02:16.571  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'HDmd ID: 73d46745-7a01-4f59-a38f-05d1a59fffb4
+2020-05-03 18:02:16.579  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'LglDmd ID: dbbe72dd-a583-4ba1-8ecd-b09f68634f89
+2020-05-03 18:02:16.587  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'LglPrev ID: fb88267b-b5c0-4322-a169-2397df2d949c
+2020-05-03 18:02:16.611  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'LmMax ID: b82a218d-8592-4e34-a80a-01f74cdfb04e
+2020-05-03 18:02:16.614  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'PrOpMod ID: e7232151-0c5e-453b-8046-ee45ce912e47
+2020-05-03 18:02:16.617  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'PrSpTSto ID: e8b6d46a-e11e-4b00-8add-6973ddb16096
+2020-05-03 18:02:16.620  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'Pu ID: a43afd4e-dc88-4924-ba99-433d4918bb07
+2020-05-03 18:02:16.623  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'PuPrim ID: bf189042-59a6-4af1-8f58-48948e16d86b
+2020-05-03 18:02:16.627  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'PuSec ID: a9f28dfd-ac19-46d5-b1b1-dac98a05689a
+2020-05-03 18:02:16.630  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'RsnPrOpM ID: 9d808f87-7508-4311-bb4b-e29c2c64e8e6
+2020-05-03 18:02:16.633  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'SpHDmd ID: 2f7db36f-24e9-477d-a4c8-3ecadb0f8e5a
+2020-05-03 18:02:16.642  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TDhw ID: 4269ce30-7f6d-4acd-8458-9b469a28f3fd
+2020-05-03 18:02:16.653  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TOut ID: 5135a5bf-2129-4924-8d78-d15635e15574
+2020-05-03 18:02:16.662  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TRtLgl ID: baf2bd34-156f-4f21-9051-5024dd218d62
+2020-05-03 18:02:16.669  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TStg ID: c4a59e75-3a88-418f-a0c0-8e5c17d6eb35
+2020-05-03 18:02:16.676  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TTnkBtm ID: d038394b-a48f-45f8-8e2f-e53b763af16a
+2020-05-03 18:02:16.683  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'TTnkTop ID: c445426b-87c1-421c-be42-37fdaa12bb6d
+2020-05-03 18:02:16.692  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'Vlv ID: 9d2aa2b8-d6a4-44fe-b72f-f9b8d90f0087
+2020-05-03 18:02:16.700  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'VlvPrim ID: 206c6a6d-a1f7-4d94-b721-30f264dd544e
+2020-05-03 18:02:16.707  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'Trnd'VlvSec ID: 6d469eaf-341f-4a3e-861f-42e6525b6405
+2020-05-03 18:02:16.713  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'CmnAlm ID: 43ce1579-28fb-4939-95bc-8b428f15b906
+2020-05-03 18:02:16.722  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'CmnAlm ID: 06db75a7-8202-4c05-b3e3-ed3609b64965
+2020-05-03 18:02:16.731  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'CmnAlm ID: 7947dc0b-e6d5-41b7-b25c-9ed7e51dbf8a
+2020-05-03 18:02:16.741  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'E'AfAs'CmnAlm ID: 947edac6-8879-4efe-b490-9e70a85ff7c0
+2020-05-03 18:02:16.750  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'CmnAlm ID: 9f9b8727-e950-4e1e-9ce2-2a817f24726b
+2020-05-03 18:02:16.754  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'S'DhwHyd10'CmnAlm ID: 433f9a4c-41d0-4ecd-abb9-4b6941398882
+2020-05-03 18:02:16.760  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'A'Ahu1t'PltCtl ID: ddd22287-bd95-4fb1-b291-8fb7a607420e
+2020-05-03 18:02:16.766  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGen1'PltCtl ID: 75ce03bf-4a94-4a06-8353-ac5cb8897630
+2020-05-03 18:02:16.774  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'C'CGrp1'PltCtl ID: c5b92721-82cd-4df8-9c94-956b4f151512
+2020-05-03 18:02:16.781  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: B'H'HGrp11CH'PltCtl ID: e3072e18-6180-481a-99c5-ca426c33fd19
+2020-05-03 18:02:16.786  INFO 10452 --- [http-nio-8098-exec-8] c.b.s.bacnetutils.services.EventService  : Event already exists in database: Site01'AS01xI ID: 7b6dec07-f36f-4587-b034-cea55a13e035
+2020-05-03 18:02:16.793  INFO 10452 --- [http-nio-8098-exec-8] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 190 events
+2020-05-03 18:09:45.360  INFO 10452 --- [http-nio-8098-exec-10] c.b.s.w.WebSocketEventListener           : Websocket message: CONNECT
+2020-05-03 18:17:30.490  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 18:17:30.493  INFO 10452 --- [Thread-109] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndTEx
+2020-05-03 18:17:30.508  INFO 10452 --- [Thread-109] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 189 events
+2020-05-03 18:17:30.737  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 18:17:30.743  INFO 10452 --- [Thread-110] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndTSu
+2020-05-03 18:17:30.798  INFO 10452 --- [Thread-110] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 188 events
+2020-05-03 18:22:30.366  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 18:22:30.369  INFO 10452 --- [Thread-111] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndPlt
+2020-05-03 18:22:30.381  INFO 10452 --- [Thread-111] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 187 events
+2020-05-03 18:22:30.553  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 18:22:30.555  INFO 10452 --- [Thread-112] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'A'Ahu1t'TrndRsnP
+2020-05-03 18:22:30.567  INFO 10452 --- [Thread-112] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 186 events
+2020-05-03 18:22:30.801  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 18:22:30.804  INFO 10452 --- [Thread-113] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'TrndPlt
+2020-05-03 18:22:30.817  INFO 10452 --- [Thread-113] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 185 events
+2020-05-03 18:22:31.052  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 18:22:31.055  INFO 10452 --- [Thread-114] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'TrndRsnP
+2020-05-03 18:22:31.067  INFO 10452 --- [Thread-114] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 184 events
+2020-05-03 18:22:31.304  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 18:22:31.307  INFO 10452 --- [Thread-115] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndPlt
+2020-05-03 18:22:31.320  INFO 10452 --- [Thread-115] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 183 events
+2020-05-03 18:22:31.552  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 18:22:31.555  INFO 10452 --- [Thread-116] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGen1'TrndRsnP
+2020-05-03 18:22:31.566  INFO 10452 --- [Thread-116] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 182 events
+2020-05-03 18:22:31.802  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 18:22:31.805  INFO 10452 --- [Thread-117] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndPlt
+2020-05-03 18:22:31.825  INFO 10452 --- [Thread-117] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 181 events
+2020-05-03 18:22:32.052  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 18:22:32.055  INFO 10452 --- [Thread-118] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'TrndRsnP
+2020-05-03 18:22:32.067  INFO 10452 --- [Thread-118] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 180 events
+2020-05-03 18:22:32.302  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 18:22:32.305  INFO 10452 --- [Thread-119] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'C'CGrp1'MxCrt'TrndTFl
+2020-05-03 18:22:32.316  INFO 10452 --- [Thread-119] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 179 events
+2020-05-03 18:22:32.552  INFO 10452 --- [BACnet4J transport for device 1001] c.b.s.bacnetutils.services.EventService  : Event message received
+2020-05-03 18:22:32.555  INFO 10452 --- [Thread-120] c.b.s.b.services.EventProcessing         : Back to normal massage from: B'H'HGrp11CH'MxCrt'TrndTFl
+2020-05-03 18:22:32.567  INFO 10452 --- [Thread-120] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 178 events
+2020-05-03 18:24:12.586  INFO 10452 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 1 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(1)-CONNECTED(1)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 9], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 22], sockJsScheduler[pool size = 2, active threads = 1, queued tasks = 0, completed tasks = 1]

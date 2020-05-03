@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_03_05_2020_18_31_[Default_Changelist]" date="1588523467735" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_05_2020_18_31_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 03.05.2020 18:31 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="events.db" />
+    <option name="AFTER_PATH" value="events.db" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_05_2020_18_31_[Default_Changelist]/events.db" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="logs/Log.log.2020-05-02.0.gz" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_05_2020_18_31_[Default_Changelist]/Log.log.2020-05-02.0.gz" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="logs/Log.log.2020-05-01.0.gz" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_05_2020_18_31_[Default_Changelist]/Log.log.2020-05-01.0.gz" />
+  </binary>
+</changelist>
