@@ -58,7 +58,6 @@ public class DeviceService extends DeviceEventAdapter {
             LOG.error("LocalDevice initialize failed, restart the application may solve this problem");
         }
         LOG.info("Successfully created LocalDevice " + localDevice.getInstanceNumber());
-        localDevice.startRemoteDeviceDiscovery();
         scanForRemoteDevices();
         getRemoteDeviceInformation();
         setLocalDeviceAsAlarmReceiver();
@@ -71,8 +70,7 @@ public class DeviceService extends DeviceEventAdapter {
     private void scanForRemoteDevices()  {
         LOG.info("Scan for remote devices.........");
         try {
-            WhoIsRequest request = new WhoIsRequest();
-            localDevice.sendGlobalBroadcast(request);
+            localDevice.startRemoteDeviceDiscovery();
             Thread.sleep(1000 * 5);
             //End scan after 5s if no device is found
             if(waitingRoomBacnetDevices.isEmpty()){
