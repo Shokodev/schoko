@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
@@ -26,8 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Configuration
 public class WSController {
 
-    private ObjectHandler objectHandler;
-    private EventHandler eventHandler;
+    private final ObjectHandler objectHandler;
+    private final EventHandler eventHandler;
     private static final Logger LOG = LoggerFactory.getLogger(WSController.class);
 
     @Autowired
@@ -42,19 +43,18 @@ public class WSController {
      */
     @MessageMapping("/{objectName}")
     @SendTo("/broker/{objectName}")
-    public void subscribeProperties (String objectName) {
+    public void subscribeProperties (@DestinationVariable String objectName) {
         LOG.info("Subscribe object: " + objectName);
         objectHandler.getNewPropertyStream(objectName);
     }
 
     /**
      * Client informs server to close property stream
-     * @param closed message for logging
      */
     @MessageMapping("/end")
-    public void closed (String closed) {
-        LOG.info("Message from Client: " + closed);
-        objectHandler.disconnectPropertyStream();
+    public void closed (String objectName) {
+        LOG.info("Disconnect stream for: " + objectName);
+        objectHandler.disconnectPropertyStream(objectName);
     }
 
     /**
@@ -63,8 +63,8 @@ public class WSController {
      *                       the new value as a property
      */
     @MessageMapping("/setValue")
-    public void setValue (BACnetProperty bacnetProperty) {
-        objectHandler.setNewValue(bacnetProperty.getPropertyIdentifier(),bacnetProperty.getValue());
+    public void setValue (BACnetProperty bacnetProperty, String objectName) {
+        objectHandler.setNewValue(bacnetProperty.getPropertyIdentifier(),bacnetProperty.getValue(),objectName);
 
     }
 
@@ -72,8 +72,8 @@ public class WSController {
      * Use to release manual operation
      */
     @MessageMapping("/releaseValue")
-    public void releaseValue (String releaseMessage) {
-        objectHandler.releaseValue();
+    public void releaseValue (String objectName) {
+        objectHandler.releaseValue(objectName);
     }
 
     @GetMapping("/ackAll")

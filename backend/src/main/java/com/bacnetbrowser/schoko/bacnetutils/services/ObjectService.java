@@ -96,7 +96,7 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
         Runnable runnable = () -> {
             propertiesRaw.replace(PropertyIdentifier.priorityArray,bacnetObject.readProperty(PropertyIdentifier.priorityArray));
             parseProperties();
-            objectHandler.updateStream();
+            objectHandler.updateStream(getBacnetObject().getObjectName());
         };
         Thread newThread = new Thread(runnable);
         newThread.start();
@@ -109,7 +109,7 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
             LOG.info("Property list of: " + objectIdentifier + " ready with: " +propertiesRaw.size() + " properties for parsing" );
             parseProperties();
             LOG.info("Final property list of: " + objectIdentifier + " ready with: " +properties.size() + " properties" );
-            objectHandler.updateStream();
+            objectHandler.updateStream(getBacnetObject().getObjectName());
         }
         return false;
     }
@@ -150,7 +150,7 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
         Runnable runnable = () -> {
             propertiesRaw.replace(PropertyIdentifier.priorityArray,bacnetObject.readProperty(PropertyIdentifier.priorityArray));
             parseProperties();
-            objectHandler.updateStream();
+            objectHandler.updateStream(getBacnetObject().getObjectName());
         };
         Thread newThread = new Thread(runnable);
         newThread.start();

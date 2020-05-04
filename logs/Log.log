@@ -1112,3 +1112,68 @@
 2020-05-03 19:02:46.327  INFO 33728 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
 2020-05-03 19:02:46.339  INFO 33728 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2020-05-03 19:02:46.342  INFO 33728 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-05-03 21:05:43.895  INFO 45676 --- [main] c.b.schoko.SchokoApplication             : Starting SchokoApplication on DESKTOP-ANDREAS with PID 45676 (C:\Users\admin\IdeaProjects\schoko\backend\target\classes started by admin in C:\Users\admin\IdeaProjects\schoko)
+2020-05-03 21:05:43.897  INFO 45676 --- [main] c.b.schoko.SchokoApplication             : No active profile set, falling back to default profiles: default
+2020-05-03 21:05:44.380  INFO 45676 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-05-03 21:05:44.417  INFO 45676 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33ms. Found 1 repository interfaces.
+2020-05-03 21:05:44.551  INFO 45676 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-03 21:05:44.675  INFO 45676 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8098 (http)
+2020-05-03 21:05:44.681  INFO 45676 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-03 21:05:44.681  INFO 45676 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-05-03 21:05:44.758  INFO 45676 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-03 21:05:44.758  INFO 45676 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 821 ms
+2020-05-03 21:05:44.927  INFO 45676 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-03 21:05:44.963  INFO 45676 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
+2020-05-03 21:05:45.028  INFO 45676 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-03 21:05:45.066  INFO 45676 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-05-03 21:05:45.083  INFO 45676 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-03 21:05:45.126  INFO 45676 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-03 21:05:45.131  INFO 45676 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-05-03 21:05:45.462  INFO 45676 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-03 21:05:45.465  INFO 45676 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-03 21:05:45.512  INFO 45676 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-05-03 21:05:45.514  INFO 45676 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-05-03 21:05:45.667  INFO 45676 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-05-03 21:05:45.680  INFO 45676 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-05-03 21:05:45.789  INFO 45676 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
+2020-05-03 21:05:45.886  INFO 45676 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-05-03 21:05:45.904  INFO 45676 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-05-03 21:05:45.904  INFO 45676 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-05-03 21:05:45.904  INFO 45676 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-05-03 21:05:46.129  INFO 45676 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8098 (http) with context path ''
+2020-05-03 21:05:46.130  INFO 45676 --- [main] c.b.schoko.SchokoApplication             : Started SchokoApplication in 2.428 seconds (JVM running for 3.034)
+2020-05-03 21:05:46.614  INFO 45676 --- [RMI TCP Connection(3)-192.168.1.65] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-03 21:05:46.615  INFO 45676 --- [RMI TCP Connection(3)-192.168.1.65] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-03 21:05:46.619  INFO 45676 --- [RMI TCP Connection(3)-192.168.1.65] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2020-05-03 21:06:00.608  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : Try to initialize localdevice 1001
+2020-05-03 21:06:00.617  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : Successfully created LocalDevice 1001
+2020-05-03 21:06:00.617  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : Scan for remote devices.........
+2020-05-03 21:06:02.529  INFO 45676 --- [pool-1-thread-1] c.b.s.b.services.DeviceService           : Remote device 2098177 registered in waiting room of LocalDevice
+2020-05-03 21:06:05.618  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : 1 BACnet devices finally registered at local device
+2020-05-03 21:06:05.684  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 11 @ device 2098177
+2020-05-03 21:06:05.700  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 12 @ device 2098177
+2020-05-03 21:06:05.711  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 13 @ device 2098177
+2020-05-03 21:06:05.722  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 21 @ device 2098177
+2020-05-03 21:06:05.732  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 22 @ device 2098177
+2020-05-03 21:06:05.742  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 23 @ device 2098177
+2020-05-03 21:06:05.754  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 31 @ device 2098177
+2020-05-03 21:06:05.771  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 32 @ device 2098177
+2020-05-03 21:06:05.784  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 33 @ device 2098177
+2020-05-03 21:06:05.798  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 41 @ device 2098177
+2020-05-03 21:06:05.812  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 42 @ device 2098177
+2020-05-03 21:06:05.827  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 43 @ device 2098177
+2020-05-03 21:06:05.841  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 51 @ device 2098177
+2020-05-03 21:06:05.856  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 52 @ device 2098177
+2020-05-03 21:06:05.872  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 53 @ device 2098177
+2020-05-03 21:06:05.941  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 61 @ device 2098177
+2020-05-03 21:06:05.952  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 62 @ device 2098177
+2020-05-03 21:06:05.961  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.DeviceService           : LocalDevice 1001 as receiver registered to: notification-class 63 @ device 2098177
+2020-05-03 21:06:07.891  INFO 45676 --- [http-nio-8098-exec-3] c.b.schoko.webcontroller.HTTPController  : Build structure with new settings.....
+2020-05-03 21:06:10.653  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.HierarchyService        : BacNet structure successfully created with 169 nodes
+2020-05-03 21:06:10.654  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.b.services.HierarchyService        : Device structure successfully created with 230 nodes
+2020-05-03 21:06:10.654  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.bacnetutils.services.EventService  : Ask for event information
+2020-05-03 21:06:10.678  INFO 45676 --- [http-nio-8098-exec-3] c.b.s.bacnetutils.services.EventService  : Received event information: Encodable(com.serotonin.bacnet4j.service.acknowledgement.GetEnrollmentSummaryAck)  -> from device: Site01'AS01 
+2020-05-03 21:06:13.525  INFO 45676 --- [clientOutboundChannel-1] c.b.s.w.WebSocketEventListener           : Websocket message: CONNECT
+2020-05-03 21:06:14.662  INFO 45676 --- [http-nio-8098-exec-3] c.b.schoko.datahandler.EventHandler      : Send updated eventList with: 64 events
+2020-05-03 21:06:45.679  INFO 45676 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 1 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(1)-CONNECTED(1)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 12, active threads = 0, queued tasks = 0, completed tasks = 12], outboundChannel[pool size = 1, active threads = 0, queued tasks = 0, completed tasks = 1], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-05-03 21:07:43.205  INFO 45676 --- [http-nio-8098-exec-9] c.b.s.w.WebSocketEventListener           : Websocket message: CONNECT

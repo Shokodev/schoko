@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.List;
+
 
 /**
  * This class used to handle the BACnet object properties between BACnet and REST
@@ -21,7 +24,7 @@ public class ObjectHandler {
 
 
    private final SimpMessagingTemplate template;
-   private ObjectService objectService;
+   private final HashMap<String,ObjectService> objectService = new HashMap<>();
    private static final Logger LOG = LoggerFactory.getLogger(ObjectHandler.class);
 
    @Autowired
@@ -36,7 +39,7 @@ public class ObjectHandler {
      */
     public void getNewPropertyStream(String objectName)  {
         ObjectService objectService = new ObjectService(this);
-        this.objectService = objectService;
+        this.objectService.put(objectName, objectService);
         objectService.clearPropertyList();
         objectService.readDataPointProperties(objectName);
         objectService.getBacnetObject().subscribeToCovRequest();
@@ -45,17 +48,17 @@ public class ObjectHandler {
     /**
      * After closing the websocket, the subscription at the remote device have to end as well and the propertyList have to be empty for next websocket stream
      */
-    public void disconnectPropertyStream(){
-        objectService.removeFromLocalDevice();
-        objectService.getBacnetObject().unsubscribeToCovRequest();
-        objectService.clearPropertyList();
+    public void disconnectPropertyStream(String objectName){
+        objectService.get(objectName).removeFromLocalDevice();
+        objectService.get(objectName).getBacnetObject().unsubscribeToCovRequest();
+        objectService.get(objectName).clearPropertyList();
     }
 
     /**
      * This method does update the properties by changes sent from the remote device
      */
-    public void  updateStream(){
-        template.convertAndSend("/broker/objectSub", objectService.getProperties());
+    public void  updateStream(String objectName){
+        template.convertAndSend("/broker/" + objectName, objectService.get(objectName).getProperties());
         LOG.info("Send updated properties");
     }
 
@@ -64,21 +67,22 @@ public class ObjectHandler {
      * @param propertyIdentifier witch property
      * @param newValue new value for property
      */
-    public void setNewValue(String propertyIdentifier, String newValue){
+    public void setNewValue(String propertyIdentifier, String newValue, String objectName){
+        ObjectService ob = objectService.get(objectName);
         try {
-            objectService.getBacnetObject().writeValue(PropertyIdentifier.forName(propertyIdentifier),
-                    BACnetTypes.getPropertyValuesByObjectType(objectService.getObjectIdentifier().getObjectType(), newValue));
+            ob.getBacnetObject().writeValue(PropertyIdentifier.forName(propertyIdentifier),
+                    BACnetTypes.getPropertyValuesByObjectType(ob.getObjectIdentifier().getObjectType(), newValue));
         } catch (Exception e){
-            LOG.warn("Can't send value: {}   -> to {}", e.getLocalizedMessage(), objectService.getObjectIdentifier());
+            LOG.warn("Can't send value: {}   -> to {}", e.getLocalizedMessage(), ob.getObjectIdentifier());
         }
     }
 
     /**
      * Use to release manual operation
      */
-    public void releaseValue(){
-        objectService.getBacnetObject().releaseManualCommand();
-        objectService.updatePropertyRelease();
+    public void releaseValue(String objectName){
+        objectService.get(objectName).getBacnetObject().releaseManualCommand();
+        objectService.get(objectName).updatePropertyRelease();
     }
 
     }
