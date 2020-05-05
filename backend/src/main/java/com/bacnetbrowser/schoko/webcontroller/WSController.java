@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,7 +43,6 @@ public class WSController {
      * @param objectName get object properties by objectName
      */
     @MessageMapping("/{objectName}")
-    @SendTo("/broker/{objectName}")
     public void subscribeProperties (@DestinationVariable String objectName) {
         LOG.info("Subscribe object: " + objectName);
         objectHandler.getNewPropertyStream(objectName);
