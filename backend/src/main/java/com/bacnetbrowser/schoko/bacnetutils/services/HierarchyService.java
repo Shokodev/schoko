@@ -48,7 +48,11 @@ public class HierarchyService {
         this.structureSeparator = structureSeparator;
         createStaticBACnetObjectLists();
         this.bacnetStructure = buildBacNetStructure();
-        this.deviceStructure = buildDeviceStructure();
+        Runnable runnable = () -> {
+            this.deviceStructure = buildDeviceStructure();
+        };
+        Thread newThread = new Thread(runnable);
+        newThread.start();
     }
 
     /**
