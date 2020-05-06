@@ -80,6 +80,7 @@
                 }
                 this.stompClient.send("/app/objectSub", {}, this.$store.getters.getObjectName)
 
+
             },
             // This Function gets called by the sompclient and passes the massage that was send by the server.
             // The body over the message gets parsed as a JSON for easier transformation.
