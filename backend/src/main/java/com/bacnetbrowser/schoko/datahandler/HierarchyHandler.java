@@ -42,14 +42,14 @@ public class HierarchyHandler {
             } else {
                 BACnetNode node = null;
                 for (int i = 1; i < splitted.length; i++) {
-                    node = structure.getChildByObjectName(splitted[i]);
+                    node = structure.getChildBySplittedObjectName(splitted[i]);
                     structure = node;
                 }
                 return node;
             }
                 } catch (NullPointerException e){
                     LOG.info("No structure yet, check settings!");
-                    return new BACnetNode("Achtung!"," ","Bitte zuerst Einstellungen vornehmen",0);
+                    return new BACnetNode("Achtung!"," ","Bitte zuerst Einstellungen vornehmen","");
                 }
         }
 

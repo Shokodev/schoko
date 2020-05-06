@@ -9,6 +9,7 @@ import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -118,15 +119,19 @@ public class HierarchyService {
      */
     private BACnetNode buildBacNetStructure() {
 
-        BACnetNode bacnetStructure = new BACnetNode(siteName, "Top node bacnet structure", siteDescription, null);
+        BACnetNode bacnetStructure = new BACnetNode(siteName, "Top node bacnet structure", siteDescription, new ArrayList<>());
         int nodeCounter = 0;
         for (String key : objectNamesToOids.keySet()) {
             String[] splittedObjectName = key.split(structureSeparator);
             for (int i = 0; i < splittedObjectName.length; i++) {
-                BACnetNode parent = getParentNode(bacnetStructure, i, splittedObjectName);
+                BACnetNode parent;
+                if (bacnetStructure.getChildren().isEmpty()) {
+                    parent = bacnetStructure;
+                }else {
+                    parent = getParentNode(bacnetStructure,i,splittedObjectName);
+                }
                 BACnetNode node = createNode((i == (splittedObjectName.length -1)),splittedObjectName[i],
-                        objectNamesToOids.get(key).getObjectType().toString(), objectNamesToDescription.get(key),
-                        obejctNamesToBACnetDevice.get(key).getInstanceNumber(), parent);
+                        objectNamesToOids.get(key).getObjectType().toString(), objectNamesToDescription.get(key), parent,key);
                 if (node != null) {
                     parent.addChild(node);
                     nodeCounter++;
@@ -152,13 +157,14 @@ public class HierarchyService {
     private BACnetNode getParentNode(BACnetNode bacnetStructure, int counter, String[] splittedObjectName) {
         BACnetNode parent = bacnetStructure;
         for (int i = 0; i < counter; i++) {
-            parent = parent.getChildByObjectName(splittedObjectName[i]);
+            parent = parent.getChildBySplittedObjectName(splittedObjectName[i]);
         }
         if (parent == null) {
             return bacnetStructure;
         }
         return parent;
     }
+
 
     /**
      * Creates a new node on dependent of its type
@@ -169,13 +175,13 @@ public class HierarchyService {
      * @param parent parent node of current object
      * @return new BACnetStructure<>
      */
-    private BACnetNode createNode(boolean lastInLoop,String splittedObjectName, String type, String description, Integer deviceID, BACnetNode parent) {
+    private BACnetNode createNode(boolean lastInLoop,String splittedObjectName, String type, String description, BACnetNode parent,String objectName) {
         if (structureElements.containsKey(splittedObjectName) && (parent.checkIfChildNodeAlreadyExists(splittedObjectName))) {
-            return new BACnetNode(splittedObjectName, structureElement, structureElements.get(splittedObjectName), null);
+            return new BACnetNode(splittedObjectName, structureElement, structureElements.get(splittedObjectName), new ArrayList<>());
         } else if (parent.checkIfChildNodeAlreadyExists(splittedObjectName) && (!type.equals(structureElement) && lastInLoop)) {
-            return new BACnetNode(splittedObjectName, type, description, deviceID);
+            return new BACnetNode(objectName, type, description, splittedObjectName);
         } else if(parent.checkIfChildNodeAlreadyExists(splittedObjectName)) {
-            return new BACnetNode(splittedObjectName, structureElement, "No structure view objects found", deviceID);
+            return new BACnetNode(splittedObjectName, structureElement, "No structure view objects found", new ArrayList<>());
         }
         return null;
     }
@@ -190,10 +196,10 @@ public class HierarchyService {
      * This method creates a structure with all remote devices and their objects
      */
     private BACnetNode buildDeviceStructure() {
-        BACnetNode deviceStructure = new BACnetNode(siteName, "Top node devices", "Alle BACnet Geräte und ihre Objekte", null);
+        BACnetNode deviceStructure = new BACnetNode(siteName, "Top node devices", "Alle BACnet Geräte und ihre Objekte", new ArrayList<>());
         int nodeCounter = 0;
         for (BACnetDevice bacnetDevice : DeviceService.getBacnetDevices()) {
-            BACnetNode device = new BACnetNode(bacnetDevice.getName().replace(structureSeparator,"-"), structureElement, "Device", bacnetDevice.getInstanceNumber());
+            BACnetNode device = new BACnetNode(bacnetDevice.getName().replace(structureSeparator,"-"), structureElement, "Device", new ArrayList<>());
             deviceStructure.addChild(device);
             for (BACnetObject bacnetObject : bacnetDevice.getBacnetObjects()) {
                 if(checkIfNecessaryForStructure(bacnetObject.getObjectType())){
@@ -218,13 +224,13 @@ public class HierarchyService {
      */
     private void addObjectToPropertyGroup(RemoteObject remoteObject, BACnetNode device) {
         ObjectType pid = remoteObject.getObjectIdentifier().getObjectType();
-        BACnetNode object = new BACnetNode(remoteObject.getObjectName(),remoteObject.getObjectIdentifier().toString(), objectNamesToDescription.get(remoteObject.getObjectName()), device.getDeviceInstanceNumber());
-        BACnetNode propertyGroup = new BACnetNode(pid.toString(), structureElement, pid.toString(), device.getDeviceInstanceNumber());
-        if (device.getChildByObjectName(propertyGroup.getObjectName()) == null) {
+        BACnetNode object = new BACnetNode(remoteObject.getObjectName(),remoteObject.getObjectIdentifier().toString(), objectNamesToDescription.get(remoteObject.getObjectName()), "Objekt");
+        BACnetNode propertyGroup = new BACnetNode(pid.toString(), structureElement, pid.toString(), new ArrayList<>());
+        if (device.getChildBySplittedObjectName(propertyGroup.getObjectName()) == null) {
             device.addChild(propertyGroup);
             propertyGroup.addChild(object);
         } else {
-            device.getChildByObjectName(propertyGroup.getObjectName()).addChild(object);
+            device.getChildBySplittedObjectName(propertyGroup.getObjectName()).addChild(object);
         }
 
     }

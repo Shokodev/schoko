@@ -11,19 +11,28 @@ import java.util.List;
  */
 public class BACnetNode {
 
-    private final String objectName;
-    private final String objectIdentifier;
-    private final String description;
-    private final Integer deviceInstanceNumber;
-    private final List<BACnetNode> children = new ArrayList<>();
+    private String name;
+    private String objectName;
+    private String objectIdentifier;
+    private String description;
+    private List<BACnetNode> children;
 
-
-    public BACnetNode(String ObjectName, String objectIdentifier, String description, Integer deviceInstanceNumber) {
-        this.objectName = ObjectName;
+    // BACnet Object
+    public BACnetNode(String objectName, String objectIdentifier, String description, String name) {
+        this.objectName = objectName;
         this.objectIdentifier = objectIdentifier;
         this.description = description;
-        this.deviceInstanceNumber = deviceInstanceNumber;
+        this.name = name;
     }
+    // Structure Object
+    public BACnetNode(String name, String objectIdentifier, String description,List<BACnetNode> children){
+        this.children = children;
+        this.description = description;
+        this.objectIdentifier = objectIdentifier;
+        this.name = name;
+    }
+
+    public String getName() { return name; }
 
     public String getObjectName() {
         return objectName;
@@ -41,10 +50,6 @@ public class BACnetNode {
         return children;
     }
 
-    public Integer getDeviceInstanceNumber() {
-        return deviceInstanceNumber;
-    }
-
     public BACnetNode addChild(BACnetNode child){
         this.children.add(child);
         return child;
@@ -58,7 +63,7 @@ public class BACnetNode {
     public boolean checkIfChildNodeAlreadyExists(String objectName){
         List<BACnetNode> children = getChildren();
         for (BACnetNode child : children) {
-            if (child.getObjectName().equals(objectName)) {
+            if (child.getName().equals(objectName)) {
                 return false;
             }
         }
@@ -67,17 +72,16 @@ public class BACnetNode {
 
     /**
      * Return a specific child of the current node by element name
-     * @param objectName object identifier
+     * @param splittedObjectName
      * @return BACnetStructure<Structure> child
      */
-    public BACnetNode getChildByObjectName(String objectName) {
+    public BACnetNode getChildBySplittedObjectName(String splittedObjectName) {
         List<BACnetNode> children = getChildren();
         for(BACnetNode child : children) {
-            if (child.getObjectName().equals(objectName)) {
+            if (child.getName().equals(splittedObjectName)) {
                 return child;
             }
         }
         return null;
     }
-
 }
