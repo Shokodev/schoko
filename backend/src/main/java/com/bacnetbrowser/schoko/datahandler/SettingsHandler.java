@@ -18,7 +18,7 @@ public class SettingsHandler {
     public static String bacnetSeparator;
     public static String localDeviceID;
     public static Integer precisionRealValue;
-    public static Integer scanSeconds;
+    public static Integer scanSeconds = 5;
 
 
 
