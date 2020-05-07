@@ -1,6 +1,7 @@
 package com.bacnetbrowser.schoko.webcontroller;
 
-import com.bacnetbrowser.schoko.datahandler.DeviceHandler;
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
+import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
 import com.bacnetbrowser.schoko.datahandler.EventHandler;
 import com.bacnetbrowser.schoko.datahandler.HierarchyHandler;
 import com.bacnetbrowser.schoko.datahandler.SettingsHandler;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 
 
 /**
@@ -29,17 +31,17 @@ public class HTTPController {
 
     private final HierarchyHandler hierarchyHandler;
     private final SettingsHandler settingsHandler;
-    private final DeviceHandler deviceHandler;
     private final EventHandler eventHandler;
+    private final DeviceService deviceService;
     static final Logger LOG = LoggerFactory.getLogger(HTTPController.class);
 
 
     @Autowired
-    public HTTPController(HierarchyHandler hierarchyHandler, SettingsHandler settingsHandler, DeviceHandler deviceHandler, EventHandler eventHandler) {
+    public HTTPController(HierarchyHandler hierarchyHandler, SettingsHandler settingsHandler, EventHandler eventHandler) {
         this.hierarchyHandler = hierarchyHandler;
         this.settingsHandler = settingsHandler;
-        this.deviceHandler = deviceHandler;
         this.eventHandler = eventHandler;
+        this.deviceService = new DeviceService();
     }
 
     /**
@@ -53,9 +55,26 @@ public class HTTPController {
     /**
      * @return complete device structure
      */
-    @GetMapping("/devices")
+    @GetMapping("/logicalview")
     public BACnetNode devcieStructure (){
         return hierarchyHandler.getDeviceStructure();
+    }
+
+    @GetMapping("/devices")
+    public ArrayList<BACnetDevice> getWaitingRoomList(){
+        deviceService.createLocalDevice();
+        return deviceService.getWaitingRoomBacnetDevices();
+    }
+
+    @PostMapping("/devices")
+    public ResponseEntity<SettingsHandler> setFinalDevices(@RequestBody ArrayList<BACnetDevice> baCnetDevices){
+        DeviceService.getBacnetDevices().addAll(baCnetDevices);
+        LOG.info("{} BACnet devices finally registered at local device", DeviceService.getBacnetDevices().size());
+        deviceService.readFinalAddedDevices();
+        LOG.info("Build structure with new settings.....");
+        hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
+        eventHandler.createEventStream();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
@@ -70,10 +89,6 @@ public class HTTPController {
         settingsHandler.setBacnetSeparator(settings.getBacnetSeparator());
         settingsHandler.setSiteDescription(settings.getSiteDescription());
         settingsHandler.setLocalDeviceID(settings.getLocalDeviceID());
-        deviceHandler.createNetwork(Integer.parseInt(settingsHandler.getPort(), 16),Integer.parseInt(settingsHandler.getLocalDeviceID()));
-        LOG.info("Build structure with new settings.....");
-        hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
-        eventHandler.createEventStream();
         return new ResponseEntity<SettingsHandler>(settings, HttpStatus.OK);
     }
 

@@ -8,16 +8,18 @@ import org.springframework.stereotype.Component;
  * @author Vogt Andreas,Daniel Reiter, Rafael Grimm
  * @version 1.0
  */
-@ConfigurationProperties(prefix = "spring.boot.config.settings")
+@ConfigurationProperties(prefix = "settings")
 @Component
 public class SettingsHandler {
 
-    private String port;
-    private String siteName;
-    private String siteDescription;
-    private String bacnetSeparator;
-    private String localDeviceID;
+    public static String port;
+    public static String siteName;
+    public static String siteDescription;
+    public static String bacnetSeparator;
+    public static String localDeviceID;
     public static Integer precisionRealValue;
+    public static Integer scanSeconds;
+
 
 
     public String getPort() {
@@ -25,7 +27,7 @@ public class SettingsHandler {
     }
 
     public void setPort(String port) {
-        this.port = port;
+        SettingsHandler.port = port;
     }
 
     public String getSiteName() {
@@ -33,7 +35,7 @@ public class SettingsHandler {
     }
 
     public void setSiteName(String siteName) {
-        this.siteName = siteName;
+        SettingsHandler.siteName = siteName;
     }
 
     public String getSiteDescription() {
@@ -41,7 +43,7 @@ public class SettingsHandler {
     }
 
     public void setSiteDescription(String siteDescription) {
-        this.siteDescription = siteDescription;
+        SettingsHandler.siteDescription = siteDescription;
     }
 
     public String getBacnetSeparator() {
@@ -49,7 +51,7 @@ public class SettingsHandler {
     }
 
     public void setBacnetSeparator(String bacnetSeparator) {
-        this.bacnetSeparator = bacnetSeparator;
+        SettingsHandler.bacnetSeparator = bacnetSeparator;
     }
 
     public String getLocalDeviceID() {
@@ -57,7 +59,7 @@ public class SettingsHandler {
     }
 
     public void setLocalDeviceID(String localDeviceID) {
-        this.localDeviceID = localDeviceID;
+        SettingsHandler.localDeviceID = localDeviceID;
     }
 
     public Integer getPrecisionRealValue() {
@@ -68,4 +70,11 @@ public class SettingsHandler {
         SettingsHandler.precisionRealValue = precisionRealValue;
     }
 
+    public static Integer getScanSeconds() {
+        return scanSeconds;
+    }
+
+    public static void setScanSeconds(Integer scanSeconds) {
+        SettingsHandler.scanSeconds = scanSeconds;
+    }
 }

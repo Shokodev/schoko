@@ -25,11 +25,12 @@ public class DeviceTest {
         ipNetworkBuilder.withLocalBindAddress(IpNetwork.DEFAULT_BIND_IP);
         ipNetworkBuilder.withBroadcast("255.255.255.255", IpNetwork.BVLC_TYPE);
         ipNetworkBuilder.withPort(47808);
-        DefaultTransport transport = new DefaultTransport(ipNetworkBuilder.build());
+        IpNetwork ipNetwork = ipNetworkBuilder.build();
+        DefaultTransport transport = new DefaultTransport(ipNetwork);
+        ipNetwork.enableBBMD();
         localDevice = new LocalDevice(localDevice_ID, transport);
         localDevice.getEventHandler().addListener(new Listener());
         localDevice.initialize();
-        localDevice.startRemoteDeviceDiscovery();
     }
 
     static class Listener extends DeviceEventAdapter {
@@ -66,6 +67,7 @@ public class DeviceTest {
             return maxAPDULengthAccepted;
         }
     }
+
 }
 
 

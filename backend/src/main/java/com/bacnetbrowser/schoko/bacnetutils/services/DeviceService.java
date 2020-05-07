@@ -3,6 +3,7 @@ package com.bacnetbrowser.schoko.bacnetutils.services;
 
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;
+import com.bacnetbrowser.schoko.datahandler.SettingsHandler;
 import com.serotonin.bacnet4j.LocalDevice;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
@@ -38,27 +39,27 @@ public class DeviceService extends DeviceEventAdapter {
 
     /**
      * Create Local Device and add listener
-     *
-     * @param port port to read BACnet Network
      */
-    public void createLocalDevice(Integer port, Integer localDevice_ID)  {
+    public void createLocalDevice()  {
         rebaseLocalDeviceIfExists();
         IpNetworkBuilder ipNetworkBuilder = new IpNetworkBuilder();
         ipNetworkBuilder.withLocalBindAddress(IpNetwork.DEFAULT_BIND_IP);
         ipNetworkBuilder.withBroadcast("255.255.255.255",IpNetwork.BVLC_TYPE);
-        ipNetworkBuilder.withPort(port);
+        ipNetworkBuilder.withPort(Integer.parseInt(SettingsHandler.port,16));
         DefaultTransport transport = new DefaultTransport(ipNetworkBuilder.build());
-        localDevice = new LocalDevice(localDevice_ID, transport);
+        localDevice = new LocalDevice(Integer.parseInt(SettingsHandler.localDeviceID), transport);
         localDevice.getEventHandler().addListener(this);
-        LOG.info("Try to initialize localdevice " + localDevice_ID);
+        LOG.info("Try to initialize localdevice " + SettingsHandler.localDeviceID);
         try {
             localDevice.initialize();
         } catch(Exception e){
             LOG.error("LocalDevice initialize failed, restart the application may solve this problem");
         }
         LOG.info("Successfully created LocalDevice " + localDevice.getInstanceNumber());
-        scanForRemoteDevices();
-        getRemoteDeviceInformation();
+        scanForRemoteDevices(SettingsHandler.scanSeconds);
+    }
+
+    public void readFinalAddedDevices(){
         setLocalDeviceAsAlarmReceiver();
         scanAndAddAllObjects();
     }
@@ -66,19 +67,18 @@ public class DeviceService extends DeviceEventAdapter {
     /**
      *Send WhoIs request to the BACnet network
      */
-    private void scanForRemoteDevices()  {
+    private void scanForRemoteDevices(int scanSeconds)  {
         LOG.info("Scan for remote devices.........");
         try {
             localDevice.startRemoteDeviceDiscovery();
-            Thread.sleep(1000 * 5);
+            Thread.sleep(scanSeconds * 1000);
             //End scan after 5s if no device is found
             if(waitingRoomBacnetDevices.isEmpty()){
                 localDevice.terminate();
                 LOG.warn("No remote devices found");
             } else {
                 localDevice.getEventHandler().removeListener(this);
-                bacnetDevices.addAll(waitingRoomBacnetDevices);
-                LOG.info("{} BACnet devices finally registered at local device", bacnetDevices.size());
+                getRemoteDeviceInformation();
             }
         }catch(InterruptedException bac){
             LOG.info("Network scan failure, restart the application may solve this problem");
@@ -129,7 +129,7 @@ public class DeviceService extends DeviceEventAdapter {
      * Reads and save more information about each remote device
      */
     private void getRemoteDeviceInformation() {
-        for (BACnetDevice bacnetDevice : bacnetDevices) {
+        for (BACnetDevice bacnetDevice : waitingRoomBacnetDevices) {
             try {
                 DiscoveryUtils.getExtendedDeviceInformation(localDevice, bacnetDevice);
             } catch (BACnetException e) {
@@ -168,11 +168,11 @@ public class DeviceService extends DeviceEventAdapter {
         }
     }
 
-    static ArrayList<BACnetDevice> getBacnetDevices() {
+    public static ArrayList<BACnetDevice> getBacnetDevices() {
         return bacnetDevices;
     }
 
-    static BACnetDevice getBacnetDevice(ObjectIdentifier oid){
+    public static BACnetDevice getBacnetDevice(ObjectIdentifier oid){
         for(BACnetDevice dv : bacnetDevices){
             if(dv.getObjectIdentifier().equals(oid)){
                 return dv;
@@ -181,7 +181,8 @@ public class DeviceService extends DeviceEventAdapter {
         return null;
     }
 
-    public static ArrayList<BACnetDevice> getWaitingRoomBacnetDevices() {
+    public ArrayList<BACnetDevice> getWaitingRoomBacnetDevices() {
         return waitingRoomBacnetDevices;
     }
+
 }
