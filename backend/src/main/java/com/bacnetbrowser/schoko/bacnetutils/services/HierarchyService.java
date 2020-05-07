@@ -121,8 +121,8 @@ public class HierarchyService {
 
         BACnetNode bacnetStructure = new BACnetNode(siteName, "Top node bacnet structure", siteDescription, new ArrayList<>());
         int nodeCounter = 0;
-        for (String key : objectNamesToOids.keySet()) {
-            String[] splittedObjectName = key.split(structureSeparator);
+        for (String objectName : objectNamesToOids.keySet()) {
+            String[] splittedObjectName = objectName.split(structureSeparator);
             for (int i = 0; i < splittedObjectName.length; i++) {
                 BACnetNode parent;
                 if (bacnetStructure.getChildren().isEmpty()) {
@@ -131,7 +131,7 @@ public class HierarchyService {
                     parent = getParentNode(bacnetStructure,i,splittedObjectName);
                 }
                 BACnetNode node = createNode((i == (splittedObjectName.length -1)),splittedObjectName[i],
-                        objectNamesToOids.get(key).getObjectType().toString(), objectNamesToDescription.get(key), parent,key);
+                        objectNamesToOids.get(objectName).getObjectType().toString(), objectNamesToDescription.get(objectName), parent,objectName);
                 if (node != null) {
                     parent.addChild(node);
                     nodeCounter++;
@@ -158,9 +158,6 @@ public class HierarchyService {
         BACnetNode parent = bacnetStructure;
         for (int i = 0; i < counter; i++) {
             parent = parent.getChildBySplittedObjectName(splittedObjectName[i]);
-        }
-        if (parent == null) {
-            return bacnetStructure;
         }
         return parent;
     }
@@ -226,11 +223,11 @@ public class HierarchyService {
         ObjectType pid = remoteObject.getObjectIdentifier().getObjectType();
         BACnetNode object = new BACnetNode(remoteObject.getObjectName(),remoteObject.getObjectIdentifier().toString(), objectNamesToDescription.get(remoteObject.getObjectName()), "Objekt");
         BACnetNode propertyGroup = new BACnetNode(pid.toString(), structureElement, pid.toString(), new ArrayList<>());
-        if (device.getChildBySplittedObjectName(propertyGroup.getObjectName()) == null) {
+        if (device.getChildBySplittedObjectName(propertyGroup.getName()) == null) {
             device.addChild(propertyGroup);
             propertyGroup.addChild(object);
         } else {
-            device.getChildBySplittedObjectName(propertyGroup.getObjectName()).addChild(object);
+            device.getChildBySplittedObjectName(propertyGroup.getName()).addChild(object);
         }
 
     }

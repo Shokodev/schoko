@@ -11,11 +11,11 @@ import java.util.List;
  */
 public class BACnetNode {
 
-    private String name;
-    private String objectName;
-    private String objectIdentifier;
-    private String description;
+    private final String name;
+    private final String objectIdentifier;
+    private final String description;
     private List<BACnetNode> children;
+    private String objectName;
 
     // BACnet Object
     public BACnetNode(String objectName, String objectIdentifier, String description, String name) {
@@ -72,7 +72,7 @@ public class BACnetNode {
 
     /**
      * Return a specific child of the current node by element name
-     * @param splittedObjectName
+     * @param splittedObjectName splitted objectName
      * @return BACnetStructure<Structure> child
      */
     public BACnetNode getChildBySplittedObjectName(String splittedObjectName) {
@@ -84,4 +84,5 @@ public class BACnetNode {
         }
         return null;
     }
+
 }
