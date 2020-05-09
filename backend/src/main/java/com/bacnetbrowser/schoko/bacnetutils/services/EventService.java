@@ -154,7 +154,7 @@ public class EventService extends DeviceEventAdapter  {
      */
     public void getEventInformation()  {
         LOG.info("Ask for event information");
-        for (BACnetDevice bacnetDevice : DeviceService.getBacnetDevices()) {
+        for (BACnetDevice bacnetDevice : DeviceService.bacnetDevices) {
             GetEnrollmentSummaryRequest request = new GetEnrollmentSummaryRequest(
                     GetEnrollmentSummaryRequest.AcknowledgmentFilter.all,null,
                         null,null,null,null);

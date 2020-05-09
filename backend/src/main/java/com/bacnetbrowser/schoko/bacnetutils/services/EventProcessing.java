@@ -61,7 +61,7 @@ public class EventProcessing implements Runnable {
     public void run() {
         // Events with type "Event" will be ignored
         try {
-            BACnetDevice bacnetDevice = DeviceService.getBacnetDevice(initiatingDeviceIdentifier);
+            BACnetDevice bacnetDevice = DeviceService.getBACnetDevice(initiatingDeviceIdentifier);
             BACnetObject bacnetObject = bacnetDevice.getBACnetObject(eventObjectIdentifier);
             BACnetObject notiClass = bacnetDevice.getBACnetObject(new ObjectIdentifier(ObjectType.notificationClass,notificationClass.intValue()));
             EventTransitionBits eventTransitionBits = notiClass.getEventTransitionBits();

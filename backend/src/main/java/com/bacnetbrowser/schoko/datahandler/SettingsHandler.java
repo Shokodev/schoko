@@ -70,11 +70,11 @@ public class SettingsHandler {
         SettingsHandler.precisionRealValue = precisionRealValue;
     }
 
-    public static Integer getScanSeconds() {
+    public Integer getScanSeconds() {
         return scanSeconds;
     }
 
-    public static void setScanSeconds(Integer scanSeconds) {
+    public void setScanSeconds(Integer scanSeconds) {
         SettingsHandler.scanSeconds = scanSeconds;
     }
 }

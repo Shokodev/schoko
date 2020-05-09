@@ -22,18 +22,19 @@ import com.serotonin.bacnet4j.util.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DeviceService extends DeviceEventAdapter {
     public static LocalDevice localDevice;
-    private static final ArrayList<BACnetDevice> bacnetDevices = new ArrayList<>();
-    private static final ArrayList<BACnetDevice> waitingRoomBacnetDevices = new ArrayList<>();
+    public static ArrayList<BACnetDevice> bacnetDevices = new ArrayList<>();
+    public static HashMap<Integer, BACnetDevice> waitingRoomBacnetDevices = new HashMap<>();
     private static final Logger LOG = LoggerFactory.getLogger(DeviceService.class);
 
 
     @Override
     public void iAmReceived(RemoteDevice d) {
         BACnetDevice bacnetDevice = new BACnetDevice(localDevice, d.getInstanceNumber(), d.getAddress(),d.getSegmentationSupported());
-        waitingRoomBacnetDevices.add(bacnetDevice);
+        waitingRoomBacnetDevices.put(bacnetDevice.getInstanceNumber(),bacnetDevice);
         LOG.info("Remote device " + d.getInstanceNumber() + " registered in waiting room of LocalDevice");
     }
 
@@ -100,7 +101,7 @@ public class DeviceService extends DeviceEventAdapter {
      *
      */
     private void setLocalDeviceAsAlarmReceiver() {
-        if (bacnetDevices.size() > 0){
+        if (!bacnetDevices.isEmpty()){
             for (BACnetDevice bacnetDevice : bacnetDevices) {
                 SequenceOf<ObjectIdentifier> oids = null;
                 try {
@@ -129,7 +130,7 @@ public class DeviceService extends DeviceEventAdapter {
      * Reads and save more information about each remote device
      */
     private void getRemoteDeviceInformation() {
-        for (BACnetDevice bacnetDevice : waitingRoomBacnetDevices) {
+        for (BACnetDevice bacnetDevice : waitingRoomBacnetDevices.values()) {
             try {
                 DiscoveryUtils.getExtendedDeviceInformation(localDevice, bacnetDevice);
             } catch (BACnetException e) {
@@ -144,8 +145,8 @@ public class DeviceService extends DeviceEventAdapter {
     private void rebaseLocalDeviceIfExists(){
         if(localDevice != null){
             localDevice.terminate();
-            getBacnetDevices().clear();
-            getWaitingRoomBacnetDevices().clear();
+            bacnetDevices.clear();
+            waitingRoomBacnetDevices.clear();
             LOG.info("*********************Reset*********************");
 
         }
@@ -155,7 +156,6 @@ public class DeviceService extends DeviceEventAdapter {
      * Reads all BACnet Objects of all remote devises
      */
     private void scanAndAddAllObjects(){
-
         for (BACnetDevice bacnetDevice: bacnetDevices) {
             try {
                 SequenceOf<ObjectIdentifier> oids = RequestUtils.getObjectList(localDevice,bacnetDevice);
@@ -168,21 +168,14 @@ public class DeviceService extends DeviceEventAdapter {
         }
     }
 
-    public static ArrayList<BACnetDevice> getBacnetDevices() {
-        return bacnetDevices;
-    }
-
-    public static BACnetDevice getBacnetDevice(ObjectIdentifier oid){
-        for(BACnetDevice dv : bacnetDevices){
-            if(dv.getObjectIdentifier().equals(oid)){
-                return dv;
+    public static BACnetDevice getBACnetDevice(ObjectIdentifier oid){
+        for(BACnetDevice device: bacnetDevices){
+            if(device.getObjectIdentifier().equals(oid)){
+                return device;
             }
         }
         return null;
     }
 
-    public ArrayList<BACnetDevice> getWaitingRoomBacnetDevices() {
-        return waitingRoomBacnetDevices;
-    }
 
 }

@@ -60,7 +60,7 @@ public class HierarchyService {
      * Reads all BACnet Objects of all remote devises
      */
     private void createStaticBACnetObjectLists() {
-        for (BACnetDevice bacnetDevice : DeviceService.getBacnetDevices()) {
+        for (BACnetDevice bacnetDevice : DeviceService.bacnetDevices) {
                 for (BACnetObject bacnetObject : bacnetDevice.getBacnetObjects()) {
                     if (checkIfNecessaryForStructure(bacnetObject.getObjectIdentifier().getObjectType())) {
                         objectNamesToOids.put(bacnetObject.getObjectName(), bacnetObject.getObjectIdentifier());
@@ -195,7 +195,7 @@ public class HierarchyService {
     private BACnetNode buildDeviceStructure() {
         BACnetNode deviceStructure = new BACnetNode(siteName, "Top node devices", "Alle BACnet Geräte und ihre Objekte", new ArrayList<>());
         int nodeCounter = 0;
-        for (BACnetDevice bacnetDevice : DeviceService.getBacnetDevices()) {
+        for (BACnetDevice bacnetDevice : DeviceService.bacnetDevices) {
             BACnetNode device = new BACnetNode(bacnetDevice.getName().replace(structureSeparator,"-"), structureElement, "Device", new ArrayList<>());
             deviceStructure.addChild(device);
             for (BACnetObject bacnetObject : bacnetDevice.getBacnetObjects()) {

@@ -1,6 +1,7 @@
 package com.bacnetbrowser.schoko.webcontroller;
 
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
+import com.bacnetbrowser.schoko.bacnetutils.models.WaitingRoomDeviceFrontend;
 import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
 import com.bacnetbrowser.schoko.datahandler.EventHandler;
 import com.bacnetbrowser.schoko.datahandler.HierarchyHandler;
@@ -32,16 +33,16 @@ public class HTTPController {
     private final HierarchyHandler hierarchyHandler;
     private final SettingsHandler settingsHandler;
     private final EventHandler eventHandler;
-    private final DeviceService deviceService;
+    private final DeviceService deviceService = new DeviceService();
     static final Logger LOG = LoggerFactory.getLogger(HTTPController.class);
 
 
     @Autowired
-    public HTTPController(HierarchyHandler hierarchyHandler, SettingsHandler settingsHandler, EventHandler eventHandler) {
+    public HTTPController(HierarchyHandler hierarchyHandler, SettingsHandler settingsHandler,
+                          EventHandler eventHandler) {
         this.hierarchyHandler = hierarchyHandler;
         this.settingsHandler = settingsHandler;
         this.eventHandler = eventHandler;
-        this.deviceService = new DeviceService();
     }
 
     /**
@@ -61,26 +62,36 @@ public class HTTPController {
     }
 
     @GetMapping("/devices")
-    public ArrayList<BACnetDevice> getWaitingRoomList(){
-        deviceService.createLocalDevice();
-        return deviceService.getWaitingRoomBacnetDevices();
+    public ArrayList<WaitingRoomDeviceFrontend> getWaitingRoomList(){
+        ArrayList<WaitingRoomDeviceFrontend> list = new ArrayList<>();
+       deviceService.createLocalDevice();
+        for(BACnetDevice device : DeviceService.waitingRoomBacnetDevices.values()){
+            WaitingRoomDeviceFrontend deviceFD = new WaitingRoomDeviceFrontend(
+                    device.getName(),device.getModelName(),
+                    device.getAddress().getMacAddress().toString(),
+                    device.getInstanceNumber());
+            list.add(deviceFD);
+        }
+        return list;
     }
 
-    @PostMapping("/devices")
-    public ResponseEntity<SettingsHandler> setFinalDevices(@RequestBody ArrayList<BACnetDevice> baCnetDevices){
-        DeviceService.getBacnetDevices().addAll(baCnetDevices);
-        LOG.info("{} BACnet devices finally registered at local device", DeviceService.getBacnetDevices().size());
+    @PostMapping(value = "/devices")
+    public ResponseEntity<SettingsHandler> setFinalDevices(@RequestBody ArrayList<WaitingRoomDeviceFrontend> bacnetDevices){
+        LOG.info("Received wanted list from frontend with: {} devices",bacnetDevices.size());
+        bacnetDevices.forEach(device -> {
+            DeviceService.bacnetDevices.add(DeviceService.waitingRoomBacnetDevices.get(device.getInstanceNumber()));
+        });
+        LOG.info("{} BACnet devices finally registered at local device", DeviceService.bacnetDevices.size());
         deviceService.readFinalAddedDevices();
         LOG.info("Build structure with new settings.....");
-        hierarchyHandler.createStructure(settingsHandler.getSiteName(),settingsHandler.getSiteDescription(),settingsHandler.getBacnetSeparator());
+        hierarchyHandler.createStructure();
         eventHandler.createEventStream();
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
      * update Settings in settingsHandler and the settings store
-     * @param settings from Client
-     * @return new settings
+     * @return OK if success
      */
     @PostMapping(value = "/settings")
     public ResponseEntity<SettingsHandler> updateSettingsAndBuildProcess(@RequestBody SettingsHandler settings) {
@@ -89,7 +100,9 @@ public class HTTPController {
         settingsHandler.setBacnetSeparator(settings.getBacnetSeparator());
         settingsHandler.setSiteDescription(settings.getSiteDescription());
         settingsHandler.setLocalDeviceID(settings.getLocalDeviceID());
-        return new ResponseEntity<SettingsHandler>(settings, HttpStatus.OK);
+        settingsHandler.setPrecisionRealValue(settings.getPrecisionRealValue());
+        settingsHandler.setScanSeconds(settings.getScanSeconds());
+        return new ResponseEntity<>(settings, HttpStatus.OK);
     }
 
     /**

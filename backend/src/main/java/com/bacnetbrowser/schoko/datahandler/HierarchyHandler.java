@@ -18,13 +18,11 @@ import org.springframework.stereotype.Component;
 public class HierarchyHandler {
 
     private final HierarchyService hierarchyService;
-    private final SettingsHandler settingsHandler;
     private static final Logger LOG = LoggerFactory.getLogger(HierarchyService.class);
 
-    @Autowired
-    public HierarchyHandler(SettingsHandler settingsHandler) {
+
+    public HierarchyHandler() {
         this.hierarchyService = new HierarchyService();
-        this.settingsHandler = settingsHandler;
     }
 
     /**
@@ -34,10 +32,10 @@ public class HierarchyHandler {
      */
     public BACnetNode getNodeByObjectName(String objectName) {
             BACnetNode structure = getBacnetStructure();
-            String[] splitted = objectName.split(settingsHandler.getBacnetSeparator());
+            String[] splitted = objectName.split(SettingsHandler.siteName);
         try {
             //Check if its the top element
-            if ((splitted.length == 1) && (settingsHandler.getSiteName().equals(objectName))) {
+            if ((splitted.length == 1) && (SettingsHandler.siteName.equals(objectName))) {
                 return structure;
             } else {
                 BACnetNode node = null;
@@ -55,14 +53,11 @@ public class HierarchyHandler {
 
     /**
      * delete structure if exists, read BacNet network and create new structure
-     * @param siteName defined in defaultSettings
-     * @param siteDescription defined in defaultSettings
-     * @param structureSeparator defined in defaultSettings
      */
-    public void createStructure(String siteName, String siteDescription, String structureSeparator){
+    public void createStructure(){
         hierarchyService.deleteStructure();
-        hierarchyService.create(siteName, siteDescription, structureSeparator);
-
+        hierarchyService.create(SettingsHandler.siteName, SettingsHandler.siteDescription,
+                SettingsHandler.bacnetSeparator);
     }
 
     public BACnetNode getBacnetStructure() {
