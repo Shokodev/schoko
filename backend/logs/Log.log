@@ -1,175 +1,35 @@
-2020-05-07 19:44:44.207  INFO 49952 --- [main] c.b.schoko.SchokoApplicationTests        : Starting SchokoApplicationTests on DESKTOP-ANDREAS with PID 49952 (started by admin in C:\Users\admin\IdeaProjects\schoko\backend)
-2020-05-07 19:44:44.214  INFO 49952 --- [main] c.b.schoko.SchokoApplicationTests        : No active profile set, falling back to default profiles: default
-2020-05-07 19:44:45.176  INFO 49952 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-05-07 19:44:45.255  INFO 49952 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68ms. Found 1 repository interfaces.
-2020-05-07 19:44:45.699  INFO 49952 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-05-07 19:44:45.971  INFO 49952 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-07 19:44:46.072  INFO 49952 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
-2020-05-07 19:44:46.232  INFO 49952 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-07 19:44:46.600  INFO 49952 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
-2020-05-07 19:44:46.647  INFO 49952 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-07 19:44:46.726  INFO 49952 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-07 19:44:46.735  INFO 49952 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
-2020-05-07 19:44:47.498  INFO 49952 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-07 19:44:47.506  INFO 49952 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-07 19:44:47.698  INFO 49952 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2020-05-07 19:44:47.722  INFO 49952 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2020-05-07 19:44:48.251  INFO 49952 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2020-05-07 19:44:48.304  INFO 49952 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2020-05-07 19:44:49.114  INFO 49952 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
-2020-05-07 19:44:49.570  INFO 49952 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-2020-05-07 19:44:49.628  INFO 49952 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2020-05-07 19:44:49.629  INFO 49952 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-05-07 19:44:49.629  INFO 49952 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2020-05-07 19:44:49.645  INFO 49952 --- [main] c.b.schoko.SchokoApplicationTests        : Started SchokoApplicationTests in 5.752 seconds (JVM running for 7.005)
-2020-05-07 19:44:49.983  INFO 49952 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2020-05-07 19:44:49.983  INFO 49952 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-05-07 19:44:49.984  INFO 49952 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2020-05-07 19:44:49.986  INFO 49952 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2020-05-07 19:44:49.987  INFO 49952 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2020-05-07 19:44:49.988  INFO 49952 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2020-05-07 19:44:49.988  INFO 49952 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2020-05-07 19:44:49.988  INFO 49952 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-05-07 19:44:49.989  INFO 49952 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-05-07 19:44:50.106  INFO 49952 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2020-05-07 19:44:50.109  INFO 49952 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2020-05-07 19:47:29.990  INFO 32208 --- [main] c.b.schoko.SchokoApplicationTests        : Starting SchokoApplicationTests on DESKTOP-ANDREAS with PID 32208 (started by admin in C:\Users\admin\IdeaProjects\schoko\backend)
-2020-05-07 19:47:29.992  INFO 32208 --- [main] c.b.schoko.SchokoApplicationTests        : No active profile set, falling back to default profiles: default
-2020-05-07 19:47:30.883  INFO 32208 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-05-07 19:47:30.953  INFO 32208 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61ms. Found 1 repository interfaces.
-2020-05-07 19:47:31.364  INFO 32208 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-05-07 19:47:31.656  INFO 32208 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-07 19:47:31.758  INFO 32208 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
-2020-05-07 19:47:31.940  INFO 32208 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-07 19:47:32.362  INFO 32208 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
-2020-05-07 19:47:32.401  INFO 32208 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-07 19:47:32.474  INFO 32208 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-07 19:47:32.486  INFO 32208 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
-2020-05-07 19:47:33.204  INFO 32208 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-07 19:47:33.211  INFO 32208 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-07 19:47:33.344  INFO 32208 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2020-05-07 19:47:33.362  INFO 32208 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2020-05-07 19:47:33.768  INFO 32208 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2020-05-07 19:47:33.804  INFO 32208 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2020-05-07 19:47:34.388  INFO 32208 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
-2020-05-07 19:47:34.752  INFO 32208 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-2020-05-07 19:47:34.792  INFO 32208 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2020-05-07 19:47:34.792  INFO 32208 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-05-07 19:47:34.793  INFO 32208 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2020-05-07 19:47:34.807  INFO 32208 --- [main] c.b.schoko.SchokoApplicationTests        : Started SchokoApplicationTests in 5.154 seconds (JVM running for 6.406)
-2020-05-07 19:47:35.051  INFO 32208 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2020-05-07 19:47:35.052  INFO 32208 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-05-07 19:47:35.052  INFO 32208 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2020-05-07 19:47:35.055  INFO 32208 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2020-05-07 19:47:35.055  INFO 32208 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2020-05-07 19:47:35.056  INFO 32208 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2020-05-07 19:47:35.056  INFO 32208 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2020-05-07 19:47:35.056  INFO 32208 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-05-07 19:47:35.057  INFO 32208 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-05-07 19:47:35.170  INFO 32208 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2020-05-07 19:47:35.173  INFO 32208 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2020-05-07 19:48:10.314  INFO 24304 --- [main] c.b.schoko.SchokoApplicationTests        : Starting SchokoApplicationTests on DESKTOP-ANDREAS with PID 24304 (started by admin in C:\Users\admin\IdeaProjects\schoko\backend)
-2020-05-07 19:48:10.316  INFO 24304 --- [main] c.b.schoko.SchokoApplicationTests        : No active profile set, falling back to default profiles: default
-2020-05-07 19:48:11.204  INFO 24304 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-05-07 19:48:11.278  INFO 24304 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65ms. Found 1 repository interfaces.
-2020-05-07 19:48:11.681  INFO 24304 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-05-07 19:48:11.964  INFO 24304 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-07 19:48:12.061  INFO 24304 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
-2020-05-07 19:48:12.239  INFO 24304 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-07 19:48:12.607  INFO 24304 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
-2020-05-07 19:48:12.661  INFO 24304 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-07 19:48:12.746  INFO 24304 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-07 19:48:12.756  INFO 24304 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
-2020-05-07 19:48:13.443  INFO 24304 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-07 19:48:13.449  INFO 24304 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-07 19:48:13.572  INFO 24304 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2020-05-07 19:48:13.581  INFO 24304 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2020-05-07 19:48:13.941  INFO 24304 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2020-05-07 19:48:13.974  INFO 24304 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2020-05-07 19:48:14.581  INFO 24304 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
-2020-05-07 19:48:14.931  INFO 24304 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-2020-05-07 19:48:14.966  INFO 24304 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2020-05-07 19:48:14.967  INFO 24304 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-05-07 19:48:14.967  INFO 24304 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2020-05-07 19:48:14.978  INFO 24304 --- [main] c.b.schoko.SchokoApplicationTests        : Started SchokoApplicationTests in 5.001 seconds (JVM running for 6.214)
-2020-05-07 19:48:15.201  INFO 24304 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2020-05-07 19:48:15.202  INFO 24304 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-05-07 19:48:15.202  INFO 24304 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2020-05-07 19:48:15.206  INFO 24304 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2020-05-07 19:48:15.206  INFO 24304 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2020-05-07 19:48:15.207  INFO 24304 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2020-05-07 19:48:15.208  INFO 24304 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2020-05-07 19:48:15.208  INFO 24304 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-05-07 19:48:15.209  INFO 24304 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-05-07 19:48:15.325  INFO 24304 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2020-05-07 19:48:15.328  INFO 24304 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2020-05-07 19:50:17.407  INFO 15412 --- [main] c.b.schoko.SchokoApplicationTests        : Starting SchokoApplicationTests on DESKTOP-ANDREAS with PID 15412 (started by admin in C:\Users\admin\IdeaProjects\schoko\backend)
-2020-05-07 19:50:17.410  INFO 15412 --- [main] c.b.schoko.SchokoApplicationTests        : No active profile set, falling back to default profiles: default
-2020-05-07 19:50:18.367  INFO 15412 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-05-07 19:50:18.444  INFO 15412 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 67ms. Found 1 repository interfaces.
-2020-05-07 19:50:18.861  INFO 15412 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-05-07 19:50:19.175  INFO 15412 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-07 19:50:19.306  INFO 15412 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
-2020-05-07 19:50:19.494  INFO 15412 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-07 19:50:19.878  INFO 15412 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
-2020-05-07 19:50:19.919  INFO 15412 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-07 19:50:20.011  INFO 15412 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-07 19:50:20.021  INFO 15412 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
-2020-05-07 19:50:20.755  INFO 15412 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-07 19:50:20.762  INFO 15412 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-07 19:50:20.880  INFO 15412 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2020-05-07 19:50:20.891  INFO 15412 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2020-05-07 19:50:21.268  INFO 15412 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2020-05-07 19:50:21.315  INFO 15412 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2020-05-07 19:50:21.939  INFO 15412 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
-2020-05-07 19:50:22.280  INFO 15412 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-2020-05-07 19:50:22.318  INFO 15412 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2020-05-07 19:50:22.319  INFO 15412 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-05-07 19:50:22.319  INFO 15412 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2020-05-07 19:50:22.330  INFO 15412 --- [main] c.b.schoko.SchokoApplicationTests        : Started SchokoApplicationTests in 5.321 seconds (JVM running for 6.851)
-2020-05-07 19:50:22.554  INFO 15412 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2020-05-07 19:50:22.554  INFO 15412 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-05-07 19:50:22.554  INFO 15412 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2020-05-07 19:50:22.557  INFO 15412 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2020-05-07 19:50:22.557  INFO 15412 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2020-05-07 19:50:22.558  INFO 15412 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2020-05-07 19:50:22.558  INFO 15412 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2020-05-07 19:50:22.558  INFO 15412 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-05-07 19:50:22.559  INFO 15412 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-05-07 19:50:22.671  INFO 15412 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2020-05-07 19:50:22.675  INFO 15412 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2020-05-07 19:53:01.009  INFO 34980 --- [main] c.b.schoko.SchokoApplicationTests        : Starting SchokoApplicationTests on DESKTOP-ANDREAS with PID 34980 (started by admin in C:\Users\admin\IdeaProjects\schoko\backend)
-2020-05-07 19:53:01.011  INFO 34980 --- [main] c.b.schoko.SchokoApplicationTests        : No active profile set, falling back to default profiles: default
-2020-05-07 19:53:01.901  INFO 34980 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-05-07 19:53:01.973  INFO 34980 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63ms. Found 1 repository interfaces.
-2020-05-07 19:53:02.408  INFO 34980 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-05-07 19:53:02.676  INFO 34980 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-07 19:53:02.774  INFO 34980 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
-2020-05-07 19:53:02.933  INFO 34980 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-07 19:53:03.301  INFO 34980 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
-2020-05-07 19:53:03.346  INFO 34980 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-07 19:53:03.426  INFO 34980 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-07 19:53:03.435  INFO 34980 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
-2020-05-07 19:53:04.131  INFO 34980 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-07 19:53:04.138  INFO 34980 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-07 19:53:04.256  INFO 34980 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2020-05-07 19:53:04.265  INFO 34980 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2020-05-07 19:53:04.673  INFO 34980 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2020-05-07 19:53:04.710  INFO 34980 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2020-05-07 19:53:05.331  INFO 34980 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
-2020-05-07 19:53:05.661  INFO 34980 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-2020-05-07 19:53:05.696  INFO 34980 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2020-05-07 19:53:05.697  INFO 34980 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-05-07 19:53:05.697  INFO 34980 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2020-05-07 19:53:05.707  INFO 34980 --- [main] c.b.schoko.SchokoApplicationTests        : Started SchokoApplicationTests in 5.011 seconds (JVM running for 6.282)
-2020-05-07 19:53:05.924  INFO 34980 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2020-05-07 19:53:05.925  INFO 34980 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-05-07 19:53:05.925  INFO 34980 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2020-05-07 19:53:05.927  INFO 34980 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2020-05-07 19:53:05.927  INFO 34980 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2020-05-07 19:53:05.928  INFO 34980 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2020-05-07 19:53:05.928  INFO 34980 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2020-05-07 19:53:05.929  INFO 34980 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-05-07 19:53:05.929  INFO 34980 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-05-07 19:53:06.040  INFO 34980 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2020-05-07 19:53:06.044  INFO 34980 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-05-08 18:55:21.577  INFO 44640 --- [main] c.b.schoko.SchokoApplicationTests        : Starting SchokoApplicationTests on DESKTOP-ANDREAS with PID 44640 (started by admin in C:\Users\admin\IdeaProjects\schoko\backend)
+2020-05-08 18:55:21.582  INFO 44640 --- [main] c.b.schoko.SchokoApplicationTests        : No active profile set, falling back to default profiles: default
+2020-05-08 18:55:22.445  INFO 44640 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-05-08 18:55:22.526  INFO 44640 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 69ms. Found 1 repository interfaces.
+2020-05-08 18:55:22.930  INFO 44640 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-08 18:55:23.252  INFO 44640 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-08 18:55:23.350  INFO 44640 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
+2020-05-08 18:55:23.516  INFO 44640 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-08 18:55:23.902  INFO 44640 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-05-08 18:55:23.941  INFO 44640 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-08 18:55:24.016  INFO 44640 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-08 18:55:24.025  INFO 44640 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2020-05-08 18:55:24.694  INFO 44640 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-08 18:55:24.701  INFO 44640 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-08 18:55:24.825  INFO 44640 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-05-08 18:55:24.835  INFO 44640 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-05-08 18:55:25.212  INFO 44640 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-05-08 18:55:25.251  INFO 44640 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-05-08 18:55:25.860  INFO 44640 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
+2020-05-08 18:55:26.253  INFO 44640 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-05-08 18:55:26.301  INFO 44640 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-05-08 18:55:26.302  INFO 44640 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-05-08 18:55:26.302  INFO 44640 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-05-08 18:55:26.318  INFO 44640 --- [main] c.b.schoko.SchokoApplicationTests        : Started SchokoApplicationTests in 5.056 seconds (JVM running for 6.431)
+2020-05-08 18:55:26.552  INFO 44640 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2020-05-08 18:55:26.553  INFO 44640 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-05-08 18:55:26.553  INFO 44640 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2020-05-08 18:55:26.556  INFO 44640 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2020-05-08 18:55:26.556  INFO 44640 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-05-08 18:55:26.557  INFO 44640 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-05-08 18:55:26.557  INFO 44640 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-05-08 18:55:26.557  INFO 44640 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-05-08 18:55:26.557  INFO 44640 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2020-05-08 18:55:26.672  INFO 44640 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-05-08 18:55:26.682  INFO 44640 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

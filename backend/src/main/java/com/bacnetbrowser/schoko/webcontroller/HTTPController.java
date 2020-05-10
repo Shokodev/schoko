@@ -86,6 +86,7 @@ public class HTTPController {
         LOG.info("Build structure with new settings.....");
         hierarchyHandler.createStructure();
         eventHandler.createEventStream();
+        LOG.info("BACnet devices ready, notify frontend with: {}", HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -102,6 +103,7 @@ public class HTTPController {
         settingsHandler.setLocalDeviceID(settings.getLocalDeviceID());
         settingsHandler.setPrecisionRealValue(settings.getPrecisionRealValue());
         settingsHandler.setScanSeconds(settings.getScanSeconds());
+        LOG.info("New settings saved, notify frontend with: {}", HttpStatus.OK);
         return new ResponseEntity<>(settings, HttpStatus.OK);
     }
 
