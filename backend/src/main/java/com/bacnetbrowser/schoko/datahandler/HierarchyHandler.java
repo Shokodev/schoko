@@ -32,7 +32,7 @@ public class HierarchyHandler {
      */
     public BACnetNode getNodeByObjectName(String objectName) {
             BACnetNode structure = getBacnetStructure();
-            String[] splitted = objectName.split(SettingsHandler.siteName);
+            String[] splitted = objectName.split(SettingsHandler.bacnetSeparator);
         try {
             //Check if its the top element
             if ((splitted.length == 1) && (SettingsHandler.siteName.equals(objectName))) {

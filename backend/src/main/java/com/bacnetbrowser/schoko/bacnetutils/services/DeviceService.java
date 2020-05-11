@@ -33,7 +33,8 @@ public class DeviceService extends DeviceEventAdapter {
 
     @Override
     public void iAmReceived(RemoteDevice d) {
-        BACnetDevice bacnetDevice = new BACnetDevice(localDevice, d.getInstanceNumber(), d.getAddress(),d.getSegmentationSupported());
+        BACnetDevice bacnetDevice = new BACnetDevice(localDevice, d.getInstanceNumber(), d.getAddress(),
+                d.getSegmentationSupported(), d.getVendorIdentifier(), d.getMaxAPDULengthAccepted());
         waitingRoomBacnetDevices.put(bacnetDevice.getInstanceNumber(),bacnetDevice);
         LOG.info("Remote device " + d.getInstanceNumber() + " registered in waiting room of LocalDevice");
     }

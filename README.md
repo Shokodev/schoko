@@ -144,3 +144,55 @@ Respon Example(Nested object)
         ...
                
 ```
+```
+/structure/{objectName}
+--------------
+Get just one "Node" object with his children of the nested tree object "BACnet structure".
+
+-> TODO, function is not satisfiy!
+Object name has to be like: Anlage'B'H'HGrp'Hcrv.SpTFl
+That means that the object name has to start with the costum sitenam
+
+Respon Example (Node object with his children)
+--------------
+{
+    "name": "HGrp",
+    "objectIdentifier": "Structure Element",
+    "description": "Heizkreis",
+    "children": [
+        {
+            "name": "Hra.TOaEf",
+            "objectIdentifier": "analog-value",
+            "description": "Wirksame Aussentemperatur",
+            "children": null,
+            "objectName": "B'H'HGrp'Hra.TOaEf"
+        },
+        {
+            "name": "Hra.ShHLmWds",
+            "objectIdentifier": "analog-value",
+            "description": "Hebg.H-Grenze nom.Windge.",
+            "children": null,
+            "objectName": "B'H'HGrp'Hra.ShHLmWds"
+        },
+        {
+            "name": "Hcrv.SpTFlDs",
+            "objectIdentifier": "analog-value",
+            "description": "VLT Sollw.Auslegungs-AT",
+            "children": null,
+            "objectName": "B'H'HGrp'Hcrv.SpTFlDs"
+        },
+        {
+            "name": "Hcrv.SpTFl",
+            "objectIdentifier": "analog-value",
+            "description": "Vorlauftemperatursollwert",
+            "children": null,
+            "objectName": "B'H'HGrp'Hcrv.SpTFl"
+        },
+        {
+            "name": "Hra.HLmCmf",
+            "objectIdentifier": "analog-value",
+            "description": "Heizgrenze Comfort",
+            "children": null,
+            "objectName": "B'H'HGrp'Hra.HLmCmf"
+        },
+```

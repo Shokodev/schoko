@@ -77,7 +77,8 @@ public class HTTPController {
 
     @PostMapping(value = "/devices")
     public ResponseEntity<SettingsHandler> setFinalDevices(@RequestBody ArrayList<WaitingRoomDeviceFrontend> bacnetDevices){
-        LOG.info("Received wanted list from frontend with: {} devices",bacnetDevices.size());
+        LOG.info("Received desired list from frontend with: {} devices",bacnetDevices.size());
+        DeviceService.bacnetDevices.clear();
         bacnetDevices.forEach(device -> {
             DeviceService.bacnetDevices.add(DeviceService.waitingRoomBacnetDevices.get(device.getInstanceNumber()));
         });
@@ -131,7 +132,7 @@ public class HTTPController {
     /**
      * Exception if wrong URL tipped
      */
-    @ResponseStatus(value= HttpStatus.NOT_FOUND, reason = "Node not found") //404
-    private static class NodeNotFoundException extends RuntimeException {
+    @ResponseStatus(value= HttpStatus.NOT_FOUND, reason = "404 The resource you seeking for does not exist") //404
+    private static class FoundException extends RuntimeException {
             }
 }
