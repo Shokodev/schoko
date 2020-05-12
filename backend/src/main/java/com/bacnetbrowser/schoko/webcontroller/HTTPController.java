@@ -97,10 +97,8 @@ public class HTTPController {
      */
     @PostMapping(value = "/settings")
     public ResponseEntity<SettingsHandler> updateSettingsAndBuildProcess(@RequestBody SettingsHandler settings) {
-        settingsHandler.setSiteName(settings.getSiteName());
         settingsHandler.setPort(settings.getPort());
         settingsHandler.setBacnetSeparator(settings.getBacnetSeparator());
-        settingsHandler.setSiteDescription(settings.getSiteDescription());
         settingsHandler.setLocalDeviceID(settings.getLocalDeviceID());
         settingsHandler.setPrecisionRealValue(settings.getPrecisionRealValue());
         settingsHandler.setScanSeconds(settings.getScanSeconds());

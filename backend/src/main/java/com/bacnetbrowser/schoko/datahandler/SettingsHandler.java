@@ -13,14 +13,10 @@ import org.springframework.stereotype.Component;
 public class SettingsHandler {
 
     public static String port;
-    public static String siteName;
-    public static String siteDescription;
     public static String bacnetSeparator;
     public static String localDeviceID;
     public static Integer precisionRealValue;
     public static Integer scanSeconds = 5;
-
-
 
     public String getPort() {
         return port;
@@ -28,22 +24,6 @@ public class SettingsHandler {
 
     public void setPort(String port) {
         SettingsHandler.port = port;
-    }
-
-    public String getSiteName() {
-        return siteName;
-    }
-
-    public void setSiteName(String siteName) {
-        SettingsHandler.siteName = siteName;
-    }
-
-    public String getSiteDescription() {
-        return siteDescription;
-    }
-
-    public void setSiteDescription(String siteDescription) {
-        SettingsHandler.siteDescription = siteDescription;
     }
 
     public String getBacnetSeparator() {

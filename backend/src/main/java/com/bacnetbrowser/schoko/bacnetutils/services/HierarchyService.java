@@ -3,6 +3,7 @@ package com.bacnetbrowser.schoko.bacnetutils.services;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetNode;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;
+import com.bacnetbrowser.schoko.datahandler.SettingsHandler;
 import com.serotonin.bacnet4j.RemoteObject;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
@@ -31,22 +32,17 @@ public class HierarchyService {
     private BACnetNode bacnetStructure;
     private BACnetNode deviceStructure;
     private final HashMap<String, String> structureElements = new HashMap<>();
-    private String siteName;
-    private String siteDescription;
     private String structureSeparator;
     private final String structureElement = "Structure Element";
+    public static final String structureTypeBACnet = "BAC";
+    public static final String structureTypeLogic = "LOGIC";
+
 
     /**
      * Initialize the needed properties
-     *
-     * @param siteName           Name of the Site or Building
-     * @param siteDescription    Description of site
-     * @param structureSeparator BacNet separator in ObjectName
      */
-    public void create(String siteName, String siteDescription, String structureSeparator) {
-        this.siteName = siteName;
-        this.siteDescription = siteDescription;
-        this.structureSeparator = structureSeparator;
+    public void create() {
+        this.structureSeparator = SettingsHandler.bacnetSeparator;
         createStaticBACnetObjectLists();
         this.bacnetStructure = buildBacNetStructure();
         Runnable runnable = () -> {
@@ -119,7 +115,7 @@ public class HierarchyService {
      */
     private BACnetNode buildBacNetStructure() {
 
-        BACnetNode bacnetStructure = new BACnetNode(siteName, "Top node bacnet structure", siteDescription, new ArrayList<>());
+        BACnetNode bacnetStructure = new BACnetNode(structureTypeBACnet, "Top node bacnet structure", "BACnet structure", new ArrayList<>());
         int nodeCounter = 0;
         for (String objectName : objectNamesToOids.keySet()) {
             String[] splittedObjectName = objectName.split(structureSeparator);
@@ -187,13 +183,13 @@ public class HierarchyService {
         return bacnetStructure;
     }
 
-    // Methods for device structure
+    // Methods for device(Logical view) structure
 
     /**
      * This method creates a structure with all remote devices and their objects
      */
     private BACnetNode buildDeviceStructure() {
-        BACnetNode deviceStructure = new BACnetNode(siteName, "Top node devices", "Alle BACnet Geräte und ihre Objekte", new ArrayList<>());
+        BACnetNode deviceStructure = new BACnetNode(structureTypeLogic, "Top node devices", "Logical view", new ArrayList<>());
         int nodeCounter = 0;
         for (BACnetDevice bacnetDevice : DeviceService.bacnetDevices) {
             BACnetNode device = new BACnetNode(bacnetDevice.getName(), structureElement, "Device", new ArrayList<>());

@@ -35,7 +35,7 @@ public class HierarchyHandler {
             String[] splitted = objectName.split(SettingsHandler.bacnetSeparator);
         try {
             //Check if its the top element
-            if ((splitted.length == 1) && (SettingsHandler.siteName.equals(objectName))) {
+            if ((splitted.length == 1) && (HierarchyService.structureTypeBACnet.equals(objectName))) {
                 return structure;
             } else {
                 BACnetNode node = null;
@@ -47,7 +47,7 @@ public class HierarchyHandler {
             }
                 } catch (NullPointerException e){
                     LOG.info("No structure yet, check settings!");
-                    return new BACnetNode("Achtung!"," ","Bitte zuerst Einstellungen vornehmen","");
+                    return null;
                 }
         }
 
@@ -56,8 +56,7 @@ public class HierarchyHandler {
      */
     public void createStructure(){
         hierarchyService.deleteStructure();
-        hierarchyService.create(SettingsHandler.siteName, SettingsHandler.siteDescription,
-                SettingsHandler.bacnetSeparator);
+        hierarchyService.create();
     }
 
     public BACnetNode getBacnetStructure() {
