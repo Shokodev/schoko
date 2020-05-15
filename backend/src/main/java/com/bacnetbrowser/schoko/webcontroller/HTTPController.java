@@ -61,6 +61,13 @@ public class HTTPController {
         return hierarchyHandler.getDeviceStructure();
     }
 
+    @GetMapping("/refresh/hierarchy")
+    public ResponseEntity<String> refreshHierarchy(){
+        hierarchyHandler.createStructure();
+        LOG.info("Create or refresh hierarchy, notify frontend with: {}", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("/devices")
     public ArrayList<WaitingRoomDeviceFrontend> getWaitingRoomList(){
         ArrayList<WaitingRoomDeviceFrontend> list = new ArrayList<>();
@@ -78,14 +85,11 @@ public class HTTPController {
     @PostMapping(value = "/devices")
     public ResponseEntity<SettingsHandler> setFinalDevices(@RequestBody ArrayList<WaitingRoomDeviceFrontend> bacnetDevices){
         LOG.info("Received desired list from frontend with: {} devices",bacnetDevices.size());
-        DeviceService.bacnetDevices.clear();
         bacnetDevices.forEach(device -> {
             DeviceService.bacnetDevices.add(DeviceService.waitingRoomBacnetDevices.get(device.getInstanceNumber()));
         });
         LOG.info("{} BACnet devices finally registered at local device", DeviceService.bacnetDevices.size());
         deviceService.readFinalAddedDevices();
-        LOG.info("Build structure with new settings.....");
-        hierarchyHandler.createStructure();
         eventHandler.createEventStream();
         LOG.info("BACnet devices ready, notify frontend with: {}", HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.OK);

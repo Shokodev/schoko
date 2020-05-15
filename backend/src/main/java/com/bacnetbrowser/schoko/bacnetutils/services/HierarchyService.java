@@ -41,15 +41,11 @@ public class HierarchyService {
     /**
      * Initialize the needed properties
      */
-    public void create() {
+    public void createStructure() {
         this.structureSeparator = SettingsHandler.bacnetSeparator;
         createStaticBACnetObjectLists();
         this.bacnetStructure = buildBacNetStructure();
-        Runnable runnable = () -> {
-            this.deviceStructure = buildDeviceStructure();
-        };
-        Thread newThread = new Thread(runnable);
-        newThread.start();
+        this.deviceStructure = buildDeviceStructure();
     }
 
     /**
@@ -157,7 +153,6 @@ public class HierarchyService {
         }
         return parent;
     }
-
 
     /**
      * Creates a new node on dependent of its type

@@ -5,7 +5,6 @@ import com.bacnetbrowser.schoko.bacnetutils.models.BACnetNode;
 import com.bacnetbrowser.schoko.bacnetutils.services.HierarchyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -56,7 +55,7 @@ public class HierarchyHandler {
      */
     public void createStructure(){
         hierarchyService.deleteStructure();
-        hierarchyService.create();
+        hierarchyService.createStructure();
     }
 
     public BACnetNode getBacnetStructure() {

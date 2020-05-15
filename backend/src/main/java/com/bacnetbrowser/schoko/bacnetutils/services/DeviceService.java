@@ -21,12 +21,12 @@ import com.serotonin.bacnet4j.util.DiscoveryUtils;
 import com.serotonin.bacnet4j.util.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.ArrayList;
-import java.util.HashMap;
+
+import java.util.*;
 
 public class DeviceService extends DeviceEventAdapter {
     public static LocalDevice localDevice;
-    public static ArrayList<BACnetDevice> bacnetDevices = new ArrayList<>();
+    public static Set<BACnetDevice> bacnetDevices = new HashSet<>();
     public static HashMap<Integer, BACnetDevice> waitingRoomBacnetDevices = new HashMap<>();
     private static final Logger LOG = LoggerFactory.getLogger(DeviceService.class);
 
@@ -83,7 +83,7 @@ public class DeviceService extends DeviceEventAdapter {
                 getRemoteDeviceInformation();
             }
         }catch(InterruptedException bac){
-            LOG.info("Network scan failure, restart the application may solve this problem");
+            LOG.warn("Network scan failure, restart the application may solve this problem");
         }
     }
 
@@ -146,8 +146,6 @@ public class DeviceService extends DeviceEventAdapter {
     private void rebaseLocalDeviceIfExists(){
         if(localDevice != null){
             localDevice.terminate();
-            bacnetDevices.clear();
-            waitingRoomBacnetDevices.clear();
             LOG.info("*********************Reset*********************");
 
         }

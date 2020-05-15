@@ -230,8 +230,6 @@ _Post Example (Settings object)_
 {
     "port": "BAC0",
     "precisionRealValue": 2,
-    "siteDescription": "Site",
-    "siteName": "Anlage",
     "bacnetSeparator": "'",
     "localDeviceID": "1001",
     "scanSeconds": 5
