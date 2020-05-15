@@ -35,91 +35,93 @@ public class DeviceService extends DeviceEventAdapter {
     public void iAmReceived(RemoteDevice d) {
         BACnetDevice bacnetDevice = new BACnetDevice(localDevice, d.getInstanceNumber(), d.getAddress(),
                 d.getSegmentationSupported(), d.getVendorIdentifier(), d.getMaxAPDULengthAccepted());
-        waitingRoomBacnetDevices.put(bacnetDevice.getInstanceNumber(),bacnetDevice);
+        waitingRoomBacnetDevices.put(bacnetDevice.getInstanceNumber(), bacnetDevice);
         LOG.info("Remote device " + d.getInstanceNumber() + " registered in waiting room of LocalDevice");
     }
 
     /**
      * Create Local Device and add listener
      */
-    public void createLocalDevice()  {
+    public void createLocalDevice() {
         rebaseLocalDeviceIfExists();
         IpNetworkBuilder ipNetworkBuilder = new IpNetworkBuilder();
         ipNetworkBuilder.withLocalBindAddress(IpNetwork.DEFAULT_BIND_IP);
-        ipNetworkBuilder.withBroadcast("255.255.255.255",IpNetwork.BVLC_TYPE);
-        ipNetworkBuilder.withPort(Integer.parseInt(SettingsHandler.port,16));
+        ipNetworkBuilder.withBroadcast("255.255.255.255", IpNetwork.BVLC_TYPE);
+        ipNetworkBuilder.withPort(Integer.parseInt(SettingsHandler.port, 16));
         DefaultTransport transport = new DefaultTransport(ipNetworkBuilder.build());
         localDevice = new LocalDevice(Integer.parseInt(SettingsHandler.localDeviceID), transport);
         localDevice.getEventHandler().addListener(this);
         LOG.info("Try to initialize localdevice " + SettingsHandler.localDeviceID);
         try {
             localDevice.initialize();
-        } catch(Exception e){
+        } catch (Exception e) {
             LOG.error("LocalDevice initialize failed, restart the application may solve this problem");
         }
         LOG.info("Successfully created LocalDevice " + localDevice.getInstanceNumber());
         scanForRemoteDevices(SettingsHandler.scanSeconds);
     }
 
-    public void readFinalAddedDevices(){
+    public void readFinalAddedDevices() {
         setLocalDeviceAsAlarmReceiver();
         scanAndAddAllObjects();
     }
 
     /**
-     *Send WhoIs request to the BACnet network
+     * Send WhoIs request to the BACnet network
      */
-    private void scanForRemoteDevices(int scanSeconds)  {
+    private void scanForRemoteDevices(int scanSeconds) {
         LOG.info("Scan for remote devices.........");
         try {
             localDevice.startRemoteDeviceDiscovery();
             Thread.sleep(scanSeconds * 1000);
             //End scan after 5s if no device is found
-            if(waitingRoomBacnetDevices.isEmpty()){
+            if (waitingRoomBacnetDevices.isEmpty()) {
                 localDevice.terminate();
                 LOG.warn("No remote devices found");
             } else {
                 localDevice.getEventHandler().removeListener(this);
                 getRemoteDeviceInformation();
             }
-        }catch(InterruptedException bac){
+        } catch (InterruptedException bac) {
             LOG.warn("Network scan failure, restart the application may solve this problem");
         }
     }
 
     /**
      * Create a destination object to send to notificationClass objects in remote devices
+     *
      * @return destination as required
      */
-    private Destination creatAlarmDestination()  {
+    private Destination creatAlarmDestination() {
         Recipient recipient = new Recipient(localDevice.getId());
-        EventTransitionBits eventTransitionBits = new EventTransitionBits(true,true,true);
-        return new Destination(recipient,new UnsignedInteger(1),Boolean.TRUE,eventTransitionBits);
+        EventTransitionBits eventTransitionBits = new EventTransitionBits(true, true, true);
+        return new Destination(recipient, new UnsignedInteger(1), Boolean.TRUE, eventTransitionBits);
     }
 
     /**
      * Looks in all remote devices for notificationsClass objects ad set the LocalDevice as receiver destination
-     *
      */
     private void setLocalDeviceAsAlarmReceiver() {
-        if (!bacnetDevices.isEmpty()){
+        if (!bacnetDevices.isEmpty()) {
             for (BACnetDevice bacnetDevice : bacnetDevices) {
                 SequenceOf<ObjectIdentifier> oids = null;
                 try {
-                    oids = RequestUtils.getObjectList(localDevice,bacnetDevice);
-                } catch (BACnetException bac1){
+                    oids = RequestUtils.getObjectList(localDevice, bacnetDevice);
+                } catch (BACnetException bac1) {
                     System.err.println("No objects in " + bacnetDevice + "found");
                 }
-                if (oids != null ) {
+                if (oids != null) {
                     for (ObjectIdentifier oid : oids) {
-                        if (oid.getObjectType().equals(ObjectType.notificationClass)){
+                        if (oid.getObjectType().equals(ObjectType.notificationClass)) {
                             try {
-                            RequestUtils.addListElement(localDevice,bacnetDevice,oid,PropertyIdentifier.recipientList,creatAlarmDestination());
-                            }catch(BACnetException bac){
-                               LOG.warn("No notification classes found at remote " + bacnetDevice);
+                                RequestUtils.addListElement(localDevice, bacnetDevice, oid, PropertyIdentifier.recipientList, creatAlarmDestination());
+                            } catch (BACnetException bac) {
+                                LOG.warn("No notification classes found at remote " + bacnetDevice);
                             }
                             LOG.info("LocalDevice " + localDevice.getInstanceNumber() + " as receiver registered to: " + oid.toString() + " @ " + bacnetDevice.getObjectIdentifier());
-                        }}}
+                        }
+                    }
+                }
             }
         } else {
             LOG.warn("No destinations added");
@@ -143,8 +145,8 @@ public class DeviceService extends DeviceEventAdapter {
     /**
      * Reset local device if creating is called again in runtime
      */
-    private void rebaseLocalDeviceIfExists(){
-        if(localDevice != null){
+    private void rebaseLocalDeviceIfExists() {
+        if (localDevice != null) {
             localDevice.terminate();
             LOG.info("*********************Reset*********************");
 
@@ -154,27 +156,27 @@ public class DeviceService extends DeviceEventAdapter {
     /**
      * Reads all BACnet Objects of all remote devises
      */
-    private void scanAndAddAllObjects(){
-        for (BACnetDevice bacnetDevice: bacnetDevices) {
+    private void scanAndAddAllObjects() {
+        for (BACnetDevice bacnetDevice : bacnetDevices) {
             try {
-                SequenceOf<ObjectIdentifier> oids = RequestUtils.getObjectList(localDevice,bacnetDevice);
+                SequenceOf<ObjectIdentifier> oids = RequestUtils.getObjectList(localDevice, bacnetDevice);
                 for (ObjectIdentifier oid : oids) {
-                    BACnetObject bacnetObject = new BACnetObject(oid,bacnetDevice);
+                    BACnetObject bacnetObject = new BACnetObject(oid, bacnetDevice);
                     bacnetDevice.getBacnetObjects().add(bacnetObject);
-                    }} catch (BACnetException | NullPointerException e) {
+                }
+            } catch (BACnetException | NullPointerException e) {
                 LOG.warn("Failed to read objects");
             }
         }
     }
 
-    public static BACnetDevice getBACnetDevice(ObjectIdentifier oid){
-        for(BACnetDevice device: bacnetDevices){
-            if(device.getObjectIdentifier().equals(oid)){
+    public static BACnetDevice getBACnetDevice(ObjectIdentifier oid) {
+        for (BACnetDevice device : bacnetDevices) {
+            if (device.getObjectIdentifier().equals(oid)) {
                 return device;
             }
         }
         return null;
     }
-
-
 }
+

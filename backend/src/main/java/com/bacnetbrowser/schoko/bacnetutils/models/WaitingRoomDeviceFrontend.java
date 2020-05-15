@@ -3,11 +3,12 @@ package com.bacnetbrowser.schoko.bacnetutils.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class WaitingRoomDeviceFrontend {
+    private boolean alreadyImported = false;
     @JsonProperty("name")
     public String name;
     @JsonProperty("modelName")
     public String modelName;
-    @JsonProperty("ipAddress")
+    @JsonProperty("description")
     public String ipAddress;
     @JsonProperty("instanceNumber")
     public int instanceNumber;
@@ -50,4 +51,138 @@ public class WaitingRoomDeviceFrontend {
     public void setInstanceNumber(int instanceNumber) {
         this.instanceNumber = instanceNumber;
     }
+
+    public boolean isAlreadyImported() {
+        return alreadyImported;
+    }
+
+    public void setAlreadyImported(boolean alreadyImported) {
+        this.alreadyImported = alreadyImported;
+    }
+
+    //Example
+    /*
+    {
+        "address": {
+        "networkNumber": {
+            "typeId": 2,
+                    "smallValue": true
+        },
+        "macAddress": {
+            "typeId": 6,
+                    "length": 6,
+                    "bytes": "wKgBsbrA",
+                    "description": "192.168.1.177:47808"
+        },
+        "description": "192.168.1.177:47808",
+                "global": false
+    },
+        "userData": null,
+            "maxReadMultipleReferences": 200,
+            "bacnetObjects":[],
+        "name": "Site01'AS01",
+            "servicesSupported": {
+        "typeId": 8,
+                "value": [
+        true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                false,
+                true,
+                true,
+                true,
+                true,
+                true,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                true,
+                true,
+                true,
+                true,
+                false,
+                true,
+                true,
+                true,
+                true,
+                true,
+                false,
+                true,
+                true
+            ],
+        "readPropertyMultiple": true,
+                "getEnrollmentSummary": true,
+                "confirmedPrivateTransfer": true,
+                "unconfirmedPrivateTransfer": true,
+                "confirmedTextMessage": false,
+                "reinitializeDevice": true,
+                "unconfirmedTextMessage": false,
+                "confirmedCovNotification": true,
+                "confirmedEventNotification": true,
+                "removeListElement": true,
+                "unconfirmedEventNotification": true,
+                "unconfirmedCovNotification": true,
+                "writePropertyMultiple": true,
+                "deviceCommunicationControl": true,
+                "lifeSafetyOperation": false,
+                "subscribeCovPropertyMultiple": false,
+                "timeSynchronization": true,
+                "getEventInformation": true,
+                "subscribeCovProperty": true,
+                "utcTimeSynchronization": true,
+                "confirmedCovNotificationMultiple": false,
+                "acknowledgeAlarm": true,
+                "getAlarmSummary": true,
+                "atomicWriteFile": true,
+                "vtOpen": false,
+                "createObject": true,
+                "atomicReadFile": true,
+                "vtClose": false,
+                "subscribeCov": true,
+                "vtData": false,
+                "readProperty": true,
+                "writeProperty": true,
+                "addListElement": true,
+                "deleteObject": true,
+                "whoIs": true,
+                "whoHas": true,
+                "ihave": true,
+                "readRange": true,
+                "iam": true,
+                "writeGroup": false,
+                "unconfirmedCovNotificationMultiple": false
+    },
+        "objectIdentifier": {
+        "typeId": 12,
+                "objectType": {
+            "typeId": 9
+        },
+        "instanceNumber": 2098177,
+                "uninitialized": false
+    },
+        "modelName": "PXC100-E.D / HW=V3.00",
+            "instanceNumber": 2098177,
+            "segmentationSupported": {
+        "typeId": 9
+    },
+        "vendorIdentifier": 7,
+            "maxAPDULengthAccepted": 1476,
+            "vendorName": null
+    }*/
+
 }

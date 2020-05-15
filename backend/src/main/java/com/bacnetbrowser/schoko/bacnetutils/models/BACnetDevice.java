@@ -42,6 +42,5 @@ public class BACnetDevice extends RemoteDevice {
         return null;
     }
 
-
 }
 

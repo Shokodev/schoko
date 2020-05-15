@@ -17,6 +17,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 
 /**
@@ -61,22 +63,17 @@ public class HTTPController {
         return hierarchyHandler.getDeviceStructure();
     }
 
-    @GetMapping("/refresh/hierarchy")
-    public ResponseEntity<String> refreshHierarchy(){
-        hierarchyHandler.createStructure();
-        LOG.info("Create or refresh hierarchy, notify frontend with: {}", HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     @GetMapping("/devices")
     public ArrayList<WaitingRoomDeviceFrontend> getWaitingRoomList(){
         ArrayList<WaitingRoomDeviceFrontend> list = new ArrayList<>();
-       deviceService.createLocalDevice();
+        deviceService.createLocalDevice();
         for(BACnetDevice device : DeviceService.waitingRoomBacnetDevices.values()){
             WaitingRoomDeviceFrontend deviceFD = new WaitingRoomDeviceFrontend(
                     device.getName(),device.getModelName(),
-                    device.getAddress().getMacAddress().toString(),
+                    device.getAddress().getMacAddress().getDescription(),
                     device.getInstanceNumber());
+            deviceFD.setAlreadyImported(DeviceService.getBACnetDevice(device.getObjectIdentifier()) != null);
             list.add(deviceFD);
         }
         return list;
@@ -91,7 +88,9 @@ public class HTTPController {
         LOG.info("{} BACnet devices finally registered at local device", DeviceService.bacnetDevices.size());
         deviceService.readFinalAddedDevices();
         eventHandler.createEventStream();
-        LOG.info("BACnet devices ready, notify frontend with: {}", HttpStatus.OK);
+        LOG.info("BACnet devices ready");
+        hierarchyHandler.createStructure();
+        LOG.info("Create or refresh hierarchy, notify frontend with: {}", HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
