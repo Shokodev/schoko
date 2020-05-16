@@ -146,6 +146,7 @@ public class DeviceService extends DeviceEventAdapter {
      * Reset local device if creating is called again in runtime
      */
     private void rebaseLocalDeviceIfExists() {
+        waitingRoomBacnetDevices.clear();
         if (localDevice != null) {
             localDevice.terminate();
             LOG.info("*********************Reset*********************");
