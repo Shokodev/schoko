@@ -64,6 +64,20 @@ public class HTTPController {
     }
 
 
+    @GetMapping("/preload/devices")
+    public ArrayList<WaitingRoomDeviceFrontend> getImportedDevices(){
+        ArrayList<WaitingRoomDeviceFrontend> list = new ArrayList<>();
+        for(BACnetDevice device : DeviceService.bacnetDevices){
+            WaitingRoomDeviceFrontend deviceFD = new WaitingRoomDeviceFrontend(
+                    device.getName(),device.getModelName(),
+                    device.getAddress().getMacAddress().getDescription(),
+                    device.getInstanceNumber());
+            deviceFD.setAlreadyImported(true);
+            list.add(deviceFD);
+        }
+        return list;
+    }
+
     @GetMapping("/devices")
     public ArrayList<WaitingRoomDeviceFrontend> getWaitingRoomList(){
         ArrayList<WaitingRoomDeviceFrontend> list = new ArrayList<>();
