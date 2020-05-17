@@ -88,4 +88,9 @@ public class WSController {
         eventHandler.ackEvent(objectName);
     }
 
+    @MessageMapping("/getEvents")
+    public void getEvent () {
+        eventHandler.updateStream();
+    }
+
 }

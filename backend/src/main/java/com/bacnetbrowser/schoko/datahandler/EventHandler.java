@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 
 
 /**
@@ -53,5 +54,6 @@ public class EventHandler {
     public void ackEvent(String objectName) {
         eventService.acknowledgeEvent(objectName);
     }
+
 }
 

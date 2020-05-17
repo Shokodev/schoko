@@ -19,7 +19,7 @@ public class WebSocketEventListener {
 
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
-        LOGGER.info("Websocket message: CONNECT");
+        LOGGER.info("Websocket message: DISCONNECT");
     }
 
 }
