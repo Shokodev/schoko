@@ -17,8 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+
 
 
 /**
@@ -69,10 +68,11 @@ public class HTTPController {
         ArrayList<WaitingRoomDeviceFrontend> list = new ArrayList<>();
         for(BACnetDevice device : DeviceService.bacnetDevices){
             WaitingRoomDeviceFrontend deviceFD = new WaitingRoomDeviceFrontend(
-                    device.getName(),device.getModelName(),
+                    true,
+                    device.getName(),
+                    device.getModelName(),
                     device.getAddress().getMacAddress().getDescription(),
                     device.getInstanceNumber());
-            deviceFD.setAlreadyImported(true);
             list.add(deviceFD);
         }
         return list;
@@ -84,10 +84,11 @@ public class HTTPController {
         deviceService.createLocalDevice();
         for(BACnetDevice device : DeviceService.waitingRoomBacnetDevices.values()){
             WaitingRoomDeviceFrontend deviceFD = new WaitingRoomDeviceFrontend(
-                    device.getName(),device.getModelName(),
+                    DeviceService.getBACnetDevice(device.getObjectIdentifier()) != null,
+                    device.getName(),
+                    device.getModelName(),
                     device.getAddress().getMacAddress().getDescription(),
                     device.getInstanceNumber());
-            deviceFD.setAlreadyImported(DeviceService.getBACnetDevice(device.getObjectIdentifier()) != null);
             list.add(deviceFD);
         }
         return list;
@@ -98,7 +99,7 @@ public class HTTPController {
         LOG.info("Received desired list from frontend with: {} devices",bacnetDevices.size());
         DeviceService.bacnetDevices.clear();
         bacnetDevices.forEach(device -> {
-                DeviceService.bacnetDevices.add(DeviceService.waitingRoomBacnetDevices.get(device.getInstanceNumber()));
+                DeviceService.bacnetDevices.add(DeviceService.waitingRoomBacnetDevices.get(device.getInstanceNumber));
         });
         LOG.info("{} BACnet devices finally registered at local device", DeviceService.bacnetDevices.size());
         deviceService.readFinalAddedDevices();

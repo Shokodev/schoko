@@ -2,22 +2,40 @@ package com.bacnetbrowser.schoko.bacnetutils.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class WaitingRoomDeviceFrontend {
-    private boolean alreadyImported = false;
-    @JsonProperty("name")
-    public String name;
-    @JsonProperty("modelName")
-    public String modelName;
-    @JsonProperty("description")
-    public String ipAddress;
-    @JsonProperty("instanceNumber")
-    public int instanceNumber;
 
-    public WaitingRoomDeviceFrontend(String name, String modelName, String ipAddress, int instanceNumber) {
+/**
+ * This class is used to parse the BACnetDevice class in usable look for the frontend
+ * -> LOMBOCK for easy creations
+ *
+ */
+
+
+public class WaitingRoomDeviceFrontend {
+
+    private boolean alreadyImported;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("modelName")
+    private String modelName;
+    @JsonProperty("description")
+    private String ipAddress;
+    @JsonProperty("instanceNumber")
+    private int instanceNumber;
+
+    public WaitingRoomDeviceFrontend(boolean alreadyImported, String name, String modelName, String ipAddress, int instanceNumber) {
+        this.alreadyImported = alreadyImported;
         this.name = name;
         this.modelName = modelName;
         this.ipAddress = ipAddress;
         this.instanceNumber = instanceNumber;
+    }
+
+    public boolean isAlreadyImported() {
+        return alreadyImported;
+    }
+
+    public void setAlreadyImported(boolean alreadyImported) {
+        this.alreadyImported = alreadyImported;
     }
 
     public String getName() {
@@ -51,15 +69,7 @@ public class WaitingRoomDeviceFrontend {
     public void setInstanceNumber(int instanceNumber) {
         this.instanceNumber = instanceNumber;
     }
-
-    public boolean isAlreadyImported() {
-        return alreadyImported;
-    }
-
-    public void setAlreadyImported(boolean alreadyImported) {
-        this.alreadyImported = alreadyImported;
-    }
-
+}
     //Example
     /*
     {
@@ -185,4 +195,3 @@ public class WaitingRoomDeviceFrontend {
             "vendorName": null
     }*/
 
-}
