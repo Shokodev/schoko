@@ -5,6 +5,8 @@ import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.RemoteObject;
 import com.serotonin.bacnet4j.exception.BACnetException;
 import com.serotonin.bacnet4j.obj.ObjectProperties;
+import com.serotonin.bacnet4j.service.acknowledgement.ReadRangeAck;
+import com.serotonin.bacnet4j.service.confirmed.ReadRangeRequest;
 import com.serotonin.bacnet4j.service.confirmed.SubscribeCOVRequest;
 import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.*;
@@ -288,6 +290,19 @@ public class BACnetObject extends RemoteObject {
             LOG.warn("Can't unsubscribe : '" + getObjectIdentifier() + "' on: " + bacnetDevice.getObjectIdentifier());
         }
 
+    }
+
+    //TODO replace "Object" with needed class
+    public ArrayList<Object> readTrendBuffer(){
+        try {
+            ReadRangeAck ack = DeviceService.localDevice.send(bacnetDevice, new ReadRangeRequest(getObjectIdentifier(),
+                    PropertyIdentifier.logBuffer, null,
+                    new ReadRangeRequest.ByPosition(0,1000))).get();
+            return new ArrayList<>(ack.getItemData().getValues());
+        } catch (BACnetException e) {
+            LOG.warn("Can't read {} of: {}",PropertyIdentifier.logBuffer.toString(),getObjectName());
+        }
+        return null;
     }
 
 }

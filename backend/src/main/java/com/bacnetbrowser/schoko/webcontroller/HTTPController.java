@@ -99,7 +99,7 @@ public class HTTPController {
         LOG.info("Received desired list from frontend with: {} devices",bacnetDevices.size());
         DeviceService.bacnetDevices.clear();
         bacnetDevices.forEach(device -> {
-                DeviceService.bacnetDevices.add(DeviceService.waitingRoomBacnetDevices.get(device.getInstanceNumber));
+                DeviceService.bacnetDevices.add(DeviceService.waitingRoomBacnetDevices.get(device.getInstanceNumber()));
         });
         LOG.info("{} BACnet devices finally registered at local device", DeviceService.bacnetDevices.size());
         deviceService.readFinalAddedDevices();
