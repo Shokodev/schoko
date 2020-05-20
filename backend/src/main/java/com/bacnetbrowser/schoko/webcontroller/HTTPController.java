@@ -101,7 +101,7 @@ public class HTTPController {
         bacnetDevices.forEach(device -> {
                 DeviceService.bacnetDevices.add(DeviceService.waitingRoomBacnetDevices.get(device.getInstanceNumber()));
         });
-        LOG.info("{} BACnet devices finally registered at local device", DeviceService.bacnetDevices.size());
+        LOG.info("{} BACnet devices finally registered at local device -> Read objects of all devices ...", DeviceService.bacnetDevices.size());
         deviceService.readFinalAddedDevices();
         eventHandler.createEventStream();
         LOG.info("BACnet devices ready");

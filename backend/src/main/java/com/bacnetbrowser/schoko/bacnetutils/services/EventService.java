@@ -40,8 +40,8 @@ public class EventService extends DeviceEventAdapter  {
     static final Logger LOG = LoggerFactory.getLogger(EventService.class);
 
     public EventService(EventHandler eventHandler, EventRepository eventRepository) {
-        this.eventHandler = eventHandler;
-        this.eventRepository = eventRepository;
+        EventService.eventHandler = eventHandler;
+        EventService.eventRepository = eventRepository;
         DeviceService.localDevice.getEventHandler().addListener(this);
     }
 
@@ -89,14 +89,19 @@ public class EventService extends DeviceEventAdapter  {
         return activeEvents;
     }
 
-    //TODO whole acknowledge process
+    //TODO whole acknowledge process -- Problem [What if firstEvent does not exist?]
+    // Problem is temporarily solved by setting the same time as ack time
     public void acknowledgeEvent(String objectName){
-        BACnetEvent editEvent = activeEvents.get(objectName);
-        BACnetEvent firstEvent = eventRepository.findTopByEventIDIs(editEvent.getEventID());
         ObjectIdentifier oid = HierarchyService.objectNamesToOids.get(objectName);
         BACnetDevice bacnetDevice = HierarchyService.obejctNamesToBACnetDevice.get(objectName);
-        BACnetObject object = (BACnetObject) bacnetDevice.getObject(oid);
-        TimeStamp timeStamp = BACnetTypes.parseToBACnetTimeStamp(firstEvent.getTimeStamp());
+        BACnetObject object = bacnetDevice.getBACnetObject(oid);
+        TimeStamp timeStamp;
+        try {
+            timeStamp = BACnetTypes.parseToBACnetTimeStamp(eventRepository.findTopByEventIDIs(
+                    activeEvents.get(objectName).getEventID()).getTimeStamp());
+        } catch (NullPointerException e){
+            timeStamp = new TimeStamp(new DateTime(DeviceService.localDevice));
+        }
         TimeStamp timeStampOfAck = new TimeStamp(new DateTime(DeviceService.localDevice));
         CharacterString ack = new CharacterString("1");
         AcknowledgeAlarmRequest request = new AcknowledgeAlarmRequest(new UnsignedInteger(1),oid,
@@ -106,6 +111,7 @@ public class EventService extends DeviceEventAdapter  {
         } catch (BACnetException bac){
            LOG.warn("Cant ack " + oid.toString() + " on " + bacnetDevice.getVendorName());
         }
+
     }
 
     //Look for existing events
@@ -164,9 +170,10 @@ public class EventService extends DeviceEventAdapter  {
             } catch (BACnetException e) {
                 LOG.warn("Can't get event information");
             }
-                LOG.info("Received event information: {}  -> from device: {} ", events , bacnetDevice.getName());
+                LOG.info("Received {} events from device: {} ", events.getValues().size() , bacnetDevice.getName());
             for (GetEnrollmentSummaryAck.EnrollmentSummary event : events.getValues()){
-                    if(!Character.isDigit(event.getObjectIdentifier().toString().charAt(0)) || !event.getObjectIdentifier().equals(ObjectType.trendLog)) {
+                    if(!Character.isDigit(event.getObjectIdentifier().toString().charAt(0)) ||
+                            !event.getObjectIdentifier().getObjectType().equals(ObjectType.trendLog)) {
                         createSQLEvent(event, bacnetDevice);
                     }
             }

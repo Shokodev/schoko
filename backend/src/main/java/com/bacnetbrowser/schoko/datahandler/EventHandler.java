@@ -34,7 +34,12 @@ public class EventHandler {
     public void createEventStream(){
        EventService eventService = new EventService(this, eventRepository);
        this.eventService = eventService;
-       eventService.getEventInformation();
+        Thread thread = new Thread(){
+            public void run(){
+                eventService.getEventInformation();
+            }
+        };
+        thread.start();
     }
 
     /**
