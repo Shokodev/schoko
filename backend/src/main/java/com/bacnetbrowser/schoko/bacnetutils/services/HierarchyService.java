@@ -207,13 +207,13 @@ public class HierarchyService {
     /**
      * adds a object to the right group. If no group exits, one will be created
      *
-     * @param remoteObject the object to add to the property group
+     * @param bacnetObject the object to add to the property group
      * @param device       device of the object
      */
-    private void addObjectToPropertyGroup(RemoteObject remoteObject, BACnetNode device) {
-        ObjectType pid = remoteObject.getObjectIdentifier().getObjectType();
-        BACnetNode object = new BACnetNode(remoteObject.getObjectName(),remoteObject.getObjectIdentifier().toString(),
-                objectNamesToDescription.get(remoteObject.getObjectName()), "Object");
+    private void addObjectToPropertyGroup(BACnetObject bacnetObject, BACnetNode device) {
+        ObjectType pid = bacnetObject.getObjectIdentifier().getObjectType();
+        BACnetNode object = new BACnetNode(bacnetObject.getObjectName(),bacnetObject.getObjectIdentifier().toString(),
+                objectNamesToDescription.get(bacnetObject.getObjectName()), "Object");
         BACnetNode propertyGroup = new BACnetNode(pid.toString(), structureElement, pid.toString(), new ArrayList<>());
         if (device.getChildBySplittedObjectName(propertyGroup.getName()) == null) {
             device.addChild(propertyGroup);
