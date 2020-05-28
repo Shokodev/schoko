@@ -97,12 +97,9 @@ public class HTTPController {
     @PostMapping(value = "/devices")
     public ResponseEntity<SettingsHandler> setFinalDevices(@RequestBody ArrayList<WaitingRoomDeviceFrontend> bacnetDevices){
         LOG.info("Received desired list from frontend with: {} devices",bacnetDevices.size());
-        DeviceService.bacnetDevices.clear();
-        bacnetDevices.forEach(device -> {
-                DeviceService.bacnetDevices.add(DeviceService.waitingRoomBacnetDevices.get(device.getInstanceNumber()));
-        });
+        deviceService.updateFinalDeviceList(bacnetDevices);
         LOG.info("{} BACnet devices finally registered at local device -> Read objects of all devices ...", DeviceService.bacnetDevices.size());
-        deviceService.readFinalAddedDevices();
+        deviceService.scanAndAddAllObjectsOfFinalDeviceList();
         eventHandler.createEventStream();
         LOG.info("BACnet devices ready");
         hierarchyHandler.createStructure();

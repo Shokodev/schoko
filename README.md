@@ -7,7 +7,7 @@ mvn clean install
 
 ### Run the Project 
 ```
-mvn --projects backend spring-boot:run
+mvn spring-boot:run
 ```
 ### Create production build
 ```
@@ -25,19 +25,17 @@ mvn clean package
 ```
 /settings
 ```
-Get the saved settings in the application.properties recources
+Get the saved settings in the application.properties resources
 
 _Respon Example (Settings objects)_
 
 ```
 {
-    "port": "BAC0",
-    "precisionRealValue": 2,
-    "siteDescription": "Site",
-    "siteName": "Anlage",
-    "bacnetSeparator": "'",
-    "localDeviceID": "1001",
-    "scanSeconds": 5
+    "bacnetSeparator":"'",
+    "localDeviceID":"1001",
+    "precisionRealValue":2,
+    "scanSeconds":5,
+    "port":"BAC0"
 }
 ```
 
@@ -47,19 +45,23 @@ _Respon Example (Settings objects)_
 /devices
 ```
 
-Careful! This creats a BACnet network and scans for devices.
-If there is a existing network with devices, it will be overwritten.
-An be aware of the time you set in settings for "scanSeconds"... 
+Careful! This creates a BACnet network config and will overwrite it if one exits.
+After that it scans for devices.. each received device will be checked if its already 
+in the final view, to set the "alreadyImported" property. Then you will receive a list 
+with all imported and not imported devices of the given BACnet network.  
+
+And be aware of the time you set in settings for "scanSeconds"... 
 you will only receive the response afterwards! 
 
 _Respon Example (ArrayList with device objects)_
 ```
 [
     {
-        "name": "Site01'AS01",
-        "modelName": "PXC100-E.D / HW=V3.00",
-        "ipAddress": "[c0,a8,1,b1,ba,c0]",
-        "instanceNumber": 2098177
+        "alreadyImported":true,
+        "name":"Site01'AS01",
+        "modelName":"PXC100-E.D / HW=V3.00",
+        "description":"192.168.1.177:47808",
+        "instanceNumber":2098177
     }
 ]
 ```
@@ -243,11 +245,13 @@ _Post Example (Settings object)_
 ```
 
 The received devices will be send to the final "bacnet devices list" (existing devices will be overwritten) 
+A function is going to delete the consumer(localDevice) out  of all device which are no longer in 
+the "final bacnet devices list".
 With the new device list following steps are going to be taken:
 
     -> Create BACnet structure and logical view structure
     -> Create event DB if it does not exist yet
-    -> Create event stream
+    -> Create event stream (register localdevice as alarm receiver)
     -> Ask all devcies for current event information  
 
 _Post Example (ArrayList with device objects)_
@@ -262,8 +266,10 @@ _Post Example (ArrayList with device objects)_
 ]
 ```
 ## WEBSOCKET
+There is one Socket implemented on the endpoint: `/ws` with the following config.
+
 ```
-There is one Socket implemented on the endpoint > /ws < with the following config
+
 
 @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
@@ -281,5 +287,11 @@ You can open different channels, see below:
 
 **Open a new object channel**
 ```
-coming soon
+/broker/{objectName}
 ```
+The objectName must be as destination variable in the URL!
+
+    -> Imidiantly receive a list with properties (current state)
+    -> Creates Subscription on BACnet for that object 
+    -> You will be imformed about changes of 'present-value' 
+    
