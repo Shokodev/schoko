@@ -1,7 +1,8 @@
 HELP.md
 target/
-logs/*
-events.db
+logs/
+eventLog.db
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
