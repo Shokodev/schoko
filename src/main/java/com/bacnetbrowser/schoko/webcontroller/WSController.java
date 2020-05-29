@@ -91,7 +91,7 @@ public class WSController {
         eventHandler.updateStream();
     }
 
-    public class BacNetProperty{
+    public static class BacNetProperty{
         String objectIdentifier;
         String value;
     }
