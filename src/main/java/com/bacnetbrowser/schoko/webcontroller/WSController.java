@@ -1,22 +1,21 @@
 package com.bacnetbrowser.schoko.webcontroller;
 
 
+import com.bacnetbrowser.schoko.bacnetutils.models.BACnetProperty;
 import com.bacnetbrowser.schoko.datahandler.EventHandler;
 import com.bacnetbrowser.schoko.datahandler.ObjectHandler;
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Controller for WebSockets
@@ -52,21 +51,20 @@ public class WSController {
     /**
      * Client informs server to close property stream
      */
-    @MessageMapping("/end")
-    public void closed (String objectName) {
+    @MessageMapping("/end/{objectName}")
+    public void closed (@DestinationVariable String objectName) {
         LOG.info("Disconnect stream for: " + objectName);
         objectHandler.disconnectPropertyStream(objectName);
     }
 
-    /**
+    /*
      * Client want to write a new value on a specific object
      * @param bacnetProperty is the object the client wants to write, this also have
      *                       the new value as a property
      */
-    @MessageMapping("/setValue")
-    public void setValue (BACnetProperty bacnetProperty, String objectName) {
+    @MessageMapping("/setValue/{objectName}")
+    public void setValue (BACnetProperty bacnetProperty, @DestinationVariable String objectName) {
         objectHandler.setNewValue(bacnetProperty.getPropertyIdentifier(),bacnetProperty.getValue(),objectName);
-
     }
 
     /**
@@ -93,5 +91,6 @@ public class WSController {
     public void getEvent () {
         eventHandler.updateStream();
     }
+
 
 }
