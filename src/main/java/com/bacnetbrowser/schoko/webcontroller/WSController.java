@@ -70,8 +70,8 @@ public class WSController {
     /**
      * Use to release manual operation
      */
-    @MessageMapping("/releaseValue")
-    public void releaseValue (String objectName) {
+    @MessageMapping("/releaseValue/{objectName}")
+    public void releaseValue (@DestinationVariable String objectName) {
         objectHandler.releaseValue(objectName);
     }
 
