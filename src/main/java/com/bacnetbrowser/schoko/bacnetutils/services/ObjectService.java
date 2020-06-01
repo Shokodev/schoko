@@ -30,7 +30,7 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(ObjectService.class);
     private final ObjectHandler objectHandler;
-    private final HashMap<String,String> properties = new HashMap<>();
+    private final LinkedList<BACnetProperty> properties = new LinkedList<>();
     private final HashMap<PropertyIdentifier,Encodable> propertiesRaw = new HashMap<>();
     private BACnetDevice bacnetDevice;
     private BACnetObject bacnetObject;
@@ -59,8 +59,12 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
         bacnetObject.readProperties(this);
         }
 
-    public HashMap<String, String> getProperties() {
+    public LinkedList<BACnetProperty> getProperties() {
         return properties;
+    }
+
+    public BACnetProperty getBACnetProperty(PropertyIdentifier propertyIdentifier){
+        return properties.stream().filter(property -> property.getPropertyIdentifier().equals(propertyIdentifier.toString())).findFirst().orElse(null);
     }
 
     public void clearPropertyList() {
@@ -114,28 +118,28 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
         //Ignore if one property does not exist
         properties.clear();
         try {
-            properties.put(PropertyIdentifier.presentValue.toString(), bacnetObject.getPresentValueAsText(propertiesRaw, precisionRealValue));
-            properties.put(PropertyIdentifier.objectIdentifier.toString(), objectIdentifier.toString());
-            properties.put(PropertyIdentifier.objectName.toString(), propertiesRaw.get(PropertyIdentifier.objectName).toString());
-            properties.put(PropertyIdentifier.description.toString(), propertiesRaw.get(PropertyIdentifier.description).toString());
+            properties.add(new BACnetProperty(bacnetObject.getPresentValueAsText(propertiesRaw, precisionRealValue), PropertyIdentifier.presentValue.toString()));
+            properties.add(new BACnetProperty(objectIdentifier.toString(), PropertyIdentifier.objectIdentifier.toString()));
+            properties.add(new BACnetProperty(propertiesRaw.get(PropertyIdentifier.objectName).toString(), PropertyIdentifier.objectName.toString()));
+            properties.add(new BACnetProperty(propertiesRaw.get(PropertyIdentifier.description).toString(), PropertyIdentifier.description.toString()));
         } catch (NullPointerException ignored){}
         try{
-            properties.put(PropertyIdentifier.stateText.toString(), propertiesRaw.get(PropertyIdentifier.stateText).toString());
+            properties.add(new BACnetProperty(propertiesRaw.get(PropertyIdentifier.stateText).toString(), PropertyIdentifier.stateText.toString()));
         } catch (NullPointerException ignored){}
         try{
-            properties.put(PropertyIdentifier.activeText.toString(),propertiesRaw.get(PropertyIdentifier.activeText).toString());
-            properties.put(PropertyIdentifier.inactiveText.toString(),propertiesRaw.get(PropertyIdentifier.inactiveText).toString());
+            properties.add(new BACnetProperty(propertiesRaw.get(PropertyIdentifier.activeText).toString(), PropertyIdentifier.activeText.toString()));
+            properties.add(new BACnetProperty(propertiesRaw.get(PropertyIdentifier.inactiveText).toString(), PropertyIdentifier.inactiveText.toString()));
         } catch (NullPointerException ignored){}
         try{
-            properties.put(PropertyIdentifier.outOfService.toString(),BACnetTypes.getOutOfServiceAsText(propertiesRaw.get(PropertyIdentifier.outOfService)));
+            properties.add(new BACnetProperty(BACnetTypes.getOutOfServiceAsText(propertiesRaw.get(PropertyIdentifier.outOfService)), PropertyIdentifier.outOfService.toString()));
         } catch (NullPointerException ignored){}
         try{
-            properties.put(PropertyIdentifier.polarity.toString(), BACnetTypes.getPolarityAsText(propertiesRaw.get(PropertyIdentifier.polarity)));
+            properties.add(new BACnetProperty(BACnetTypes.getPolarityAsText(propertiesRaw.get(PropertyIdentifier.polarity)), PropertyIdentifier.polarity.toString()));
         } catch (Exception e){
             LOG.warn("Object: {} does not have {}",objectIdentifier,PropertyIdentifier.polarity.toString());
         }
         try{
-            properties.put(PropertyIdentifier.priorityArray.toString(),BACnetTypes.getPriorityArrayAsText(bacnetObject,propertiesRaw,precisionRealValue));
+            properties.add(new BACnetProperty(BACnetTypes.getPriorityArrayAsText(bacnetObject,propertiesRaw,precisionRealValue),PropertyIdentifier.priorityArray.toString()));
         } catch (Exception e){
             LOG.warn("Object: {} does not have {}",objectIdentifier,PropertyIdentifier.priorityArray.toString());
         }
