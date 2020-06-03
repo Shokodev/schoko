@@ -71,7 +71,7 @@ public class ObjectHandler {
         ObjectService ob = objectService.get(objectName);
         try {
             ob.getBacnetObject().writeValue(PropertyIdentifier.forName(propertyIdentifier),
-                    BACnetTypes.getPropertyValuesByObjectType(ob.getObjectIdentifier().getObjectType(), newValue));
+                    BACnetTypes.getPropertyValuesByObjectType(newValue, ob.getBacnetObject()));
         } catch (Exception e){
             LOG.warn("Can't send value: {}   -> to {}", e.getLocalizedMessage(), ob.getObjectIdentifier());
         }

@@ -63,10 +63,6 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
         return properties;
     }
 
-    public BACnetProperty getBACnetProperty(PropertyIdentifier propertyIdentifier){
-        return properties.stream().filter(property -> property.getPropertyIdentifier().equals(propertyIdentifier.toString())).findFirst().orElse(null);
-    }
-
     public void clearPropertyList() {
         properties.clear();
         propertiesRaw.clear();
@@ -103,7 +99,8 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
     }
 
     @Override
-    public boolean progress(double v, int i, ObjectIdentifier objectIdentifier, PropertyIdentifier propertyIdentifier, UnsignedInteger unsignedInteger, Encodable encodable) {
+    public boolean progress(double v, int i, ObjectIdentifier objectIdentifier, PropertyIdentifier
+            propertyIdentifier, UnsignedInteger unsignedInteger, Encodable encodable) {
         propertiesRaw.put(propertyIdentifier,encodable);
         if(propertiesRaw.size() == bacnetObject.getPropertyReferences().size()){
             LOG.info("Property list of: " + objectIdentifier + " ready with: " +propertiesRaw.size() + " properties for parsing" );
@@ -116,6 +113,7 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
 
     public void parseProperties() {
         //Ignore if one property does not exist
+        LOG.info(bacnetObject.getObjectType().toString());
         properties.clear();
         try {
             properties.add(new BACnetProperty(bacnetObject.getPresentValueAsText(propertiesRaw, precisionRealValue), PropertyIdentifier.presentValue.toString()));
@@ -156,5 +154,6 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
         newThread.start();
 
     }
+
 }
 

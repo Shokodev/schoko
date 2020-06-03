@@ -7,10 +7,13 @@ import com.serotonin.bacnet4j.type.primitive.*;
 import com.serotonin.bacnet4j.type.primitive.Boolean;
 
 import java.lang.Double;
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 /**
@@ -21,17 +24,29 @@ public class BACnetTypes {
 
     /**
      * get the right writable format for the given object
-     * @param objectType type of object
      * @param value value to write
+     * @param bacnetObject current bacnetObject
      * @return right property write format
      */
-    public static Encodable getPropertyValuesByObjectType(ObjectType objectType, String value) {
+    public static Encodable getPropertyValuesByObjectType(String value, BACnetObject bacnetObject) {
+        ObjectType objectType = bacnetObject.getObjectType();
         if ((objectType.equals(ObjectType.binaryOutput)) ||(objectType.equals(ObjectType.binaryValue))) {
-            return BinaryPV.forId(Integer.parseInt(value));
+            CharacterString activeTexts = (CharacterString) bacnetObject.readProperty(PropertyIdentifier.activeText);
+            if (activeTexts.getValue().equals(value)){
+                return BinaryPV.active;
+            } else
+                return BinaryPV.inactive;
         } else if ((objectType.equals(ObjectType.analogOutput)) ||(objectType.equals(ObjectType.analogValue))) {
             return new Real((float) Double.parseDouble(value));
         } else if ((objectType.equals(ObjectType.multiStateOutput)) ||(objectType.equals(ObjectType.multiStateValue))) {
-            return new UnsignedInteger(Integer.parseInt(value));
+            SequenceOf<CharacterString> texts =(SequenceOf<CharacterString> ) bacnetObject.readProperty(PropertyIdentifier.stateText);
+            int index = 0;
+            for(CharacterString text : texts){
+                if(text.getValue().equals(value)){
+                   index = texts.indexOf(text);
+                }
+            }
+            return new UnsignedInteger(index);
         }
         return new UnsignedInteger(Integer.parseInt(value));
     }
@@ -88,7 +103,7 @@ public class BACnetTypes {
      */
     public static String round(Encodable value, int places) {
         if (places < 0) throw new IllegalArgumentException();
-        BigDecimal bd = new BigDecimal(Double.parseDouble(value.toString()));
+        BigDecimal bd = BigDecimal.valueOf(Double.parseDouble(value.toString()));
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.toString();
     }
