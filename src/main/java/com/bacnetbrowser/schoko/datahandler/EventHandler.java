@@ -46,8 +46,12 @@ public class EventHandler {
      * by changes sent from the remote device the new list will be sent to the client
      */
     public void  updateStream(){
-        template.convertAndSend("/broker/eventSub", eventService.getActiveEvents().values());
-        LOG.info("Send updated eventList with: " + eventService.getActiveEvents().size() + " events");
+        try {
+            template.convertAndSend("/broker/eventSub", eventService.getActiveEvents().values());
+            LOG.info("Send updated eventList with: " + eventService.getActiveEvents().size() + " events");
+        } catch (NullPointerException e){
+        LOG.warn("Can't fetch events before at least one device is imported");
+        }
     }
 
     public void ackAllEvents(){
