@@ -15,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 
 
@@ -149,6 +148,5 @@ public class HTTPController {
     @ResponseStatus(value= HttpStatus.NOT_FOUND, reason = "404 The resource you seeking for does not exist") //404
     private static class FoundException extends RuntimeException {
             }
-
 
 }

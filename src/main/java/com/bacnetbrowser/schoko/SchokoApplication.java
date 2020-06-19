@@ -17,5 +17,6 @@ public class SchokoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SchokoApplication.class, args);
+
 	}
 }
