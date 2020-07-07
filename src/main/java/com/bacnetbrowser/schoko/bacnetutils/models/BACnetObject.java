@@ -101,6 +101,7 @@ public class BACnetObject extends RemoteObject {
         return " ";
     }
 
+
     public String getPresentValueAsText(HashMap<PropertyIdentifier,Encodable> propertiesRaw, int precisionRealValue) {
         if ((objectType.equals(ObjectType.binaryValue)) || (objectType.equals(ObjectType.binaryOutput)) || (objectType.equals(ObjectType.binaryInput))) {
             Enumerated resultValue = (Enumerated) propertiesRaw.get(PropertyIdentifier.presentValue);

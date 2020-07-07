@@ -2,6 +2,7 @@ HELP.md
 target/
 logs/
 eventLog.db
+/keyStore/shokoBacnetBackend.p12
 
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**

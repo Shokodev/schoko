@@ -7,6 +7,7 @@ import com.bacnetbrowser.schoko.datahandler.EventHandler;
 import com.bacnetbrowser.schoko.datahandler.HierarchyHandler;
 import com.bacnetbrowser.schoko.datahandler.SettingsHandler;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetNode;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 
@@ -61,6 +67,11 @@ public class HTTPController {
         return hierarchyHandler.getDeviceStructure();
     }
 
+
+    @GetMapping(value = "/.well-known/acme-challenge/E4R56kjRgjwcbIOf9Vb74fDoxQwCW-qvcXUG5fgFvoU")
+    public @ResponseBody String getImage()  {
+        return "E4R56kjRgjwcbIOf9Vb74fDoxQwCW-qvcXUG5fgFvoU.hKJ0jZWslDVDOMdYqcqI8m6TnXNeURsVR1NtnAn4EZo";
+    }
 
     @GetMapping("/preload/devices")
     public ArrayList<WaitingRoomDeviceFrontend> getImportedDevices(){
