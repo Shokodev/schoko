@@ -52,6 +52,10 @@ public class HTTPController {
         this.settingsHandler = settingsHandler;
         this.eventHandler = eventHandler;
         this.deviceService = new DeviceService(deviceRepository);
+        deviceService.createLocalDevice();
+        deviceService.scanAndAddAllObjectsOfFinalDeviceList();
+        eventHandler.createEventStream();
+        hierarchyHandler.createStructure();
     }
 
     /**

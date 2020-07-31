@@ -38,8 +38,15 @@ public class DeviceService extends DeviceEventAdapter {
     public void iAmReceived(RemoteDevice d) {
         BACnetDevice bacnetDevice = new BACnetDevice(localDevice, d.getInstanceNumber(), d.getAddress(),
                 d.getSegmentationSupported(), d.getVendorIdentifier(), d.getMaxAPDULengthAccepted());
-        waitingRoomBacnetDevices.put(bacnetDevice.getInstanceNumber(), bacnetDevice);
-        LOG.info("Remote device " + d.getInstanceNumber() + " registered in waiting room of LocalDevice");
+
+        if(deviceRepository.findByDeviceId(d.getInstanceNumber()) != null){
+            DeviceService.bacnetDevices.add(bacnetDevice);
+            LOG.info("Remote device " + d.getInstanceNumber() + " found in DB -> marked for automatic reimport");
+
+        } else {
+            waitingRoomBacnetDevices.put(bacnetDevice.getInstanceNumber(), bacnetDevice);
+            LOG.info("Remote device " + d.getInstanceNumber() + " registered in waiting room of LocalDevice");
+        }
     }
 
     //Methods for LocalDevice and Network
@@ -90,7 +97,7 @@ public class DeviceService extends DeviceEventAdapter {
         try {
             localDevice.startRemoteDeviceDiscovery();
             Thread.sleep(scanSeconds * 1000);
-            //End scan after 5s if no device is found
+            //End scan after scanSeconds if no device is found
             if (waitingRoomBacnetDevices.isEmpty()) {
                 localDevice.terminate();
                 LOG.warn("No remote devices found");
@@ -157,7 +164,7 @@ public class DeviceService extends DeviceEventAdapter {
      *  -> Register localDevice to al NC obejects
      */
     public void scanAndAddAllObjectsOfFinalDeviceList() {
-        for (BACnetDevice bacnetDevice : bacnetDevices) {
+        for (BACnetDevice bacnetDevice : DeviceService.bacnetDevices) {
             try {
                 SequenceOf<ObjectIdentifier> oids = RequestUtils.getObjectList(localDevice, bacnetDevice);
                 for (ObjectIdentifier oid : oids) {
