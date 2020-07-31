@@ -3,7 +3,9 @@ package com.bacnetbrowser.schoko.bacnetutils.services;
 
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;
+import com.bacnetbrowser.schoko.bacnetutils.models.PermanentDevices;
 import com.bacnetbrowser.schoko.bacnetutils.models.WaitingRoomDeviceFrontend;
+import com.bacnetbrowser.schoko.databaseconfig.DeviceRepository;
 import com.bacnetbrowser.schoko.datahandler.SettingsHandler;
 import com.serotonin.bacnet4j.LocalDevice;
 import com.serotonin.bacnet4j.RemoteDevice;
@@ -30,7 +32,7 @@ public class DeviceService extends DeviceEventAdapter {
     public static Set<BACnetDevice> bacnetDevices = new HashSet<>(); //final device list
     public static HashMap<Integer, BACnetDevice> waitingRoomBacnetDevices = new HashMap<>();
     private static final Logger LOG = LoggerFactory.getLogger(DeviceService.class);
-
+    private final DeviceRepository deviceRepository;
 
     @Override
     public void iAmReceived(RemoteDevice d) {
@@ -41,6 +43,10 @@ public class DeviceService extends DeviceEventAdapter {
     }
 
     //Methods for LocalDevice and Network
+
+    public DeviceService(DeviceRepository deviceRepository){
+        this.deviceRepository = deviceRepository;
+    }
 
     /**
      * Create Local Device and add listener
@@ -117,15 +123,15 @@ public class DeviceService extends DeviceEventAdapter {
      * -> no longer needed devices will be removed and the local device will be removed as receiver
      */
     public void updateFinalDeviceList(ArrayList<WaitingRoomDeviceFrontend> bacnetDevices){
-        bacnetDevices.forEach(device -> {
-            DeviceService.bacnetDevices.remove(DeviceService.waitingRoomBacnetDevices.get(device.getInstanceNumber()));
-        });
         LOG.info(" {} devices will be removed ", DeviceService.bacnetDevices.size());
         removeLocalDeviceAsAlarmReceiver();
         DeviceService.bacnetDevices.clear();
+        deviceRepository.deleteAll();
         bacnetDevices.forEach(device -> {
+            deviceRepository.save(new PermanentDevices(device.getInstanceNumber()));
             DeviceService.bacnetDevices.add(DeviceService.waitingRoomBacnetDevices.get(device.getInstanceNumber()));
         });
+        LOG.info("Amount of devices in DB list = {}", (long) deviceRepository.findAll().size());
     }
 
     /**

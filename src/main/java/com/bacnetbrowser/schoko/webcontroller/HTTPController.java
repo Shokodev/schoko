@@ -3,6 +3,7 @@ package com.bacnetbrowser.schoko.webcontroller;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
 import com.bacnetbrowser.schoko.bacnetutils.models.WaitingRoomDeviceFrontend;
 import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
+import com.bacnetbrowser.schoko.databaseconfig.DeviceRepository;
 import com.bacnetbrowser.schoko.datahandler.EventHandler;
 import com.bacnetbrowser.schoko.datahandler.HierarchyHandler;
 import com.bacnetbrowser.schoko.datahandler.SettingsHandler;
@@ -39,16 +40,18 @@ public class HTTPController {
     private final HierarchyHandler hierarchyHandler;
     private final SettingsHandler settingsHandler;
     private final EventHandler eventHandler;
-    private final DeviceService deviceService = new DeviceService();
+    private final DeviceService deviceService;
     static final Logger LOG = LoggerFactory.getLogger(HTTPController.class);
+
 
 
     @Autowired
     public HTTPController(HierarchyHandler hierarchyHandler, SettingsHandler settingsHandler,
-                          EventHandler eventHandler) {
+                          EventHandler eventHandler, DeviceRepository deviceRepository) {
         this.hierarchyHandler = hierarchyHandler;
         this.settingsHandler = settingsHandler;
         this.eventHandler = eventHandler;
+        this.deviceService = new DeviceService(deviceRepository);
     }
 
     /**
@@ -68,10 +71,13 @@ public class HTTPController {
     }
 
 
+   /*
+    Used to implement certificate lets encrypt
+
     @GetMapping(value = "/.well-known/acme-challenge/E4R56kjRgjwcbIOf9Vb74fDoxQwCW-qvcXUG5fgFvoU")
     public @ResponseBody String getImage()  {
         return "E4R56kjRgjwcbIOf9Vb74fDoxQwCW-qvcXUG5fgFvoU.hKJ0jZWslDVDOMdYqcqI8m6TnXNeURsVR1NtnAn4EZo";
-    }
+    }*/
 
     @GetMapping("/preload/devices")
     public ArrayList<WaitingRoomDeviceFrontend> getImportedDevices(){
@@ -105,9 +111,9 @@ public class HTTPController {
     }
 
     @PostMapping(value = "/devices")
-    public ResponseEntity<SettingsHandler> setFinalDevices(@RequestBody ArrayList<WaitingRoomDeviceFrontend> bacnetDevices){
-        LOG.info("Received desired list from frontend with: {} devices",bacnetDevices.size());
-        deviceService.updateFinalDeviceList(bacnetDevices);
+    public ResponseEntity<SettingsHandler> setFinalDevices(@RequestBody ArrayList<WaitingRoomDeviceFrontend> newFinalbacnetDevices){
+        LOG.info("Received desired list from frontend with: {} devices",newFinalbacnetDevices.size());
+        deviceService.updateFinalDeviceList(newFinalbacnetDevices);
         LOG.info("{} BACnet devices finally registered at local device -> Read objects of all devices ...", DeviceService.bacnetDevices.size());
         deviceService.scanAndAddAllObjectsOfFinalDeviceList();
         eventHandler.createEventStream();

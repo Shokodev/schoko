@@ -1,7 +1,9 @@
 <!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>schoko</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <style>
     h2 {
@@ -9,7 +11,7 @@
         text-align-all: center;
     }
     body {
-        background: gray;
+        background: #b3b3b3;
     }
     #display{
         font-family: "Trebuchet MS";
@@ -24,6 +26,10 @@
 <div id="display">
     <h2>SCHOKO Backend is up.. </h2>
     <h3>You found any Issues or Bug? Well then, report <a href="https://github.com/KiwiPizza/schoko/issues">here</a> </h3>
+    <p>
+        <span th:text="'Today is: ' + ${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}" th:remove="tag"></span>
+    </p>
 </div>
 </body>
+</html>
 
