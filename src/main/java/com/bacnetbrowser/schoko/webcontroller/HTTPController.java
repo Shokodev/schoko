@@ -53,10 +53,14 @@ public class HTTPController {
         this.eventHandler = eventHandler;
         this.deviceService = new DeviceService(deviceRepository);
         deviceService.createLocalDevice();
-
-        deviceService.scanAndAddAllObjectsOfFinalDeviceList();
-        eventHandler.createEventStream();
-        hierarchyHandler.createStructure();
+        if(!DeviceService.bacnetDevices.isEmpty()){
+            LOG.info("Start automatic reimport for: {} devices",
+                    (long) DeviceService.bacnetDevices.size());
+            deviceService.scanAndAddAllObjectsOfFinalDeviceList();
+            LOG.info("BACnet devices ready");
+            eventHandler.createEventStream();
+            hierarchyHandler.createStructure();
+        }
     }
 
     /**

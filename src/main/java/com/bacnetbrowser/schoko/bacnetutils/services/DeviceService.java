@@ -38,11 +38,11 @@ public class DeviceService extends DeviceEventAdapter {
     public void iAmReceived(RemoteDevice d) {
         BACnetDevice bacnetDevice = new BACnetDevice(localDevice, d.getInstanceNumber(), d.getAddress(),
                 d.getSegmentationSupported(), d.getVendorIdentifier(), d.getMaxAPDULengthAccepted());
-
+        getRemoteDeviceInformation(bacnetDevice);
         if(deviceRepository.findByDeviceId(d.getInstanceNumber()) != null){
             DeviceService.bacnetDevices.add(bacnetDevice);
-            LOG.info("Remote device instance: " + d.getInstanceNumber() + " found in DB -> marked for automatic reimport");
-
+            LOG.info("Remote device instance: " + bacnetDevice.getInstanceNumber()
+                    + " found in DB -> marked for automatic reimport");
         } else {
             waitingRoomBacnetDevices.put(bacnetDevice.getInstanceNumber(), bacnetDevice);
             LOG.info("Remote device " + d.getInstanceNumber() + " registered in waiting room of LocalDevice");
@@ -50,7 +50,6 @@ public class DeviceService extends DeviceEventAdapter {
     }
 
     //Methods for LocalDevice and Network
-
     public DeviceService(DeviceRepository deviceRepository){
         this.deviceRepository = deviceRepository;
     }
@@ -98,12 +97,11 @@ public class DeviceService extends DeviceEventAdapter {
             localDevice.startRemoteDeviceDiscovery();
             Thread.sleep(scanSeconds * 1000);
             //End scan after scanSeconds if no device is found
-            if (waitingRoomBacnetDevices.isEmpty()) {
+            if (waitingRoomBacnetDevices.isEmpty() && bacnetDevices.isEmpty()) {
                 localDevice.terminate();
                 LOG.warn("No remote devices found");
             } else {
                 localDevice.getEventHandler().removeListener(this);
-                getRemoteDeviceInformation();
             }
         } catch (InterruptedException bac) {
             LOG.warn("Network scan failure, restart the application may solve this problem");
@@ -113,14 +111,12 @@ public class DeviceService extends DeviceEventAdapter {
     /**
      * Reads and save more information about each remote device
      */
-    private void getRemoteDeviceInformation() {
-        for (BACnetDevice bacnetDevice : waitingRoomBacnetDevices.values()) {
+    private void getRemoteDeviceInformation(BACnetDevice bacnetDevice) {
             try {
                 DiscoveryUtils.getExtendedDeviceInformation(localDevice, bacnetDevice);
             } catch (BACnetException e) {
                 LOG.error("Can't read further information from device {}", bacnetDevice);
             }
-        }
     }
 
     // Methods for final devices
@@ -130,7 +126,6 @@ public class DeviceService extends DeviceEventAdapter {
      * -> no longer needed devices will be removed and the local device will be removed as receiver
      */
     public void updateFinalDeviceList(ArrayList<WaitingRoomDeviceFrontend> bacnetDevices){
-        LOG.info(" {} devices will be removed ", DeviceService.bacnetDevices.size());
         removeLocalDeviceAsAlarmReceiver();
         DeviceService.bacnetDevices.clear();
         deviceRepository.deleteAll();
