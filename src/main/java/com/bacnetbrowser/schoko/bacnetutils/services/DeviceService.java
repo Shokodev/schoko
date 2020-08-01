@@ -41,7 +41,7 @@ public class DeviceService extends DeviceEventAdapter {
 
         if(deviceRepository.findByDeviceId(d.getInstanceNumber()) != null){
             DeviceService.bacnetDevices.add(bacnetDevice);
-            LOG.info("Remote device " + d.getInstanceNumber() + " found in DB -> marked for automatic reimport");
+            LOG.info("Remote device instance: " + d.getInstanceNumber() + " found in DB -> marked for automatic reimport");
 
         } else {
             waitingRoomBacnetDevices.put(bacnetDevice.getInstanceNumber(), bacnetDevice);

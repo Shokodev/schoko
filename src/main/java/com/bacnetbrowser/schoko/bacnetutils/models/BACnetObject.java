@@ -25,7 +25,7 @@ import java.util.List;
 
 public class BACnetObject extends RemoteObject {
 
-    private final RemoteDevice bacnetDevice;
+    private final BACnetDevice bacnetDevice;
     private final ObjectType objectType;
     private String objectName;
     private final List<ObjectPropertyReference> propertyReferences = new ArrayList<>();
