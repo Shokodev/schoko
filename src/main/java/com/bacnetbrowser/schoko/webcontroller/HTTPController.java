@@ -57,14 +57,9 @@ public class HTTPController {
                 .map(PermanentDevices::getDeviceId)
                 .collect(toCollection(ArrayList::new))
         );
-        if(!DeviceService.bacnetDevices.isEmpty()){
-            LOG.info("Start automatic reimport for: {} devices",
-                    (long) DeviceService.bacnetDevices.size());
-            deviceService.scanAndAddAllObjectsOfFinalDeviceList();
-            LOG.info("BACnet devices ready");
-            eventHandler.createEventStream();
-            hierarchyHandler.createStructure();
-        }
+        eventHandler.createEventStream();
+        LOG.info("BACnet devices ready");
+        hierarchyHandler.createStructure();
     }
 
     /**
@@ -131,8 +126,6 @@ public class HTTPController {
                 .map(WaitingRoomDeviceFrontend::getInstanceNumber)
                 .collect(toCollection(ArrayList::new))
         );
-        LOG.info("{} BACnet devices finally registered at local device -> Read objects of all devices ...", DeviceService.bacnetDevices.size());
-        deviceService.scanAndAddAllObjectsOfFinalDeviceList();
         eventHandler.createEventStream();
         LOG.info("BACnet devices ready");
         hierarchyHandler.createStructure();

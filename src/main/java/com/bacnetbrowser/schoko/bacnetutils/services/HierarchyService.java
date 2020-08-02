@@ -85,8 +85,6 @@ public class HierarchyService {
     private Boolean checkIfNecessaryForStructure(ObjectType objectType) {
         if (objectType.equals(ObjectType.file)){
             return false;
-        } else if (objectType.equals(ObjectType.device)){
-            return false;
         } else if (objectType.equals(ObjectType.program)){
             return false;
         } else return !Character.isDigit(objectType.toString().charAt(0));

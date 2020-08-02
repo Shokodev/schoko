@@ -77,11 +77,13 @@ public class EventProcessing implements Runnable {
                     existingEvent.setResetState(true);
                 }
                 existingEvent.setNotifyType(BACnetTypes.getNotifyTypeAsText(notifyType));
-                existingEvent.setTimeStamp(BACnetTypes.parseToSQLTimeStamp(timeStamp));
+                //For reset or ack is always the last value change timestamp needed
+                //existingEvent.setTimeStamp(BACnetTypes.parseToSQLTimeStamp(timeStamp));
                 existingEvent.setPresentValue(bacnetObject.getPresentValueAsText());
                 existingEvent.setFromState(BACnetTypes.getGermanEventStateText(fromState));
                 existingEvent.setToState(BACnetTypes.getGermanEventStateText(toState));
                 EventService.eventRepository.save(new BACnetEvent(existingEvent));
+                eventService.getActiveEvents().replace(existingEvent.getObjectName(), existingEvent);
                 eventService.closeEventIfPossible(existingEvent);
             }
             // Edit back to normal
@@ -94,13 +96,16 @@ public class EventProcessing implements Runnable {
                 existingEvent.setFromState(BACnetTypes.getGermanEventStateText(fromState));
                 existingEvent.setToState(BACnetTypes.getGermanEventStateText(toState));
                 EventService.eventRepository.save(new BACnetEvent(existingEvent));
+                eventService.getActiveEvents().replace(existingEvent.getObjectName(), existingEvent);
                 eventService.closeEventIfPossible(existingEvent);
             }
             // New Event
             else {
                 LOG.info("New event massage from: {}" ,bacnetObject.getObjectName());
                 bacnetEvent = new BACnetEvent(processIdentifier.toString(), bacnetDevice.getVendorName(), eventObjectIdentifier.toString(),
-                        BACnetTypes.parseToSQLTimeStamp(timeStamp), notificationClass.toString(), priority.toString(), eventType.toString(),
+                        BACnetTypes.parseToSQLTimeStamp(timeStamp),
+                        BACnetTypes.parseToSQLTimeStamp(timeStamp),
+                        notificationClass.toString(), priority.toString(), eventType.toString(),
                         messageText.toString(), BACnetTypes.getNotifyTypeAsText(notifyType), eventTransitionBits.toString(),
                         BACnetTypes.getGermanEventStateText(fromState),
                         BACnetTypes.getGermanEventStateText(toState), eventValues.toString(),

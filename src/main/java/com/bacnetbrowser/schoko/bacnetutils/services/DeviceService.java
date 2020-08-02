@@ -100,11 +100,9 @@ public class DeviceService extends DeviceEventAdapter {
             Thread.sleep(scanSeconds * 1000);
             //End scan after scanSeconds if no device is found
             if (waitingRoomBacnetDevices.isEmpty() && bacnetDevices.isEmpty()) {
-                localDevice.terminate();
                 LOG.warn("No remote devices found");
-            } else {
-                localDevice.getEventHandler().removeListener(this);
             }
+            localDevice.getEventHandler().removeListener(this);
         } catch (InterruptedException bac) {
             LOG.warn("Network scan failure, restart the application may solve this problem");
         }
@@ -132,15 +130,18 @@ public class DeviceService extends DeviceEventAdapter {
         DeviceService.bacnetDevices.clear();
         deviceRepository.deleteAll();
         instanceNumbers.forEach(number -> {
-            try {
-                DeviceService.bacnetDevices.add(DeviceService.waitingRoomBacnetDevices.get(number));
+            BACnetDevice device = DeviceService.waitingRoomBacnetDevices.get(number);
+            if(device != null) {
+                DeviceService.bacnetDevices.add(device);
                 deviceRepository.save(new PermanentDevices(number));
-            } catch (NullPointerException e){
+            }else {
                 LOG.warn("Device with instance number: {} does not exist in waiting room ->" +
                         "flag removed from DB!", number);
             }
         });
         LOG.info("New amount of devices in DB list = {}", (long) deviceRepository.findAll().size());
+        LOG.info("{} BACnet devices finally registered at local device -> Read objects of all devices ...", DeviceService.bacnetDevices.size());
+        scanAndAddAllObjectsOfFinalDeviceList();
         DeviceService.waitingRoomBacnetDevices.clear();
     }
 

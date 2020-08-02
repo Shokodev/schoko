@@ -23,6 +23,7 @@ public class BACnetEvent {
     private String remoteDeviceName;
     private String oid;
     private java.sql.Timestamp timeStamp;
+    private java.sql.Timestamp eventTimeStamp;
     private String notificationClass;
     private String priority;
     private String eventType;
@@ -68,13 +69,15 @@ public class BACnetEvent {
     }
 
     public BACnetEvent(String processIdentifier, String remoteDeviceName, String oid, Timestamp timeStamp,
-                       String notificationClass, String priority, String eventType, String messageText, String notifyType,
-                       String ackRequired, String fromState, String toState, String eventValues, String description,
-                       String presentValue, String objectName, boolean ackState, boolean resetState, String eventID) {
+                       Timestamp eventTimeStamp, String notificationClass, String priority, String eventType,
+                       String messageText, String notifyType, String ackRequired, String fromState, String toState,
+                       String eventValues, String description, String presentValue, String objectName,
+                       boolean ackState, boolean resetState, String eventID) {
         this.processIdentifier = processIdentifier;
         this.remoteDeviceName = remoteDeviceName;
         this.oid = oid;
         this.timeStamp = timeStamp;
+        this.eventTimeStamp = eventTimeStamp;
         this.notificationClass = notificationClass;
         this.priority = priority;
         this.eventType = eventType;
@@ -138,6 +141,14 @@ public class BACnetEvent {
 
     public void setTimeStamp(Timestamp timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    public Timestamp getEventTimeStamp() {
+        return eventTimeStamp;
+    }
+
+    public void setEventTimeStamp(Timestamp eventTimeStamp) {
+        this.eventTimeStamp = eventTimeStamp;
     }
 
     public String getNotificationClass() {

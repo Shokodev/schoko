@@ -1,5 +1,6 @@
 package com.bacnetbrowser.schoko.datahandler;
 
+import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
 import com.bacnetbrowser.schoko.databaseconfig.EventRepository;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetEvent;
 import com.bacnetbrowser.schoko.bacnetutils.services.EventService;
@@ -36,6 +37,7 @@ public class EventHandler {
     }
 
     public void createEventStream(){
+        DeviceService.localDevice.getEventHandler().addListener(eventService);
         Thread thread = new Thread(eventService::getEventInformation);
         thread.start();
     }
