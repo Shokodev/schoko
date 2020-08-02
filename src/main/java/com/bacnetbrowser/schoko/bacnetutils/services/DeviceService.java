@@ -34,13 +34,17 @@ public class DeviceService extends DeviceEventAdapter {
     private static final Logger LOG = LoggerFactory.getLogger(DeviceService.class);
     private final DeviceRepository deviceRepository;
 
+    public DeviceService(DeviceRepository deviceRepository){
+        this.deviceRepository = deviceRepository;
+    }
+
     @Override
     public void iAmReceived(RemoteDevice d) {
         BACnetDevice bacnetDevice = new BACnetDevice(localDevice, d.getInstanceNumber(), d.getAddress(),
                 d.getSegmentationSupported(), d.getVendorIdentifier(), d.getMaxAPDULengthAccepted());
         getRemoteDeviceInformation(bacnetDevice);
         if(deviceRepository.findByDeviceId(d.getInstanceNumber()) != null){
-            DeviceService.bacnetDevices.add(bacnetDevice);
+            waitingRoomBacnetDevices.put(bacnetDevice.getInstanceNumber(), bacnetDevice);
             LOG.info("Remote device instance: " + bacnetDevice.getInstanceNumber()
                     + " found in DB -> marked for automatic reimport");
         } else {
@@ -50,9 +54,7 @@ public class DeviceService extends DeviceEventAdapter {
     }
 
     //Methods for LocalDevice and Network
-    public DeviceService(DeviceRepository deviceRepository){
-        this.deviceRepository = deviceRepository;
-    }
+
 
     /**
      * Create Local Device and add listener
@@ -125,15 +127,21 @@ public class DeviceService extends DeviceEventAdapter {
      * Used to update final device list
      * -> no longer needed devices will be removed and the local device will be removed as receiver
      */
-    public void updateFinalDeviceList(ArrayList<WaitingRoomDeviceFrontend> bacnetDevices){
+    public void updateFinalDeviceList(ArrayList<Integer> instanceNumbers){
         removeLocalDeviceAsAlarmReceiver();
         DeviceService.bacnetDevices.clear();
         deviceRepository.deleteAll();
-        bacnetDevices.forEach(device -> {
-            deviceRepository.save(new PermanentDevices(device.getInstanceNumber()));
-            DeviceService.bacnetDevices.add(DeviceService.waitingRoomBacnetDevices.get(device.getInstanceNumber()));
+        instanceNumbers.forEach(number -> {
+            try {
+                DeviceService.bacnetDevices.add(DeviceService.waitingRoomBacnetDevices.get(number));
+                deviceRepository.save(new PermanentDevices(number));
+            } catch (NullPointerException e){
+                LOG.warn("Device with instance number: {} does not exist in waiting room ->" +
+                        "flag removed from DB!", number);
+            }
         });
-        LOG.info("Amount of devices in DB list = {}", (long) deviceRepository.findAll().size());
+        LOG.info("New amount of devices in DB list = {}", (long) deviceRepository.findAll().size());
+        DeviceService.waitingRoomBacnetDevices.clear();
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.bacnetbrowser.schoko.webcontroller;
 
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
+import com.bacnetbrowser.schoko.bacnetutils.models.PermanentDevices;
 import com.bacnetbrowser.schoko.bacnetutils.models.WaitingRoomDeviceFrontend;
 import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
 import com.bacnetbrowser.schoko.databaseconfig.DeviceRepository;
@@ -8,7 +9,6 @@ import com.bacnetbrowser.schoko.datahandler.EventHandler;
 import com.bacnetbrowser.schoko.datahandler.HierarchyHandler;
 import com.bacnetbrowser.schoko.datahandler.SettingsHandler;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetNode;
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toCollection;
 
 
 /**
@@ -53,6 +51,12 @@ public class HTTPController {
         this.eventHandler = eventHandler;
         this.deviceService = new DeviceService(deviceRepository);
         deviceService.createLocalDevice();
+        eventHandler.initializeEventChannel();
+        deviceService.updateFinalDeviceList(
+                deviceRepository.findAll().stream()
+                .map(PermanentDevices::getDeviceId)
+                .collect(toCollection(ArrayList::new))
+        );
         if(!DeviceService.bacnetDevices.isEmpty()){
             LOG.info("Start automatic reimport for: {} devices",
                     (long) DeviceService.bacnetDevices.size());
@@ -122,7 +126,11 @@ public class HTTPController {
     @PostMapping(value = "/devices")
     public ResponseEntity<SettingsHandler> setFinalDevices(@RequestBody ArrayList<WaitingRoomDeviceFrontend> newFinalbacnetDevices){
         LOG.info("Received desired list from frontend with: {} devices",newFinalbacnetDevices.size());
-        deviceService.updateFinalDeviceList(newFinalbacnetDevices);
+        deviceService.updateFinalDeviceList(
+                newFinalbacnetDevices.stream()
+                .map(WaitingRoomDeviceFrontend::getInstanceNumber)
+                .collect(toCollection(ArrayList::new))
+        );
         LOG.info("{} BACnet devices finally registered at local device -> Read objects of all devices ...", DeviceService.bacnetDevices.size());
         deviceService.scanAndAddAllObjectsOfFinalDeviceList();
         eventHandler.createEventStream();

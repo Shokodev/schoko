@@ -21,8 +21,8 @@ import java.util.ArrayList;
 public class EventHandler {
 
     private final SimpMessagingTemplate template;
-    private final EventRepository eventRepository;
     private EventService eventService;
+    private final EventRepository eventRepository;
     private static final Logger LOG = LoggerFactory.getLogger(EventHandler.class);
 
     @Autowired
@@ -31,14 +31,12 @@ public class EventHandler {
         this.eventRepository = eventRepository;
     }
 
+    public void initializeEventChannel(){
+        this.eventService = new EventService(this, eventRepository);
+    }
+
     public void createEventStream(){
-       EventService eventService = new EventService(this, eventRepository);
-       this.eventService = eventService;
-        Thread thread = new Thread(){
-            public void run(){
-                eventService.getEventInformation();
-            }
-        };
+        Thread thread = new Thread(eventService::getEventInformation);
         thread.start();
     }
 

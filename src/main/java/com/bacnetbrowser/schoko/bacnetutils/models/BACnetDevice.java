@@ -7,6 +7,7 @@ import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import com.serotonin.bacnet4j.type.enumerated.Segmentation;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
 import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 public class BACnetDevice extends RemoteDevice {
     //Default Max APDU length accepted
     private final ArrayList<BACnetObject> bacnetObjects = new ArrayList<>();
+    private Boolean isAlreadyImported = false;
     private static final Logger LOG = LoggerFactory.getLogger(BACnetDevice.class);
 
     public BACnetDevice(LocalDevice localDevice, int instanceNumber, Address address, Segmentation segmentation,
@@ -42,5 +44,12 @@ public class BACnetDevice extends RemoteDevice {
         return null;
     }
 
+    public Boolean getAlreadyImported() {
+        return isAlreadyImported;
+    }
+
+    public void setAlreadyImported(Boolean alreadyImported) {
+        isAlreadyImported = alreadyImported;
+    }
 }
 

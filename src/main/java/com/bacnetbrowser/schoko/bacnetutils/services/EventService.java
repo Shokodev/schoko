@@ -125,7 +125,7 @@ public class EventService extends DeviceEventAdapter  {
      * @param eventState   event state of the object
      * @return time stamp as dateTime
      */
-    private TimeStamp getTimeStampofObject(ObjectIdentifier oid, RemoteDevice remoteDevice, String eventState) {
+    private TimeStamp getTimeStampOfObject(ObjectIdentifier oid, RemoteDevice remoteDevice, String eventState) {
         try {
             List<TimeStamp> stamps = ((SequenceOf<TimeStamp>) RequestUtils.sendReadPropertyAllowNull(
                     DeviceService.localDevice, remoteDevice, oid,
@@ -163,7 +163,7 @@ public class EventService extends DeviceEventAdapter  {
         for (BACnetDevice bacnetDevice : DeviceService.bacnetDevices) {
             GetEnrollmentSummaryRequest request = new GetEnrollmentSummaryRequest(
                     GetEnrollmentSummaryRequest.AcknowledgmentFilter.all,null,
-                        null,null,null,null);
+                    GetEnrollmentSummaryRequest.EventStateFilter.active,null,null,null);
             GetEnrollmentSummaryAck events = null;
             try {
                 events = DeviceService.localDevice.send(bacnetDevice, request).get();
@@ -177,9 +177,8 @@ public class EventService extends DeviceEventAdapter  {
                         createSQLEvent(event, bacnetDevice);
                     }
             }
-            eventHandler.updateStream();
         }
-
+        eventHandler.updateStream();
     }
 
     /**
@@ -188,7 +187,7 @@ public class EventService extends DeviceEventAdapter  {
      * @param bacnetDevice remote device of this objects
      */
     private void createSQLEvent(GetEnrollmentSummaryAck.EnrollmentSummary event, BACnetDevice bacnetDevice) {
-        TimeStamp timeStamp = getTimeStampofObject(event.getObjectIdentifier(),bacnetDevice, event.getEventState().toString());
+        TimeStamp timeStamp = getTimeStampOfObject(event.getObjectIdentifier(),bacnetDevice, event.getEventState().toString());
         try {
            BACnetEvent eventSQL = eventRepository.findBACnetEventByRemoteDeviceNameAndOidAndAndTimeStamp(
                    bacnetDevice.getName(),event.getObjectIdentifier().toString(),
