@@ -4,6 +4,7 @@ import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
 import com.bacnetbrowser.schoko.bacnetutils.models.PermanentDevices;
 import com.bacnetbrowser.schoko.bacnetutils.models.WaitingRoomDeviceFrontend;
 import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
+import com.bacnetbrowser.schoko.bacnetutils.structure.Structure;
 import com.bacnetbrowser.schoko.databaseconfig.DeviceRepository;
 import com.bacnetbrowser.schoko.datahandler.EventHandler;
 import com.bacnetbrowser.schoko.datahandler.HierarchyHandler;
@@ -66,7 +67,7 @@ public class HTTPController {
      * @return complete hierarchy structure
      */
     @GetMapping("/hierarchy")
-    public BACnetNode all (){
+    public Structure all (){
         return hierarchyHandler.getBacnetStructure();
     }
 
@@ -74,8 +75,8 @@ public class HTTPController {
      * @return complete device structure
      */
     @GetMapping("/logicalview")
-    public BACnetNode devcieStructure (){
-        return hierarchyHandler.getDeviceStructure();
+    public Structure devcieStructure (){
+        return hierarchyHandler.getLogicalStructure();
     }
 
 
@@ -164,7 +165,7 @@ public class HTTPController {
      * @return hierarchy structure node with his children
      */
     @GetMapping("/structure/{objectName}")
-    public BACnetNode getBacnetStructure(@PathVariable String objectName){
+    public Structure getBacnetStructure(@PathVariable String objectName){
         LOG.info("Get node: " + objectName);
         return hierarchyHandler.getNodeByObjectName(objectName);
         }

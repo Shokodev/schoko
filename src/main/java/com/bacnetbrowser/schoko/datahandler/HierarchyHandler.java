@@ -1,8 +1,8 @@
 package com.bacnetbrowser.schoko.datahandler;
 
 
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetNode;
-import com.bacnetbrowser.schoko.bacnetutils.services.HierarchyService;
+import com.bacnetbrowser.schoko.bacnetutils.structure.*;
+import com.bacnetbrowser.schoko.bacnetutils.structure.exceptions.StructureBuildException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -16,12 +16,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class HierarchyHandler {
 
-    private final HierarchyService hierarchyService;
-    private static final Logger LOG = LoggerFactory.getLogger(HierarchyService.class);
-
+    private final StructureService structureService;
+    private static final Logger LOG = LoggerFactory.getLogger(StructureService.class);
 
     public HierarchyHandler() {
-        this.hierarchyService = new HierarchyService();
+        this.structureService = new StructureService();
     }
 
     /**
@@ -29,42 +28,44 @@ public class HierarchyHandler {
      * @param objectName as said
      * @return Object to Rest
      */
-    public BACnetNode getNodeByObjectName(String objectName) {
-            BACnetNode structure = getBacnetStructure();
+    public Structure getNodeByObjectName(String objectName) {
+            Structure structure = getBacnetStructure();
             String[] splitted = objectName.split(SettingsHandler.bacnetSeparator);
         try {
             //Check if its the top element
-            if ((splitted.length == 1) && (HierarchyService.structureTypeBACnet.equals(objectName))) {
+            //TODO Type confirmation
+            if ((splitted.length == 1) && (StructureTypes.BACNET.toString().equals(objectName))) {
                 return structure;
             } else {
-                BACnetNode node = null;
+                Structure node = null;
                 for (int i = 1; i < splitted.length; i++) {
-                    node = structure.getChildBySplittedObjectName(splitted[i]);
+                    node = structure.getChild(splitted[i]);
                     structure = node;
                 }
                 return node;
             }
-                } catch (NullPointerException e){
+                } catch (StructureBuildException e){
                     LOG.info("No structure yet, check settings!");
                     return null;
                 }
         }
 
-    /**
-     * delete structure if exists, read BacNet network and create new structure
-     */
+    public Structure getBacnetStructure() {
+        return structureService.getBacnetStructure();
+    }
+
+    public Structure getLogicalStructure(){
+        return structureService.getLogicalStructure();
+    }
+
     public void createStructure(){
-        hierarchyService.deleteStructure();
-        hierarchyService.createStructure();
+        try {
+            structureService.build();
+        } catch (StructureBuildException e){
+            LOG.error("Structure build failed " + e.fillInStackTrace());
+        }
     }
 
-    public BACnetNode getBacnetStructure() {
-        return hierarchyService.getBacnetStructure();
-    }
-
-    public BACnetNode getDeviceStructure(){
-        return hierarchyService.getDeviceStructure();
-    }
 }
 
 

@@ -1,6 +1,8 @@
 package com.bacnetbrowser.schoko.bacnetutils.services;
 
 
+import com.bacnetbrowser.schoko.bacnetutils.structure.Structure;
+import com.bacnetbrowser.schoko.bacnetutils.structure.StructureService;
 import com.bacnetbrowser.schoko.datahandler.ObjectHandler;
 import com.bacnetbrowser.schoko.datahandler.SettingsHandler;
 import com.bacnetbrowser.schoko.bacnetutils.models.*;
@@ -51,8 +53,8 @@ public class ObjectService extends DeviceEventAdapter implements ReadListener {
      * Gets all properties from a data point by objectName
      */
     public void readDataPointProperties(String objectName) {
-        BACnetDevice bacnetDevice = HierarchyService.obejctNamesToBACnetDevice.get(objectName);
-        ObjectIdentifier oid = HierarchyService.objectNamesToOids.get(objectName);
+        BACnetDevice bacnetDevice = StructureService.objectNamesToBACnetDevice.get(objectName);
+        ObjectIdentifier oid = StructureService.objectNamesToObjectIdentifier.get(objectName);
         this.objectIdentifier = oid;
         this.bacnetDevice = bacnetDevice;
         this.bacnetObject = bacnetDevice.getBACnetObject(oid);

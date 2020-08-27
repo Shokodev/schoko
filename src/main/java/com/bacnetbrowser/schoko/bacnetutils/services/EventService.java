@@ -2,6 +2,7 @@ package com.bacnetbrowser.schoko.bacnetutils.services;
 
 
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
+import com.bacnetbrowser.schoko.bacnetutils.structure.StructureService;
 import com.bacnetbrowser.schoko.databaseconfig.EventRepository;
 import com.bacnetbrowser.schoko.datahandler.EventHandler;
 import com.bacnetbrowser.schoko.bacnetutils.models.BACnetEvent;
@@ -96,8 +97,8 @@ public class EventService extends DeviceEventAdapter  {
     //TODO whole acknowledge process -- Problem [What if firstEvent does not exist?]
     // Problem is temporarily solved by setting the same time as ack time
     public void acknowledgeEvent(String objectName){
-        ObjectIdentifier oid = HierarchyService.objectNamesToOids.get(objectName);
-        BACnetDevice bacnetDevice = HierarchyService.obejctNamesToBACnetDevice.get(objectName);
+        ObjectIdentifier oid = StructureService.objectNamesToObjectIdentifier.get(objectName);
+        BACnetDevice bacnetDevice = StructureService.objectNamesToBACnetDevice.get(objectName);
         BACnetObject object = bacnetDevice.getBACnetObject(oid);
         TimeStamp timeStamp;
         try {

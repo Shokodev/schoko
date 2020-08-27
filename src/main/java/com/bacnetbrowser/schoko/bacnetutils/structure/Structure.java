@@ -1,17 +1,19 @@
 package com.bacnetbrowser.schoko.bacnetutils.structure;
 
+import com.bacnetbrowser.schoko.bacnetutils.structure.exceptions.StructureBuildException;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Structure {
 
     private String name;
-    private String type;
     private String description;
-    private List<StructureNode> children;
+    private StructureNode parent;
+    private final List<StructureNode> children = new ArrayList<>();
 
-    public Structure(String name, String type, String description) {
+    public Structure(String name, String description) {
         this.name = name;
-        this.type = type;
         this.description = description;
     }
 
@@ -21,14 +23,6 @@ public abstract class Structure {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getDescription() {
@@ -43,7 +37,32 @@ public abstract class Structure {
         return children;
     }
 
-    public void setChildren(List<StructureNode> children) {
-        this.children = children;
+    public boolean containsChild(String objectName){
+        for (StructureNode child : children) {
+            if (child.getName().equals(objectName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public StructureNode getChild(String objectName) throws StructureBuildException {
+        if (containsChild(objectName)) {
+            for (StructureNode child : children) {
+                if (child.getName().equals(objectName)) {
+                    return child;
+                }
+            }
+            return null;
+        } else throw new StructureBuildException("No child with object name: "
+                + objectName + " in structure node: " + name);
+    }
+
+    public StructureNode getParent() {
+        return parent;
+    }
+
+    public void setParent(StructureNode parent) {
+        this.parent = parent;
     }
 }
