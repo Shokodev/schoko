@@ -1,4 +1,4 @@
-package com.bacnetbrowser.schoko.bacnetutils.models;
+package com.bacnetbrowser.schoko.bacnetutils.devices;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

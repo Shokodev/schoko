@@ -1,7 +1,7 @@
 package com.bacnetbrowser.schoko.webcontroller;
 
 
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetProperty;
+import com.bacnetbrowser.schoko.bacnetutils.objects.BACnetProperty;
 import com.bacnetbrowser.schoko.datahandler.EventHandler;
 import com.bacnetbrowser.schoko.datahandler.ObjectHandler;
 import org.slf4j.Logger;
@@ -14,8 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * Controller for WebSockets

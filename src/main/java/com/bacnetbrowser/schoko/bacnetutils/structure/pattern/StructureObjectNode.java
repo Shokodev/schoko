@@ -1,14 +1,16 @@
-package com.bacnetbrowser.schoko.bacnetutils.structure;
+package com.bacnetbrowser.schoko.bacnetutils.structure.pattern;
 
 
-public class StructureNode extends Structure {
+import com.bacnetbrowser.schoko.bacnetutils.structure.Structure;
+
+public class StructureObjectNode extends Structure {
 
     private String objectIdentifier;
     private String objectName;
 
 
-    public StructureNode(String name, String description,
-                         String objectIdentifier, String objectName) {
+    public StructureObjectNode(String name, String description,
+                               String objectIdentifier, String objectName) {
         super(name, description);
         this.objectIdentifier = objectIdentifier;
         this.objectName = objectName;

@@ -1,4 +1,4 @@
-package com.bacnetbrowser.schoko.bacnetutils.models;
+package com.bacnetbrowser.schoko.bacnetutils.objects;
 
 import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.*;
@@ -7,13 +7,10 @@ import com.serotonin.bacnet4j.type.primitive.*;
 import com.serotonin.bacnet4j.type.primitive.Boolean;
 
 import java.lang.Double;
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicReference;
 
 
 /**

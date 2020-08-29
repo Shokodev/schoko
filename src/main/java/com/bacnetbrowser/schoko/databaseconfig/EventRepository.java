@@ -1,6 +1,6 @@
 package com.bacnetbrowser.schoko.databaseconfig;
 
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetEvent;
+import com.bacnetbrowser.schoko.bacnetutils.events.BACnetEvent;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

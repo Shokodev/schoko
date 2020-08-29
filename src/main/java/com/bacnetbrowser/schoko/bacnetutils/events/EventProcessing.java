@@ -1,9 +1,9 @@
-package com.bacnetbrowser.schoko.bacnetutils.services;
+package com.bacnetbrowser.schoko.bacnetutils.events;
 
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetEvent;
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetTypes;
+import com.bacnetbrowser.schoko.bacnetutils.devices.DeviceService;
+import com.bacnetbrowser.schoko.bacnetutils.devices.BACnetDevice;
+import com.bacnetbrowser.schoko.bacnetutils.objects.BACnetObject;
+import com.bacnetbrowser.schoko.bacnetutils.objects.BACnetTypes;
 import com.serotonin.bacnet4j.type.constructed.EventTransitionBits;
 import com.serotonin.bacnet4j.type.constructed.TimeStamp;
 import com.serotonin.bacnet4j.type.enumerated.*;

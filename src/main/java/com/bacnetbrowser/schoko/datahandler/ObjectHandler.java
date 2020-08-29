@@ -1,7 +1,7 @@
 package com.bacnetbrowser.schoko.datahandler;
 
 
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetTypes;
+import com.bacnetbrowser.schoko.bacnetutils.objects.BACnetTypes;
 import com.bacnetbrowser.schoko.bacnetutils.services.ObjectService;
 import com.serotonin.bacnet4j.type.enumerated.PropertyIdentifier;
 import org.slf4j.Logger;
@@ -11,7 +11,6 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
-import java.util.List;
 
 
 /**

@@ -1,10 +1,7 @@
-package com.bacnetbrowser.schoko.bacnetutils.services;
+package com.bacnetbrowser.schoko.bacnetutils.devices;
 
 
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;
-import com.bacnetbrowser.schoko.bacnetutils.models.PermanentDevices;
-import com.bacnetbrowser.schoko.bacnetutils.models.WaitingRoomDeviceFrontend;
+import com.bacnetbrowser.schoko.bacnetutils.objects.BACnetObject;
 import com.bacnetbrowser.schoko.databaseconfig.DeviceRepository;
 import com.bacnetbrowser.schoko.datahandler.SettingsHandler;
 import com.serotonin.bacnet4j.LocalDevice;

@@ -1,9 +1,12 @@
-package com.bacnetbrowser.schoko.bacnetutils.structure;
+package com.bacnetbrowser.schoko.bacnetutils.structure.pattern;
 
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetNode;
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;
-import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
+import com.bacnetbrowser.schoko.bacnetutils.devices.BACnetDevice;
+import com.bacnetbrowser.schoko.bacnetutils.objects.BACnetObject;
+import com.bacnetbrowser.schoko.bacnetutils.devices.DeviceService;
+import com.bacnetbrowser.schoko.bacnetutils.structure.Structurable;
+import com.bacnetbrowser.schoko.bacnetutils.structure.Structure;
+import com.bacnetbrowser.schoko.bacnetutils.structure.StructureService;
+import com.bacnetbrowser.schoko.bacnetutils.structure.StructureTypes;
 import com.bacnetbrowser.schoko.bacnetutils.structure.exceptions.StructureBuildException;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import org.slf4j.Logger;
@@ -21,8 +24,7 @@ public class LogicalStructure extends Structure implements Structurable {
     public void build() throws StructureBuildException {
         int nodeCounter = 0;
         for (BACnetDevice bacnetDevice : DeviceService.bacnetDevices) {
-            StructureNode device = new StructureNode(bacnetDevice.getVendorName(),bacnetDevice.getModelName(),
-                    "Structure Element",bacnetDevice.getName());
+            StructureViewNode device = new StructureViewNode(bacnetDevice.getName(),bacnetDevice.getModelName());
             this.getChildren().add(device);
             for (BACnetObject bacnetObject : bacnetDevice.getBacnetObjects()) {
                 if(StructureService.checkIfNecessaryForStructure(bacnetObject.getObjectType())){
@@ -34,17 +36,22 @@ public class LogicalStructure extends Structure implements Structurable {
         if (this.getChildren().isEmpty()) {
             throw new StructureBuildException("No device nodes were created, check settings!");
         }
-        LOG.info("Device structure successfully created with " + nodeCounter + " nodes");
+        LOG.info("Logical structure successfully created with " + nodeCounter + " nodes");
     }
 
-    private void addObjectToPropertyGroup(BACnetObject bacnetObject, StructureNode device) throws StructureBuildException {
+    @Override
+    public void delete() {
+        this.getChildren().clear();
+    }
+
+    private void addObjectToPropertyGroup(BACnetObject bacnetObject, Structure device) throws StructureBuildException {
         ObjectType objectType = bacnetObject.getObjectIdentifier().getObjectType();
-        StructureNode object = new StructureNode(bacnetObject.getObjectIdentifier().toString(),
+        StructureObjectNode object = new StructureObjectNode(bacnetObject.getObjectIdentifier().toString(),
                 StructureService.objectNamesToDescription.get(bacnetObject.getObjectName()),
                 bacnetObject.getObjectIdentifier().toString(),
                 bacnetObject.getObjectName());
-        StructureNode propertyGroup = new StructureNode(objectType.toString(),objectType.toString(),"Structure Element"," ");
-        if (device.getChild(propertyGroup.getName()) == null) {
+        StructureViewNode propertyGroup = new StructureViewNode(objectType.toString(),objectType.toString());
+        if (!device.containsChild(propertyGroup.getName())) {
             device.getChildren().add(propertyGroup);
             propertyGroup.getChildren().add(object);
         } else {

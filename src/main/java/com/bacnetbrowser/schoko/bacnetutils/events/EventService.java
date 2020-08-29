@@ -1,13 +1,13 @@
-package com.bacnetbrowser.schoko.bacnetutils.services;
+package com.bacnetbrowser.schoko.bacnetutils.events;
 
 
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
+import com.bacnetbrowser.schoko.bacnetutils.devices.DeviceService;
+import com.bacnetbrowser.schoko.bacnetutils.devices.BACnetDevice;
 import com.bacnetbrowser.schoko.bacnetutils.structure.StructureService;
 import com.bacnetbrowser.schoko.databaseconfig.EventRepository;
 import com.bacnetbrowser.schoko.datahandler.EventHandler;
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetEvent;
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetTypes;
+import com.bacnetbrowser.schoko.bacnetutils.objects.BACnetObject;
+import com.bacnetbrowser.schoko.bacnetutils.objects.BACnetTypes;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
 import com.serotonin.bacnet4j.exception.BACnetException;
