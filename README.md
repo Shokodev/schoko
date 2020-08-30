@@ -294,4 +294,33 @@ The objectName must be as destination variable in the URL!
     -> Imidiantly receive a list with properties (current state)
     -> Creates Subscription on BACnet for that object 
     -> You will be imformed about changes of 'present-value' 
+    -> Multible channels can be opened 
     
+*Send values to opened object channel*
+```
+/broker/setValue/{objectName}
+```
+
+    -> Parameter: {prpertyidentifier: xy, value: xy}
+
+*Release set value in opened object channel*
+```
+/broker/release/{objectName}
+```
+
+ *close object channel*
+ ```
+ /broker/end/{objectName}
+ ```
+
+**Create event channel(Listener)**
+```
+/broker/getEvents
+```
+
+*Acknowledge an event*
+```
+/broker/ack/{objectName}
+```
+
+The objectName must be as destination variable in the URL!
