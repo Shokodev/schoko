@@ -1,11 +1,12 @@
 package com.bacnetbrowser.schoko.bacnetutils.services;
 
 
-import com.bacnetbrowser.schoko.bacnetutils.structure.Structure;
+import com.bacnetbrowser.schoko.bacnetutils.devices.BACnetDevice;
+import com.bacnetbrowser.schoko.bacnetutils.devices.DeviceService;
 import com.bacnetbrowser.schoko.bacnetutils.structure.StructureService;
 import com.bacnetbrowser.schoko.datahandler.ObjectHandler;
 import com.bacnetbrowser.schoko.datahandler.SettingsHandler;
-import com.bacnetbrowser.schoko.bacnetutils.models.*;
+import com.bacnetbrowser.schoko.bacnetutils.objects.*;
 import com.serotonin.bacnet4j.event.DeviceEventAdapter;
 import com.serotonin.bacnet4j.type.Encodable;
 import com.serotonin.bacnet4j.type.constructed.PropertyValue;

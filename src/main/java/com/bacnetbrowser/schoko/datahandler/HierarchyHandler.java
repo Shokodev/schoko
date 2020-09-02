@@ -60,6 +60,7 @@ public class HierarchyHandler {
 
     public void createStructure(){
         try {
+            structureService.delete();
             structureService.build();
         } catch (StructureBuildException e){
             LOG.error("Structure build failed " + e.fillInStackTrace());

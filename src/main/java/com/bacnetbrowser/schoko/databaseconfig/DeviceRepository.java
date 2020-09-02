@@ -1,7 +1,7 @@
 package com.bacnetbrowser.schoko.databaseconfig;
 
 
-import com.bacnetbrowser.schoko.bacnetutils.models.PermanentDevices;
+import com.bacnetbrowser.schoko.bacnetutils.devices.PermanentDevices;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

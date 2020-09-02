@@ -1,15 +1,14 @@
 package com.bacnetbrowser.schoko.webcontroller;
 
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
-import com.bacnetbrowser.schoko.bacnetutils.models.PermanentDevices;
-import com.bacnetbrowser.schoko.bacnetutils.models.WaitingRoomDeviceFrontend;
-import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
+import com.bacnetbrowser.schoko.bacnetutils.devices.BACnetDevice;
+import com.bacnetbrowser.schoko.bacnetutils.devices.PermanentDevices;
+import com.bacnetbrowser.schoko.bacnetutils.devices.WaitingRoomDeviceFrontend;
+import com.bacnetbrowser.schoko.bacnetutils.devices.DeviceService;
 import com.bacnetbrowser.schoko.bacnetutils.structure.Structure;
 import com.bacnetbrowser.schoko.databaseconfig.DeviceRepository;
 import com.bacnetbrowser.schoko.datahandler.EventHandler;
 import com.bacnetbrowser.schoko.datahandler.HierarchyHandler;
 import com.bacnetbrowser.schoko.datahandler.SettingsHandler;
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toCollection;
 

@@ -1,5 +1,6 @@
-package com.bacnetbrowser.schoko.bacnetutils.models;
+package com.bacnetbrowser.schoko.bacnetutils.devices;
 
+import com.bacnetbrowser.schoko.bacnetutils.objects.BACnetObject;
 import com.serotonin.bacnet4j.LocalDevice;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.type.constructed.Address;

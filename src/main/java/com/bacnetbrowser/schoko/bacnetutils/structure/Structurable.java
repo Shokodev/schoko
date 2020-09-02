@@ -6,4 +6,6 @@ public interface Structurable {
 
     void build() throws StructureBuildException;
 
+    void delete();
+
 }

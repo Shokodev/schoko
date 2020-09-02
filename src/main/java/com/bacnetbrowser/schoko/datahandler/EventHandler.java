@@ -1,16 +1,14 @@
 package com.bacnetbrowser.schoko.datahandler;
 
-import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
+import com.bacnetbrowser.schoko.bacnetutils.devices.DeviceService;
 import com.bacnetbrowser.schoko.databaseconfig.EventRepository;
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetEvent;
-import com.bacnetbrowser.schoko.bacnetutils.services.EventService;
+import com.bacnetbrowser.schoko.bacnetutils.events.BACnetEvent;
+import com.bacnetbrowser.schoko.bacnetutils.events.EventService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
 
 
 /**

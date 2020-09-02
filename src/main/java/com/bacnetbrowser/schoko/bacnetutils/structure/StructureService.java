@@ -1,9 +1,11 @@
 package com.bacnetbrowser.schoko.bacnetutils.structure;
 
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetDevice;
-import com.bacnetbrowser.schoko.bacnetutils.models.BACnetObject;
-import com.bacnetbrowser.schoko.bacnetutils.services.DeviceService;
+import com.bacnetbrowser.schoko.bacnetutils.devices.BACnetDevice;
+import com.bacnetbrowser.schoko.bacnetutils.objects.BACnetObject;
+import com.bacnetbrowser.schoko.bacnetutils.devices.DeviceService;
 import com.bacnetbrowser.schoko.bacnetutils.structure.exceptions.StructureBuildException;
+import com.bacnetbrowser.schoko.bacnetutils.structure.pattern.BACnetStructure;
+import com.bacnetbrowser.schoko.bacnetutils.structure.pattern.LogicalStructure;
 import com.bacnetbrowser.schoko.datahandler.SettingsHandler;
 import com.serotonin.bacnet4j.type.enumerated.ObjectType;
 import com.serotonin.bacnet4j.type.primitive.ObjectIdentifier;
@@ -58,6 +60,8 @@ public class StructureService implements Structurable {
             return false;
         } else if (objectType.equals(ObjectType.program)){
             return false;
+        } else if (objectType.equals(ObjectType.device)){
+            return false;
         } else return !Character.isDigit(objectType.toString().charAt(0));
     }
 
@@ -69,13 +73,13 @@ public class StructureService implements Structurable {
         }
     }
 
-    public void deleteLists(){
+    public void delete(){
+        bacnetStructure.delete();
+        logicalStructure.delete();
         objectNamesToObjectIdentifier.clear();
         objectNamesToBACnetDevice.clear();
         objectNamesToDescription.clear();
     }
-
-
 
     public BACnetStructure getBacnetStructure() {
         return bacnetStructure;

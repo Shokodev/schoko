@@ -9,8 +9,7 @@ public abstract class Structure {
 
     private String name;
     private String description;
-    private StructureNode parent;
-    private final List<StructureNode> children = new ArrayList<>();
+    private List<Structure> children = new ArrayList<>();
 
     public Structure(String name, String description) {
         this.name = name;
@@ -33,36 +32,35 @@ public abstract class Structure {
         this.description = description;
     }
 
-    public List<StructureNode> getChildren() {
+    public List<Structure> getChildren() {
         return children;
     }
 
-    public boolean containsChild(String objectName){
-        for (StructureNode child : children) {
-            if (child.getName().equals(objectName)) {
+    public void setChildren(ArrayList<Structure> children){
+        this.children = children;
+    }
+
+    public boolean containsChild(String name){
+        for (Structure child : children) {
+            if (child.getName().equals(name)) {
                 return true;
             }
         }
         return false;
     }
 
-    public StructureNode getChild(String objectName) throws StructureBuildException {
-        if (containsChild(objectName)) {
-            for (StructureNode child : children) {
-                if (child.getName().equals(objectName)) {
+    public Structure getChild(String name) throws StructureBuildException {
+        if (containsChild(name)) {
+            for (Structure child : children) {
+                if (child.getName().equals(name)) {
                     return child;
                 }
             }
             return null;
-        } else throw new StructureBuildException("No child with object name: "
-                + objectName + " in structure node: " + name);
+        } else throw new StructureBuildException("No child with name: "
+                + name + " in structure node: " + this.name);
     }
 
-    public StructureNode getParent() {
-        return parent;
-    }
 
-    public void setParent(StructureNode parent) {
-        this.parent = parent;
-    }
+
 }
