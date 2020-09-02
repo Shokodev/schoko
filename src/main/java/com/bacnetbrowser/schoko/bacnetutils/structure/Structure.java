@@ -5,6 +5,9 @@ import com.bacnetbrowser.schoko.bacnetutils.structure.exceptions.StructureBuildE
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Abstraction of minimum what a structure node has to have
+ */
 public abstract class Structure {
 
     private String name;
